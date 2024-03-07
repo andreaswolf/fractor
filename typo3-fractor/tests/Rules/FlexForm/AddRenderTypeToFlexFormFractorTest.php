@@ -9,6 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 class AddRenderTypeToFlexFormFractorTest extends TestCase
 {
+    private const FIXTURE_SEPARATOR = '-----';
+
     /**
      * @return array<string, string>
      */
@@ -16,6 +18,7 @@ class AddRenderTypeToFlexFormFractorTest extends TestCase
     {
         return [
             'select without renderType' => [__DIR__ . '/Fixtures/SelectWithoutRenderType.xml.inc'],
+            'select without renderType outside T3DataStructure' => [__DIR__ . '/Fixtures/SelectWithoutRenderTypeNotInFlexForm.xml.inc'],
         ];
     }
 
@@ -23,9 +26,13 @@ class AddRenderTypeToFlexFormFractorTest extends TestCase
     public function test(string $filePath): void
     {
         $fixture = file_get_contents($filePath);
-        [$originalXml, $expectedResultXml] = array_map('trim',
-            explode('-----', $fixture)
-        );
+        if (str_contains($fixture, self::FIXTURE_SEPARATOR)) {
+            [$originalXml, $expectedResultXml] = array_map('trim',
+                explode(self::FIXTURE_SEPARATOR, $fixture)
+            );
+        } else {
+            $originalXml = $expectedResultXml = $fixture;
+        }
 
         $document = new \DOMDocument();
         $document->loadXML($originalXml);
