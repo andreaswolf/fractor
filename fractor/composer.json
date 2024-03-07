@@ -1,0 +1,42 @@
+{
+    "name": "a9f/fractor",
+    "description": "File Read-Analyse-Change TOol",
+    "license": "MIT",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Andreas Wolf",
+            "email": "dev@a-w.io",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/container": "^10.47",
+        "symfony/console": "^6.4",
+        "symfony/dependency-injection": "^6.4",
+        "symfony/filesystem": "^6.4",
+        "symfony/finder": "^6.4"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.42",
+        "phpstan/phpstan": "1.10",
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "a9f\\Fractor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "a9f\\Fractor\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        },
+        "sort-packages": true
+    }
+}

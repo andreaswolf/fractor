@@ -1,0 +1,46 @@
+{
+    "name": "a9f/fractor-xml",
+    "description": "XML extension for the File Read-Analyse-Change TOol. Allows modifying XML files",
+    "license": "MIT",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Andreas Wolf",
+            "email": "dev@a-w.io",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ext-dom": "*",
+        "ext-xml": "*",
+        "a9f/fractor": "@dev"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.42",
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "a9f\\FractorXml\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "a9f\\FractorXml\\Tests\\": "tests/"
+        }
+    },
+    "repositories": {
+        "fractor": {
+            "type": "path",
+            "url": "../fractor/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        },
+        "sort-packages": true
+    }
+}
