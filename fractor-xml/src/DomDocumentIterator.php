@@ -36,6 +36,9 @@ final class DomDocumentIterator
             if ($result === DomDocumentIterator::REMOVE_NODE) {
                 $node->parentNode->removeChild($node);
                 $nodeRemoved = true;
+            } elseif ($result->isSameNode($node) === false) {
+                $node->parentNode->replaceChild($result, $node);
+                $nodeRemoved = true; // "replaced", actually, but that's close enough for us
             }
         }
 

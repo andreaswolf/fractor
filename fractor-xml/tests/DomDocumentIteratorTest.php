@@ -172,6 +172,40 @@ XML);
         self::assertXmlStringEqualsXmlString('<Root></Root>', $document->saveXML());
     }
 
+    #[Test]
+    public function nodeIsReplacedIfVisitorReturnsNewDomNode(): void
+    {
+        $nodeRemovingVisitor = new class extends CollectingDomNodeVisitor {
+            public function enterNode(\DOMNode $node): \DOMNode|int
+            {
+                parent::enterNode($node);
+                if ($node->nodeName === 'Child') {
+                    return $node->ownerDocument->createElement('NewChild');
+                }
+                return $node;
+            }
+
+        };
+        $document = new \DOMDocument();
+        $document->loadXML(<<<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<Root><Child><GrandChild /></Child></Root>
+XML);
+        $subject = new DomDocumentIterator([$nodeRemovingVisitor]);
+        $subject->traverseDocument($document);
+
+        self::assertSame([
+            'beforeTraversal:#document',
+            'enterNode:Root',
+            'enterNode:Child',
+            'leaveNode:Child',
+            'leaveNode:Root',
+            'afterTraversal:#document',
+        ], $nodeRemovingVisitor->calls);
+
+        self::assertXmlStringEqualsXmlString('<Root><NewChild></NewChild></Root>', $document->saveXML());
+    }
+
     private function getCollectingDomNodeVisitor(): DomNodeVisitor
     {
         return new CollectingDomNodeVisitor();
