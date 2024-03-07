@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/container": "^10.47",
+        "symfony/config": "^6.4",
         "symfony/console": "^6.4",
         "symfony/dependency-injection": "^6.4",
         "symfony/filesystem": "^6.4",
@@ -33,6 +33,9 @@
             "a9f\\Fractor\\Tests\\": "tests/"
         }
     },
+    "bin": [
+        "bin/fractor"
+    ],
     "config": {
         "allow-plugins": {
             "ergebnis/composer-normalize": true
