@@ -4,6 +4,7 @@ namespace a9f\FractorXml\Tests;
 
 use a9f\FractorXml\DomDocumentIterator;
 use a9f\FractorXml\DomNodeVisitor;
+use a9f\FractorXml\Tests\Fixtures\CollectingDomNodeVisitor;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -137,33 +138,45 @@ XML);
         ], $nameCollectingVisitor->calls);
     }
 
+    #[Test]
+    public function nodeIsRemovedFromDomIfVisitorReturnsRemoveNode(): void
+    {
+        $nodeRemovingVisitor = new class extends CollectingDomNodeVisitor {
+            public function enterNode(\DOMNode $node): \DOMNode|int
+            {
+                parent::enterNode($node);
+                if ($node->nodeName === 'Child') {
+                    return DomDocumentIterator::REMOVE_NODE;
+                }
+                return $node;
+            }
+
+        };
+        $document = new \DOMDocument();
+        $document->loadXML(<<<XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<Root><Child><GrandChild /></Child></Root>
+XML);
+        $subject = new DomDocumentIterator([$nodeRemovingVisitor]);
+        $subject->traverseDocument($document);
+
+        self::assertSame([
+            'beforeTraversal:#document',
+            'enterNode:Root',
+            'enterNode:Child',
+            'leaveNode:Child',
+            'leaveNode:Root',
+            'afterTraversal:#document',
+        ], $nodeRemovingVisitor->calls);
+
+        self::assertXmlStringEqualsXmlString('<Root></Root>', $document->saveXML());
+    }
+
     private function getCollectingDomNodeVisitor(): DomNodeVisitor
     {
-        return new class implements DomNodeVisitor {
-            /** @var list<non-empty-string> */
-            public array $calls = [];
-
-            public function beforeTraversal(\DOMNode $rootNode): void
-            {
-                $this->calls[] = sprintf('beforeTraversal:%s', $rootNode->nodeName);
-            }
-
-            public function enterNode(\DOMNode $node): void
-            {
-                $this->calls[] = sprintf('enterNode:%s', $node->nodeName);
-            }
-
-            public function leaveNode(\DOMNode $node): void
-            {
-                $this->calls[] = sprintf('leaveNode:%s', $node->nodeName);
-            }
-
-            public function afterTraversal(\DOMNode $rootNode): void
-            {
-                $this->calls[] = sprintf('afterTraversal:%s', $rootNode->nodeName);
-            }
-        };
+        return new CollectingDomNodeVisitor();
     }
+
     private function getCallRecordingDomNodeVisitor(string $visitorName, array &$recorder): DomNodeVisitor
     {
         return new class($visitorName, $recorder) implements DomNodeVisitor {
@@ -181,9 +194,10 @@ XML);
                 $this->calls[] = sprintf('%s:beforeTraversal:%s', $this->visitorName, $rootNode->nodeName);
             }
 
-            public function enterNode(\DOMNode $node): void
+            public function enterNode(\DOMNode $node): \DOMNode|int
             {
                 $this->calls[] = sprintf('%s:enterNode:%s', $this->visitorName, $node->nodeName);
+                return $node;
             }
 
             public function leaveNode(\DOMNode $node): void

@@ -9,7 +9,10 @@ interface DomNodeVisitor
 {
     public function beforeTraversal(\DOMNode $rootNode): void;
 
-    public function enterNode(\DOMNode $node): void;
+    /**
+     * @return \DOMNode|DomDocumentIterator::*
+     */
+    public function enterNode(\DOMNode $node): \DOMNode|int;
 
     public function leaveNode(\DOMNode $node): void;
 

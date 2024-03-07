@@ -4,6 +4,9 @@ namespace a9f\FractorXml;
 
 final class DomDocumentIterator
 {
+    /** @var int */
+    public const REMOVE_NODE = 3;
+
     /**
      * @param list<DomNodeVisitor> $visitors
      */
@@ -26,12 +29,20 @@ final class DomDocumentIterator
 
     private function traverseNode(\DOMNode $node): void
     {
+        $nodeRemoved = false;
         foreach ($this->visitors as $visitor) {
-            $visitor->enterNode($node);
+            $result = $visitor->enterNode($node);
+
+            if ($result === DomDocumentIterator::REMOVE_NODE) {
+                $node->parentNode->removeChild($node);
+                $nodeRemoved = true;
+            }
         }
 
-        foreach ($node->childNodes->getIterator() as $childNode) {
-            $this->traverseNode($childNode);
+        if ($nodeRemoved === false) {
+            foreach ($node->childNodes->getIterator() as $childNode) {
+                $this->traverseNode($childNode);
+            }
         }
 
         foreach ($this->visitors as $visitor) {
