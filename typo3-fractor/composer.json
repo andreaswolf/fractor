@@ -46,6 +46,7 @@
         "sort-packages": true
     },
     "scripts": {
+        "analyze:php": "phpstan analyze",
         "style:php": "ecs"
     }
 }

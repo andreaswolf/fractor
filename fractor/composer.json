@@ -20,7 +20,7 @@
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
-        "phpstan/phpstan": "1.10",
+        "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^10.5",
         "symplify/easy-coding-standard": "^12.1"
     },
@@ -44,6 +44,7 @@
         "sort-packages": true
     },
     "scripts": {
+        "analyze:php": "phpstan analyze",
         "style:php": "ecs"
     }
 }

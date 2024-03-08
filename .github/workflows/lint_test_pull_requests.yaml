@@ -15,6 +15,8 @@ jobs:
             command: 'style:php'
           - name: Composer normalize
             command: 'normalize --dry-run'
+          - name: PHPStan
+            command: analyze:php
         directory: ['extension-installer', 'fractor', 'fractor-xml', 'typo3-fractor']
     name: ${{ matrix.composer-command.name }}/${{ matrix.directory }}
     defaults:
