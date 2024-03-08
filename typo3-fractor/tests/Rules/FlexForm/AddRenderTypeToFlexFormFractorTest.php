@@ -27,7 +27,8 @@ class AddRenderTypeToFlexFormFractorTest extends TestCase
     {
         $fixture = file_get_contents($filePath);
         if (str_contains($fixture, self::FIXTURE_SEPARATOR)) {
-            [$originalXml, $expectedResultXml] = array_map('trim',
+            [$originalXml, $expectedResultXml] = array_map(
+                'trim',
                 explode(self::FIXTURE_SEPARATOR, $fixture)
             );
         } else {

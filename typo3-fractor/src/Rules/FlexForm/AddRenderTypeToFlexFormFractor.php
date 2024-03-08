@@ -2,7 +2,6 @@
 
 namespace a9f\Typo3Fractor\Rules\FlexForm;
 
-use a9f\FractorXml\AbstractXmlFractor;
 use a9f\Typo3Fractor\AbstractFlexformFractor;
 
 final class AddRenderTypeToFlexFormFractor extends AbstractFlexformFractor

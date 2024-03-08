@@ -141,7 +141,7 @@ XML);
     #[Test]
     public function nodeIsRemovedFromDomIfVisitorReturnsRemoveNode(): void
     {
-        $nodeRemovingVisitor = new class extends CollectingDomNodeVisitor {
+        $nodeRemovingVisitor = new class() extends CollectingDomNodeVisitor {
             public function enterNode(\DOMNode $node): \DOMNode|int
             {
                 parent::enterNode($node);
@@ -150,7 +150,6 @@ XML);
                 }
                 return $node;
             }
-
         };
         $document = new \DOMDocument();
         $document->loadXML(<<<XML
@@ -175,7 +174,7 @@ XML);
     #[Test]
     public function nodeIsReplacedIfVisitorReturnsNewDomNode(): void
     {
-        $nodeRemovingVisitor = new class extends CollectingDomNodeVisitor {
+        $nodeRemovingVisitor = new class() extends CollectingDomNodeVisitor {
             public function enterNode(\DOMNode $node): \DOMNode|int
             {
                 parent::enterNode($node);
@@ -184,7 +183,6 @@ XML);
                 }
                 return $node;
             }
-
         };
         $document = new \DOMDocument();
         $document->loadXML(<<<XML

@@ -5,7 +5,6 @@ namespace a9f\Fractor\DependencyInjection;
 use a9f\Fractor\Configuration\FractorConfig;
 use a9f\Fractor\DependencyInjection\CompilerPass\CommandsCompilerPass;
 use a9f\Fractor\DependencyInjection\CompilerPass\FileProcessorCompilerPass;
-use a9f\Fractor\Fractor\FileProcessor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -51,7 +50,8 @@ class ContainerBuilder
         }
     }
 
-    private function registerConfiguredFileProcessors(FractorConfig $config) {
+    private function registerConfiguredFileProcessors(FractorConfig $config)
+    {
         foreach ($config->getFileProcessors() as $processor) {
             $config->registerForAutoconfiguration($processor)
                 ->addTag('fractor.file_processor');

@@ -4,7 +4,8 @@ namespace a9f\FractorXml\Tests\Fixtures;
 
 use a9f\FractorXml\DomNodeVisitor;
 
-class CollectingDomNodeVisitor implements DomNodeVisitor {
+class CollectingDomNodeVisitor implements DomNodeVisitor
+{
     /** @var list<non-empty-string> */
     public array $calls = [];
 
