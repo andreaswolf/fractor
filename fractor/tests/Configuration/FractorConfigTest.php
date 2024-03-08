@@ -48,6 +48,7 @@ CODE;
     private function placeConfigFileInTemporaryFolderAndImport(FractorConfig $config, string $closure): void
     {
         $tempFile = tempnam(sys_get_temp_dir(), 'fractor-test');
+        self::assertIsString($tempFile);
         try {
             file_put_contents($tempFile, $closure);
 

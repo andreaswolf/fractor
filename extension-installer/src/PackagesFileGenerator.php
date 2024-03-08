@@ -23,8 +23,7 @@ PHP;
         private readonly InstalledRepositoryInterface $repository,
         private readonly InstallationManager $installationManager,
         private readonly string $fileToGenerate
-    )
-    {
+    ) {
     }
 
     public function generate(): void

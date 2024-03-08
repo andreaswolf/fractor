@@ -20,8 +20,9 @@
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
-        "phpstan/phpstan": "1.10",
-        "phpunit/phpunit": "^10.5"
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^10.5",
+        "symplify/easy-coding-standard": "^12.1"
     },
     "autoload": {
         "psr-4": {
@@ -41,5 +42,10 @@
             "ergebnis/composer-normalize": true
         },
         "sort-packages": true
+    },
+    "scripts": {
+        "analyze:php": "phpstan analyze",
+        "style:php": "ecs",
+        "test:php": "phpunit tests/"
     }
 }

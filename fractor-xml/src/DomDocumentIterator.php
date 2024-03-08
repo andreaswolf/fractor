@@ -20,7 +20,9 @@ final class DomDocumentIterator
             $visitor->beforeTraversal($document);
         }
 
-        $this->traverseNode($document->firstChild);
+        if ($document->firstChild instanceof \DOMNode) {
+            $this->traverseNode($document->firstChild);
+        }
 
         foreach ($this->visitors as $visitor) {
             $visitor->afterTraversal($document);
@@ -32,6 +34,11 @@ final class DomDocumentIterator
         $nodeRemoved = false;
         foreach ($this->visitors as $visitor) {
             $result = $visitor->enterNode($node);
+
+            if ($node->parentNode === null) {
+                // TODO convert into a custom ShouldNotHappenException
+                throw new \RuntimeException('Node has no parent node');
+            }
 
             if ($result === DomDocumentIterator::REMOVE_NODE) {
                 $node->parentNode->removeChild($node);

@@ -2,7 +2,6 @@
 
 namespace a9f\Typo3Fractor\Rules\FlexForm;
 
-use a9f\FractorXml\AbstractXmlFractor;
 use a9f\Typo3Fractor\AbstractFlexformFractor;
 
 final class AddRenderTypeToFlexFormFractor extends AbstractFlexformFractor
@@ -38,7 +37,14 @@ final class AddRenderTypeToFlexFormFractor extends AbstractFlexformFractor
         }
 
         if ($isSingleSelect) {
-            $renderType = $childNode->ownerDocument->createElement('renderType');
+            $ownerDocument = $node->ownerDocument;
+
+            if ($ownerDocument === null) {
+                // TODO convert into a custom ShouldNotHappenException
+                throw new \RuntimeException('Node does not have an ownerDocument');
+            }
+
+            $renderType = $ownerDocument->createElement('renderType');
             $renderType->nodeValue = 'selectSingle';
             $node->appendChild($renderType);
         }

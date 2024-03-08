@@ -14,12 +14,20 @@
         "php": "^8.2",
         "a9f/fractor": "@dev",
         "a9f/fractor-extension-installer": "@dev",
-        "a9f/fractor-xml": "@dev"
+        "a9f/fractor-xml": "@dev",
+        "thecodingmachine/safe": "^2.5"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
         "phpstan/phpstan": "^1.10",
-        "phpunit/phpunit": "^10.5"
+        "phpunit/phpunit": "^10.5",
+        "symplify/easy-coding-standard": "^12.1"
+    },
+    "repositories": {
+        "fractor": {
+            "type": "path",
+            "url": "../*"
+        }
     },
     "autoload": {
         "psr-4": {
@@ -31,16 +39,16 @@
             "a9f\\Typo3Fractor\\Tests\\": "tests/"
         }
     },
-    "repositories": {
-        "fractor": {
-            "type": "path",
-            "url": "../*"
-        }
-    },
     "config": {
         "allow-plugins": {
+            "a9f/fractor-extension-installer": true,
             "ergebnis/composer-normalize": true
         },
         "sort-packages": true
+    },
+    "scripts": {
+        "analyze:php": "phpstan analyze",
+        "style:php": "ecs",
+        "test:php": "phpunit tests/"
     }
 }

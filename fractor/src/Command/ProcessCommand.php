@@ -3,12 +3,9 @@
 namespace a9f\Fractor\Command;
 
 use a9f\Fractor\Configuration\FractorConfig;
-use a9f\Fractor\FileSystem\FileFinder;
-use a9f\Fractor\Fractor\FileProcessor;
 use a9f\Fractor\Fractor\FractorRunner;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;

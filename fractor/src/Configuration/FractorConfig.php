@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class FractorConfig extends ContainerBuilder
 {
-    /** @var non-empty-list<non-empty-string> */
+    /** @var list<non-empty-string> */
     private array $paths = [];
 
     /**
@@ -34,7 +34,7 @@ final class FractorConfig extends ContainerBuilder
     }
 
     /**
-     * @return non-empty-list<non-empty-string>
+     * @return list<non-empty-string>
      */
     public function getPaths(): array
     {
@@ -58,6 +58,9 @@ final class FractorConfig extends ContainerBuilder
         return $this->processors;
     }
 
+    /**
+     * @param list<non-empty-string> $extensions
+     */
     public function setFileExtensions(array $extensions): self
     {
         $this->fileExtensions = $extensions;
