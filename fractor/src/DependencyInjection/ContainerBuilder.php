@@ -28,19 +28,34 @@ class ContainerBuilder
 
         $this->importExtensionConfigurations($config);
 
-        $config->registerForAutoconfiguration(FileProcessor::class)
-            ->addTag('fractor.file_processor');
-
         $config->addCompilerPass(new CommandsCompilerPass());
         $config->addCompilerPass(new FileProcessorCompilerPass());
-
-        $config->compile();
 
         if (is_file($fractorConfigFile)) {
             $config->import($fractorConfigFile);
         }
 
+        $this->registerConfiguredRules($config);
+        $this->registerConfiguredFileProcessors($config);
+
+        $config->compile();
+
         return $config;
+    }
+
+    private function registerConfiguredRules(FractorConfig $config)
+    {
+        foreach ($config->getRules() as $rule) {
+            $config->registerForAutoconfiguration($rule)
+                ->addTag('fractor.rule');
+        }
+    }
+
+    private function registerConfiguredFileProcessors(FractorConfig $config) {
+        foreach ($config->getFileProcessors() as $processor) {
+            $config->registerForAutoconfiguration($processor)
+                ->addTag('fractor.file_processor');
+        }
     }
 
     private function importExtensionConfigurations(FractorConfig $config): void
