@@ -14,7 +14,8 @@
         "php": "^8.2",
         "ext-dom": "*",
         "ext-xml": "*",
-        "a9f/fractor": "@dev"
+        "a9f/fractor": "@dev",
+        "a9f/fractor-extension-installer": "@dev"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
@@ -34,7 +35,7 @@
     "repositories": {
         "fractor": {
             "type": "path",
-            "url": "../fractor/"
+            "url": "../*"
         }
     },
     "config": {
