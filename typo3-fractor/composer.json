@@ -19,7 +19,8 @@
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
         "phpstan/phpstan": "^1.10",
-        "phpunit/phpunit": "^10.5"
+        "phpunit/phpunit": "^10.5",
+        "symplify/easy-coding-standard": "^12.1"
     },
     "autoload": {
         "psr-4": {
@@ -39,8 +40,12 @@
     },
     "config": {
         "allow-plugins": {
-            "ergebnis/composer-normalize": true
+            "ergebnis/composer-normalize": true,
+            "a9f/fractor-extension-installer": true
         },
         "sort-packages": true
+    },
+    "scripts": {
+        "style:php": "ecs"
     }
 }

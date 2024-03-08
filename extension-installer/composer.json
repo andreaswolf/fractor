@@ -16,7 +16,8 @@
   },
   "require-dev": {
     "composer/composer": "^2.7",
-    "ergebnis/composer-normalize": "^2.42"
+    "ergebnis/composer-normalize": "^2.42",
+    "symplify/easy-coding-standard": "^12.1"
   },
   "autoload": {
     "psr-4": {
@@ -31,5 +32,8 @@
   },
   "extra": {
     "class": "a9f\\FractorExtensionInstaller\\InstallerPlugin"
+  },
+  "scripts": {
+    "style:php": "ecs"
   }
 }
