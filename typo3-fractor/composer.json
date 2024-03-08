@@ -22,6 +22,12 @@
         "phpunit/phpunit": "^10.5",
         "symplify/easy-coding-standard": "^12.1"
     },
+    "repositories": {
+        "fractor": {
+            "type": "path",
+            "url": "../*"
+        }
+    },
     "autoload": {
         "psr-4": {
             "a9f\\Typo3Fractor\\": "src/"
@@ -32,16 +38,10 @@
             "a9f\\Typo3Fractor\\Tests\\": "tests/"
         }
     },
-    "repositories": {
-        "fractor": {
-            "type": "path",
-            "url": "../*"
-        }
-    },
     "config": {
         "allow-plugins": {
-            "ergebnis/composer-normalize": true,
-            "a9f/fractor-extension-installer": true
+            "a9f/fractor-extension-installer": true,
+            "ergebnis/composer-normalize": true
         },
         "sort-packages": true
     },
