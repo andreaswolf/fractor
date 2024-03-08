@@ -10,7 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        composer-command: ['style:php']
+        composer-command:
+          - name: PHP Code Style
+            command: 'style:php'
+          - name: Composer normalize
+            command: 'normalize --dry-run'
         directory: ['extension-installer', 'fractor', 'fractor-xml', 'typo3-fractor']
     defaults:
       run:
@@ -26,9 +30,9 @@ jobs:
           container_workdir: /app/${{ matrix.directory }}
           memory_limit: 512M
 
-      - name: 'Run check "${{ matrix.composer-command }}"'
+      - name: 'Run check "${{ matrix.composer-command.name }}"'
         uses: php-actions/composer@v6
         with:
           container_workdir: /app/${{ matrix.directory }}
-          command: ${{ matrix.composer-command }}
+          command: ${{ matrix.composer-command.command }}
           memory_limit: 512M
