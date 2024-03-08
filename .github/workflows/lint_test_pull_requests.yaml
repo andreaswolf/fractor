@@ -1,0 +1,34 @@
+name: "Code style & tests"
+on:
+  pull_request:
+    # Run this workflow for all PRs against main
+    branches:
+      - main
+
+jobs:
+  php-check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        composer-command: ['style:php']
+        directory: ['extension-installer', 'fractor', 'fractor-xml', 'typo3-fractor']
+    defaults:
+      run:
+        working-directory: ${{ matrix.directory }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Install composer dependencies
+        uses: php-actions/composer@v6
+        with:
+          container_workdir: /app/${{ matrix.directory }}
+          memory_limit: 512M
+
+      - name: 'Run check "${{ matrix.composer-command }}"'
+        uses: php-actions/composer@v6
+        with:
+          container_workdir: /app/${{ matrix.directory }}
+          command: ${{ matrix.composer-command }}
+          memory_limit: 512M
