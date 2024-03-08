@@ -2,33 +2,42 @@
 
 namespace a9f\Fractor\DependencyInjection;
 
+use a9f\Fractor\Configuration\FractorConfig;
 use a9f\Fractor\DependencyInjection\CompilerPass\CommandsCompilerPass;
 use a9f\Fractor\DependencyInjection\CompilerPass\FileProcessorCompilerPass;
 use a9f\Fractor\Fractor\FileProcessor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\DependencyInjection\ContainerBuilder as SymfonyContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 class ContainerBuilder
 {
-    public function createDependencyInjectionContainer(): ContainerInterface
+    public function createDependencyInjectionContainer(?string $fractorConfigFile): ContainerInterface
     {
-        $containerBuilder = new SymfonyContainerBuilder();
+        $config = new FractorConfig();
 
-        $yamlFileLoader = new PhpFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../../config/'));
+        $definition = new Definition(FractorConfig::class);
+        $definition->setPublic(true);
+        $config->set(Container::class, $config);
+        $config->set(FractorConfig::class, $config);
+
+        $yamlFileLoader = new PhpFileLoader($config, new FileLocator(__DIR__ . '/../../config/'));
         $yamlFileLoader->load('application.php');
 
-        $containerBuilder->registerForAutoconfiguration(FileProcessor::class)
+        $config->registerForAutoconfiguration(FileProcessor::class)
             ->addTag('fractor.file_processor');
 
-        $containerBuilder->set(Container::class, $containerBuilder);
-        $containerBuilder->addCompilerPass(new CommandsCompilerPass());
-        $containerBuilder->addCompilerPass(new FileProcessorCompilerPass());
+        $config->addCompilerPass(new CommandsCompilerPass());
+        $config->addCompilerPass(new FileProcessorCompilerPass());
 
-        $containerBuilder->compile();
+        $config->compile();
 
-        return $containerBuilder;
+        if (is_file($fractorConfigFile)) {
+            $config->import($fractorConfigFile);
+        }
+
+        return $config;
     }
 }
