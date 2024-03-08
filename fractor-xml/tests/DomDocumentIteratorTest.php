@@ -168,7 +168,7 @@ XML);
             'afterTraversal:#document',
         ], $nodeRemovingVisitor->calls);
 
-        self::assertXmlStringEqualsXmlString('<Root></Root>', $document->saveXML());
+        self::assertXmlStringEqualsXmlString('<Root></Root>', $document->saveXML() ?: '');
     }
 
     #[Test]
@@ -179,6 +179,10 @@ XML);
             {
                 parent::enterNode($node);
                 if ($node->nodeName === 'Child') {
+                    if ($node->ownerDocument === null) {
+                        throw new \RuntimeException('Node does not have an ownerDocument, cannot create element');
+                    }
+
                     return $node->ownerDocument->createElement('NewChild');
                 }
                 return $node;
@@ -201,14 +205,17 @@ XML);
             'afterTraversal:#document',
         ], $nodeRemovingVisitor->calls);
 
-        self::assertXmlStringEqualsXmlString('<Root><NewChild></NewChild></Root>', $document->saveXML());
+        self::assertXmlStringEqualsXmlString('<Root><NewChild></NewChild></Root>', $document->saveXML() ?: '');
     }
 
-    private function getCollectingDomNodeVisitor(): DomNodeVisitor
+    private function getCollectingDomNodeVisitor(): CollectingDomNodeVisitor
     {
         return new CollectingDomNodeVisitor();
     }
 
+    /**
+     * @param list<string> $recorder
+     */
     private function getCallRecordingDomNodeVisitor(string $visitorName, array &$recorder): DomNodeVisitor
     {
         return new class($visitorName, $recorder) implements DomNodeVisitor {
@@ -217,7 +224,7 @@ XML);
              */
             public function __construct(
                 private readonly string $visitorName,
-                private array &$calls
+                public array &$calls // only public to please PHPStan
             ) {
             }
 

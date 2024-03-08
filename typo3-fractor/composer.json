@@ -14,7 +14,8 @@
         "php": "^8.2",
         "a9f/fractor": "@dev",
         "a9f/fractor-extension-installer": "@dev",
-        "a9f/fractor-xml": "@dev"
+        "a9f/fractor-xml": "@dev",
+        "thecodingmachine/safe": "^2.5"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",

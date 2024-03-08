@@ -7,6 +7,8 @@ use Symfony\Component\Finder\Finder;
 final class FileFinder
 {
     /**
+     * @param list<non-empty-string> $directories
+     * @param list<non-empty-string> $fileExtensions
      * @return list<\SplFileInfo>
      */
     public function findFiles(array $directories, array $fileExtensions): array

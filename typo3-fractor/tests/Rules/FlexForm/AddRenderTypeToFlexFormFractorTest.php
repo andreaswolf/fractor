@@ -7,12 +7,14 @@ use a9f\Typo3Fractor\Rules\FlexForm\AddRenderTypeToFlexFormFractor;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
+use function Safe\file_get_contents;
+
 class AddRenderTypeToFlexFormFractorTest extends TestCase
 {
     private const FIXTURE_SEPARATOR = '-----';
 
     /**
-     * @return array<string, string>
+     * @return array<string, array{string}>
      */
     public static function fixtureFilesProvider(): array
     {
@@ -41,7 +43,7 @@ class AddRenderTypeToFlexFormFractorTest extends TestCase
         $iterator = new DomDocumentIterator([new AddRenderTypeToFlexFormFractor()]);
         $iterator->traverseDocument($document);
 
-        $result = $document->saveXML();
+        $result = $document->saveXML() ?: '';
 
         self::assertXmlStringEqualsXmlString($expectedResultXml, $result);
     }
