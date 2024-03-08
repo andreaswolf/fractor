@@ -16,6 +16,7 @@ jobs:
           - name: Composer normalize
             command: 'normalize --dry-run'
         directory: ['extension-installer', 'fractor', 'fractor-xml', 'typo3-fractor']
+    name: ${{ matrix.composer-command.name }}/${{ matrix.directory }}
     defaults:
       run:
         working-directory: ${{ matrix.directory }}
