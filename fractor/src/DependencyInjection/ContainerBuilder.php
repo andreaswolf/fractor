@@ -26,6 +26,8 @@ class ContainerBuilder
         $yamlFileLoader = new PhpFileLoader($config, new FileLocator(__DIR__ . '/../../config/'));
         $yamlFileLoader->load('application.php');
 
+        $this->importExtensionConfigurations($config);
+
         $config->registerForAutoconfiguration(FileProcessor::class)
             ->addTag('fractor.file_processor');
 
@@ -39,5 +41,22 @@ class ContainerBuilder
         }
 
         return $config;
+    }
+
+    private function importExtensionConfigurations(FractorConfig $config): void
+    {
+        if (!class_exists('a9f\\FractorExtensionInstaller\\Generated\\InstalledPackages')) {
+            return;
+        }
+
+        foreach (\a9f\FractorExtensionInstaller\Generated\InstalledPackages::PACKAGES as $package) {
+            $extensionBasePath = $package['path'];
+            $filePath = $extensionBasePath . '/config/application.php';
+
+            if (file_exists($filePath)) {
+                $fileLoader = new PhpFileLoader($config, new FileLocator(dirname($filePath)));
+                $fileLoader->load(basename($filePath));
+            }
+        }
     }
 }
