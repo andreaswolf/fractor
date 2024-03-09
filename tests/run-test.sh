@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 TESTS_BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd)"
 BASE_DIR="$TESTS_BASE_DIR/../"
 
