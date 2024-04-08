@@ -1,0 +1,82 @@
+name: Check Git history
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  check_uses_latest_main:
+    if: ${{ github.event.pull_request.base.ref == 'main' }}
+    name: 'Check if PR is based on latest main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }} # ensure we get the actual PR HEAD and not the merged result
+          fetch-depth: 0 # ensure the complete Git history is available
+
+      - name: Test if main has any commits not on this branch
+        shell: bash
+        run: |
+          COMMIT_COUNT=$(git log --oneline HEAD..origin/main | wc -l)
+
+          if [[ $COMMIT_COUNT -gt 0 ]]
+          then
+            echo
+            echo "There are $COMMIT_COUNT commits on main that are not on this branch."
+            echo
+            echo "Please rebase ${{ github.event.pull_request.head.ref }} onto origin/main"
+            echo
+            echo "Hint: this can also be done via the GitHub UI at ${{ github.event.pull_request.html_url }}"
+            echo
+            exit 1
+          fi
+
+  check_linear_history:
+    if: ${{ github.event.pull_request.base.ref == 'main' }}
+    name: 'Check if PR has a linear history without merges'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }} # ensure we get the actual PR HEAD and not the merged result
+          fetch-depth: 0 # ensure the complete Git history is available
+
+      - name: Test if PR HEAD contains any merge commits
+        shell: bash
+        run: |
+          MERGE_COMMIT_COUNT=$(git log --oneline --merges origin/main..HEAD | wc -l)
+
+          if [[ $MERGE_COMMIT_COUNT -gt 0 ]]
+          then
+            echo
+            echo "There are $MERGE_COMMIT_COUNT merge commits on this branch."
+            echo
+            echo "Please rebase ${{ github.event.pull_request.head.ref }} onto origin/main to get rid of these merges."
+            echo
+            exit 1
+          fi
+
+  check_has_no_fixups:
+    name: 'Check if PR has any fixup! or WIP commits'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }} # ensure we get the actual PR HEAD and not the merged result
+          fetch-depth: 0 # ensure the complete Git history is available
+
+      - name: Test if PR HEAD contains any commits starting with "!fixup" or "WIP"
+        shell: bash
+        run: |
+          COMMIT_COUNT=$(git log --oneline --format="%s" origin/main..HEAD | grep -E '^(fixup!|WIP)' | wc -l || true)
+
+          if [[ $COMMIT_COUNT -gt 0 ]]
+          then
+            echo
+            echo "There are $COMMIT_COUNT commits marked as WIP or fixup! on this branch."
+            echo
+            echo "Please fix the description of the WIP commits and do an interactive rebase of "
+            echo "${{ github.event.pull_request.head.ref }} onto origin/main to get rid of the fixup! commits."
+            echo
+            exit 1
+          fi
