@@ -13,15 +13,18 @@ final class FileFinder
      */
     public function findFiles(array $directories, array $fileExtensions): array
     {
+        if ($directories === []) {
+            throw new \UnexpectedValueException('Directories must not be an empty array');
+        }
+
         $finder = Finder::create()
             ->files()
             // skip empty files
             ->size('> 0')
             ->in($directories);
 
-        if ($fileExtensions !== []) {
-            $pattern = sprintf('/(%s)/', implode('|', $fileExtensions));
-            $finder->name($pattern);
+        foreach ($fileExtensions as $fileExtension) {
+            $finder->name('*.' . $fileExtension);
         }
 
         $files = [];

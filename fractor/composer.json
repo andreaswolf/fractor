@@ -45,7 +45,7 @@
     },
     "scripts": {
         "analyze:php": "phpstan analyze",
-        "style:php": "ecs",
+        "style:php": "ecs --fix",
         "test:php": "phpunit tests/"
     }
 }
