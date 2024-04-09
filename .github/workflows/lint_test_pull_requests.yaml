@@ -12,7 +12,7 @@ jobs:
       matrix:
         composer-command:
           - name: PHP Code Style
-            command: 'style:php'
+            command: 'style:php:check'
           - name: Composer normalize
             command: 'normalize --dry-run'
           - name: PHPStan

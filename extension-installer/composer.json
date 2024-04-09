@@ -36,6 +36,7 @@
   },
   "scripts": {
     "analyze:php": "phpstan analyze",
-    "style:php": "ecs"
+    "style:php:check": "ecs",
+    "style:php:fix": "ecs --fix"
   }
 }
