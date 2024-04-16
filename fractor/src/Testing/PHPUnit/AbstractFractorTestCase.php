@@ -12,7 +12,7 @@ use Psr\Container\ContainerInterface;
 
 abstract class AbstractFractorTestCase extends TestCase
 {
-    private static ?ContainerInterface $currentContainer = null;
+    private ?ContainerInterface $currentContainer = null;
     private FractorRunner $fractorRunner;
 
     abstract protected function provideConfigFilePath(): ?string;
@@ -30,9 +30,7 @@ abstract class AbstractFractorTestCase extends TestCase
 
     protected function bootFromConfigFile(): void
     {
-        if(self::$currentContainer === null) {
-            self::$currentContainer = (new ContainerBuilder())->createDependencyInjectionContainer($this->provideConfigFilePath(), $this->additionalConfigurationFiles());
-        }
+        $this->currentContainer = (new ContainerBuilder())->createDependencyInjectionContainer($this->provideConfigFilePath(), $this->additionalConfigurationFiles());
     }
 
     protected function doTest(): void
@@ -49,11 +47,11 @@ abstract class AbstractFractorTestCase extends TestCase
      */
     protected function getService(string $type): object
     {
-        if (self::$currentContainer === null) {
+        if ($this->currentContainer === null) {
             throw new ShouldNotHappenException('First, create container with "bootWithConfigFileInfos([...])"');
         }
 
-        $object = self::$currentContainer->get($type);
+        $object = $this->currentContainer->get($type);
         if ($object === null) {
             $message = sprintf('Service "%s" was not found', $type);
             throw new ShouldNotHappenException($message);
