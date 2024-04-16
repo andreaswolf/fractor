@@ -5,7 +5,7 @@ namespace a9f\Fractor\Tests\Helper\Contract;
 
 use a9f\Fractor\Contract\FractorRule;
 
-interface TextRule extends FractorRule
+interface TextRule
 {
     public function apply(string $fileContent): string;
 }

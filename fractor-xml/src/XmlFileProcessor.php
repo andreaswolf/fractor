@@ -10,7 +10,7 @@ final class XmlFileProcessor implements FileProcessor
     /**
      * @param list<XmlFractor> $rules
      */
-    public function __construct(private readonly array $rules)
+    public function __construct(private readonly iterable $rules)
     {
     }
 

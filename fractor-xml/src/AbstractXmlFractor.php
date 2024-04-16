@@ -6,7 +6,7 @@ use a9f\Fractor\Contract\FractorRule;
 use a9f\FractorXml\Contract\DomNodeVisitor;
 use a9f\FractorXml\Contract\XmlFractor;
 
-abstract class AbstractXmlFractor implements DomNodeVisitor, XmlFractor, FractorRule
+abstract class AbstractXmlFractor implements DomNodeVisitor, XmlFractor
 {
     public function beforeTraversal(\DOMNode $rootNode): void
     {
