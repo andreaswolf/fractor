@@ -32,6 +32,6 @@ final class XmlFileProcessor implements FileProcessor
         $iterator->traverseDocument($doc);
 
         // TODO only update file if changed
-        file_put_contents($file->getFilePath(), $doc->saveXML());
+        $file->changeFileContent($doc->saveXML());
     }
 }

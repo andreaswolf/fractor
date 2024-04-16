@@ -3,7 +3,6 @@
 namespace a9f\Fractor\Configuration;
 
 use a9f\Fractor\Contract\FileProcessor;
-use a9f\Fractor\Contract\FractorRule;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class FractorConfig extends ContainerBuilder
@@ -74,24 +73,6 @@ final class FractorConfig extends ContainerBuilder
     public function getFileExtensions(): array
     {
         return $this->fileExtensions;
-    }
-
-    /**
-     * @param class-string<FractorRule> $ruleClass
-     */
-    public function withRule(string $ruleClass): self
-    {
-        $this->rules[] = $ruleClass;
-
-        return $this;
-    }
-
-    /**
-     * @return list<class-string<FractorRule>>
-     */
-    public function getRules(): array
-    {
-        return $this->rules;
     }
 
     public function import(string $configFile): void
