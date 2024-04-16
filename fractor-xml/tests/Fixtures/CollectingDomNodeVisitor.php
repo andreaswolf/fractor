@@ -2,7 +2,7 @@
 
 namespace a9f\FractorXml\Tests\Fixtures;
 
-use a9f\FractorXml\DomNodeVisitor;
+use a9f\FractorXml\Contract\DomNodeVisitor;
 
 class CollectingDomNodeVisitor implements DomNodeVisitor
 {
