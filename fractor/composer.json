@@ -12,6 +12,7 @@
     ],
     "require": {
         "php": "^8.2",
+        "nette/utils": "^4.0",
         "symfony/config": "^6.4",
         "symfony/console": "^6.4",
         "symfony/dependency-injection": "^6.4",

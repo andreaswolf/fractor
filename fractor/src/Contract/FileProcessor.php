@@ -2,9 +2,11 @@
 
 namespace a9f\Fractor\Contract;
 
+use a9f\Fractor\ValueObject\File;
+
 interface FileProcessor
 {
     public function canHandle(\SplFileInfo $file): bool;
 
-    public function handle(\SplFileInfo $file): void;
+    public function handle(File $file): void;
 }

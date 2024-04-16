@@ -5,6 +5,7 @@ namespace a9f\Fractor\Tests\Helper\FileProcessor;
 
 use a9f\Fractor\Contract\FileProcessor;
 use a9f\Fractor\Tests\Helper\Contract\TextRule;
+use a9f\Fractor\ValueObject\File;
 
 final readonly class TextFileProcessor implements FileProcessor
 {
@@ -20,12 +21,10 @@ final readonly class TextFileProcessor implements FileProcessor
         return $file->getExtension() === 'txt';
     }
 
-    public function handle(\SplFileInfo $file): void
+    public function handle(File $file): void
     {
         foreach ($this->rules as $rule) {
-            $fileContent = file_get_contents($file->getPathname());
-            $changedFileContent = $rule->apply($fileContent);
-            file_put_contents($file->getPathname(), $changedFileContent);
+            $rule->apply($file);
         }
     }
 }

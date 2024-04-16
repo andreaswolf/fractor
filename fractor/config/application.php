@@ -15,7 +15,12 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         ->autoconfigure();
 
     $services->load('a9f\\Fractor\\', __DIR__ . '/../src/')
-        ->exclude('../src/Configuration/');
+        ->exclude([
+                __DIR__ . '/../src/Configuration',
+                __DIR__ . '/../src/ValueObject',
+            ]
+        );
+
 
     $services->set(FractorRunner::class)->arg('$processors', tagged_iterator('fractor.file_processor'));
     $services->set(FractorConfig::class)
