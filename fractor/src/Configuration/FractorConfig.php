@@ -15,11 +15,6 @@ final class FractorConfig extends ContainerBuilder
      */
     private array $processors = [];
 
-    /**
-     * @var list<class-string<FractorRule>>
-     */
-    private array $rules = [];
-
     /** @var list<non-empty-string> */
     private array $fileExtensions = [];
 

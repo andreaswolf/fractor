@@ -15,7 +15,8 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         ->autoconfigure();
 
     $services->load('a9f\\Fractor\\', __DIR__ . '/../src/')
-        ->exclude([
+        ->exclude(
+            [
                 __DIR__ . '/../src/Configuration',
                 __DIR__ . '/../src/ValueObject',
             ]

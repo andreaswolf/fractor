@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace a9f\Fractor\FileSystem;
@@ -21,6 +22,9 @@ final class FileCollector
         return $this->files[$filePath] ?? null;
     }
 
+    /**
+     * @return array<string, File>
+     */
     public function getFiles(): array
     {
         return $this->files;

@@ -12,6 +12,9 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 class ContainerBuilder
 {
+    /**
+     * @param array<int, string> $additionalConfigFiles
+     */
     public function createDependencyInjectionContainer(?string $fractorConfigFile, array $additionalConfigFiles = []): ContainerInterface
     {
         $config = new FractorConfig();

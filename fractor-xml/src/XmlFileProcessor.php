@@ -31,7 +31,12 @@ final class XmlFileProcessor implements FileProcessor
         $iterator = new DomDocumentIterator($this->rules);
         $iterator->traverseDocument($doc);
 
-        // TODO only update file if changed
-        $file->changeFileContent($doc->saveXML());
+        $newFileContent = $doc->saveXML();
+
+        if ($newFileContent === false) {
+            throw new \UnexpectedValueException('New file content should be a string');
+        }
+
+        $file->changeFileContent($newFileContent);
     }
 }

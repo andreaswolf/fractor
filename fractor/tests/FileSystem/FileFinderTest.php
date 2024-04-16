@@ -7,7 +7,6 @@ namespace a9f\Fractor\Tests\FileSystem;
 use a9f\Fractor\FileSystem\FileFinder;
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\TestCase;
 use UnexpectedValueException;
 
 final class FileFinderTest extends AbstractFractorTestCase

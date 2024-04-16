@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace a9f\Fractor\Testing\PHPUnit;
@@ -19,6 +20,9 @@ abstract class AbstractFractorTestCase extends TestCase
 
     abstract protected function provideConfigFilePath(): ?string;
 
+    /**
+     * @return array<int, string>
+     */
     protected function additionalConfigurationFiles(): array
     {
         return [];
