@@ -1,6 +1,8 @@
 <?php
 
-namespace a9f\FractorXml;
+namespace a9f\FractorXml\Contract;
+
+use a9f\FractorXml\DomDocumentIterator;
 
 interface XmlFractor extends DomNodeVisitor
 {

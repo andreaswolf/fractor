@@ -2,8 +2,8 @@
 
 namespace a9f\FractorXml\Tests;
 
+use a9f\FractorXml\Contract\DomNodeVisitor;
 use a9f\FractorXml\DomDocumentIterator;
-use a9f\FractorXml\DomNodeVisitor;
 use a9f\FractorXml\Tests\Fixtures\CollectingDomNodeVisitor;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;

@@ -2,6 +2,8 @@
 
 namespace a9f\FractorXml;
 
+use a9f\FractorXml\Contract\DomNodeVisitor;
+
 final class DomDocumentIterator
 {
     /** @var int */

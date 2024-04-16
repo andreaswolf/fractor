@@ -2,8 +2,8 @@
 
 namespace a9f\FractorXml\DependencyInjection;
 
+use a9f\FractorXml\Contract\XmlFractor;
 use a9f\FractorXml\XmlFileProcessor;
-use a9f\FractorXml\XmlFractor;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;

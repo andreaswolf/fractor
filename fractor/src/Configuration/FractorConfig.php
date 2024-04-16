@@ -2,8 +2,8 @@
 
 namespace a9f\Fractor\Configuration;
 
-use a9f\Fractor\Fractor\FileProcessor;
-use a9f\Fractor\Fractor\FractorRule;
+use a9f\Fractor\Contract\FileProcessor;
+use a9f\Fractor\Contract\FractorRule;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class FractorConfig extends ContainerBuilder

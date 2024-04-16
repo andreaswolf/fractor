@@ -2,7 +2,9 @@
 
 namespace a9f\FractorXml;
 
-use a9f\Fractor\Fractor\FractorRule;
+use a9f\Fractor\Contract\FractorRule;
+use a9f\FractorXml\Contract\DomNodeVisitor;
+use a9f\FractorXml\Contract\XmlFractor;
 
 abstract class AbstractXmlFractor implements DomNodeVisitor, XmlFractor, FractorRule
 {

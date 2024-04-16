@@ -3,6 +3,7 @@
 namespace a9f\Fractor\Fractor;
 
 use a9f\Fractor\Configuration\FractorConfig;
+use a9f\Fractor\Contract\FileProcessor;
 use a9f\Fractor\FileSystem\FileFinder;
 
 /**

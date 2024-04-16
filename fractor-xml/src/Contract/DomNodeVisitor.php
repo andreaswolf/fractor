@@ -1,6 +1,8 @@
 <?php
 
-namespace a9f\FractorXml;
+namespace a9f\FractorXml\Contract;
+
+use a9f\FractorXml\DomDocumentIterator;
 
 /**
  * TODO decide if the methods should allow returning values that then replace things/modify the DOM?
