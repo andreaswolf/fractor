@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FileSystem;
+namespace a9f\Fractor\Tests\FileSystem;
 
 use a9f\Fractor\FileSystem\FileFinder;
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;

@@ -15,5 +15,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->exclude('../src/Configuration/');
 
     $services->set(FractorConfig::class)
-        ->lazy(true);
+        ->lazy();
 };

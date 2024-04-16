@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 class ContainerBuilder
 {
-    public function createDependencyInjectionContainer(?string $fractorConfigFile): ContainerInterface
+    public function createDependencyInjectionContainer(?string $fractorConfigFile, array $additionalConfigFiles = []): ContainerInterface
     {
         $config = new FractorConfig();
 
@@ -32,6 +32,11 @@ class ContainerBuilder
 
         if ($fractorConfigFile !== null && is_file($fractorConfigFile)) {
             $config->import($fractorConfigFile);
+        }
+
+        foreach ($additionalConfigFiles as $additionalConfigFile) {
+            $fileLoader = new PhpFileLoader($config, new FileLocator(dirname($additionalConfigFile)));
+            $fileLoader->load($additionalConfigFile);
         }
 
         $this->registerConfiguredRules($config);
