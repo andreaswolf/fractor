@@ -22,8 +22,8 @@ class ContainerBuilder
         $config->set(Container::class, $config);
         $config->set(FractorConfig::class, $config);
 
-        $yamlFileLoader = new PhpFileLoader($config, new FileLocator(__DIR__ . '/../../config/'));
-        $yamlFileLoader->load('application.php');
+        $fileLoader = new PhpFileLoader($config, new FileLocator(__DIR__ . '/../../config/'));
+        $fileLoader->load('application.php');
 
         $this->importExtensionConfigurations($config);
 
