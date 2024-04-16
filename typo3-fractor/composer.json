@@ -49,6 +49,6 @@
         "analyze:php": "phpstan analyze",
         "style:php:check": "ecs",
         "style:php:fix": "ecs --fix",
-        "test:php": "phpunit tests/"
+        "test:php": "phpunit"
     }
 }

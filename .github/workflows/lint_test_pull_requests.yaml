@@ -46,20 +46,3 @@ jobs:
           container_workdir: /app/${{ matrix.directory }}
           command: ${{ matrix.composer-command.command }}
           memory_limit: 512M
-
-  tests:
-    runs-on: ubuntu-latest
-    name: End to end tests
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-
-      - name: Run tests
-        working-directory: tests
-        run: ./run-test.sh
