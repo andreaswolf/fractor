@@ -15,7 +15,7 @@ final class FractorRunner
     /**
      * @param list<FileProcessor> $processors
      */
-    public function __construct(private readonly FileFinder $fileFinder, private readonly array $processors)
+    public function __construct(private readonly FileFinder $fileFinder, private readonly iterable $processors)
     {
     }
 

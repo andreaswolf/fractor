@@ -18,10 +18,8 @@ class ProcessCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
-        parent::configure();
-
         $this->addOption(
             'config',
             'c',
@@ -34,6 +32,6 @@ class ProcessCommand extends Command
     {
         $this->runner->run($this->config);
 
-        return 0;
+        return Command::SUCCESS;
     }
 }
