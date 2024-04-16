@@ -8,14 +8,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
     $services->defaults()
         ->autowire()
-        ->private()
+        ->public()
         ->autoconfigure();
 
     $services->load('a9f\\Fractor\\', __DIR__ . '/../src/')
         ->exclude('../src/Configuration/');
-
-    $services->set(FractorApplication::class)
-        ->public();
 
     $services->set(FractorConfig::class)
         ->lazy(true);

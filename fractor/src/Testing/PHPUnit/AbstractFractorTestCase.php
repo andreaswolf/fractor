@@ -5,20 +5,24 @@ namespace a9f\Fractor\Testing\PHPUnit;
 
 use a9f\Fractor\DependencyInjection\ContainerBuilder;
 use a9f\Fractor\Exception\ShouldNotHappenException;
+use a9f\Fractor\Fractor\FractorRunner;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
 abstract class AbstractFractorTestCase extends TestCase
 {
     private static ?ContainerInterface $currentContainer = null;
-    abstract protected function provideConfigFilePath(): string;
+    private FractorRunner $fractorRunner;
+
+    abstract protected function provideConfigFilePath(): ?string;
 
     protected function setUp(): void
     {
         $this->bootFromConfigFile($this->provideConfigFilePath());
+        $this->fractorRunner = $this->getService(FractorRunner::class);
     }
 
-    protected function bootFromConfigFile(string $configFile): void
+    protected function bootFromConfigFile(?string $configFile): void
     {
         if(self::$currentContainer === null) {
             self::$currentContainer = (new ContainerBuilder())->createDependencyInjectionContainer($configFile);

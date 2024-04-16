@@ -5,17 +5,19 @@ declare(strict_types=1);
 namespace FileSystem;
 
 use a9f\Fractor\FileSystem\FileFinder;
+use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use UnexpectedValueException;
 
-final class FileFinderTest extends TestCase
+final class FileFinderTest extends AbstractFractorTestCase
 {
     private FileFinder $subject;
 
     protected function setUp(): void
     {
-        $this->subject = new FileFinder();
+        parent::setUp();
+        $this->subject = $this->getService(FileFinder::class);
     }
 
     #[Test]
@@ -35,5 +37,10 @@ final class FileFinderTest extends TestCase
     public function findAllNonEmptyFilesInGivenDirectoriesWithGivenExtensions(): void
     {
         self::assertCount(2, $this->subject->findFiles([__DIR__ . '/Fixture/DirectorToSearchIn'], ['txt', 'json']));
+    }
+
+    protected function provideConfigFilePath(): ?string
+    {
+        return null;
     }
 }
