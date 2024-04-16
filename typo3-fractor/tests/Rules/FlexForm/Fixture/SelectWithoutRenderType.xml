@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<ThisIsNotT3DataStructure>
+<T3DataStructure>
     <sheets>
         <sDEF>
             <ROOT>
@@ -15,4 +15,5 @@
             </ROOT>
         </sDEF>
     </sheets>
-</ThisIsNotT3DataStructure>
+</T3DataStructure>
+

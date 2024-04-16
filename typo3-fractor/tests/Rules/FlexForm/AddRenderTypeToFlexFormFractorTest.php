@@ -2,49 +2,34 @@
 
 namespace a9f\Typo3Fractor\Tests\Rules\FlexForm;
 
-use a9f\FractorXml\DomDocumentIterator;
-use a9f\Typo3Fractor\Rules\FlexForm\AddRenderTypeToFlexFormFractor;
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\TestCase;
+use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 
-use function Safe\file_get_contents;
-
-class AddRenderTypeToFlexFormFractorTest extends TestCase
+class AddRenderTypeToFlexFormFractorTest extends AbstractFractorTestCase
 {
-    private const FIXTURE_SEPARATOR = '-----';
-
-    /**
-     * @return array<string, array{string}>
-     */
-    public static function fixtureFilesProvider(): array
+    public function test(): void
     {
-        return [
-            'select without renderType' => [__DIR__ . '/Fixtures/SelectWithoutRenderType.xml.inc'],
-            'select without renderType outside T3DataStructure' => [__DIR__ . '/Fixtures/SelectWithoutRenderTypeNotInFlexForm.xml.inc'],
-        ];
+        // Act
+        $this->doTest();
+
+        // Arrange
+        $file = $this->fileCollector->getFileByPath(__DIR__ . '/Fixture/SelectWithoutRenderTypeNotInFlexForm.xml');
+        self::assertStringEqualsFile(__DIR__ . '/Fixture/SelectWithoutRenderTypeNotInFlexForm.xml', $file->getContent());
+
+        $file = $this->fileCollector->getFileByPath(__DIR__ . '/Fixture/SelectWithoutRenderType.xml');
+        self::assertStringEqualsFile(__DIR__ . '/Assertions/SelectWithoutRenderType.xml', $file->getContent());
+
     }
 
-    #[DataProvider('fixtureFilesProvider')]
-    public function test(string $filePath): void
+    protected function provideConfigFilePath(): ?string
     {
-        $fixture = file_get_contents($filePath);
-        if (str_contains($fixture, self::FIXTURE_SEPARATOR)) {
-            [$originalXml, $expectedResultXml] = array_map(
-                'trim',
-                explode(self::FIXTURE_SEPARATOR, $fixture)
-            );
-        } else {
-            $originalXml = $expectedResultXml = $fixture;
-        }
+        return __DIR__ . '/config/fractor.php';
+    }
 
-        $document = new \DOMDocument();
-        $document->loadXML($originalXml);
-
-        $iterator = new DomDocumentIterator([new AddRenderTypeToFlexFormFractor()]);
-        $iterator->traverseDocument($document);
-
-        $result = $document->saveXML() ?: '';
-
-        self::assertXmlStringEqualsXmlString($expectedResultXml, $result);
+    protected function additionalConfigurationFiles(): array
+    {
+        return [
+            __DIR__ .'/../../../../fractor-xml/config/application.php',
+            __DIR__ .'/../../../config/application.php',
+        ];
     }
 }
