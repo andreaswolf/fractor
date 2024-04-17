@@ -2,6 +2,7 @@
 
 namespace a9f\Fractor\Fractor;
 
+use a9f\Fractor\Contract\FilePrinter;
 use a9f\Fractor\Contract\FileProcessor;
 use a9f\Fractor\FileSystem\FileCollector;
 use a9f\Fractor\FileSystem\FileFinder;
@@ -18,11 +19,11 @@ final readonly class FractorRunner
     /**
      * @param list<FileProcessor> $processors
      */
-    public function __construct(private FileFinder $fileFinder, private FileCollector $fileCollector, private iterable $processors, private Configuration $configuration)
+    public function __construct(private FileFinder $fileFinder, private FileCollector $fileCollector, private iterable $processors, private Configuration $configuration, private FilePrinter $filePrinter)
     {
     }
 
-    public function run(): void
+    public function run(bool $dryRun = false): void
     {
         if ($this->configuration->getPaths() === []) {
             throw new \RuntimeException('No directories given');
@@ -41,6 +42,15 @@ final readonly class FractorRunner
 
                 $processor->handle($fractorFile);
             }
+        }
+
+
+        foreach ($this->fileCollector->getFiles() as $file) {
+            if ($dryRun) {
+                continue;
+            }
+
+            $this->filePrinter->printFile($file);
         }
     }
 }

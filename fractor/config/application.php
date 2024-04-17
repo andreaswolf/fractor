@@ -27,6 +27,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             [
                 __DIR__ . '/../src/Configuration',
                 __DIR__ . '/../src/ValueObject',
+                __DIR__ . '/../src/Testing',
             ]
         );
 

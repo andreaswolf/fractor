@@ -14,7 +14,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
     $services->load('a9f\\FractorXml\\', __DIR__ . '/../src/');
 
-
     $services->set(XmlFileProcessor::class)->arg('$rules', tagged_iterator('fractor.xml_rule'));
 
     $containerBuilder->registerForAutoconfiguration(XmlFractor::class)->addTag('fractor.xml_rule');

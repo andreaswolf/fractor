@@ -41,7 +41,7 @@ abstract class AbstractFractorTestCase extends TestCase
 
     protected function doTest(): void
     {
-        $this->fractorRunner->run();
+        $this->fractorRunner->run(true);
     }
 
     /**
