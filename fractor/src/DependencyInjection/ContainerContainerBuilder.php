@@ -15,13 +15,13 @@ class ContainerContainerBuilder
     public function createDependencyInjectionContainer(array $additionalConfigFiles = []): ContainerInterface
     {
         $containerBuilder = new \Symfony\Component\DependencyInjection\ContainerBuilder();
-        $this->loadFile($containerBuilder,__DIR__ . '/../../config/application.php');
+        $this->loadFile($containerBuilder, __DIR__ . '/../../config/application.php');
         $this->importExtensionConfigurations($containerBuilder);
 
         $containerBuilder->addCompilerPass(new CommandsCompilerPass());
 
         foreach ($additionalConfigFiles as $additionalConfigFile) {
-            $this->loadFile($containerBuilder,$additionalConfigFile);
+            $this->loadFile($containerBuilder, $additionalConfigFile);
         }
 
         $containerBuilder->compile();
