@@ -2,18 +2,12 @@
 
 namespace a9f\Fractor\Configuration;
 
-use a9f\Fractor\Contract\FileProcessor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class FractorConfig extends ContainerBuilder
 {
     /** @var list<non-empty-string> */
     private array $paths = [];
-
-    /**
-     * @var list<class-string<FileProcessor>>
-     */
-    private array $processors = [];
 
     /** @var list<non-empty-string> */
     private array $fileExtensions = [];
@@ -33,23 +27,6 @@ final class FractorConfig extends ContainerBuilder
     public function getPaths(): array
     {
         return $this->paths;
-    }
-
-    /**
-     * @param class-string<FileProcessor> $processor
-     */
-    public function withFileProcessor(string $processor): self
-    {
-        $this->processors[] = $processor;
-        return $this;
-    }
-
-    /**
-     * @return list<class-string<FileProcessor>>
-     */
-    public function getFileProcessors(): array
-    {
-        return $this->processors;
     }
 
     /**
