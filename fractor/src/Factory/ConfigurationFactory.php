@@ -4,12 +4,21 @@ declare(strict_types=1);
 namespace a9f\Fractor\Factory;
 
 use a9f\Fractor\Configuration\FractorConfig;
+use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\ValueObject\Configuration;
+use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
-final class ConfigurationFactory
+final readonly class ConfigurationFactory
 {
-    public function createFromFractorConfig(FractorConfig $fractorConfig): Configuration
+    public function __construct(private ContainerBagInterface $parameterBag)
     {
-        return new Configuration($fractorConfig->getFileExtensions(), $fractorConfig->getPaths());
+    }
+
+    public function create(): Configuration
+    {
+        return new Configuration(
+            $this->parameterBag->get(Option::FILE_EXTENSIONS),
+            $this->parameterBag->get(Option::PATHS),
+        );
     }
 }

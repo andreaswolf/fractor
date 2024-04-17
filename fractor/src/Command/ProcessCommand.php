@@ -14,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand('process', 'Runs Fractor with the given configuration file')]
 class ProcessCommand extends Command
 {
-    public function __construct(private readonly FractorConfig $config, private readonly FractorRunner $runner, private readonly ConfigurationFactory $configurationFactory)
+    public function __construct(private readonly FractorRunner $runner, private readonly ConfigurationFactory $configurationFactory)
     {
         parent::__construct();
     }
@@ -31,7 +31,7 @@ class ProcessCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->runner->run($this->configurationFactory->createFromFractorConfig($this->config));
+        $this->runner->run($this->configurationFactory->create());
 
         return Command::SUCCESS;
     }
