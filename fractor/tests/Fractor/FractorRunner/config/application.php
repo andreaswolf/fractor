@@ -10,14 +10,13 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_it
 
 return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
     $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [__DIR__ . '/../Fixture/']);
+    $parameters->set(Option::PATHS, [__DIR__ . '/../Fixtures/']);
     $services = $containerConfigurator->services();
     $services->defaults()
         ->autowire()
         ->autoconfigure();
 
     $services->set(ReplaceXXXTextRule::class);
-
     $services->set(TextFileProcessor::class)->arg('$rules', tagged_iterator('fractor.text_rules'));
     $containerBuilder->registerForAutoconfiguration(TextRule::class)->addTag('fractor.text_rules');
 };

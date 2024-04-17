@@ -41,6 +41,18 @@ abstract class AbstractFractorTestCase extends TestCase
     protected function doTest(): void
     {
         $this->fractorRunner->run(new NullOutput(), true);
+
+        foreach ($this->fileCollector->getFiles() as $file) {
+            if ($file) {
+                $assertionFile = $file->getDirectoryName() . '/../Assertions/' . $file->getFileName();
+
+                if (file_exists($assertionFile)) {
+                    self::assertStringEqualsFile($assertionFile, $file->getContent());
+                } else {
+                    self::assertFalse($file->hasChanged());
+                }
+            }
+        }
     }
 
     /**

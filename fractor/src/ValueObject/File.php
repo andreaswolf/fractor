@@ -19,6 +19,16 @@ final class File
         return $this->filePath;
     }
 
+    public function getDirectoryName(): string
+    {
+        return dirname($this->filePath);
+    }
+
+    public function getFileName(): string
+    {
+        return basename($this->filePath);
+    }
+
     public function getContent(): string
     {
         return $this->content;
