@@ -2,7 +2,6 @@
 
 namespace a9f\Fractor\Command;
 
-use a9f\Fractor\Configuration\FractorConfig;
 use a9f\Fractor\Factory\ConfigurationFactory;
 use a9f\Fractor\Fractor\FractorRunner;
 use Symfony\Component\Console\Attribute\AsCommand;

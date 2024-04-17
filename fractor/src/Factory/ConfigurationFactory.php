@@ -1,9 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 namespace a9f\Fractor\Factory;
 
-use a9f\Fractor\Configuration\FractorConfig;
 use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\ValueObject\Configuration;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;

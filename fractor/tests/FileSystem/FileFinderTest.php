@@ -37,9 +37,4 @@ final class FileFinderTest extends AbstractFractorTestCase
     {
         self::assertCount(2, $this->subject->findFiles([__DIR__ . '/Fixture/DirectorToSearchIn'], ['txt', 'json']));
     }
-
-    protected function provideConfigFilePath(): ?string
-    {
-        return null;
-    }
 }

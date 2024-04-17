@@ -8,6 +8,9 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 
 return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
+    $parameters = $containerConfigurator->parameters();
+    $parameters->set(\a9f\Fractor\Configuration\Option::FILE_EXTENSIONS, ['txt']);
+    $parameters->set(\a9f\Fractor\Configuration\Option::PATHS, [__DIR__ . '/../Fixture/']);
     $services = $containerConfigurator->services();
     $services->defaults()
         ->autowire()

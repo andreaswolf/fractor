@@ -21,16 +21,12 @@ class AddRenderTypeToFlexFormFractorTest extends AbstractFractorTestCase
         self::assertStringEqualsFile(__DIR__ . '/Assertions/SelectWithoutRenderType.xml', $file->getContent());
     }
 
-    protected function provideConfigFilePath(): ?string
-    {
-        return __DIR__ . '/config/fractor.php';
-    }
-
     protected function additionalConfigurationFiles(): array
     {
         return [
             __DIR__ . '/../../../../fractor-xml/config/application.php',
             __DIR__ . '/../../../config/application.php',
+            __DIR__ . '/config/application.php',
         ];
     }
 }

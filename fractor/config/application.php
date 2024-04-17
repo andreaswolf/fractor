@@ -1,6 +1,6 @@
 <?php
 
-use a9f\Fractor\Configuration\FractorConfig;
+use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\Contract\FileProcessor;
 use a9f\Fractor\Fractor\FractorRunner;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -13,8 +13,8 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_it
 
 return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
     $parameters = $containerConfigurator->parameters();
-    $parameters->set(\a9f\Fractor\Configuration\Option::PATHS, []);
-    $parameters->set(\a9f\Fractor\Configuration\Option::FILE_EXTENSIONS, []);
+    $parameters->set(Option::PATHS, []);
+    $parameters->set(Option::FILE_EXTENSIONS, []);
     $services = $containerConfigurator->services();
     $services->defaults()
         ->autowire()
@@ -37,8 +37,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         ->alias(ParameterBagInterface::class, 'parameter_bag');
 
     $services->set(FractorRunner::class)->arg('$processors', tagged_iterator('fractor.file_processor'));
-    $services->set(FractorConfig::class)
-        ->lazy();
 
     $containerBuilder->registerForAutoconfiguration(FileProcessor::class)->addTag('fractor.file_processor');
 };

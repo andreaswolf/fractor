@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace a9f\Fractor\ValueObject;
@@ -6,15 +7,15 @@ namespace a9f\Fractor\ValueObject;
 final readonly class Configuration
 {
     /**
-     * @param array<int, string> $fileExtensions
-     * @param array<int, string> $paths
+     * @param list<non-empty-string> $fileExtensions
+     * @param list<non-empty-string> $paths
      */
     public function __construct(private array $fileExtensions, private array $paths)
     {
     }
 
     /**
-     * @return array<int, string>
+     * @return list<non-empty-string>
      */
     public function getFileExtensions(): array
     {
@@ -22,7 +23,7 @@ final readonly class Configuration
     }
 
     /**
-     * @return array<int, string>
+     * @return list<non-empty-string>
      */
     public function getPaths(): array
     {

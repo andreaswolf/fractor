@@ -8,11 +8,6 @@ use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 
 final class FractorRunnerTest extends AbstractFractorTestCase
 {
-    protected function provideConfigFilePath(): ?string
-    {
-        return __DIR__ . '/config/fractor.php';
-    }
-
     public function test(): void
     {
         $this->doTest();
