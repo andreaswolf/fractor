@@ -26,10 +26,6 @@ final readonly class FractorRunner
 
     public function run(Output $output, bool $dryRun = false): void
     {
-        if ($this->configuration->getPaths() === []) {
-            throw new \RuntimeException('No directories given');
-        }
-
         $files = $this->fileFinder->findFiles($this->configuration->getPaths(), $this->configuration->getFileExtensions());
 
         $output->progressStart(count($files));

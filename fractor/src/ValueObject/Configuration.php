@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\ValueObject;
 
+use Webmozart\Assert\Assert;
+
 final readonly class Configuration
 {
     /**
@@ -12,6 +14,8 @@ final readonly class Configuration
      */
     public function __construct(private array $fileExtensions, private array $paths)
     {
+        Assert::notEmpty($this->paths, 'No directories given');
+        Assert::allStringNotEmpty($this->paths, 'No directories given');
     }
 
     /**
