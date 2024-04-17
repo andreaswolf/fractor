@@ -8,7 +8,6 @@ use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\Fractor\FileSystem\FileCollector;
 use a9f\Fractor\Fractor\FractorRunner;
-use a9f\Fractor\ValueObject\Configuration;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -17,7 +16,6 @@ abstract class AbstractFractorTestCase extends TestCase
     private ?ContainerInterface $currentContainer = null;
     private FractorRunner $fractorRunner;
     protected FileCollector $fileCollector;
-    private Configuration $configuration;
 
     /**
      * @return array<int, string>
