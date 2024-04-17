@@ -7,6 +7,7 @@ namespace a9f\Fractor\Testing\PHPUnit;
 use a9f\Fractor\Configuration\FractorConfig;
 use a9f\Fractor\DependencyInjection\ContainerBuilder;
 use a9f\Fractor\Exception\ShouldNotHappenException;
+use a9f\Fractor\Factory\ConfigurationFactory;
 use a9f\Fractor\FileSystem\FileCollector;
 use a9f\Fractor\Fractor\FractorRunner;
 use PHPUnit\Framework\TestCase;
@@ -42,7 +43,7 @@ abstract class AbstractFractorTestCase extends TestCase
 
     protected function doTest(): void
     {
-        $this->fractorRunner->run($this->getService(FractorConfig::class));
+        $this->fractorRunner->run($this->getService(ConfigurationFactory::class)->createFromFractorConfig($this->getService(FractorConfig::class)));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace a9f\Fractor\Command;
 
 use a9f\Fractor\Configuration\FractorConfig;
+use a9f\Fractor\Factory\ConfigurationFactory;
 use a9f\Fractor\Fractor\FractorRunner;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -13,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand('process', 'Runs Fractor with the given configuration file')]
 class ProcessCommand extends Command
 {
-    public function __construct(private readonly FractorConfig $config, private readonly FractorRunner $runner)
+    public function __construct(private readonly FractorConfig $config, private readonly FractorRunner $runner, private readonly ConfigurationFactory $configurationFactory)
     {
         parent::__construct();
     }
@@ -30,7 +31,7 @@ class ProcessCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->runner->run($this->config);
+        $this->runner->run($this->configurationFactory->createFromFractorConfig($this->config));
 
         return Command::SUCCESS;
     }

@@ -6,6 +6,7 @@ use a9f\Fractor\Configuration\FractorConfig;
 use a9f\Fractor\Contract\FileProcessor;
 use a9f\Fractor\FileSystem\FileCollector;
 use a9f\Fractor\FileSystem\FileFinder;
+use a9f\Fractor\ValueObject\Configuration;
 use a9f\Fractor\ValueObject\File;
 use Nette\Utils\FileSystem;
 
@@ -18,17 +19,17 @@ final readonly class FractorRunner
     /**
      * @param list<FileProcessor> $processors
      */
-    public function __construct(private FileFinder $fileFinder, private readonly FileCollector $fileCollector, private iterable $processors)
+    public function __construct(private FileFinder $fileFinder, private FileCollector $fileCollector, private iterable $processors)
     {
     }
 
-    public function run(FractorConfig $config): void
+    public function run(Configuration $configuration): void
     {
-        if ($config->getPaths() === []) {
+        if ($configuration->getPaths() === []) {
             throw new \RuntimeException('No directories given');
         }
 
-        $files = $this->fileFinder->findFiles($config->getPaths(), $config->getFileExtensions());
+        $files = $this->fileFinder->findFiles($configuration->getPaths(), $configuration->getFileExtensions());
 
         foreach ($files as $file) {
             foreach ($this->processors as $processor) {
