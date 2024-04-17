@@ -18,17 +18,17 @@ final readonly class FractorRunner
     /**
      * @param list<FileProcessor> $processors
      */
-    public function __construct(private FileFinder $fileFinder, private FileCollector $fileCollector, private iterable $processors)
+    public function __construct(private FileFinder $fileFinder, private FileCollector $fileCollector, private iterable $processors, private Configuration $configuration)
     {
     }
 
-    public function run(Configuration $configuration): void
+    public function run(): void
     {
-        if ($configuration->getPaths() === []) {
+        if ($this->configuration->getPaths() === []) {
             throw new \RuntimeException('No directories given');
         }
 
-        $files = $this->fileFinder->findFiles($configuration->getPaths(), $configuration->getFileExtensions());
+        $files = $this->fileFinder->findFiles($this->configuration->getPaths(), $this->configuration->getFileExtensions());
 
         foreach ($files as $file) {
             foreach ($this->processors as $processor) {
