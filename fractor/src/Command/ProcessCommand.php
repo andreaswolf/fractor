@@ -2,6 +2,7 @@
 
 namespace a9f\Fractor\Command;
 
+use a9f\Fractor\Console\SymfonyConsoleOutput;
 use a9f\Fractor\Fractor\FractorRunner;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -29,7 +30,7 @@ class ProcessCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->runner->run();
+        $this->runner->run(new SymfonyConsoleOutput($output));
 
         return Command::SUCCESS;
     }

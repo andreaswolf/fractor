@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Testing\PHPUnit;
 
+use a9f\Fractor\Console\NullOutput;
 use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\Fractor\FileSystem\FileCollector;
@@ -39,7 +40,7 @@ abstract class AbstractFractorTestCase extends TestCase
 
     protected function doTest(): void
     {
-        $this->fractorRunner->run(true);
+        $this->fractorRunner->run(new NullOutput(), true);
     }
 
     /**
