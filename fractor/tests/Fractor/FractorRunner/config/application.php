@@ -1,5 +1,6 @@
 <?php
 
+use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\Tests\Helper\Contract\TextRule;
 use a9f\Fractor\Tests\Helper\FileProcessor\TextFileProcessor;
 use a9f\Fractor\Tests\Helper\Rules\ReplaceXXXTextRule;
@@ -9,8 +10,7 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_it
 
 return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
     $parameters = $containerConfigurator->parameters();
-    $parameters->set(\a9f\Fractor\Configuration\Option::FILE_EXTENSIONS, ['txt']);
-    $parameters->set(\a9f\Fractor\Configuration\Option::PATHS, [__DIR__ . '/../Fixture/']);
+    $parameters->set(Option::PATHS, [__DIR__ . '/../Fixture/']);
     $services = $containerConfigurator->services();
     $services->defaults()
         ->autowire()

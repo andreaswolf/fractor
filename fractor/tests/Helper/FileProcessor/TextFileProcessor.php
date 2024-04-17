@@ -28,4 +28,9 @@ final readonly class TextFileProcessor implements FileProcessor
             $rule->apply($file);
         }
     }
+
+    public function allowedFileExtensions(): array
+    {
+        return ['txt'];
+    }
 }

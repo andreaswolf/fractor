@@ -39,4 +39,9 @@ final class XmlFileProcessor implements FileProcessor
 
         $file->changeFileContent($newFileContent);
     }
+
+    public function allowedFileExtensions(): array
+    {
+        return ['xml'];
+    }
 }
