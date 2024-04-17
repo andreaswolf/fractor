@@ -14,37 +14,39 @@ class ContainerContainerBuilder
      */
     public function createDependencyInjectionContainer(array $additionalConfigFiles = []): ContainerInterface
     {
-        $config = new \Symfony\Component\DependencyInjection\ContainerBuilder();
-        $fileLoader = new PhpFileLoader($config, new FileLocator(__DIR__ . '/../../config/'));
-        $fileLoader->load('application.php');
+        $containerBuilder = new \Symfony\Component\DependencyInjection\ContainerBuilder();
+        $this->loadFile($containerBuilder,__DIR__ . '/../../config/application.php');
+        $this->importExtensionConfigurations($containerBuilder);
 
-        $this->importExtensionConfigurations($config);
-
-        $config->addCompilerPass(new CommandsCompilerPass());
+        $containerBuilder->addCompilerPass(new CommandsCompilerPass());
 
         foreach ($additionalConfigFiles as $additionalConfigFile) {
-            $fileLoader = new PhpFileLoader($config, new FileLocator(dirname($additionalConfigFile)));
-            $fileLoader->load($additionalConfigFile);
+            $this->loadFile($containerBuilder,$additionalConfigFile);
         }
 
-        $config->compile();
+        $containerBuilder->compile();
 
-        return $config;
+        return $containerBuilder;
     }
 
-    private function importExtensionConfigurations(\Symfony\Component\DependencyInjection\ContainerBuilder $config): void
+
+    private function loadFile(\Symfony\Component\DependencyInjection\ContainerBuilder $containerBuilder, string $pathToFile): void
+    {
+        $fileLoader = new PhpFileLoader($containerBuilder, new FileLocator(dirname($pathToFile)));
+        $fileLoader->load($pathToFile);
+    }
+
+    private function importExtensionConfigurations(\Symfony\Component\DependencyInjection\ContainerBuilder $containerBuilder): void
     {
         if (!class_exists('a9f\\FractorExtensionInstaller\\Generated\\InstalledPackages')) {
             return;
         }
 
         foreach (\a9f\FractorExtensionInstaller\Generated\InstalledPackages::PACKAGES as $package) {
-            $extensionBasePath = $package['path'];
-            $filePath = $extensionBasePath . '/config/application.php';
+            $filePath = $package['path'] . '/config/application.php';
 
             if (file_exists($filePath)) {
-                $fileLoader = new PhpFileLoader($config, new FileLocator(dirname($filePath)));
-                $fileLoader->load(basename($filePath));
+                $this->loadFile($containerBuilder, $filePath);
             }
         }
     }
