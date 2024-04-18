@@ -25,21 +25,22 @@ final readonly class FractorRunner
 
     public function run(Output $output, bool $dryRun = false): void
     {
-        $files = $this->fileFinder->findFiles($this->configuration->getPaths(), $this->configuration->getFileExtensions());
+        $filePaths = $this->fileFinder->findFiles($this->configuration->getPaths(), $this->configuration->getFileExtensions());
 
-        $output->progressStart(count($files));
+        $output->progressStart(count($filePaths));
 
-        foreach ($files as $file) {
+        foreach ($filePaths as $filePath) {
+            $file = new File($filePath, FileSystem::read($filePath));
+
             foreach ($this->processors as $processor) {
                 if (!$processor->canHandle($file)) {
                     $output->progressAdvance();
                     continue;
                 }
 
-                $fractorFile = new File($file->getRealPath(), FileSystem::read($file->getRealPath()));
-                $this->fileCollector->addFile($fractorFile);
+                $this->fileCollector->addFile($file);
 
-                $processor->handle($fractorFile);
+                $processor->handle($file);
                 $output->progressAdvance();
             }
         }

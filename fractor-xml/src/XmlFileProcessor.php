@@ -15,9 +15,9 @@ final class XmlFileProcessor implements FileProcessor
     {
     }
 
-    public function canHandle(\SplFileInfo $file): bool
+    public function canHandle(File $file): bool
     {
-        return $file->getExtension() === 'xml';
+        return $file->getFileExtension() === 'xml';
     }
 
     public function handle(File $file): void
