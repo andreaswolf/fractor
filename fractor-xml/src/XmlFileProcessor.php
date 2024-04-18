@@ -3,6 +3,7 @@
 namespace a9f\FractorXml;
 
 use a9f\Fractor\Contract\FileProcessor;
+use a9f\Fractor\ValueObject\File;
 use a9f\FractorXml\Contract\XmlFractor;
 
 final class XmlFileProcessor implements FileProcessor
@@ -10,7 +11,7 @@ final class XmlFileProcessor implements FileProcessor
     /**
      * @param list<XmlFractor> $rules
      */
-    public function __construct(private readonly array $rules)
+    public function __construct(private readonly iterable $rules)
     {
     }
 
@@ -19,18 +20,28 @@ final class XmlFileProcessor implements FileProcessor
         return $file->getExtension() === 'xml';
     }
 
-    public function handle(\SplFileInfo $file): void
+    public function handle(File $file): void
     {
         $doc = new \DOMDocument();
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
-        $doc->load($file->getPathname());
+        $doc->load($file->getFilePath());
 
         // TODO we need a way to detect if there were changes (and probably also collect changes here)
         $iterator = new DomDocumentIterator($this->rules);
         $iterator->traverseDocument($doc);
 
-        // TODO only update file if changed
-        file_put_contents($file->getPathname(), $doc->saveXML());
+        $newFileContent = $doc->saveXML();
+
+        if ($newFileContent === false) {
+            throw new \UnexpectedValueException('New file content should be a string');
+        }
+
+        $file->changeFileContent($newFileContent);
+    }
+
+    public function allowedFileExtensions(): array
+    {
+        return ['xml'];
     }
 }

@@ -12,7 +12,7 @@ final class DomDocumentIterator
     /**
      * @param list<DomNodeVisitor> $visitors
      */
-    public function __construct(private readonly array $visitors)
+    public function __construct(private readonly iterable $visitors)
     {
     }
 

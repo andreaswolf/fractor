@@ -14,12 +14,12 @@
         "php": "^8.2",
         "a9f/fractor": "@dev",
         "a9f/fractor-extension-installer": "@dev",
-        "a9f/fractor-xml": "@dev",
-        "thecodingmachine/safe": "^2.5"
+        "a9f/fractor-xml": "@dev"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
         "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-phpunit": "^1.3",
         "phpunit/phpunit": "^10.5",
         "symplify/easy-coding-standard": "^12.1"
     },
@@ -50,6 +50,6 @@
         "analyze:php": "phpstan analyze",
         "style:php:check": "ecs",
         "style:php:fix": "ecs --fix",
-        "test:php": "phpunit tests/"
+        "test:php": "phpunit"
     }
 }

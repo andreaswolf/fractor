@@ -7,6 +7,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->defaults()
         ->autowire()
         ->autoconfigure();
-
     $services->load('a9f\\Typo3Fractor\\', __DIR__ . '/../src/');
 };

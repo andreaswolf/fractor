@@ -1,10 +1,12 @@
 <?php
 
-namespace a9f\Typo3Fractor\Tests\Rules\FlexForm;
+declare(strict_types=1);
+
+namespace Fractor\FractorRunner;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 
-final class AddRenderTypeToFlexFormFractorTest extends AbstractFractorTestCase
+final class FractorRunnerTest extends AbstractFractorTestCase
 {
     public function test(): void
     {
@@ -14,7 +16,7 @@ final class AddRenderTypeToFlexFormFractorTest extends AbstractFractorTestCase
     protected function additionalConfigurationFiles(): array
     {
         return [
-            __DIR__ . '/config/application.php',
+            __DIR__ . '/config/application.php'
         ];
     }
 }

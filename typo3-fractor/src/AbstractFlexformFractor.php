@@ -2,6 +2,7 @@
 
 namespace a9f\Typo3Fractor;
 
+use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\FractorXml\AbstractXmlFractor;
 
 abstract class AbstractFlexformFractor extends AbstractXmlFractor
@@ -11,8 +12,7 @@ abstract class AbstractFlexformFractor extends AbstractXmlFractor
         $rootNode = $node->ownerDocument?->firstChild;
 
         if ($rootNode === null) {
-            // TODO convert into a custom ShouldNotHappenException
-            throw new \RuntimeException('Node\'s document does not have a root node');
+            throw new ShouldNotHappenException('Node\'s document does not have a root node');
         }
 
         return $rootNode->nodeName === 'T3DataStructure';
