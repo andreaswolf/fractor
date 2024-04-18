@@ -3,6 +3,7 @@
 namespace a9f\Fractor\Console\Command;
 
 use a9f\Fractor\Application\FractorRunner;
+use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\Console\Output\SymfonyConsoleOutput;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -21,16 +22,25 @@ final class ProcessCommand extends Command
     protected function configure(): void
     {
         $this->addOption(
-            'config',
-            'c',
+            Option::CONFIG,
+            Option::CONFIG_SHORT,
             InputOption::VALUE_REQUIRED,
             'The configuration file to use. Default: fractor.php in the current directory.'
+        );
+
+        $this->addOption(
+            Option::DRY_RUN,
+            null,
+            InputOption::VALUE_NONE,
+            'Only see the diff of changes, do not save them to files.'
         );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->runner->run(new SymfonyConsoleOutput($output));
+        $isDryRun = (bool) $input->getOption(Option::DRY_RUN);
+
+        $this->runner->run(new SymfonyConsoleOutput($output), $isDryRun);
 
         return Command::SUCCESS;
     }

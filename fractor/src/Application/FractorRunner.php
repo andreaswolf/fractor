@@ -2,8 +2,8 @@
 
 namespace a9f\Fractor\Application;
 
-use a9f\Fractor\Application\Contract\FilePrinter;
 use a9f\Fractor\Application\Contract\FileProcessor;
+use a9f\Fractor\Application\Contract\FileWriter;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Console\Contract\Output;
@@ -19,7 +19,7 @@ final readonly class FractorRunner
     /**
      * @param FileProcessor[] $processors
      */
-    public function __construct(private FilesFinder $fileFinder, private FilesCollector $fileCollector, private iterable $processors, private Configuration $configuration, private FilePrinter $filePrinter)
+    public function __construct(private FilesFinder $fileFinder, private FilesCollector $fileCollector, private iterable $processors, private Configuration $configuration, private FileWriter $fileWriter)
     {
     }
 
@@ -51,7 +51,7 @@ final readonly class FractorRunner
                 continue;
             }
 
-            $this->filePrinter->printFile($file);
+            $this->fileWriter->write($file);
         }
 
         $output->progressFinish();
