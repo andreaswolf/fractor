@@ -6,7 +6,7 @@ namespace a9f\Fractor\Application\Contract;
 
 use a9f\Fractor\Application\ValueObject\File;
 
-interface FilePrinter
+interface FileWriter
 {
-    public function printFile(File $file): void;
+    public function write(File $file): void;
 }
