@@ -8,22 +8,19 @@ final class ConfigResolver
 {
     public static function resolveConfigsFromInput(ArgvInput $input): ?string
     {
-        $configurationFile = self::getConfigFileFromInput($input) ?? getcwd() . '/fractor.php';
-
-        return $configurationFile;
+        return self::getConfigFileFromInput($input) ?? getcwd() . '/fractor.php';
     }
 
     private static function getConfigFileFromInput(ArgvInput $input): ?string
     {
-        // TODO validate if the file exists
-        return self::getOptionValue($input, ['--config', '-c']);
+        return self::getOptionValue($input);
     }
 
     /**
-     * @param list<string> $nameCandidates
      */
-    private static function getOptionValue(ArgvInput $input, array $nameCandidates): ?string
+    private static function getOptionValue(ArgvInput $input): ?string
     {
+        $nameCandidates = ['--config', '-c'];
         foreach ($nameCandidates as $name) {
             if ($input->hasParameterOption($name, true)) {
                 return $input->getParameterOption($name, null, true);

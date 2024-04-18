@@ -11,7 +11,7 @@ use a9f\Fractor\Tests\Helper\Contract\TextRule;
 final readonly class TextFileProcessor implements FileProcessor
 {
     /**
-     * @param list<TextRule> $rules
+     * @param TextRule[] $rules
      */
     public function __construct(private iterable $rules)
     {

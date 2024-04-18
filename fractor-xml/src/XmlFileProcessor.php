@@ -6,12 +6,12 @@ use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\FractorXml\Contract\XmlFractor;
 
-final class XmlFileProcessor implements FileProcessor
+final readonly class XmlFileProcessor implements FileProcessor
 {
     /**
-     * @param list<XmlFractor> $rules
+     * @param XmlFractor[] $rules
      */
-    public function __construct(private readonly iterable $rules)
+    public function __construct(private iterable $rules)
     {
     }
 

@@ -17,6 +17,7 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_it
 return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
     $parameters = $containerConfigurator->parameters();
     $parameters->set(Option::PATHS, [__DIR__]);
+    $parameters->set(Option::SKIP, []);
     $services = $containerConfigurator->services();
     $services->defaults()
         ->autowire()

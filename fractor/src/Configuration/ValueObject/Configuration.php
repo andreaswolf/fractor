@@ -9,21 +9,30 @@ use Webmozart\Assert\Assert;
 final readonly class Configuration
 {
     /**
-     * @param list<non-empty-string> $fileExtensions
+     * @param string[] $fileExtensions
      * @param list<non-empty-string> $paths
+     * @param string[] $skip
      */
-    public function __construct(private array $fileExtensions, private array $paths)
+    public function __construct(private array $fileExtensions, private array $paths, private array $skip)
     {
         Assert::notEmpty($this->paths, 'No directories given');
         Assert::allStringNotEmpty($this->paths, 'No directories given');
     }
 
     /**
-     * @return list<non-empty-string>
+     * @return string[]
      */
     public function getFileExtensions(): array
     {
         return $this->fileExtensions;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getSkip(): array
+    {
+        return $this->skip;
     }
 
     /**
