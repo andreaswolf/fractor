@@ -2,11 +2,12 @@
 
 namespace a9f\Fractor\FileSystem;
 
+use a9f\Fractor\Skipper\Skipper\PathSkipper;
 use Symfony\Component\Finder\Finder;
 
 final readonly class FilesFinder
 {
-    public function __construct(private FilesystemTweaker $filesystemTweaker, private FileAndDirectoryFilter $fileAndDirectoryFilter)
+    public function __construct(private FilesystemTweaker $filesystemTweaker, private FileAndDirectoryFilter $fileAndDirectoryFilter, private PathSkipper $pathSkipper)
     {
     }
 
@@ -23,7 +24,7 @@ final readonly class FilesFinder
 
         $filteredFilePaths = array_filter(
             $files,
-            fn (string $filePath): bool => true // TODO: Add skipper here
+            fn (string $filePath): bool => !$this->pathSkipper->shouldSkip($filePath)
         );
 
         if ($suffixes !== []) {
@@ -77,7 +78,9 @@ final readonly class FilesFinder
                 continue;
             }
 
-            // TODO: Add skipper here
+            if ($this->pathSkipper->shouldSkip($path)) {
+                continue;
+            }
 
             $filePaths[] = $path;
         }

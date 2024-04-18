@@ -18,6 +18,7 @@ final readonly class ConfigurationFactory
         return new Configuration(
             $this->allowedFileExtensionsResolver->resolve(),
             $this->parameterBag->get(Option::PATHS),
+            $this->parameterBag->get(Option::SKIP),
         );
     }
 }
