@@ -6,7 +6,7 @@ use a9f\Fractor\Application\ValueObject\File;
 
 interface FileProcessor
 {
-    public function canHandle(\SplFileInfo $file): bool;
+    public function canHandle(File $file): bool;
 
     public function handle(File $file): void;
 

@@ -17,9 +17,9 @@ final readonly class TextFileProcessor implements FileProcessor
     {
     }
 
-    public function canHandle(\SplFileInfo $file): bool
+    public function canHandle(File $file): bool
     {
-        return $file->getExtension() === 'txt';
+        return $file->getFileExtension() === 'txt';
     }
 
     public function handle(File $file): void

@@ -8,10 +8,16 @@ final class File
 {
     private bool $hasChanged = false;
     private readonly string $originalContent;
+    private string $directoryName;
+    private string $fileName;
+    private string $fileExtension;
 
     public function __construct(private readonly string $filePath, private string $content)
     {
         $this->originalContent = $this->content;
+        $this->directoryName = dirname($this->filePath);
+        $this->fileName = basename($this->filePath);
+        $this->fileExtension = pathinfo($this->fileName, PATHINFO_EXTENSION);
     }
 
     public function getFilePath(): string
@@ -21,17 +27,22 @@ final class File
 
     public function getDirectoryName(): string
     {
-        return dirname($this->filePath);
+        return $this->directoryName;
     }
 
     public function getFileName(): string
     {
-        return basename($this->filePath);
+        return $this->fileName;
     }
 
     public function getContent(): string
     {
         return $this->content;
+    }
+
+    public function getFileExtension(): string
+    {
+        return $this->fileExtension;
     }
 
     public function changeFileContent(string $newFileContent): void
