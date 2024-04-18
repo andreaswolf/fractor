@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\ValueObject;
+namespace a9f\Fractor\Configuration\ValueObject;
 
 use Webmozart\Assert\Assert;
 

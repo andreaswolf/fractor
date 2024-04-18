@@ -14,7 +14,7 @@ final class AddRenderTypeToFlexFormFractorTest extends AbstractFractorTestCase
     protected function additionalConfigurationFiles(): array
     {
         return [
-            __DIR__ . '/config/application.php',
+            __DIR__ . '/config/config.php',
         ];
     }
 }

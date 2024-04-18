@@ -4,7 +4,7 @@ namespace a9f\Fractor\FileSystem;
 
 use Symfony\Component\Finder\Finder;
 
-final class FileFinder
+final class FilesFinder
 {
     /**
      * @param list<non-empty-string> $directories

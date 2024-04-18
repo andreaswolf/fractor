@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\FileSystem;
+namespace a9f\Fractor\Application;
 
-use a9f\Fractor\ValueObject\File;
+use a9f\Fractor\Application\ValueObject\File;
 
-final class FileCollector
+final class FilesCollector
 {
     /**
      * @var array<string, File>

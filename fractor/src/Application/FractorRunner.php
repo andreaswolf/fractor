@@ -1,14 +1,13 @@
 <?php
 
-namespace a9f\Fractor\Fractor;
+namespace a9f\Fractor\Application;
 
-use a9f\Fractor\Contract\FilePrinter;
-use a9f\Fractor\Contract\FileProcessor;
-use a9f\Fractor\Contract\Output;
-use a9f\Fractor\FileSystem\FileCollector;
-use a9f\Fractor\FileSystem\FileFinder;
-use a9f\Fractor\ValueObject\Configuration;
-use a9f\Fractor\ValueObject\File;
+use a9f\Fractor\Application\Contract\FilePrinter;
+use a9f\Fractor\Application\Contract\FileProcessor;
+use a9f\Fractor\Application\ValueObject\File;
+use a9f\Fractor\Configuration\ValueObject\Configuration;
+use a9f\Fractor\Console\Contract\Output;
+use a9f\Fractor\FileSystem\FilesFinder;
 use Nette\Utils\FileSystem;
 
 /**
@@ -18,9 +17,9 @@ use Nette\Utils\FileSystem;
 final readonly class FractorRunner
 {
     /**
-     * @param list<FileProcessor> $processors
+     * @param FileProcessor[] $processors
      */
-    public function __construct(private FileFinder $fileFinder, private FileCollector $fileCollector, private iterable $processors, private Configuration $configuration, private FilePrinter $filePrinter)
+    public function __construct(private FilesFinder $fileFinder, private FilesCollector $fileCollector, private iterable $processors, private Configuration $configuration, private FilePrinter $filePrinter)
     {
     }
 

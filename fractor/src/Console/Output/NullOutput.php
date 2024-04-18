@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\Console;
+namespace a9f\Fractor\Console\Output;
 
-use a9f\Fractor\Contract\Output;
+use a9f\Fractor\Console\Contract\Output;
 
 final class NullOutput implements Output
 {

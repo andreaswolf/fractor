@@ -1,10 +1,11 @@
 <?php
 
+use a9f\Fractor\Application\Contract\FileProcessor;
+use a9f\Fractor\Application\FractorRunner;
+use a9f\Fractor\Configuration\AllowedFileExtensionsResolver;
+use a9f\Fractor\Configuration\ConfigurationFactory;
 use a9f\Fractor\Configuration\Option;
-use a9f\Fractor\Contract\FileProcessor;
-use a9f\Fractor\Factory\ConfigurationFactory;
-use a9f\Fractor\Fractor\FractorRunner;
-use a9f\Fractor\ValueObject\Configuration;
+use a9f\Fractor\Configuration\ValueObject\Configuration;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBag;
@@ -25,10 +26,10 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     $services->load('a9f\\Fractor\\', __DIR__ . '/../src/')
         ->exclude(
             [
-                __DIR__ . '/../src/Configuration',
-                __DIR__ . '/../src/Console',
-                __DIR__ . '/../src/ValueObject',
+                __DIR__ . '/../src/Console/Output',
                 __DIR__ . '/../src/Testing',
+                __DIR__ . '/../src/ValueObject',
+                __DIR__ . '/../src/**/ValueObject',
             ]
         );
 
@@ -41,7 +42,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
     $services->set(Configuration::class)->factory([service(ConfigurationFactory::class), 'create']);
     $services->set(FractorRunner::class)->arg('$processors', tagged_iterator('fractor.file_processor'));
-    $services->set(ConfigurationFactory::class)->arg('$processors', tagged_iterator('fractor.file_processor'));
+    $services->set(AllowedFileExtensionsResolver::class)->arg('$processors', tagged_iterator('fractor.file_processor'));
 
     $containerBuilder->registerForAutoconfiguration(FileProcessor::class)->addTag('fractor.file_processor');
 };
