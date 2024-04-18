@@ -2,9 +2,9 @@
 
 namespace a9f\Fractor\DependencyInjection;
 
-use a9f\Fractor\DependencyInjection\CompilerPass\CommandsCompilerPass;
 use a9f\FractorExtensionInstaller\Generated\InstalledPackages;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Console\DependencyInjection\AddConsoleCommandPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
@@ -20,7 +20,7 @@ class ContainerContainerBuilder
         $this->loadFile($containerBuilder, __DIR__ . '/../../config/application.php');
         $this->importExtensionConfigurations($containerBuilder);
 
-        $containerBuilder->addCompilerPass(new CommandsCompilerPass());
+        $containerBuilder->addCompilerPass(new AddConsoleCommandPass());
 
         foreach ($additionalConfigFiles as $additionalConfigFile) {
             if (!file_exists($additionalConfigFile)) {
