@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Tests\Helper\FileProcessor;
 
-use a9f\Fractor\Contract\FileProcessor;
+use a9f\Fractor\Application\Contract\FileProcessor;
+use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Tests\Helper\Contract\TextRule;
-use a9f\Fractor\ValueObject\File;
 
 final readonly class TextFileProcessor implements FileProcessor
 {

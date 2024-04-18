@@ -1,8 +1,8 @@
 <?php
 
-namespace a9f\Fractor\Contract;
+namespace a9f\Fractor\Application\Contract;
 
-use a9f\Fractor\ValueObject\File;
+use a9f\Fractor\Application\ValueObject\File;
 
 interface FileProcessor
 {

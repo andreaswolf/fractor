@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\Contract;
+namespace a9f\Fractor\Console\Contract;
 
 interface Output
 {
