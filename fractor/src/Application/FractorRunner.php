@@ -46,12 +46,10 @@ final readonly class FractorRunner
         }
 
 
-        foreach ($this->fileCollector->getFiles() as $file) {
-            if ($dryRun) {
-                continue;
+        if (!$dryRun) {
+            foreach ($this->fileCollector->getFiles() as $file) {
+                $this->filePrinter->printFile($file);
             }
-
-            $this->filePrinter->printFile($file);
         }
 
         $output->progressFinish();
