@@ -7,10 +7,10 @@ namespace a9f\Fractor\Application\ValueObject;
 final class File
 {
     private bool $hasChanged = false;
-    private readonly string $originalContent;
-    private string $directoryName;
-    private string $fileName;
-    private string $fileExtension;
+    private string $originalContent;
+    private readonly string $directoryName;
+    private readonly string $fileName;
+    private readonly string $fileExtension;
 
     public function __construct(private readonly string $filePath, private string $content)
     {
@@ -18,6 +18,11 @@ final class File
         $this->directoryName = dirname($this->filePath);
         $this->fileName = basename($this->filePath);
         $this->fileExtension = pathinfo($this->fileName, PATHINFO_EXTENSION);
+    }
+
+    public function changeOriginalContent(string $originalContent): void
+    {
+        $this->originalContent = $originalContent;
     }
 
     public function getFilePath(): string

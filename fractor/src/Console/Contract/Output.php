@@ -17,4 +17,6 @@ interface Output
      * Finishes the progress output.
      */
     public function progressFinish(): void;
+
+    public function write(string $message): void;
 }

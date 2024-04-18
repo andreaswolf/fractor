@@ -32,6 +32,11 @@ final class SymfonyConsoleOutput implements Output
         $this->getProgressBar()->finish();
     }
 
+    public function write(string $message): void
+    {
+        $this->output->writeln($message);
+    }
+
     private function getProgressBar(): ProgressBar
     {
         return $this->progressBar ?? throw new RuntimeException('The ProgressBar is not started.');
