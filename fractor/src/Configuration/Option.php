@@ -10,10 +10,12 @@ final class Option
      * @var string
      */
     public const PATHS = 'paths';
+
     /**
      * @var string
      */
     public const SKIP = 'skip';
+
     /**
      * @var string
      */
@@ -23,6 +25,7 @@ final class Option
      * @var string
      */
     public const CONFIG = 'config';
+
     /**
      * @var string
      */

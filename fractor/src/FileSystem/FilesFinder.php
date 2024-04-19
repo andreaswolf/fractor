@@ -4,6 +4,7 @@ namespace a9f\Fractor\FileSystem;
 
 use a9f\Fractor\Skipper\Skipper\PathSkipper;
 use Symfony\Component\Finder\Finder;
+use Webmozart\Assert\Assert;
 
 final readonly class FilesFinder
 {
@@ -12,12 +13,14 @@ final readonly class FilesFinder
     }
 
     /**
-     * @param string[] $source
+     * @param list<non-empty-string> $source
      * @param string[] $suffixes
      * @return string[]
      */
     public function findFiles(array $source, array $suffixes, bool $sortByName = true): array
     {
+        Assert::allStringNotEmpty($source, 'Please provide some paths');
+
         $filesAndDirectories = $this->filesystemTweaker->resolveWithFnmatch($source);
 
         $files = $this->fileAndDirectoryFilter->filterFiles($filesAndDirectories);

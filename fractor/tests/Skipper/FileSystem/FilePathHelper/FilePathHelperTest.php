@@ -8,6 +8,7 @@ use a9f\Fractor\Skipper\FileSystem\FilePathHelper;
 use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Filesystem\Filesystem;
 
 final class FilePathHelperTest extends TestCase
 {
@@ -15,7 +16,7 @@ final class FilePathHelperTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->subject = new FilePathHelper();
+        $this->subject = new FilePathHelper(new Filesystem());
     }
 
     #[DataProvider('provideData')]

@@ -34,12 +34,8 @@ final readonly class FileInfoMatcher
         return false;
     }
 
-    /**
-     * Supports both relative and absolute $file path. They differ for PHP-CS-Fixer and PHP_CodeSniffer.
-     */
     private function doesFileMatchPattern(string $filePath, string $ignoredPath): bool
     {
-        // in rector.php, the path can be absolute
         if ($filePath === $ignoredPath) {
             return true;
         }

@@ -14,7 +14,7 @@ final class FilePathHelper
      * @see https://regex101.com/r/d4F5Fm/1
      * @var string
      */
-    private const SCHEME_PATH_REGEX = '#^([a-z]+)\\:\\/\\/(.+)#';
+    private const SCHEME_PATH_REGEX = '#^([a-z]+)://(.+)#';
 
     /**
      * @see https://regex101.com/r/no28vw/1
@@ -26,12 +26,9 @@ final class FilePathHelper
      * @var string
      */
     private const SCHEME_UNDEFINED = 'undefined';
-    private Filesystem $filesystem;
 
-    public function __construct(
-
-    ) {
-        $this->filesystem = new Filesystem();
+    public function __construct(private readonly Filesystem $filesystem)
+    {
     }
 
     public function relativePath(string $fileRealPath): string

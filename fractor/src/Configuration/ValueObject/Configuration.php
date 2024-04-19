@@ -15,7 +15,6 @@ final readonly class Configuration
      */
     public function __construct(private array $fileExtensions, private array $paths, private array $skip)
     {
-        Assert::notEmpty($this->paths, 'No directories given');
         Assert::allStringNotEmpty($this->paths, 'No directories given');
     }
 

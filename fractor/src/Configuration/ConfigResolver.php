@@ -8,12 +8,7 @@ final class ConfigResolver
 {
     public static function resolveConfigsFromInput(ArgvInput $input): ?string
     {
-        return self::getConfigFileFromInput($input) ?? getcwd() . '/fractor.php';
-    }
-
-    private static function getConfigFileFromInput(ArgvInput $input): ?string
-    {
-        return self::getOptionValue($input);
+        return self::getOptionValue($input) ?? getcwd() . '/fractor.php';
     }
 
     /**

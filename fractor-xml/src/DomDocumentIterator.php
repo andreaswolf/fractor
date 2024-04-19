@@ -3,6 +3,8 @@
 namespace a9f\FractorXml;
 
 use a9f\FractorXml\Contract\DomNodeVisitor;
+use a9f\FractorXml\Exception\ShouldNotHappenException;
+use Webmozart\Assert\Assert;
 
 final class DomDocumentIterator
 {
@@ -14,6 +16,7 @@ final class DomDocumentIterator
      */
     public function __construct(private readonly iterable $visitors)
     {
+        Assert::allIsInstanceOf($this->visitors, DomNodeVisitor::class);
     }
 
     public function traverseDocument(\DOMDocument $document): void
@@ -38,8 +41,7 @@ final class DomDocumentIterator
             $result = $visitor->enterNode($node);
 
             if ($node->parentNode === null) {
-                // TODO convert into a custom ShouldNotHappenException
-                throw new \RuntimeException('Node has no parent node');
+                throw new ShouldNotHappenException('Node has no parent node');
             }
 
             if ($result === DomDocumentIterator::REMOVE_NODE) {
