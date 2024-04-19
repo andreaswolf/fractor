@@ -5,6 +5,7 @@ namespace a9f\FractorXml;
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\FractorXml\Contract\XmlFractor;
+use Webmozart\Assert\Assert;
 
 final readonly class XmlFileProcessor implements FileProcessor
 {
@@ -13,6 +14,7 @@ final readonly class XmlFileProcessor implements FileProcessor
      */
     public function __construct(private iterable $rules)
     {
+        Assert::allIsInstanceOf($this->rules, XmlFractor::class);
     }
 
     public function canHandle(File $file): bool

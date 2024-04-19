@@ -9,6 +9,7 @@ use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Console\Contract\Output;
 use a9f\Fractor\FileSystem\FilesFinder;
 use Nette\Utils\FileSystem;
+use Webmozart\Assert\Assert;
 
 /**
  * Main Fractor class. This takes care of collecting a list of files, iterating over them and calling all registered
@@ -21,6 +22,7 @@ final readonly class FractorRunner
      */
     public function __construct(private FilesFinder $fileFinder, private FilesCollector $fileCollector, private iterable $processors, private Configuration $configuration, private FileWriter $fileWriter)
     {
+        Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
 
     public function run(Output $output, bool $dryRun = false): void

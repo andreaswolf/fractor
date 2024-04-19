@@ -12,21 +12,27 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 class ContainerContainerBuilder
 {
     /**
-     * @param array<int, string> $additionalConfigFiles
+     * @param string[] $additionalConfigFiles
      */
     public function createDependencyInjectionContainer(array $additionalConfigFiles = []): ContainerInterface
     {
         $containerBuilder = new ContainerBuilder();
-        $this->loadFile($containerBuilder, __DIR__ . '/../../config/application.php');
-        $this->importExtensionConfigurations($containerBuilder);
 
         $containerBuilder->addCompilerPass(new AddConsoleCommandPass());
 
-        foreach ($additionalConfigFiles as $additionalConfigFile) {
-            if (!file_exists($additionalConfigFile)) {
+        $configFiles = [
+            __DIR__ . '/../../config/application.php'
+        ];
+        $configFiles = array_merge($configFiles, $additionalConfigFiles);
+        $configFiles = array_merge($configFiles, $this->collectConfigFilesFromExtensions());
+
+        foreach ($configFiles as $configFile) {
+            if (!file_exists($configFile)) {
                 continue;
             }
-            $this->loadFile($containerBuilder, $additionalConfigFile);
+
+            $fileLoader = new PhpFileLoader($containerBuilder, new FileLocator(dirname($configFile)));
+            $fileLoader->load($configFile);
         }
 
         $containerBuilder->compile();
@@ -34,25 +40,20 @@ class ContainerContainerBuilder
         return $containerBuilder;
     }
 
-
-    private function loadFile(ContainerBuilder $containerBuilder, string $pathToFile): void
+    /**
+     * @return string[]
+     */
+    private function collectConfigFilesFromExtensions(): array
     {
-        $fileLoader = new PhpFileLoader($containerBuilder, new FileLocator(dirname($pathToFile)));
-        $fileLoader->load($pathToFile);
-    }
-
-    private function importExtensionConfigurations(ContainerBuilder $containerBuilder): void
-    {
+        $collectedConfigFiles = [];
         if (!class_exists('a9f\\FractorExtensionInstaller\\Generated\\InstalledPackages')) {
-            return;
+            return $collectedConfigFiles;
         }
 
         foreach (InstalledPackages::PACKAGES as $package) {
-            $filePath = $package['path'] . '/config/application.php';
-
-            if (file_exists($filePath)) {
-                $this->loadFile($containerBuilder, $filePath);
-            }
+            $collectedConfigFiles[] = $package['path'] . '/config/application.php';
         }
+
+        return $collectedConfigFiles;
     }
 }

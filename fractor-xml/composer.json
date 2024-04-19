@@ -15,7 +15,8 @@
         "ext-dom": "*",
         "ext-xml": "*",
         "a9f/fractor": "@dev",
-        "a9f/fractor-extension-installer": "@dev"
+        "a9f/fractor-extension-installer": "@dev",
+        "webmozart/assert": "^1.11"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
