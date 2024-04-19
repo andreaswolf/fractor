@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Differ;
 
-use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Differ\Contract\Differ;
 use a9f\Fractor\Differ\Formatter\ColorConsoleDiffFormatter;
 use a9f\Fractor\Differ\ValueObject\Diff;

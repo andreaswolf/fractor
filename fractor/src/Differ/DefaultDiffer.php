@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Differ;
 
-use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Differ\Contract\Differ;
 use a9f\Fractor\Differ\ValueObject\Diff;
 use SebastianBergmann\Diff\Differ as CoreDiffer;
@@ -25,7 +24,7 @@ final readonly class DefaultDiffer implements Differ
 
     public function diff(Diff $diff): string
     {
-        if(!$diff->isDifferent()) {
+        if (!$diff->isDifferent()) {
             return '';
         }
         return $this->differ->diff($diff->getOldContent(), $diff->getNewContent());

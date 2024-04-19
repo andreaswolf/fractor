@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace a9f\Fractor\Application\ValueObject;
 
 use a9f\Fractor\Differ\ValueObject\Diff;
+use a9f\Fractor\Differ\ValueObject\FileDiff;
 
 final class File
 {
@@ -13,6 +14,7 @@ final class File
     private readonly string $directoryName;
     private readonly string $fileName;
     private readonly string $fileExtension;
+    private ?FileDiff $fileDiff = null;
 
     public function __construct(private readonly string $filePath, private string $content)
     {
@@ -75,5 +77,15 @@ final class File
     public function getDiff(): Diff
     {
         return new Diff($this->originalContent, $this->content);
+    }
+
+    public function setFileDiff(FileDiff $fileDiff): void
+    {
+        $this->fileDiff = $fileDiff;
+    }
+
+    public function getFileDiff(): ?FileDiff
+    {
+        return $this->fileDiff;
     }
 }
