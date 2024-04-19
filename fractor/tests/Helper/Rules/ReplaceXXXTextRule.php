@@ -6,6 +6,7 @@ namespace a9f\Fractor\Tests\Helper\Rules;
 
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Tests\Helper\Contract\TextRule;
+use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 final class ReplaceXXXTextRule implements TextRule
 {
@@ -14,5 +15,10 @@ final class ReplaceXXXTextRule implements TextRule
         $newFileContent = str_replace('XXX', 'YYY', $file->getContent());
 
         $file->changeFileContent($newFileContent);
+    }
+
+    public function getRuleDefinition(): RuleDefinition
+    {
+        // TODO: Implement getRuleDefinition() method.
     }
 }
