@@ -1,0 +1,58 @@
+{
+    "name": "a9f/fractor-doc-generator",
+    "description": "Generate docs for Fractor",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Andreas Wolf",
+            "email": "dev@a-w.io",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "nette/utils": "^4.0",
+        "sebastian/diff": "^5.0",
+        "symfony/config": "^6.4",
+        "symfony/console": "^6.4",
+        "symfony/dependency-injection": "^6.4",
+        "symplify/rule-doc-generator": "12.1.3",
+        "symplify/rule-doc-generator-contracts": "^11.2"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.42",
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-phpunit": "^1.3",
+        "phpunit/phpunit": "^10.5",
+        "symplify/easy-coding-standard": "^12.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "a9f\\FractorDocGenerator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "a9f\\FractorDocGenerator\\Tests\\": "tests/"
+        },
+        "classmap": [
+            "stubs"
+        ]
+    },
+    "bin": [
+        "bin/fractor-doc-generator"
+    ],
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "analyze:php": "phpstan analyze",
+        "style:php:check": "ecs",
+        "style:php:fix": "ecs --fix",
+        "test:php": "phpunit"
+    }
+}
