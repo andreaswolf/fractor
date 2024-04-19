@@ -51,7 +51,7 @@ final readonly class FractorRunner
         $output->progressFinish();
 
         foreach ($this->fileCollector->getFiles() as $file) {
-            $output->write($this->differ->diff($file));
+            $output->write($this->differ->diff($file->getDiff()));
 
             if ($dryRun) {
                 continue;

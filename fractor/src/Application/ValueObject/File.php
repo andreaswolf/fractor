@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Application\ValueObject;
 
+use a9f\Fractor\Differ\ValueObject\Diff;
+
 final class File
 {
     private bool $hasChanged = false;
@@ -68,5 +70,10 @@ final class File
     public function getOriginalContent(): string
     {
         return $this->originalContent;
+    }
+
+    public function getDiff(): Diff
+    {
+        return new Diff($this->originalContent, $this->content);
     }
 }

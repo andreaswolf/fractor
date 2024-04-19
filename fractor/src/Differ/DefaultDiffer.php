@@ -6,6 +6,7 @@ namespace a9f\Fractor\Differ;
 
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Differ\Contract\Differ;
+use a9f\Fractor\Differ\ValueObject\Diff;
 use SebastianBergmann\Diff\Differ as CoreDiffer;
 use SebastianBergmann\Diff\Output\StrictUnifiedDiffOutputBuilder;
 
@@ -22,12 +23,11 @@ final readonly class DefaultDiffer implements Differ
         $this->differ = new CoreDiffer($strictUnifiedDiffOutputBuilder);
     }
 
-    public function diff(File $file): string
+    public function diff(Diff $diff): string
     {
-        if (!$file->hasChanged()) {
+        if(!$diff->isDifferent()) {
             return '';
         }
-
-        return $this->differ->diff($file->getOriginalContent(), $file->getContent());
+        return $this->differ->diff($diff->getOldContent(), $diff->getNewContent());
     }
 }
