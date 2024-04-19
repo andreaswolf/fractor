@@ -6,6 +6,8 @@ use a9f\Fractor\Configuration\AllowedFileExtensionsResolver;
 use a9f\Fractor\Configuration\ConfigurationFactory;
 use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
+use a9f\Fractor\Differ\ConsoleDiffer;
+use a9f\Fractor\Differ\Contract\Differ;
 use a9f\Fractor\FractorApplication;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\DependencyInjection\ChildDefinition;
@@ -85,6 +87,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         ->alias(ContainerBagInterface::class, 'parameter_bag')
         ->alias(ParameterBagInterface::class, 'parameter_bag');
 
+    $services->alias(Differ::class, ConsoleDiffer::class);
     $services->set(FractorApplication::class)->call('setCommandLoader', [service('console.command_loader')]);
     $services->set(Configuration::class)->factory([service(ConfigurationFactory::class), 'create']);
     $services->set(FractorRunner::class)->arg('$processors', tagged_iterator('fractor.file_processor'));

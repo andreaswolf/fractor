@@ -4,7 +4,10 @@ namespace a9f\FractorXml;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
+use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\FractorXml\Contract\XmlFractor;
+use a9f\FractorXml\ValueObjectFactory\DomDocumentFactory;
+use DOMDocument;
 use Webmozart\Assert\Assert;
 
 final readonly class XmlFileProcessor implements FileProcessor
@@ -12,7 +15,7 @@ final readonly class XmlFileProcessor implements FileProcessor
     /**
      * @param XmlFractor[] $rules
      */
-    public function __construct(private iterable $rules)
+    public function __construct(private iterable $rules, private DomDocumentFactory $domDocumentFactory)
     {
         Assert::allIsInstanceOf($this->rules, XmlFractor::class);
     }
@@ -24,20 +27,16 @@ final readonly class XmlFileProcessor implements FileProcessor
 
     public function handle(File $file): void
     {
-        $doc = new \DOMDocument();
-        $doc->preserveWhiteSpace = false;
-        $doc->formatOutput = true;
-        $doc->load($file->getFilePath());
+        $document = $this->domDocumentFactory->create();
+        $document->load($file->getFilePath());
 
-        // TODO we need a way to detect if there were changes (and probably also collect changes here)
+        // This is a hacky trick to keep format and create a nice diff later
+        $file->changeOriginalContent($this->saveXml($document));
+
         $iterator = new DomDocumentIterator($this->rules);
-        $iterator->traverseDocument($doc);
+        $iterator->traverseDocument($document);
 
-        $newFileContent = $doc->saveXML();
-
-        if ($newFileContent === false) {
-            throw new \UnexpectedValueException('New file content should be a string');
-        }
+        $newFileContent = $this->saveXml($document);
 
         $file->changeFileContent($newFileContent);
     }
@@ -45,5 +44,15 @@ final readonly class XmlFileProcessor implements FileProcessor
     public function allowedFileExtensions(): array
     {
         return ['xml'];
+    }
+
+    private function saveXml(DOMDocument $document): string
+    {
+        $xml = $document->saveXML();
+        if ($xml === false) {
+            throw new ShouldNotHappenException('New file content should be a string');
+        }
+
+        return $xml;
     }
 }

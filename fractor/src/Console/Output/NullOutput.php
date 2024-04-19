@@ -19,4 +19,8 @@ final class NullOutput implements Output
     public function progressFinish(): void
     {
     }
+
+    public function write(string $message): void
+    {
+    }
 }

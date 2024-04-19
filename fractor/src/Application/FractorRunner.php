@@ -7,6 +7,7 @@ use a9f\Fractor\Application\Contract\FileWriter;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Console\Contract\Output;
+use a9f\Fractor\Differ\ValueObjectFactory\FileDiffFactory;
 use a9f\Fractor\FileSystem\FilesFinder;
 use Nette\Utils\FileSystem;
 use Webmozart\Assert\Assert;
@@ -20,7 +21,7 @@ final readonly class FractorRunner
     /**
      * @param FileProcessor[] $processors
      */
-    public function __construct(private FilesFinder $fileFinder, private FilesCollector $fileCollector, private iterable $processors, private Configuration $configuration, private FileWriter $fileWriter)
+    public function __construct(private FilesFinder $fileFinder, private FilesCollector $fileCollector, private iterable $processors, private Configuration $configuration, private FileWriter $fileWriter, private FileDiffFactory $fileDiffFactory)
     {
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
@@ -45,17 +46,24 @@ final readonly class FractorRunner
                 $processor->handle($file);
                 $output->progressAdvance();
             }
+
+            $file->setFileDiff($this->fileDiffFactory->createFileDiff($file));
         }
 
+        $output->progressFinish();
 
         foreach ($this->fileCollector->getFiles() as $file) {
+            if ($file->getFileDiff() === null) {
+                continue;
+            }
+
+            $output->write($file->getFileDiff()->getDiffConsoleFormatted());
+
             if ($dryRun) {
                 continue;
             }
 
             $this->fileWriter->write($file);
         }
-
-        $output->progressFinish();
     }
 }
