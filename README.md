@@ -40,6 +40,7 @@ To utilize Fractor effectively, follow these steps:
       
       use a9f\Fractor\Fractor\DummyRule;
       use a9f\FractorXml\XmlFileProcessor;
+      use a9f\Fractor\Configuration\Option;
       use a9f\Typo3Fractor\Rules\FlexForm\AddRenderTypeToFlexFormFractor;
       use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
       
