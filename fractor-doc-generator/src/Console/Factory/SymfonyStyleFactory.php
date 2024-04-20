@@ -13,10 +13,7 @@ final class SymfonyStyleFactory
 {
     public static function create(): SymfonyStyle
     {
-        // to prevent missing argv indexes
-        if (!isset($_SERVER['argv'])) {
-            $_SERVER['argv'] = [];
-        }
+        $_SERVER['argv'] ??= [];
         $argvInput = new ArgvInput();
         $consoleOutput = new ConsoleOutput();
         // --debug is called
