@@ -14,6 +14,10 @@ final class MarkdownDifferTest extends AbstractTestCase
         $markdownDiffer = $this->getService(MarkdownDiffer::class);
 
         $currentDiff = $markdownDiffer->diff('old code', 'new code');
-        self::assertStringEqualsFile(__DIR__ . '/Fixture/expected_diff.txt', $currentDiff);
+        self::assertSame('```diff
+-old code
++new code
+```
+', $currentDiff);
     }
 }
