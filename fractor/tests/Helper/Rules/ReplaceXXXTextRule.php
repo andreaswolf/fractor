@@ -23,7 +23,7 @@ final class ReplaceXXXTextRule implements TextRule
         return new RuleDefinition(
             'Replace string XXX with YYY',
             [
-                new CodeSample('Replace string XXX with YYY', 'Replace string YYY with YYY')
+                new CodeSample('XXX', 'YYY')
             ]
         );
     }
