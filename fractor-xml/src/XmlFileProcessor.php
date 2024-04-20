@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace a9f\FractorXml;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
+use a9f\Fractor\Application\RuleSkipper;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\FractorXml\Contract\XmlFractor;
@@ -20,7 +21,8 @@ final readonly class XmlFileProcessor implements FileProcessor
      */
     public function __construct(
         private iterable $rules,
-        private DomDocumentFactory $domDocumentFactory
+        private DomDocumentFactory $domDocumentFactory,
+        private RuleSkipper $ruleSkipper
     ) {
         Assert::allIsInstanceOf($this->rules, XmlFractor::class);
     }
@@ -39,7 +41,13 @@ final readonly class XmlFileProcessor implements FileProcessor
         // This is a hacky trick to keep format and create a nice diff later
         $file->changeOriginalContent($this->saveXml($document));
 
-        $iterator = new DomDocumentIterator($this->rules);
+        $applicableRulesForFile = array_filter(
+            // for a large number of rules, this might be resource hungry; try to find a better alternative here
+            iterator_to_array($this->rules),
+            fn (XmlFractor $rule) => $this->ruleSkipper->shouldSkip($rule::class, $file->getFilePath()) === false
+        );
+
+        $iterator = new DomDocumentIterator($applicableRulesForFile);
         $iterator->traverseDocument($file, $document);
 
         $newXml = $this->saveXml($document);
