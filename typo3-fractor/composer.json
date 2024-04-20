@@ -21,6 +21,7 @@
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-phpunit": "^1.3",
         "phpunit/phpunit": "^10.5",
+        "rector/rector": "^1.0",
         "symplify/easy-coding-standard": "^12.1"
     },
     "repositories": {
@@ -48,6 +49,7 @@
     },
     "scripts": {
         "analyze:php": "phpstan analyze",
+        "rector": "rector",
         "style:php:check": "ecs",
         "style:php:fix": "ecs --fix",
         "test:php": "phpunit"
