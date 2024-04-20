@@ -17,14 +17,14 @@
         "symfony/config": "^6.4",
         "symfony/console": "^6.4",
         "symfony/dependency-injection": "^6.4",
-        "symplify/rule-doc-generator": "12.1.3",
-        "symplify/rule-doc-generator-contracts": "^11.2"
+        "symplify/rule-doc-generator": "12.1.3"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-phpunit": "^1.3",
         "phpunit/phpunit": "^10.5",
+        "rector/rector": "^1.0",
         "symplify/easy-coding-standard": "^12.1"
     },
     "autoload": {
@@ -51,6 +51,7 @@
     },
     "scripts": {
         "analyze:php": "phpstan analyze",
+        "rector": "rector",
         "style:php:check": "ecs",
         "style:php:fix": "ecs --fix",
         "test:php": "phpunit"
