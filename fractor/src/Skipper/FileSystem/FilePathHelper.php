@@ -8,7 +8,7 @@ use Nette\Utils\Strings;
 use Symfony\Component\Filesystem\Filesystem;
 use Webmozart\Assert\Assert;
 
-final class FilePathHelper
+final readonly class FilePathHelper
 {
     /**
      * @see https://regex101.com/r/d4F5Fm/1
@@ -27,7 +27,7 @@ final class FilePathHelper
      */
     private const SCHEME_UNDEFINED = 'undefined';
 
-    public function __construct(private readonly Filesystem $filesystem)
+    public function __construct(private Filesystem $filesystem)
     {
     }
 

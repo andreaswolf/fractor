@@ -19,6 +19,8 @@ jobs:
             command: analyze:php
           - name: PHPUnit
             command: test:php
+          - name: Rector
+            command: 'rector --dry-run'
         directory: ['extension-installer', 'fractor', 'fractor-xml', 'typo3-fractor']
         exclude:
           - directory: extension-installer

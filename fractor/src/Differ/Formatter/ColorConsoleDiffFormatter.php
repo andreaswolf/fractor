@@ -7,7 +7,7 @@ namespace a9f\Fractor\Differ\Formatter;
 use Nette\Utils\Strings;
 use Symfony\Component\Console\Formatter\OutputFormatter;
 
-final class ColorConsoleDiffFormatter
+final readonly class ColorConsoleDiffFormatter
 {
     /**
      * @var string
@@ -33,7 +33,7 @@ final class ColorConsoleDiffFormatter
      */
     private const NEWLINES_REGEX = "#\n\r|\n#";
 
-    private readonly string $template;
+    private string $template;
 
     public function __construct()
     {
