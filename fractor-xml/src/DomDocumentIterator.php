@@ -6,7 +6,7 @@ use a9f\FractorXml\Contract\DomNodeVisitor;
 use a9f\FractorXml\Exception\ShouldNotHappenException;
 use Webmozart\Assert\Assert;
 
-final class DomDocumentIterator
+final readonly class DomDocumentIterator
 {
     /** @var int */
     public const REMOVE_NODE = 3;
@@ -14,7 +14,7 @@ final class DomDocumentIterator
     /**
      * @param list<DomNodeVisitor> $visitors
      */
-    public function __construct(private readonly iterable $visitors)
+    public function __construct(private iterable $visitors)
     {
         Assert::allIsInstanceOf($this->visitors, DomNodeVisitor::class);
     }
