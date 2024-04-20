@@ -28,6 +28,6 @@ final class DirectoryToMarkdownPrinterTest extends AbstractTestCase
 
     public static function provideData(): \Iterator
     {
-        yield [__DIR__ . '/Fixture/Fractor/Standard', __DIR__ . '/Expected/fractor/fractor_content.md'];
+        yield [__DIR__ . '/Fixtures/Fractor/Standard', __DIR__ . '/Assertions/Fractor/Standard/expected.md'];
     }
 }

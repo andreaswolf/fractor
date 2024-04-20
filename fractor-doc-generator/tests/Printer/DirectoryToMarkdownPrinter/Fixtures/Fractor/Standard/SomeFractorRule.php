@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace a9f\FractorDocGenerator\Tests\Printer\DirectoryToMarkdownPrinter\Fixture\Fractor\Standard;
+namespace a9f\FractorDocGenerator\Tests\Printer\DirectoryToMarkdownPrinter\Fixtures\Fractor\Standard;
 
 use a9f\Fractor\Application\Contract\FractorRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
