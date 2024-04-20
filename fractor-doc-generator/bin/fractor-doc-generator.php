@@ -1,7 +1,7 @@
 <?php
 
 
-use a9f\FractorDocGenerator\DependencyInjection\ContainerContainerBuilder;
+use a9f\FractorDocGenerator\DependencyInjection\ContainerBuilderFactory;
 use a9f\FractorDocGenerator\FractorDocGeneratorApplication;
 
 $autoloadFile = (static function (): ?string {
@@ -24,7 +24,7 @@ if ($autoloadFile === null) {
 
 include $autoloadFile;
 
-$container = (new ContainerContainerBuilder())->createDependencyInjectionContainer();
+$container = (new ContainerBuilderFactory())->createDependencyInjectionContainer();
 
 /** @var FractorDocGeneratorApplication $application */
 $application = $container->get(FractorDocGeneratorApplication::class);

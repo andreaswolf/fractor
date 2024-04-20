@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
-class ContainerContainerBuilder
+final class ContainerBuilderFactory
 {
     public function createDependencyInjectionContainer(): ContainerInterface
     {
