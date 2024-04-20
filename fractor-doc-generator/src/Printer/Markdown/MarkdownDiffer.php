@@ -30,9 +30,11 @@ final class MarkdownDiffer
         if ($old === $new) {
             return '';
         }
+
         $diff = $this->differ->diff($old, $new);
         $diff = $this->clearUnifiedDiffOutputFirstLine($diff);
         $diff = $this->removeTrailingWhitespaces($diff);
+
         return $this->warpToDiffCode($diff);
     }
     /**

@@ -25,7 +25,6 @@ final readonly class DirectoryToMarkdownPrinter
      */
     public function print(string $workingDirectory, array $directories): string
     {
-        // 1. collect documented rules in provided path
         $documentedRuleClasses = $this->classByTypeFinder->findByType(
             $workingDirectory,
             $directories,
@@ -42,12 +41,10 @@ final readonly class DirectoryToMarkdownPrinter
 
         $this->symfonyStyle->listing($classes);
 
-        // 2. create rule definition collection
         $this->symfonyStyle->note('Resolving rule definitions');
 
         $ruleDefinitions = $this->ruleDefinitionsResolver->resolveFromClassNames($documentedRuleClasses);
 
-        // 3. print rule definitions to markdown lines
         $this->symfonyStyle->note('Printing rule definitions');
         $markdownLines = $this->ruleDefinitionsPrinter->print($ruleDefinitions);
 
