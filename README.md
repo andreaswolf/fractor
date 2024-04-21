@@ -35,20 +35,17 @@ To utilize Fractor effectively, follow these steps:
 2. **Configuration**:
     - Create a PHP configuration file (e.g., `fractor.php`) where you define the paths to your files.
     - At minimum, a configuration file must specify the paths to process:
-      ```php
-      <?php
+```php
+<?php
       
-      use a9f\Fractor\Fractor\DummyRule;
-      use a9f\FractorXml\XmlFileProcessor;
-      use a9f\Fractor\Configuration\Option;
-      use a9f\Typo3Fractor\Rules\FlexForm\AddRenderTypeToFlexFormFractor;
-      use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use a9f\Fractor\Configuration\Option;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
       
-      return static function (ContainerConfigurator $containerConfigurator) {
-          $parameters = $containerConfigurator->parameters();
-          $parameters->set(Option::PATHS, [__DIR__ . '/output/']);
-      };
-      ```
+return static function (ContainerConfigurator $containerConfigurator) {
+   $parameters = $containerConfigurator->parameters();
+   $parameters->set(Option::PATHS, [__DIR__ . '/output/']);
+};
+```
 
 3. **Running Fractor**:
     - Execute Fractor from the command line, passing the path to your configuration file as an argument:

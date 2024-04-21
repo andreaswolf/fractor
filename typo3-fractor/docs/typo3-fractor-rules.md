@@ -4,7 +4,7 @@
 
 Add renderType node in FlexForm
 
-- class: [`a9f\Typo3Fractor\Rules\FlexForm\AddRenderTypeToFlexFormFractor`](../src/Rules/FlexForm/AddRenderTypeToFlexFormFractor.php)
+- class: [`a9f\Typo3Fractor\TYPO37\FlexForm\AddRenderTypeToFlexFormFractor`](../rules/TYPO37/FlexForm/AddRenderTypeToFlexFormFractor.php)
 
 ```diff
  <T3DataStructure>

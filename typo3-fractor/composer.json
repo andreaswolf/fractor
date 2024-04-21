@@ -33,7 +33,10 @@
     },
     "autoload": {
         "psr-4": {
-            "a9f\\Typo3Fractor\\": "src/"
+            "a9f\\Typo3Fractor\\": [
+                "src",
+                "rules"
+            ]
         }
     },
     "autoload-dev": {
@@ -50,7 +53,7 @@
     },
     "scripts": {
         "analyze:php": "phpstan analyze",
-        "docs:generate": "fractor-doc-generator generate src/Rules --output-file docs/typo3-fractor-rules.md",
+        "docs:generate": "fractor-doc-generator generate rules --output-file docs/typo3-fractor-rules.md",
         "rector": "rector",
         "style:php:check": "ecs",
         "style:php:fix": "ecs --fix",

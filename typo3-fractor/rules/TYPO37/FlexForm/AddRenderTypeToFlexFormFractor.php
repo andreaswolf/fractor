@@ -1,6 +1,6 @@
 <?php
 
-namespace a9f\Typo3Fractor\Rules\FlexForm;
+namespace a9f\Typo3Fractor\TYPO37\FlexForm;
 
 use a9f\Typo3Fractor\AbstractFlexformFractor;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
