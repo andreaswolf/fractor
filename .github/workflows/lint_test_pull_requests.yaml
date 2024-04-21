@@ -63,5 +63,5 @@ jobs:
           php-version: '8.2'
 
       - name: Run tests
-        working-directory: tests
+        working-directory: e2e
         run: ./run-test.sh

@@ -1,2 +1,2 @@
 .phpunit.result.cache
-run-test.sh
+./run-test.sh
