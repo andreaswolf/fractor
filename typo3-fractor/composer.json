@@ -13,6 +13,7 @@
     "require": {
         "php": "^8.2",
         "a9f/fractor": "@dev",
+        "a9f/fractor-doc-generator": "@dev",
         "a9f/fractor-extension-installer": "@dev",
         "a9f/fractor-xml": "@dev"
     },
@@ -49,6 +50,7 @@
     },
     "scripts": {
         "analyze:php": "phpstan analyze",
+        "docs:generate": "fractor-doc-generator generate src/Rules --output-file docs/typo3-fractor-rules.md",
         "rector": "rector",
         "style:php:check": "ecs",
         "style:php:fix": "ecs --fix",

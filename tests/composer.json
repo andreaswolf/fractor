@@ -3,6 +3,7 @@
   "type": "project",
   "require": {
     "a9f/fractor": "@dev",
+    "a9f/fractor-doc-generator": "@dev",
     "a9f/fractor-extension-installer": "@dev",
     "a9f/fractor-xml": "@dev",
     "a9f/typo3-fractor": "@dev"

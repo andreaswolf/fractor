@@ -3,6 +3,8 @@
 namespace a9f\Typo3Fractor\Rules\FlexForm;
 
 use a9f\Typo3Fractor\AbstractFlexformFractor;
+use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
+use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 final class AddRenderTypeToFlexFormFractor extends AbstractFlexformFractor
 {
@@ -50,5 +52,57 @@ final class AddRenderTypeToFlexFormFractor extends AbstractFlexformFractor
         }
 
         return $node;
+    }
+
+    public function getRuleDefinition(): RuleDefinition
+    {
+        return new RuleDefinition('Add renderType node in FlexForm', [
+            new CodeSample(
+                <<<'CODE_SAMPLE'
+<T3DataStructure>
+    <ROOT>
+        <sheetTitle>aTitle</sheetTitle>
+        <type>array</type>
+        <el>
+            <a_select_field>
+                <label>Select field</label>
+                <config>
+                    <type>select</type>
+                    <items>
+                        <numIndex index="0" type="array">
+                            <numIndex index="0">Label</numIndex>
+                        </numIndex>
+                    </items>
+                </config>
+            </a_select_field>
+        </el>
+    </ROOT>
+</T3DataStructure>
+CODE_SAMPLE
+                ,
+                <<<'CODE_SAMPLE'
+<T3DataStructure>
+    <ROOT>
+        <sheetTitle>aTitle</sheetTitle>
+        <type>array</type>
+        <el>
+            <a_select_field>
+                <label>Select field</label>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items>
+                        <numIndex index="0" type="array">
+                            <numIndex index="0">Label</numIndex>
+                        </numIndex>
+                    </items>
+                </config>
+            </a_select_field>
+        </el>
+    </ROOT>
+</T3DataStructure>
+CODE_SAMPLE
+            ),
+        ]);
     }
 }

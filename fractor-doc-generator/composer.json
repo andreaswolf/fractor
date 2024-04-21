@@ -1,6 +1,6 @@
 {
-    "name": "a9f/fractor",
-    "description": "File Read-Analyse-Change TOol",
+    "name": "a9f/fractor-doc-generator",
+    "description": "Generate docs for Fractor",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -17,10 +17,7 @@
         "symfony/config": "^6.4",
         "symfony/console": "^6.4",
         "symfony/dependency-injection": "^6.4",
-        "symfony/filesystem": "^6.4",
-        "symfony/finder": "^6.4",
-        "symplify/rule-doc-generator-contracts": "^11.2",
-        "webmozart/assert": "^1.11"
+        "symplify/rule-doc-generator": "12.1.3"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
@@ -32,16 +29,19 @@
     },
     "autoload": {
         "psr-4": {
-            "a9f\\Fractor\\": "src/"
+            "a9f\\FractorDocGenerator\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "a9f\\Fractor\\Tests\\": "tests/"
-        }
+            "a9f\\FractorDocGenerator\\Tests\\": "tests/"
+        },
+        "classmap": [
+            "stubs"
+        ]
     },
     "bin": [
-        "bin/fractor"
+        "bin/fractor-doc-generator"
     ],
     "config": {
         "allow-plugins": {
