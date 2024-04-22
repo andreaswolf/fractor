@@ -1,6 +1,6 @@
 <?php
 
-namespace a9f\Typo3Fractor\Tests\Rules\FlexForm;
+namespace a9f\Typo3Fractor\Tests\Rules\TYPO3v7\FlexForm\AddRenderTypeToFlexFormFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 
