@@ -19,4 +19,9 @@ final class FractorRunnerTest extends AbstractFractorTestCase
             __DIR__ . '/config/config.php'
         ];
     }
+
+    protected function provideFractorConfigFile(): ?string
+    {
+        return __DIR__ . '/config/fractor.php';
+    }
 }

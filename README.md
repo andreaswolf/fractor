@@ -37,14 +37,15 @@ To utilize Fractor effectively, follow these steps:
     - At minimum, a configuration file must specify the paths to process:
 ```php
 <?php
-      
-use a9f\Fractor\Configuration\Option;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-      
-return static function (ContainerConfigurator $containerConfigurator) {
-   $parameters = $containerConfigurator->parameters();
-   $parameters->set(Option::PATHS, [__DIR__ . '/output/']);
-};
+    
+use a9f\Fractor\DependencyInjection\FractorConfiguration;      
+
+return FractorConfiguration::configure()
+    ->withPaths([__DIR__ . '/packages/'])
+    ->withSets([
+        Typo3LevelSetList::UP_TO_TYPO3_13
+    ]);
+
 ```
 
 3. **Running Fractor**:

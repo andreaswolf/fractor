@@ -4,7 +4,6 @@ use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\FractorRunner;
 use a9f\Fractor\Configuration\AllowedFileExtensionsResolver;
 use a9f\Fractor\Configuration\ConfigurationFactory;
-use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Differ\ConsoleDiffer;
 use a9f\Fractor\Differ\Contract\Differ;
@@ -21,9 +20,6 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 
 return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [__DIR__]);
-    $parameters->set(Option::SKIP, []);
     $services = $containerConfigurator->services();
     $services->defaults()
         ->autowire()
