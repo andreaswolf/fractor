@@ -1,9 +1,9 @@
 <?php
 
 use a9f\Fractor\Configuration\Option;
-use a9f\Fractor\Tests\Helper\Contract\TextRule;
-use a9f\Fractor\Tests\Helper\FileProcessor\TextFileProcessor;
-use a9f\Fractor\Tests\Helper\Rules\ReplaceXXXTextRule;
+use a9f\Fractor\Tests\Fixture\DummyProcessor\Contract\TextRule;
+use a9f\Fractor\Tests\Fixture\DummyProcessor\FileProcessor\TextFileProcessor;
+use a9f\Fractor\Tests\Fixture\DummyProcessor\Rules\ReplaceXXXTextRule;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\Tests\Helper\FileProcessor;
+namespace a9f\Fractor\Tests\Fixture\DummyProcessor\FileProcessor;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
-use a9f\Fractor\Tests\Helper\Contract\TextRule;
+use a9f\Fractor\Tests\Fixture\DummyProcessor\Contract\TextRule;
 
 final readonly class TextFileProcessor implements FileProcessor
 {
