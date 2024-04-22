@@ -1,6 +1,6 @@
 <?php
 
-use a9f\Typo3Fractor\TYPO37\FlexForm\AddRenderTypeToFlexFormFractor;
+use a9f\Typo3Fractor\TYPO3v7\FlexForm\AddRenderTypeToFlexFormFractor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
