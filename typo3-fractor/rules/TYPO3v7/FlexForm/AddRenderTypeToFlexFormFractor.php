@@ -6,6 +6,9 @@ use a9f\Typo3Fractor\AbstractFlexformFractor;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
+/**
+ * @changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Deprecation-69822-DeprecateSelectFieldTca.html
+ */
 final class AddRenderTypeToFlexFormFractor extends AbstractFlexformFractor
 {
     public function canHandle(\DOMNode $node): bool
