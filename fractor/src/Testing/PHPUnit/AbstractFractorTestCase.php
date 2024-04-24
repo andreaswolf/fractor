@@ -26,6 +26,11 @@ abstract class AbstractFractorTestCase extends TestCase
         return [];
     }
 
+    protected function provideFractorConfigFile(): ?string
+    {
+        return null;
+    }
+
     protected function setUp(): void
     {
         $this->bootFromConfigFile();
@@ -35,7 +40,7 @@ abstract class AbstractFractorTestCase extends TestCase
 
     protected function bootFromConfigFile(): void
     {
-        $this->currentContainer = (new ContainerContainerBuilder())->createDependencyInjectionContainer($this->additionalConfigurationFiles());
+        $this->currentContainer = (new ContainerContainerBuilder())->createDependencyInjectionContainer($this->provideFractorConfigFile(), $this->additionalConfigurationFiles());
     }
 
     protected function doTest(): void

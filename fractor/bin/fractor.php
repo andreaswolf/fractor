@@ -26,7 +26,7 @@ include $autoloadFile;
 
 $configFile = ConfigResolver::resolveConfigsFromInput(new ArgvInput());
 
-$container = (new ContainerContainerBuilder())->createDependencyInjectionContainer([$configFile]);
+$container = (new ContainerContainerBuilder())->createDependencyInjectionContainer($configFile);
 
 /** @var FractorApplication $application */
 $application = $container->get(FractorApplication::class);

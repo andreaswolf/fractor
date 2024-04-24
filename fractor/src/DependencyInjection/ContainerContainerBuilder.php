@@ -7,14 +7,16 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\DependencyInjection\AddConsoleCommandPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use Webmozart\Assert\Assert;
 
 class ContainerContainerBuilder
 {
     /**
      * @param string[] $additionalConfigFiles
      */
-    public function createDependencyInjectionContainer(array $additionalConfigFiles = []): ContainerInterface
+    public function createDependencyInjectionContainer(?string $fractorConfigFile, array $additionalConfigFiles = []): ContainerInterface
     {
         $containerBuilder = new ContainerBuilder();
 
@@ -23,6 +25,11 @@ class ContainerContainerBuilder
         $configFiles = [
             __DIR__ . '/../../config/application.php'
         ];
+
+        $fractorConfigFile ??= __DIR__ . '/../../config/fractor.php';
+
+        $this->loadFractorConfigFile($fractorConfigFile, $containerBuilder);
+
         $configFiles = array_merge($configFiles, $additionalConfigFiles);
         $configFiles = array_merge($configFiles, $this->collectConfigFilesFromExtensions());
 
@@ -55,5 +62,18 @@ class ContainerContainerBuilder
         }
 
         return $collectedConfigFiles;
+    }
+
+    private function loadFractorConfigFile(string $fractorConfigFile, ContainerBuilder $containerBuilder): void
+    {
+        Assert::fileExists($fractorConfigFile);
+
+        $self = $this;
+        $callable = (require $fractorConfigFile);
+
+        Assert::isCallable($callable);
+        $instanceOf = [];
+        /** @var callable(ContainerConfigurator $container): void $callable */
+        $callable(new ContainerConfigurator($containerBuilder, new PhpFileLoader($containerBuilder, new FileLocator(dirname($fractorConfigFile))), $instanceOf, dirname($fractorConfigFile), basename($fractorConfigFile)));
     }
 }

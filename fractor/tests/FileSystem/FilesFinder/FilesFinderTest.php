@@ -62,8 +62,8 @@ final class FilesFinderTest extends AbstractFractorTestCase
         return pathinfo($foundFile, PATHINFO_BASENAME);
     }
 
-    protected function additionalConfigurationFiles(): array
+    protected function provideFractorConfigFile(): ?string
     {
-        return [__DIR__ . '/config/config.php'];
+        return __DIR__ . '/config/fractor.php';
     }
 }
