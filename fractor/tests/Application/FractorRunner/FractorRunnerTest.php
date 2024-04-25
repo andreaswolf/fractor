@@ -20,7 +20,7 @@ final class FractorRunnerTest extends AbstractFractorTestCase
         ];
     }
 
-    protected function provideFractorConfigFile(): ?string
+    public function provideConfigFilePath(): ?string
     {
         return __DIR__ . '/config/fractor.php';
     }

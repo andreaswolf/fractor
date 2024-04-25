@@ -26,7 +26,7 @@ final readonly class Indent
 
     public static function fromFile(File $file): self
     {
-        if (\preg_match('#^(?P<indent>( +|\t+)).*#m', (string) $file->getContent(), $match) === 1) {
+        if (\preg_match('#^(?P<indent>( +|\t+)).*#m', $file->getContent(), $match) === 1) {
             return self::fromString($match['indent']);
         }
 

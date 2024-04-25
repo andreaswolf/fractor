@@ -9,10 +9,11 @@ use a9f\Fractor\Application\FractorRunner;
 use a9f\Fractor\Console\Output\NullOutput;
 use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
 use a9f\Fractor\Exception\ShouldNotHappenException;
+use a9f\Fractor\Testing\Contract\FractorTestInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
-abstract class AbstractFractorTestCase extends TestCase
+abstract class AbstractFractorTestCase extends TestCase implements FractorTestInterface
 {
     private ?ContainerInterface $currentContainer = null;
     private FractorRunner $fractorRunner;
@@ -26,7 +27,7 @@ abstract class AbstractFractorTestCase extends TestCase
         return [];
     }
 
-    protected function provideFractorConfigFile(): ?string
+    public function provideConfigFilePath(): ?string
     {
         return null;
     }
@@ -40,7 +41,7 @@ abstract class AbstractFractorTestCase extends TestCase
 
     protected function bootFromConfigFile(): void
     {
-        $this->currentContainer = (new ContainerContainerBuilder())->createDependencyInjectionContainer($this->provideFractorConfigFile(), $this->additionalConfigurationFiles());
+        $this->currentContainer = (new ContainerContainerBuilder())->createDependencyInjectionContainer($this->provideConfigFilePath(), $this->additionalConfigurationFiles());
     }
 
     protected function doTest(): void
