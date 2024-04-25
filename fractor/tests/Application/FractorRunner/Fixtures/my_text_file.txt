@@ -1,1 +1,3 @@
 The text XXX will be replaced by YYY
+-----
+The text YYY will be replaced by YYY

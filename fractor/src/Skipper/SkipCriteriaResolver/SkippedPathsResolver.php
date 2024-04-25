@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Skipper\SkipCriteriaResolver;
 
-use a9f\Fractor\Configuration\ValueObject\Configuration;
+use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use a9f\Fractor\Skipper\FileSystem\FilePathHelper;
 
 final class SkippedPathsResolver
@@ -16,7 +16,7 @@ final class SkippedPathsResolver
 
     public function __construct(
         private readonly FilePathHelper $filePathHelper,
-        private readonly Configuration $configuration
+        private readonly SkipConfiguration $skip
     ) {
     }
 
@@ -30,15 +30,14 @@ final class SkippedPathsResolver
             return $this->skippedPaths;
         }
 
-        $skip = $this->configuration->getSkip();
         $this->skippedPaths = [];
 
-        foreach ($skip as $key => $value) {
+        foreach ($this->skip->getSkip() as $key => $value) {
             if (!is_int($key)) {
                 continue;
             }
 
-            if (\str_contains($value, '*')) {
+            if (\str_contains((string) $value, '*')) {
                 $this->skippedPaths[] = $this->filePathHelper->normalizePathAndSchema($value);
                 continue;
             }
