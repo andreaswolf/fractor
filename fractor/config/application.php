@@ -3,8 +3,8 @@
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\FractorRunner;
 use a9f\Fractor\Configuration\AllowedFileExtensionsResolver;
-use a9f\Fractor\Configuration\ConfigurationFactory;
-use a9f\Fractor\Configuration\ValueObject\Configuration;
+use a9f\Fractor\Configuration\SkipConfigurationFactory;
+use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use a9f\Fractor\Differ\ConsoleDiffer;
 use a9f\Fractor\Differ\Contract\Differ;
 use a9f\Fractor\FractorApplication;
@@ -85,7 +85,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
     $services->alias(Differ::class, ConsoleDiffer::class);
     $services->set(FractorApplication::class)->call('setCommandLoader', [service('console.command_loader')]);
-    $services->set(Configuration::class)->factory([service(ConfigurationFactory::class), 'create']);
+    $services->set(SkipConfiguration::class)->factory([service(SkipConfigurationFactory::class), 'create']);
     $services->set(FractorRunner::class)->arg('$processors', tagged_iterator('fractor.file_processor'));
     $services->set(AllowedFileExtensionsResolver::class)->arg('$processors', tagged_iterator('fractor.file_processor'));
     $services->set(Filesystem::class);

@@ -21,14 +21,14 @@ final readonly class FractorRunner
     /**
      * @param FileProcessor[] $processors
      */
-    public function __construct(private FilesFinder $fileFinder, private FilesCollector $fileCollector, private iterable $processors, private Configuration $configuration, private FileWriter $fileWriter, private FileDiffFactory $fileDiffFactory)
+    public function __construct(private FilesFinder $fileFinder, private FilesCollector $fileCollector, private iterable $processors, private FileWriter $fileWriter, private FileDiffFactory $fileDiffFactory)
     {
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
 
-    public function run(Output $output, bool $dryRun = false): void
+    public function run(Output $output, Configuration $configuration): void
     {
-        $filePaths = $this->fileFinder->findFiles($this->configuration->getPaths(), $this->configuration->getFileExtensions());
+        $filePaths = $this->fileFinder->findFiles($configuration->getPaths(), $configuration->getFileExtensions());
 
         $output->progressStart(count($filePaths));
 
@@ -59,7 +59,7 @@ final readonly class FractorRunner
 
             $output->write($file->getFileDiff()->getDiffConsoleFormatted());
 
-            if ($dryRun) {
+            if ($configuration->isDryRun()) {
                 continue;
             }
 
