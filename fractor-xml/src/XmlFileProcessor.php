@@ -33,8 +33,13 @@ final readonly class XmlFileProcessor implements FileProcessor
         // This is a hacky trick to keep format and create a nice diff later
         $file->changeOriginalContent($this->saveXml($document));
 
-        $iterator = new DomDocumentIterator($this->rules);
-        $iterator->traverseDocument($document);
+        foreach ($this->rules as $rule) {
+            if (!$rule->canHandle($document)) {
+                continue;
+            }
+
+            $rule->refactor($document);
+        }
 
         $newFileContent = $this->saveXml($document);
 
