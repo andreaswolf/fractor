@@ -1,0 +1,48 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        composer-command:
+          - name: Geenerate docs
+            command: 'docs:generate'
+        directory: ['typo3-fractor']
+
+    name: ${{ matrix.composer-command.name }}/${{ matrix.directory }}
+
+    defaults:
+      run:
+        working-directory: ${{ matrix.directory }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Install composer dependencies
+        uses: php-actions/composer@v6
+        with:
+          container_workdir: /app/${{ matrix.directory }}
+          memory_limit: 512M
+
+      - name: 'Run check "${{ matrix.composer-command.name }}"'
+        uses: php-actions/composer@v6
+        with:
+          container_workdir: /app/${{ matrix.directory }}
+          command: ${{ matrix.composer-command.command }}
+          memory_limit: 512M
+      - name: "Commit documentation"
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '[DOCS] Generate documentation'
+          commit_options: '--no-verify --signoff'
+          branch: "main"
+          push_options: '--force-with-lease'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
