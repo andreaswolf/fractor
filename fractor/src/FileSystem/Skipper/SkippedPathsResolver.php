@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\Skipper\SkipCriteriaResolver;
+namespace a9f\Fractor\FileSystem\Skipper;
 
 use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
-use a9f\Fractor\Skipper\FileSystem\FilePathHelper;
 
 final class SkippedPathsResolver
 {
@@ -15,7 +14,7 @@ final class SkippedPathsResolver
     private null|array $skippedPaths = null;
 
     public function __construct(
-        private readonly FilePathHelper $filePathHelper,
+        private readonly FilePathNormalizer $filePathNormalizer,
         private readonly SkipConfiguration $skip
     ) {
     }
@@ -38,12 +37,12 @@ final class SkippedPathsResolver
             }
 
             if (\str_contains((string) $value, '*')) {
-                $this->skippedPaths[] = $this->filePathHelper->normalizePathAndSchema($value);
+                $this->skippedPaths[] = $this->filePathNormalizer->normalizePathAndSchema($value);
                 continue;
             }
 
             if (file_exists($value)) {
-                $this->skippedPaths[] = $this->filePathHelper->normalizePathAndSchema($value);
+                $this->skippedPaths[] = $this->filePathNormalizer->normalizePathAndSchema($value);
             }
         }
 

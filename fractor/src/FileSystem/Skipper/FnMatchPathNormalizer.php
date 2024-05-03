@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\Skipper\FileSystem;
+namespace a9f\Fractor\FileSystem\Skipper;
 
 final class FnMatchPathNormalizer
 {
-    public function normalizeForFnmatch(string $path): string
+    public static function normalizeForFnmatch(string $path): string
     {
         if (str_ends_with($path, '*') || str_starts_with($path, '*')) {
             return '*' . trim($path, '*') . '*';
@@ -19,7 +19,7 @@ final class FnMatchPathNormalizer
                 return '';
             }
 
-            return PathNormalizer::normalize($realPath);
+            return FilePathNormalizer::normalizeDirectorySeparator($realPath);
         }
 
         return $path;

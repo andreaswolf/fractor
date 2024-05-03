@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\FileSystem;
 
-final class FilesystemTweaker
+final class WildcardResolver
 {
     /**
-     * This will turn paths like "src/Symfony/Component/*\/Tests" to existing directory paths
+     * Resolves all "*" placeholders in $paths via glob()
      *
      * @param string[] $paths
-     *
      * @return string[]
      */
-    public function resolveWithFnmatch(array $paths): array
+    public function resolveAllWildcards(array $paths): array
     {
         $absolutePathsFound = [];
         foreach ($paths as $path) {

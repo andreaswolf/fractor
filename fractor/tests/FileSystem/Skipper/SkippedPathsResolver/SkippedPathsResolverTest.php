@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\Tests\Skipper\SkipCriteriaResolver\SkippedPathsResolver;
+namespace a9f\Fractor\Tests\FileSystem\Skipper\SkippedPathsResolver;
 
-use a9f\Fractor\Skipper\FileSystem\PathNormalizer;
-use a9f\Fractor\Skipper\SkipCriteriaResolver\SkippedPathsResolver;
+use a9f\Fractor\FileSystem\Skipper\FilePathNormalizer;
+use a9f\Fractor\FileSystem\Skipper\SkippedPathsResolver;
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 
 final class SkippedPathsResolverTest extends AbstractFractorTestCase
@@ -24,7 +24,7 @@ final class SkippedPathsResolverTest extends AbstractFractorTestCase
 
         self::assertCount(2, $skippedPaths);
 
-        self::assertSame(PathNormalizer::normalize(__DIR__ . '/Fixtures'), $skippedPaths[0]);
+        self::assertSame(FilePathNormalizer::normalizeDirectorySeparator(__DIR__ . '/Fixtures'), $skippedPaths[0]);
         self::assertSame('*/Mask/*', $skippedPaths[1]);
     }
 
