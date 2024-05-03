@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\Skipper;
-
-use a9f\Fractor\Skipper\FileSystem\PathNormalizer;
+namespace a9f\Fractor\FileSystem\Skipper;
 
 final class RealpathMatcher
 {
@@ -22,8 +20,8 @@ final class RealpathMatcher
             return false;
         }
 
-        $normalizedMatchingPath = PathNormalizer::normalize($realPathMatchingPath);
-        $normalizedFilePath = PathNormalizer::normalize($realpathFilePath);
+        $normalizedMatchingPath = FilePathNormalizer::normalizeDirectorySeparator($realPathMatchingPath);
+        $normalizedFilePath = FilePathNormalizer::normalizeDirectorySeparator($realpathFilePath);
 
         // skip define direct path
         if (is_file($normalizedMatchingPath)) {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\Skipper\Skipper;
+namespace a9f\Fractor\FileSystem;
 
-use a9f\Fractor\Skipper\Matcher\FileInfoMatcher;
-use a9f\Fractor\Skipper\SkipCriteriaResolver\SkippedPathsResolver;
+use a9f\Fractor\FileSystem\Skipper\FileInfoMatcher;
+use a9f\Fractor\FileSystem\Skipper\SkippedPathsResolver;
 
 final readonly class PathSkipper
 {
@@ -15,9 +15,12 @@ final readonly class PathSkipper
     ) {
     }
 
+    /**
+     * Decides if a path should be skipped, based on the configured skip patterns.
+     */
     public function shouldSkip(string $filePath): bool
     {
         $skippedPaths = $this->skippedPathsResolver->resolve();
-        return $this->fileInfoMatcher->doesFileInfoMatchPatterns($filePath, $skippedPaths);
+        return $this->fileInfoMatcher->doesFilePathMatchAnyPattern($filePath, $skippedPaths);
     }
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\Skipper;
+namespace a9f\Fractor\FileSystem\Skipper;
 
-final class Fnmatcher
+final class FnmatchMatcher
 {
     public function match(string $matchingPath, string $filePath): bool
     {
