@@ -34,6 +34,7 @@ final readonly class FractorRunner
 
         foreach ($filePaths as $filePath) {
             $file = new File($filePath, FileSystem::read($filePath));
+            $this->fileCollector->addFile($file);
 
             foreach ($this->processors as $processor) {
                 if (!$processor->canHandle($file)) {
@@ -41,10 +42,12 @@ final readonly class FractorRunner
                     continue;
                 }
 
-                $this->fileCollector->addFile($file);
-
                 $processor->handle($file);
                 $output->progressAdvance();
+            }
+
+            if (!$file->hasChanged()) {
+                continue;
             }
 
             $file->setFileDiff($this->fileDiffFactory->createFileDiff($file));

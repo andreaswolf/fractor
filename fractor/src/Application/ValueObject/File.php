@@ -16,6 +16,11 @@ final class File
     private readonly string $fileExtension;
     private ?FileDiff $fileDiff = null;
 
+    /**
+     * @var AppliedRule[]
+     */
+    private array $appliedRules = [];
+
     public function __construct(private readonly string $filePath, private string $content)
     {
         $this->originalContent = $this->content;
@@ -83,9 +88,22 @@ final class File
     {
         $this->fileDiff = $fileDiff;
     }
+    
+    public function addAppliedRule(AppliedRule $appliedRule): void
+    {
+        $this->appliedRules[] = $appliedRule;
+    }
 
     public function getFileDiff(): ?FileDiff
     {
         return $this->fileDiff;
+    }
+
+    /**
+     * @return AppliedRule[]
+     */
+    public function getAppliedRules(): array
+    {
+        return $this->appliedRules;
     }
 }

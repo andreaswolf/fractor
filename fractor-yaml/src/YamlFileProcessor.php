@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace a9f\FractorYaml;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
+use a9f\Fractor\Application\ValueObject\AppliedRule;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\ValueObject\Indent;
 use a9f\FractorYaml\Contract\YamlDumper;
@@ -35,7 +36,12 @@ final readonly class YamlFileProcessor implements FileProcessor
         $newYaml = $yaml;
 
         foreach ($this->rules as $rule) {
+            $oldYaml = $newYaml;
             $newYaml = $rule->refactor($newYaml);
+
+            if ($oldYaml !== $newYaml) {
+                $file->addAppliedRule(AppliedRule::fromRule($rule));
+            }
         }
 
         // Nothing has changed.
