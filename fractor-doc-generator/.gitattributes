@@ -1,0 +1,8 @@
+ecs.php export-ignore
+phpstan.neon export-ignore
+README.md export-ignore
+rector.php export-ignore
+phpunit.xml export-ignore
+tests export-ignore
+stubs export-ignore
+.gitignore export-ignore
