@@ -21,7 +21,7 @@ jobs:
             command: test:php
           - name: Rector
             command: 'rector --dry-run'
-        directory: [ 'extension-installer', 'fractor', 'fractor-xml', 'typo3-fractor', 'fractor-doc-generator', 'fractor-yaml']
+        directory: [ 'extension-installer', 'fractor', 'fractor-xml', 'typo3-fractor', 'fractor-doc-generator', 'fractor-yaml', 'fractor-fluid']
         exclude:
           - directory: extension-installer
             composer-command: {name: 'PHPUnit', command: 'test:php'}
