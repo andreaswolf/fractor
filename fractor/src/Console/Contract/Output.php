@@ -19,4 +19,11 @@ interface Output
     public function progressFinish(): void;
 
     public function write(string $message): void;
+
+    public function newLine(): void;
+
+    /**
+     * @param string[] $lines
+     */
+    public function listing(array $lines): void;
 }

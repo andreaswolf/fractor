@@ -23,4 +23,12 @@ final class NullOutput implements Output
     public function write(string $message): void
     {
     }
+
+    public function listing(array $lines): void
+    {
+    }
+
+    public function newLine(): void
+    {
+    }
 }

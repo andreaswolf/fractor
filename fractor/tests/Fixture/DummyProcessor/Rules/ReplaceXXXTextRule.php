@@ -9,6 +9,9 @@ use a9f\Fractor\Tests\Fixture\DummyProcessor\Contract\TextRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
+/**
+ * @changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog-11.html
+ */
 final class ReplaceXXXTextRule implements TextRule
 {
     public function apply(File $file): void

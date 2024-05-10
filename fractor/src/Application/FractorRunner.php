@@ -9,6 +9,7 @@ use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Console\Contract\Output;
 use a9f\Fractor\Differ\ValueObjectFactory\FileDiffFactory;
 use a9f\Fractor\FileSystem\FilesFinder;
+use a9f\Fractor\Reporting\FractorsChangelogLinesResolver;
 use Nette\Utils\FileSystem;
 use Webmozart\Assert\Assert;
 
@@ -21,7 +22,7 @@ final readonly class FractorRunner
     /**
      * @param FileProcessor[] $processors
      */
-    public function __construct(private FilesFinder $fileFinder, private FilesCollector $fileCollector, private iterable $processors, private FileWriter $fileWriter, private FileDiffFactory $fileDiffFactory)
+    public function __construct(private FractorsChangelogLinesResolver $fractorsChangelogLinesResolver, private FilesFinder $fileFinder, private FilesCollector $fileCollector, private iterable $processors, private FileWriter $fileWriter, private FileDiffFactory $fileDiffFactory)
     {
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
@@ -61,6 +62,12 @@ final readonly class FractorRunner
             }
 
             $output->write($file->getFileDiff()->getDiffConsoleFormatted());
+            if ($file->getAppliedRules() !== []) {
+                $fractorsChangelogsLines = $this->fractorsChangelogLinesResolver->createFractorChangelogLines($file->getAppliedRules());
+                $output->write('<options=underscore>Applied rules:</>');
+                $output->listing($fractorsChangelogsLines);
+                $output->newLine();
+            }
 
             if ($configuration->isDryRun()) {
                 continue;
