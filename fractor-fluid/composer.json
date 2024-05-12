@@ -1,5 +1,5 @@
 {
-    "name": "a9f/fractor-yaml",
+    "name": "a9f/fractor-fluid",
     "description": "Fluid extension for the File Read-Analyse-Change TOol. Allows modifying Fluid files",
     "license": "MIT",
     "type": "fractor-extension",
