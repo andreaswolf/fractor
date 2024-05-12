@@ -27,6 +27,9 @@ jobs:
           - path: fractor-doc-generator
             repository: git@github.com:andreaswolf/fractor-doc-generator.git
             deploy-key: DEPLOY_KEY_DOC_GENERATOR
+          - path: fractor-fluid
+            repository: git@github.com:andreaswolf/fractor-fluid.git
+            deploy-key: DEPLOY_KEY_FLUID
 
     name: Split subtree ${{ matrix.package.path }}
 
