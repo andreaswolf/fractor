@@ -24,6 +24,9 @@ jobs:
           - path: fractor-xml
             repository: git@github.com:andreaswolf/fractor-xml.git
             deploy-key: DEPLOY_KEY_XML_FRACTOR
+          - path: fractor-doc-generator
+            repository: git@github.com:andreaswolf/fractor-doc-generator.git
+            deploy-key: DEPLOY_KEY_DOC_GENERATOR
 
     name: Split subtree ${{ matrix.package.path }}
 
