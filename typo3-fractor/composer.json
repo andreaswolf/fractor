@@ -15,7 +15,9 @@
         "a9f/fractor": "@dev",
         "a9f/fractor-doc-generator": "@dev",
         "a9f/fractor-extension-installer": "@dev",
-        "a9f/fractor-xml": "@dev"
+        "a9f/fractor-fluid": "@dev",
+        "a9f/fractor-xml": "@dev",
+        "a9f/fractor-yaml": "@dev"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
