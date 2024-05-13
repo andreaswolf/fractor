@@ -14,7 +14,6 @@ use a9f\Fractor\Testing\Contract\FractorTestInterface;
 use a9f\Fractor\Testing\Fixture\FixtureFileFinder;
 use a9f\Fractor\Testing\Fixture\FixtureSplitter;
 use Nette\Utils\FileSystem;
-use Nette\Utils\Strings;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -154,12 +153,7 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
     {
         $inputFileDirectory = dirname($fixtureFilePath);
 
-        // remove ".inc" suffix
-        if (str_ends_with($fixtureFilePath, '.inc')) {
-            $trimmedFixtureFilePath = Strings::substring($fixtureFilePath, 0, -4);
-        } else {
-            $trimmedFixtureFilePath = $fixtureFilePath;
-        }
+        $trimmedFixtureFilePath = $fixtureFilePath;
 
         $fixtureBasename = pathinfo($trimmedFixtureFilePath, PATHINFO_BASENAME);
         return $inputFileDirectory . '/' . $fixtureBasename;
