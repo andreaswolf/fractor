@@ -16,6 +16,7 @@
         "ext-xml": "*",
         "a9f/fractor": "^0.2",
         "a9f/fractor-extension-installer": "^0.2",
+        "shanethehat/pretty-xml": "^1.0",
         "webmozart/assert": "^1.11"
     },
     "require-dev": {

@@ -7,6 +7,8 @@ namespace a9f\FractorXml;
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Exception\ShouldNotHappenException;
+use a9f\Fractor\ValueObject\Indent;
+use a9f\FractorXml\Contract\Formatter;
 use a9f\FractorXml\Contract\XmlFractor;
 use a9f\FractorXml\ValueObjectFactory\DomDocumentFactory;
 
@@ -20,6 +22,7 @@ final readonly class XmlFileProcessor implements FileProcessor
      */
     public function __construct(
         private DomDocumentFactory $domDocumentFactory,
+        private Formatter $formatter,
         private iterable $rules
     ) {
     }
@@ -42,6 +45,9 @@ final readonly class XmlFileProcessor implements FileProcessor
         $iterator->traverseDocument($file, $document);
 
         $newXml = $this->saveXml($document);
+
+        // TODO make the indentation configurable in fractor config
+        $newXml = $this->formatter->format(Indent::fromSizeAndStyle(4, Indent::STYLE_SPACE), $newXml);
 
         if ($newXml === $originalXml) {
             return;

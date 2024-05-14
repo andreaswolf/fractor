@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use a9f\FractorXml\Contract\Formatter;
 use a9f\FractorXml\Contract\XmlFractor;
+use a9f\FractorXml\PrettyXmlFormatter;
 use a9f\FractorXml\XmlFileProcessor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -18,6 +20,9 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
     $services->set(XmlFileProcessor::class)
         ->arg('$rules', tagged_iterator('fractor.xml_rule'));
+
+    $services->set(\PrettyXml\Formatter::class);
+    $services->alias(Formatter::class, PrettyXmlFormatter::class);
 
     $containerBuilder->registerForAutoconfiguration(XmlFractor::class)->addTag('fractor.xml_rule');
 };

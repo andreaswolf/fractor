@@ -19,6 +19,7 @@
         "nette/utils": "^4.0",
         "phpstan/phpstan": "^1.10.9",
         "sebastian/diff": "^5.0",
+        "shanethehat/pretty-xml": "^1.0",
         "symfony/config": "^6.4 || ^7.0",
         "symfony/console": "^6.4 || ^7.0",
         "symfony/dependency-injection": "^6.4 || ^7.0",

@@ -12,7 +12,7 @@ use a9f\FractorXml\DomDocumentIterator;
  */
 interface DomNodeVisitor
 {
-    public function beforeTraversal(File $file, \DOMNode $rootNode): void;
+    public function beforeTraversal(File $file, \DOMDocument $rootNode): void;
 
     /**
      * @return \DOMNode|DomDocumentIterator::*
@@ -21,5 +21,5 @@ interface DomNodeVisitor
 
     public function leaveNode(\DOMNode $node): void;
 
-    public function afterTraversal(\DOMNode $rootNode): void;
+    public function afterTraversal(\DOMDocument $rootNode): void;
 }
