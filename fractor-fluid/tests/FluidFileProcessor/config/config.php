@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use a9f\FractorFluid\Tests\Fixtures\DummyFluidFractorRule;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 

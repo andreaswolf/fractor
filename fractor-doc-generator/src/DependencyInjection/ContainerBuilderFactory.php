@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\FractorDocGenerator\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
@@ -16,12 +18,10 @@ final class ContainerBuilderFactory
 
         $containerBuilder->addCompilerPass(new AddConsoleCommandPass());
 
-        $configFiles = [
-            __DIR__ . '/../../config/config.php'
-        ];
+        $configFiles = [__DIR__ . '/../../config/config.php'];
 
         foreach ($configFiles as $configFile) {
-            if (!file_exists($configFile)) {
+            if (! file_exists($configFile)) {
                 continue;
             }
 

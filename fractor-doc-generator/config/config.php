@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use a9f\FractorDocGenerator\Console\Factory\SymfonyStyleFactory;
 use a9f\FractorDocGenerator\Differ\DifferFactory;
 use a9f\FractorDocGenerator\FractorDocGeneratorApplication;
@@ -76,7 +78,12 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         }
     );
 
-    $services->set(CodeSamplePrinter::class)->arg('$ruleCodeSamplePrinters', tagged_iterator('fractor_doc_generator.rule_code_sample_printer'));
+    $services->set(CodeSamplePrinter::class)->arg(
+        '$ruleCodeSamplePrinters',
+        tagged_iterator('fractor_doc_generator.rule_code_sample_printer')
+    );
 
-    $containerBuilder->registerForAutoconfiguration(RuleCodeSamplePrinterInterface::class)->addTag('fractor_doc_generator.rule_code_sample_printer');
+    $containerBuilder->registerForAutoconfiguration(RuleCodeSamplePrinterInterface::class)->addTag(
+        'fractor_doc_generator.rule_code_sample_printer'
+    );
 };

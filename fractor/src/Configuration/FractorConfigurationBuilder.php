@@ -36,6 +36,41 @@ final class FractorConfigurationBuilder
      */
     private array $rulesWithConfigurations = [];
 
+    public function __invoke(ContainerConfigurator $containerConfigurator): void
+    {
+        Assert::allString($this->paths);
+
+        $parameters = $containerConfigurator->parameters();
+        $parameters->set(Option::PATHS, $this->paths);
+        $parameters->set(Option::SKIP, $this->skip);
+
+        $services = $containerConfigurator->services();
+
+        foreach ($this->rules as $rule) {
+            Assert::classExists($rule);
+            Assert::isAOf($rule, FractorRule::class);
+            $services->set($rule)
+                ->autoconfigure()
+                ->autowire();
+        }
+
+        Assert::allString($this->sets);
+        foreach ($this->sets as $set) {
+            Assert::fileExists($set);
+            $containerConfigurator->import($set);
+        }
+
+        foreach ($this->rulesWithConfigurations as $configuredRule => $configuration) {
+            Assert::classExists($configuredRule);
+            Assert::isAOf($configuredRule, ConfigurableFractorRule::class);
+
+            $services->set($configuredRule)
+                ->call('configure', $configuration)
+                ->autoconfigure()
+                ->autowire();
+        }
+    }
+
     /**
      * @param string[] $paths
      */
@@ -85,40 +120,5 @@ final class FractorConfigurationBuilder
         $this->rules = array_merge($this->rules, $rules);
 
         return $this;
-    }
-
-    public function __invoke(ContainerConfigurator $containerConfigurator): void
-    {
-        Assert::allString($this->paths);
-
-        $parameters = $containerConfigurator->parameters();
-        $parameters->set(Option::PATHS, $this->paths);
-        $parameters->set(Option::SKIP, $this->skip);
-
-        $services = $containerConfigurator->services();
-
-        foreach ($this->rules as $rule) {
-            Assert::classExists($rule);
-            Assert::isAOf($rule, FractorRule::class);
-            $services->set($rule)
-                ->autoconfigure()
-                ->autowire();
-        }
-
-        Assert::allString($this->sets);
-        foreach ($this->sets as $set) {
-            Assert::fileExists($set);
-            $containerConfigurator->import($set);
-        }
-
-        foreach ($this->rulesWithConfigurations as $configuredRule => $configuration) {
-            Assert::classExists($configuredRule);
-            Assert::isAOf($configuredRule, ConfigurableFractorRule::class);
-
-            $services->set($configuredRule)
-                ->call('configure', $configuration)
-                ->autoconfigure()
-                ->autowire();
-        }
     }
 }

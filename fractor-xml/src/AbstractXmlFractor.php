@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\FractorXml;
 
 use a9f\FractorXml\Contract\DomNodeVisitor;
@@ -14,7 +16,7 @@ abstract class AbstractXmlFractor implements DomNodeVisitor, XmlFractor
 
     public function enterNode(\DOMNode $node): \DOMNode|int
     {
-        if (!$this->canHandle($node)) {
+        if (! $this->canHandle($node)) {
             return $node;
         }
 

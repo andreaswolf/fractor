@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\Fractor\Application;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
@@ -22,8 +24,14 @@ final readonly class FractorRunner
     /**
      * @param FileProcessor[] $processors
      */
-    public function __construct(private FractorsChangelogLinesResolver $fractorsChangelogLinesResolver, private FilesFinder $fileFinder, private FilesCollector $fileCollector, private iterable $processors, private FileWriter $fileWriter, private FileDiffFactory $fileDiffFactory)
-    {
+    public function __construct(
+        private FractorsChangelogLinesResolver $fractorsChangelogLinesResolver,
+        private FilesFinder $fileFinder,
+        private FilesCollector $fileCollector,
+        private iterable $processors,
+        private FileWriter $fileWriter,
+        private FileDiffFactory $fileDiffFactory
+    ) {
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
 
@@ -38,7 +46,7 @@ final readonly class FractorRunner
             $this->fileCollector->addFile($file);
 
             foreach ($this->processors as $processor) {
-                if (!$processor->canHandle($file)) {
+                if (! $processor->canHandle($file)) {
                     $output->progressAdvance();
                     continue;
                 }
@@ -47,7 +55,7 @@ final readonly class FractorRunner
                 $output->progressAdvance();
             }
 
-            if (!$file->hasChanged()) {
+            if (! $file->hasChanged()) {
                 continue;
             }
 
@@ -63,7 +71,9 @@ final readonly class FractorRunner
 
             $output->write($file->getFileDiff()->getDiffConsoleFormatted());
             if ($file->getAppliedRules() !== []) {
-                $fractorsChangelogsLines = $this->fractorsChangelogLinesResolver->createFractorChangelogLines($file->getAppliedRules());
+                $fractorsChangelogsLines = $this->fractorsChangelogLinesResolver->createFractorChangelogLines(
+                    $file->getAppliedRules()
+                );
                 $output->write('<options=underscore>Applied rules:</>');
                 $output->listing($fractorsChangelogsLines);
                 $output->newLine();

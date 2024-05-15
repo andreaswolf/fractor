@@ -6,8 +6,10 @@ namespace a9f\Fractor\Differ\ValueObject;
 
 final readonly class Diff
 {
-    public function __construct(private string $oldContent, private string $newContent)
-    {
+    public function __construct(
+        private string $oldContent,
+        private string $newContent
+    ) {
     }
 
     public function getOldContent(): string

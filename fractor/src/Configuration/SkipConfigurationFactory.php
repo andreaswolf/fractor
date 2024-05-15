@@ -9,14 +9,13 @@ use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
 final readonly class SkipConfigurationFactory
 {
-    public function __construct(private ContainerBagInterface $parameterBag)
-    {
+    public function __construct(
+        private ContainerBagInterface $parameterBag
+    ) {
     }
 
     public function create(): SkipConfiguration
     {
-        return new SkipConfiguration(
-            (array)$this->parameterBag->get(Option::SKIP),
-        );
+        return new SkipConfiguration((array) $this->parameterBag->get(Option::SKIP));
     }
 }

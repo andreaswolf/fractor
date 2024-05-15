@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use a9f\Fractor\Tests\Fixture\DummyProcessor\FileProcessor\TextFileProcessor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;

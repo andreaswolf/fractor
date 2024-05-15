@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use a9f\Fractor\Configuration\Option;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 

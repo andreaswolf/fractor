@@ -17,10 +17,9 @@ final class AllowedFileExtensionsResolverTest extends AbstractFractorTestCase
         // Act & Assert
         self::assertSame(['txt'], $allowedFileExtensionsResolver->resolve());
     }
+
     protected function additionalConfigurationFiles(): array
     {
-        return [
-            __DIR__ . '/config/config.php'
-        ];
+        return [__DIR__ . '/config/config.php'];
     }
 }

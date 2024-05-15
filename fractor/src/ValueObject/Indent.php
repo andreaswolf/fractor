@@ -20,8 +20,9 @@ final readonly class Indent
         'tab' => "\t",
     ];
 
-    private function __construct(private string $value)
-    {
+    private function __construct(
+        private string $value
+    ) {
     }
 
     public static function fromFile(File $file): self

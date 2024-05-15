@@ -16,8 +16,9 @@ final readonly class CodeSamplePrinter
     /**
      * @param RuleCodeSamplePrinterInterface[] $ruleCodeSamplePrinters
      */
-    public function __construct(private iterable $ruleCodeSamplePrinters)
-    {
+    public function __construct(
+        private iterable $ruleCodeSamplePrinters
+    ) {
     }
 
     /**
@@ -31,7 +32,7 @@ final readonly class CodeSamplePrinter
             $this->ensureConfigureRuleBoundsConfiguredCodeSample($codeSample, $ruleDefinition);
 
             foreach ($this->ruleCodeSamplePrinters as $ruleCodeSamplePrinter) {
-                if (!$ruleCodeSamplePrinter->isMatch($ruleDefinition->getRuleClass())) {
+                if (! $ruleCodeSamplePrinter->isMatch($ruleDefinition->getRuleClass())) {
                     continue;
                 }
 
@@ -64,7 +65,7 @@ final readonly class CodeSamplePrinter
             throw new ConfigurationBoundException($errorMessage);
         }
 
-        if (!is_a($ruleDefinition->getRuleClass(), ConfigurableRuleInterface::class, true)) {
+        if (! is_a($ruleDefinition->getRuleClass(), ConfigurableRuleInterface::class, true)) {
             return;
         }
 

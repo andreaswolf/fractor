@@ -49,7 +49,7 @@ final readonly class FilePathNormalizer
             $path = $originalPath;
         }
 
-        $normalizedPath = self::normalizeDirectorySeparator((string)$path);
+        $normalizedPath = self::normalizeDirectorySeparator((string) $path);
         $path = Strings::replace($normalizedPath, self::TWO_AND_MORE_SLASHES_REGEX, '/');
 
         $pathRoot = str_starts_with($path, '/') ? $directorySeparator : '';
@@ -58,7 +58,9 @@ final readonly class FilePathNormalizer
         $normalizedPathParts = $this->normalizePathParts($pathParts, $scheme);
 
         $pathStart = ($scheme !== self::SCHEME_UNDEFINED ? $scheme . '://' : '');
-        return self::normalizeDirectorySeparator($pathStart . $pathRoot . implode($directorySeparator, $normalizedPathParts));
+        return self::normalizeDirectorySeparator(
+            $pathStart . $pathRoot . implode($directorySeparator, $normalizedPathParts)
+        );
     }
 
     /**
@@ -85,7 +87,7 @@ final readonly class FilePathNormalizer
                 continue;
             }
 
-            if (!\str_ends_with($removedPart, '.phar')) {
+            if (! \str_ends_with($removedPart, '.phar')) {
                 continue;
             }
 

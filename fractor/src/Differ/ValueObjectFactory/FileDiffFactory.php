@@ -11,8 +11,10 @@ use a9f\Fractor\Differ\ValueObject\FileDiff;
 
 final readonly class FileDiffFactory
 {
-    public function __construct(private DefaultDiffer $defaultDiffer, private ConsoleDiffer $consoleDiffer)
-    {
+    public function __construct(
+        private DefaultDiffer $defaultDiffer,
+        private ConsoleDiffer $consoleDiffer
+    ) {
     }
 
     public function createFileDiff(File $file): FileDiff

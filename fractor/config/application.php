@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\FractorRunner;
 use a9f\Fractor\Configuration\AllowedFileExtensionsResolver;
@@ -77,9 +79,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     );
 
     $services->set('parameter_bag', ContainerBag::class)
-        ->args([
-            service('service_container'),
-        ])
+        ->args([service('service_container')])
         ->alias(ContainerBagInterface::class, 'parameter_bag')
         ->alias(ParameterBagInterface::class, 'parameter_bag');
 

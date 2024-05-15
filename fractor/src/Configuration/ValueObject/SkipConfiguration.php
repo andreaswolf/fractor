@@ -9,8 +9,9 @@ final readonly class SkipConfiguration
     /**
      * @param string[] $skip
      */
-    public function __construct(private array $skip)
-    {
+    public function __construct(
+        private array $skip
+    ) {
     }
 
     /**

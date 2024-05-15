@@ -7,8 +7,8 @@ namespace a9f\Fractor\FileSystem\Skipper;
 final readonly class FileInfoMatcher
 {
     public function __construct(
-        private FnmatchMatcher        $fnmatcher,
-        private RealpathMatcher       $realpathMatcher
+        private FnmatchMatcher $fnmatcher,
+        private RealpathMatcher $realpathMatcher
     ) {
     }
 

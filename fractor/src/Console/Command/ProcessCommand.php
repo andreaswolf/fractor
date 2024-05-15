@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\Fractor\Console\Command;
 
 use a9f\Fractor\Application\FractorRunner;
@@ -15,8 +17,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'process', description: 'Runs Fractor with the given configuration file')]
 final class ProcessCommand extends Command
 {
-    public function __construct(private readonly FractorRunner $runner, private readonly ConfigurationFactory $configurationFactory)
-    {
+    public function __construct(
+        private readonly FractorRunner $runner,
+        private readonly ConfigurationFactory $configurationFactory
+    ) {
         parent::__construct();
     }
 

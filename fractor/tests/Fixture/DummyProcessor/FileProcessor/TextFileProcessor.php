@@ -13,8 +13,9 @@ final readonly class TextFileProcessor implements FileProcessor
     /**
      * @param TextRule[] $rules
      */
-    public function __construct(private iterable $rules)
-    {
+    public function __construct(
+        private iterable $rules
+    ) {
     }
 
     public function canHandle(File $file): bool

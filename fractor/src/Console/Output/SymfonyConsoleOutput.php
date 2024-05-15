@@ -12,8 +12,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class SymfonyConsoleOutput implements Output
 {
     private ?ProgressBar $progressBar = null;
-    public function __construct(private readonly OutputInterface $output)
-    {
+
+    public function __construct(
+        private readonly OutputInterface $output
+    ) {
     }
 
     public function progressStart(int $max = 0): void
@@ -24,12 +26,14 @@ final class SymfonyConsoleOutput implements Output
 
     public function progressAdvance(int $step = 1): void
     {
-        $this->getProgressBar()->advance($step);
+        $this->getProgressBar()
+            ->advance($step);
     }
 
     public function progressFinish(): void
     {
-        $this->getProgressBar()->finish();
+        $this->getProgressBar()
+            ->finish();
     }
 
     public function write(string $message): void

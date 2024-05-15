@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\FractorXml;
 
 use a9f\FractorXml\Contract\DomNodeVisitor;
@@ -8,14 +10,17 @@ use Webmozart\Assert\Assert;
 
 final readonly class DomDocumentIterator
 {
-    /** @var int */
+    /**
+     * @var int
+     */
     public const REMOVE_NODE = 3;
 
     /**
      * @param list<DomNodeVisitor> $visitors
      */
-    public function __construct(private iterable $visitors)
-    {
+    public function __construct(
+        private iterable $visitors
+    ) {
         Assert::allIsInstanceOf($this->visitors, DomNodeVisitor::class);
     }
 
@@ -44,7 +49,7 @@ final readonly class DomDocumentIterator
                 throw new ShouldNotHappenException('Node has no parent node');
             }
 
-            if ($result === DomDocumentIterator::REMOVE_NODE) {
+            if ($result === self::REMOVE_NODE) {
                 $node->parentNode->removeChild($node);
                 $nodeRemoved = true;
             } elseif ($result->isSameNode($node) === false) {

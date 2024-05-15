@@ -12,8 +12,9 @@ final readonly class AllowedFileExtensionsResolver
     /**
      * @param FileProcessor[] $processors
      */
-    public function __construct(private iterable $processors)
-    {
+    public function __construct(
+        private iterable $processors
+    ) {
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
 

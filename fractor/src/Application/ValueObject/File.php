@@ -10,10 +10,15 @@ use a9f\Fractor\Differ\ValueObject\FileDiff;
 final class File
 {
     private bool $hasChanged = false;
+
     private string $originalContent;
+
     private readonly string $directoryName;
+
     private readonly string $fileName;
+
     private readonly string $fileExtension;
+
     private ?FileDiff $fileDiff = null;
 
     /**
@@ -21,8 +26,10 @@ final class File
      */
     private array $appliedRules = [];
 
-    public function __construct(private readonly string $filePath, private string $content)
-    {
+    public function __construct(
+        private readonly string $filePath,
+        private string $content
+    ) {
         $this->originalContent = $this->content;
         $this->directoryName = dirname($this->filePath);
         $this->fileName = basename($this->filePath);
@@ -88,7 +95,7 @@ final class File
     {
         $this->fileDiff = $fileDiff;
     }
-    
+
     public function addAppliedRule(AppliedRule $appliedRule): void
     {
         $this->appliedRules[] = $appliedRule;

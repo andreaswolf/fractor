@@ -21,8 +21,9 @@ final readonly class MarkdownDiffer
      */
     private const SPACE_AND_NEWLINE_REGEX = '#( ){1,}\\n#';
 
-    public function __construct(private Differ $differ)
-    {
+    public function __construct(
+        private Differ $differ
+    ) {
     }
 
     public function diff(string $old, string $new): string
@@ -37,6 +38,7 @@ final readonly class MarkdownDiffer
 
         return $this->warpToDiffCode($diff);
     }
+
     /**
      * Removes UnifiedDiffOutputBuilder generated pre-spaces " \n" => "\n"
      */
@@ -45,6 +47,7 @@ final readonly class MarkdownDiffer
         $diff = Strings::replace($diff, self::SPACE_AND_NEWLINE_REGEX, \PHP_EOL);
         return \rtrim($diff);
     }
+
     private function warpToDiffCode(string $content): string
     {
         return '```diff' . \PHP_EOL . $content . \PHP_EOL . '```' . \PHP_EOL;

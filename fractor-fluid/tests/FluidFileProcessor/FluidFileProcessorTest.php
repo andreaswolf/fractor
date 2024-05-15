@@ -30,8 +30,6 @@ final class FluidFileProcessorTest extends AbstractFractorTestCase
 
     protected function additionalConfigurationFiles(): array
     {
-        return [
-            __DIR__ . '/config/config.php',
-        ];
+        return [__DIR__ . '/config/config.php'];
     }
 }

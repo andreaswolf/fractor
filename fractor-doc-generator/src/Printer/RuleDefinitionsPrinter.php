@@ -10,7 +10,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 final readonly class RuleDefinitionsPrinter
 {
     public function __construct(
-        private CodeSamplePrinter  $codeSamplePrinter,
+        private CodeSamplePrinter $codeSamplePrinter,
         private KeywordHighlighter $keywordHighlighter,
     ) {
     }

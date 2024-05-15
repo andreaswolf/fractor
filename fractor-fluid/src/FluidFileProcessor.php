@@ -15,8 +15,9 @@ final readonly class FluidFileProcessor implements FileProcessor
     /**
      * @param iterable<FluidFractorRule> $rules
      */
-    public function __construct(private iterable $rules)
-    {
+    public function __construct(
+        private iterable $rules
+    ) {
         Assert::allIsInstanceOf($this->rules, FluidFractorRule::class);
     }
 

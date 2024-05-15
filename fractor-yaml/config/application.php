@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use a9f\FractorYaml\Contract\YamlDumper;
 use a9f\FractorYaml\Contract\YamlFractorRule;
 use a9f\FractorYaml\Contract\YamlParser;
