@@ -28,6 +28,11 @@ final class FluidFileProcessorTest extends AbstractFractorTestCase
         return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.html');
     }
 
+    public function provideConfigFilePath(): ?string
+    {
+        return __DIR__ . '/config/fractor.php';
+    }
+
     protected function additionalConfigurationFiles(): array
     {
         return [__DIR__ . '/config/config.php'];
