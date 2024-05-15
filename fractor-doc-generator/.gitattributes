@@ -1,8 +1,9 @@
+stubs export-ignore
+tests export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
 ecs.php export-ignore
 phpstan.neon export-ignore
+phpunit.xml export-ignore
 README.md export-ignore
 rector.php export-ignore
-phpunit.xml export-ignore
-tests export-ignore
-stubs export-ignore
-.gitignore export-ignore
