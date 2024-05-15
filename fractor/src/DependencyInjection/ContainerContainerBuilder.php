@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\Fractor\DependencyInjection;
 
 use a9f\FractorExtensionInstaller\Generated\InstalledPackages;
@@ -16,15 +18,15 @@ class ContainerContainerBuilder
     /**
      * @param string[] $additionalConfigFiles
      */
-    public function createDependencyInjectionContainer(?string $fractorConfigFile, array $additionalConfigFiles = []): ContainerInterface
-    {
+    public function createDependencyInjectionContainer(
+        ?string $fractorConfigFile,
+        array $additionalConfigFiles = []
+    ): ContainerInterface {
         $containerBuilder = new ContainerBuilder();
 
         $containerBuilder->addCompilerPass(new AddConsoleCommandPass());
 
-        $configFiles = [
-            __DIR__ . '/../../config/application.php'
-        ];
+        $configFiles = [__DIR__ . '/../../config/application.php'];
 
         $fractorConfigFile ??= __DIR__ . '/../../config/fractor.php';
 
@@ -34,7 +36,7 @@ class ContainerContainerBuilder
         $configFiles = array_merge($configFiles, $this->collectConfigFilesFromExtensions());
 
         foreach ($configFiles as $configFile) {
-            if (!file_exists($configFile)) {
+            if (! file_exists($configFile)) {
                 continue;
             }
 
@@ -53,7 +55,7 @@ class ContainerContainerBuilder
     private function collectConfigFilesFromExtensions(): array
     {
         $collectedConfigFiles = [];
-        if (!class_exists('a9f\\FractorExtensionInstaller\\Generated\\InstalledPackages')) {
+        if (! class_exists('a9f\\FractorExtensionInstaller\\Generated\\InstalledPackages')) {
             return $collectedConfigFiles;
         }
 
@@ -74,6 +76,8 @@ class ContainerContainerBuilder
         Assert::isCallable($callable);
         $instanceOf = [];
         /** @var callable(ContainerConfigurator $container): void $callable */
-        $callable(new ContainerConfigurator($containerBuilder, new PhpFileLoader($containerBuilder, new FileLocator(dirname($fractorConfigFile))), $instanceOf, dirname($fractorConfigFile), basename($fractorConfigFile)));
+        $callable(new ContainerConfigurator($containerBuilder, new PhpFileLoader($containerBuilder, new FileLocator(
+            dirname($fractorConfigFile)
+        )), $instanceOf, dirname($fractorConfigFile), basename($fractorConfigFile)));
     }
 }

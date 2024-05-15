@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\Typo3Fractor\Tests\Rules\TYPO3v7\FlexForm\AddRenderTypeToFlexFormFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
@@ -19,15 +21,13 @@ final class AddRenderTypeToFlexFormFractorTest extends AbstractFractorTestCase
         return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.xml');
     }
 
-    protected function additionalConfigurationFiles(): array
-    {
-        return [
-            __DIR__ . '/config/config.php',
-        ];
-    }
-
     public function provideConfigFilePath(): ?string
     {
         return __DIR__ . '/config/fractor.php';
+    }
+
+    protected function additionalConfigurationFiles(): array
+    {
+        return [__DIR__ . '/config/config.php'];
     }
 }

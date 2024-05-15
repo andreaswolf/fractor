@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\Typo3Fractor\TYPO3v7\FlexForm;
 
 use a9f\Typo3Fractor\AbstractFlexformFractor;
@@ -27,14 +29,14 @@ final class AddRenderTypeToFlexFormFractor extends AbstractFlexformFractor
             }
         }
 
-        if (!$isSelectElement) {
+        if (! $isSelectElement) {
             return $node;
         }
 
         $isSingleSelect = false;
         /** @var \DOMNode $childNode */
         foreach ($node->childNodes->getIterator() as $childNode) {
-            if ($childNode->nodeName === 'maxitems' && (int)$childNode->nodeValue === 1) {
+            if ($childNode->nodeName === 'maxitems' && (int) $childNode->nodeValue === 1) {
                 $isSingleSelect = true;
                 $node->removeChild($childNode);
                 break;

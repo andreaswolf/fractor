@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\FractorXml;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
@@ -15,8 +17,10 @@ final readonly class XmlFileProcessor implements FileProcessor
     /**
      * @param XmlFractor[] $rules
      */
-    public function __construct(private iterable $rules, private DomDocumentFactory $domDocumentFactory)
-    {
+    public function __construct(
+        private iterable $rules,
+        private DomDocumentFactory $domDocumentFactory
+    ) {
         Assert::allIsInstanceOf($this->rules, XmlFractor::class);
     }
 

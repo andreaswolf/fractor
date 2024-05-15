@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\FractorXml\Tests;
 
 use a9f\FractorXml\Contract\DomNodeVisitor;

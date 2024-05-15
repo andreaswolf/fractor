@@ -12,6 +12,7 @@ final class FilesCollector
      * @var array<string, File>
      */
     private array $files = [];
+
     public function addFile(File $file): void
     {
         $this->files[$file->getFilePath()] = $file;

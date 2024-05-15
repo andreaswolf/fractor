@@ -32,7 +32,7 @@ final class SkippedPathsResolver
         $this->skippedPaths = [];
 
         foreach ($this->skip->getSkip() as $key => $value) {
-            if (!is_int($key)) {
+            if (! is_int($key)) {
                 continue;
             }
 

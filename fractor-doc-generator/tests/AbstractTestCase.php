@@ -22,6 +22,7 @@ abstract class AbstractTestCase extends TestCase
     {
         $this->currentContainer = (new ContainerBuilderFactory())->createDependencyInjectionContainer();
     }
+
     /**
      * Syntax-sugar to remove static
      *

@@ -23,13 +23,9 @@ final class FractorsChangelogLinesResolverTest extends TestCase
     public function test(): void
     {
         // Arrange
-        $appliedRules = [
-            AppliedRule::fromRule(new ReplaceXXXTextRule())
-        ];
+        $appliedRules = [AppliedRule::fromRule(new ReplaceXXXTextRule())];
 
-        $expected = [
-            'ReplaceXXXTextRule (https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog-11.html)'
-        ];
+        $expected = ['ReplaceXXXTextRule (https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog-11.html)'];
 
         // Act & Assert
         self::assertSame($expected, $this->subject->createFractorChangelogLines($appliedRules));

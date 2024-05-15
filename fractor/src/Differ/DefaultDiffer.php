@@ -24,7 +24,7 @@ final readonly class DefaultDiffer implements Differ
 
     public function diff(Diff $diff): string
     {
-        if (!$diff->isDifferent()) {
+        if (! $diff->isDifferent()) {
             return '';
         }
         return $this->differ->diff($diff->getOldContent(), $diff->getNewContent());

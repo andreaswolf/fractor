@@ -66,14 +66,11 @@ CODE_SAMPLE
 
         if (array_key_exists(self::VARIANTS, $yaml)) {
             foreach ($yaml[self::VARIANTS] as $variantKey => $variant) {
-                if (!array_key_exists(self::FINISHERS, $variant)) {
+                if (! array_key_exists(self::FINISHERS, $variant)) {
                     continue;
                 }
 
-                $this->refactorFinishers(
-                    $variant[self::FINISHERS],
-                    $yaml[self::VARIANTS][$variantKey]
-                );
+                $this->refactorFinishers($variant[self::FINISHERS], $yaml[self::VARIANTS][$variantKey]);
             }
         }
 
@@ -87,21 +84,21 @@ CODE_SAMPLE
     private function refactorFinishers(array $finishers, array &$yamlToModify): void
     {
         foreach ($finishers as $finisherKey => $finisher) {
-            if (!array_key_exists('identifier', $finisher)) {
+            if (! array_key_exists('identifier', $finisher)) {
                 continue;
             }
 
-            if (!in_array($finisher['identifier'], ['EmailToSender', 'EmailToReceiver'], true)) {
+            if (! in_array($finisher['identifier'], ['EmailToSender', 'EmailToReceiver'], true)) {
                 continue;
             }
 
-            if (!array_key_exists(self::OPTIONS, $finisher)) {
+            if (! array_key_exists(self::OPTIONS, $finisher)) {
                 continue;
             }
 
             $recipients = [];
             foreach ((array) $finisher[self::OPTIONS] as $optionKey => $optionValue) {
-                if (!in_array(
+                if (! in_array(
                     $optionKey,
                     [
                         'replyToAddress',

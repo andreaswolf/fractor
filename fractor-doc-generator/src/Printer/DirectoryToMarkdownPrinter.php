@@ -13,10 +13,10 @@ use Symplify\RuleDocGenerator\ValueObject\RuleClassWithFilePath;
 final readonly class DirectoryToMarkdownPrinter
 {
     public function __construct(
-        private ClassByTypeFinder       $classByTypeFinder,
-        private SymfonyStyle            $symfonyStyle,
+        private ClassByTypeFinder $classByTypeFinder,
+        private SymfonyStyle $symfonyStyle,
         private RuleDefinitionsResolver $ruleDefinitionsResolver,
-        private RuleDefinitionsPrinter  $ruleDefinitionsPrinter,
+        private RuleDefinitionsPrinter $ruleDefinitionsPrinter,
     ) {
     }
 

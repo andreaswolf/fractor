@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use a9f\FractorFluid\Contract\FluidFractorRule;
 use a9f\FractorFluid\FluidFileProcessor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

@@ -13,8 +13,12 @@ final readonly class Configuration
      * @param list<non-empty-string> $paths
      * @param string[] $skip
      */
-    public function __construct(private array $fileExtensions, private array $paths, private array $skip, private bool $dryRun)
-    {
+    public function __construct(
+        private array $fileExtensions,
+        private array $paths,
+        private array $skip,
+        private bool $dryRun
+    ) {
         Assert::allStringNotEmpty($this->paths, 'No directories given');
     }
 

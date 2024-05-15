@@ -22,12 +22,10 @@ final class FractorsChangelogResolverTest extends TestCase
     public function test(): void
     {
         // Arrange
-        $appliedRules = [
-            AppliedRule::fromRule(new ReplaceXXXTextRule())
-        ];
+        $appliedRules = [AppliedRule::fromRule(new ReplaceXXXTextRule())];
 
         $expected = [
-            'a9f\Fractor\Tests\Fixture\DummyProcessor\Rules\ReplaceXXXTextRule' => 'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog-11.html'
+            'a9f\Fractor\Tests\Fixture\DummyProcessor\Rules\ReplaceXXXTextRule' => 'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog-11.html',
         ];
 
         // Act & Assert

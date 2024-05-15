@@ -57,13 +57,13 @@ final class FilesFinderTest extends AbstractFractorTestCase
         self::assertSame('foo.txt', $fileBasename);
     }
 
-    private function getFileBasename(string $foundFile): string
-    {
-        return pathinfo($foundFile, PATHINFO_BASENAME);
-    }
-
     public function provideConfigFilePath(): ?string
     {
         return __DIR__ . '/config/fractor.php';
+    }
+
+    private function getFileBasename(string $foundFile): string
+    {
+        return pathinfo($foundFile, PATHINFO_BASENAME);
     }
 }

@@ -11,16 +11,18 @@ use Webmozart\Assert\Assert;
 
 final readonly class ConfigurationFactory
 {
-    public function __construct(private ContainerBagInterface $parameterBag, private AllowedFileExtensionsResolver $allowedFileExtensionsResolver)
-    {
+    public function __construct(
+        private ContainerBagInterface $parameterBag,
+        private AllowedFileExtensionsResolver $allowedFileExtensionsResolver
+    ) {
     }
 
     public function createFromInput(InputInterface $input): Configuration
     {
         return new Configuration(
             $this->allowedFileExtensionsResolver->resolve(),
-            (array)$this->parameterBag->get(Option::PATHS),
-            (array)$this->parameterBag->get(Option::SKIP),
+            (array) $this->parameterBag->get(Option::PATHS),
+            (array) $this->parameterBag->get(Option::SKIP),
             (bool) $input->getOption(Option::DRY_RUN)
         );
     }
@@ -36,7 +38,7 @@ final readonly class ConfigurationFactory
         return new Configuration(
             $this->allowedFileExtensionsResolver->resolve(),
             $paths,
-            (array)$this->parameterBag->get(Option::SKIP),
+            (array) $this->parameterBag->get(Option::SKIP),
             false
         );
     }

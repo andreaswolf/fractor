@@ -20,7 +20,7 @@ final class ChangelogExtractor
         $reflectionClass = new \ReflectionClass($ruleClassName);
 
         $docComment = $reflectionClass->getDocComment();
-        if (!is_string($docComment)) {
+        if (! is_string($docComment)) {
             return null;
         }
 

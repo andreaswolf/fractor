@@ -21,15 +21,13 @@ final class EmailFinisherFractorTest extends AbstractFractorTestCase
         return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.yaml');
     }
 
-    protected function additionalConfigurationFiles(): array
-    {
-        return [
-            __DIR__ . '/config/config.php',
-        ];
-    }
-
     public function provideConfigFilePath(): ?string
     {
         return __DIR__ . '/config/fractor.php';
+    }
+
+    protected function additionalConfigurationFiles(): array
+    {
+        return [__DIR__ . '/config/config.php'];
     }
 }

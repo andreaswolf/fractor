@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use a9f\FractorXml\Contract\XmlFractor;
 use a9f\FractorXml\XmlFileProcessor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

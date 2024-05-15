@@ -33,6 +33,9 @@ final class ChangelogExtractorTest extends TestCase
         $changelog = $this->subject->extractChangelogFromRule(RuleWithChangelog::class);
 
         // Assert
-        self::assertSame('https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Deprecation-69822-DeprecateSelectFieldTca.html', $changelog);
+        self::assertSame(
+            'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Deprecation-69822-DeprecateSelectFieldTca.html',
+            $changelog
+        );
     }
 }

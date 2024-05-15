@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\Fractor\FileSystem;
 
 use Symfony\Component\Finder\Finder;
@@ -7,8 +9,11 @@ use Webmozart\Assert\Assert;
 
 final readonly class FilesFinder
 {
-    public function __construct(private WildcardResolver $wildcardResolver, private FileAndDirectoryFilter $fileAndDirectoryFilter, private PathSkipper $pathSkipper)
-    {
+    public function __construct(
+        private WildcardResolver $wildcardResolver,
+        private FileAndDirectoryFilter $fileAndDirectoryFilter,
+        private PathSkipper $pathSkipper
+    ) {
     }
 
     /**
@@ -26,7 +31,7 @@ final readonly class FilesFinder
 
         $filteredFilePaths = array_filter(
             $files,
-            fn (string $filePath): bool => !$this->pathSkipper->shouldSkip($filePath)
+            fn (string $filePath): bool => ! $this->pathSkipper->shouldSkip($filePath)
         );
 
         if ($suffixes !== []) {

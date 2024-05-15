@@ -9,8 +9,9 @@ use Nette\Utils\Strings;
 
 final readonly class FractorsChangelogLinesResolver
 {
-    public function __construct(private FractorsChangelogResolver $fractorsChangelogResolver)
-    {
+    public function __construct(
+        private FractorsChangelogResolver $fractorsChangelogResolver
+    ) {
     }
 
     /**

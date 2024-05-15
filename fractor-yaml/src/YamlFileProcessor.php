@@ -18,8 +18,11 @@ final readonly class YamlFileProcessor implements FileProcessor
     /**
      * @param iterable<YamlFractorRule> $rules
      */
-    public function __construct(private iterable $rules, private YamlParser $yamlParser, private YamlDumper $yamlDumper)
-    {
+    public function __construct(
+        private iterable $rules,
+        private YamlParser $yamlParser,
+        private YamlDumper $yamlDumper
+    ) {
         Assert::allIsInstanceOf($this->rules, YamlFractorRule::class);
     }
 

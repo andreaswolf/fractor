@@ -33,7 +33,7 @@ final class DummyYamlFractorRule implements YamlFractorRule
     private function refactorTranslationFile(array &$yaml): array
     {
         foreach ($yaml as &$section) {
-            if (!is_array($section)) {
+            if (! is_array($section)) {
                 continue;
             }
 
@@ -61,7 +61,7 @@ final class DummyYamlFractorRule implements YamlFractorRule
     {
         return array_filter(
             $oldTranslations,
-            static fn ($oldTranslationFile): bool => !\str_starts_with($oldTranslationFile, 'EXT:form')
+            static fn ($oldTranslationFile): bool => ! \str_starts_with($oldTranslationFile, 'EXT:form')
         );
     }
 }

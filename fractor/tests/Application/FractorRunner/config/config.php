@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use a9f\Fractor\Tests\Fixture\DummyProcessor\Contract\TextRule;
 use a9f\Fractor\Tests\Fixture\DummyProcessor\FileProcessor\TextFileProcessor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\FractorExtensionInstaller;
 
 use Composer\Composer;
@@ -33,11 +35,7 @@ final class InstallerPlugin implements PluginInterface, EventSubscriberInterface
 
         $fileToGenerate = __DIR__ . '/../generated/InstalledPackages.php';
 
-        $generator = new PackagesFileGenerator(
-            $localRepository,
-            $installationManager,
-            $fileToGenerate,
-        );
+        $generator = new PackagesFileGenerator($localRepository, $installationManager, $fileToGenerate);
 
         $generator->generate();
     }

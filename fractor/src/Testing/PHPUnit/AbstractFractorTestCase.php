@@ -19,24 +19,15 @@ use Psr\Container\ContainerInterface;
 
 abstract class AbstractFractorTestCase extends TestCase implements FractorTestInterface
 {
-    private ?string $inputFilePath = null;
-    private ?ContainerInterface $currentContainer = null;
-    private FractorRunner $fractorRunner;
     protected FilesCollector $fileCollector;
+
+    private ?string $inputFilePath = null;
+
+    private ?ContainerInterface $currentContainer = null;
+
+    private FractorRunner $fractorRunner;
+
     private ?string $copiedFile = null;
-
-    /**
-     * @return array<int, string>
-     */
-    protected function additionalConfigurationFiles(): array
-    {
-        return [];
-    }
-
-    public function provideConfigFilePath(): ?string
-    {
-        return null;
-    }
 
     protected function setUp(): void
     {
@@ -45,9 +36,27 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
         $this->fractorRunner = $this->getService(FractorRunner::class);
     }
 
-    private function bootContainer(): void
+    protected function tearDown(): void
     {
-        $this->currentContainer = (new ContainerContainerBuilder())->createDependencyInjectionContainer($this->provideConfigFilePath(), $this->additionalConfigurationFiles());
+        // clear temporary file
+        if (is_string($this->inputFilePath) && is_string($this->copiedFile)) {
+            FileSystem::delete($this->inputFilePath);
+            // restore copied file
+            FileSystem::rename($this->copiedFile, $this->inputFilePath);
+        }
+    }
+
+    public function provideConfigFilePath(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    protected function additionalConfigurationFiles(): array
+    {
+        return [];
     }
 
     /**
@@ -107,10 +116,14 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
         // write temp file
         FileSystem::write($inputFilePath, $inputFileContents, null);
 
-        $this->doTestFileMatchesExpectedContent(
-            $inputFilePath,
-            $expectedFileContents,
-            $fixtureFilePath
+        $this->doTestFileMatchesExpectedContent($inputFilePath, $expectedFileContents, $fixtureFilePath);
+    }
+
+    private function bootContainer(): void
+    {
+        $this->currentContainer = (new ContainerContainerBuilder())->createDependencyInjectionContainer(
+            $this->provideConfigFilePath(),
+            $this->additionalConfigurationFiles()
         );
     }
 
@@ -137,16 +150,6 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
 
         // return changed file contents
         return FileSystem::read($filePath);
-    }
-
-    protected function tearDown(): void
-    {
-        // clear temporary file
-        if (is_string($this->inputFilePath) && is_string($this->copiedFile)) {
-            FileSystem::delete($this->inputFilePath);
-            // restore copied file
-            FileSystem::rename($this->copiedFile, $this->inputFilePath);
-        }
     }
 
     private function createInputFilePath(string $fixtureFilePath): string

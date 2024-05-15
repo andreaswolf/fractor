@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\FractorExtensionInstaller;
 
 use Composer\Installer\InstallationManager;
@@ -43,9 +45,6 @@ PHP;
         }
         $installedPackagesCode = var_export($installedPackages, true);
 
-        file_put_contents(
-            $this->fileToGenerate,
-            sprintf(self::FILE_TEMPLATE, $installedPackagesCode)
-        );
+        file_put_contents($this->fileToGenerate, sprintf(self::FILE_TEMPLATE, $installedPackagesCode));
     }
 }

@@ -30,7 +30,13 @@ final class FnMatchPathNormalizerTest extends AbstractFractorTestCase
         yield ['*path/with/asterisk/begin', '*path/with/asterisk/begin*'];
         yield ['path/with/asterisk/end*', '*path/with/asterisk/end*'];
         yield ['*path/with/asterisk/begin/and/end*', '*path/with/asterisk/begin/and/end*'];
-        yield [__DIR__ . '/Fixtures/path/with/../in/it', FilePathNormalizer::normalizeDirectorySeparator(__DIR__ . '/Fixtures/path/in/it')];
-        yield [__DIR__ . '/Fixtures/path/with/../../in/it', FilePathNormalizer::normalizeDirectorySeparator(__DIR__ . '/Fixtures/in/it')];
+        yield [
+            __DIR__ . '/Fixtures/path/with/../in/it',
+            FilePathNormalizer::normalizeDirectorySeparator(__DIR__ . '/Fixtures/path/in/it'),
+        ];
+        yield [
+            __DIR__ . '/Fixtures/path/with/../../in/it',
+            FilePathNormalizer::normalizeDirectorySeparator(__DIR__ . '/Fixtures/in/it'),
+        ];
     }
 }

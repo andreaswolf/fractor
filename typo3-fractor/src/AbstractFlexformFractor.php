@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\Typo3Fractor;
 
 use a9f\Fractor\Exception\ShouldNotHappenException;

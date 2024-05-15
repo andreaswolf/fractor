@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\Fractor\Configuration;
 
 use Symfony\Component\Console\Input\ArgvInput;
@@ -11,8 +13,6 @@ final class ConfigResolver
         return self::getOptionValue($input) ?? getcwd() . '/fractor.php';
     }
 
-    /**
-     */
     private static function getOptionValue(ArgvInput $input): ?string
     {
         $nameCandidates = ['--config', '-c'];

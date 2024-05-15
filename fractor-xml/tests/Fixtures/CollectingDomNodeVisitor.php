@@ -1,12 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace a9f\FractorXml\Tests\Fixtures;
 
 use a9f\FractorXml\Contract\DomNodeVisitor;
 
 class CollectingDomNodeVisitor implements DomNodeVisitor
 {
-    /** @var list<non-empty-string> */
+    /**
+     * @var list<non-empty-string>
+     */
     public array $calls = [];
 
     public function beforeTraversal(\DOMNode $rootNode): void

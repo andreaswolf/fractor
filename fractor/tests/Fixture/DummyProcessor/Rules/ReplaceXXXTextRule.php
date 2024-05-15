@@ -23,11 +23,6 @@ final class ReplaceXXXTextRule implements TextRule
 
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition(
-            'Replace string XXX with YYY',
-            [
-                new CodeSample('XXX', 'YYY')
-            ]
-        );
+        return new RuleDefinition('Replace string XXX with YYY', [new CodeSample('XXX', 'YYY')]);
     }
 }
