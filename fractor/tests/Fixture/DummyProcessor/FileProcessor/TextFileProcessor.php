@@ -6,15 +6,16 @@ namespace a9f\Fractor\Tests\Fixture\DummyProcessor\FileProcessor;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
+use a9f\Fractor\Rules\RulesProvider;
 use a9f\Fractor\Tests\Fixture\DummyProcessor\Contract\TextRule;
 
 final readonly class TextFileProcessor implements FileProcessor
 {
     /**
-     * @param TextRule[] $rules
+     * @param RulesProvider<TextRule> $rulesProvider
      */
     public function __construct(
-        private iterable $rules
+        private RulesProvider $rulesProvider
     ) {
     }
 
@@ -25,7 +26,7 @@ final readonly class TextFileProcessor implements FileProcessor
 
     public function handle(File $file): void
     {
-        foreach ($this->rules as $rule) {
+        foreach ($this->rulesProvider->getApplicableRules($file) as $rule) {
             $rule->apply($file);
         }
     }

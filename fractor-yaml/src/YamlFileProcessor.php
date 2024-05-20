@@ -7,23 +7,22 @@ namespace a9f\FractorYaml;
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\AppliedRule;
 use a9f\Fractor\Application\ValueObject\File;
+use a9f\Fractor\Rules\RulesProvider;
 use a9f\Fractor\ValueObject\Indent;
 use a9f\FractorYaml\Contract\YamlDumper;
 use a9f\FractorYaml\Contract\YamlFractorRule;
 use a9f\FractorYaml\Contract\YamlParser;
-use Webmozart\Assert\Assert;
 
 final readonly class YamlFileProcessor implements FileProcessor
 {
     /**
-     * @param iterable<YamlFractorRule> $rules
+     * @param RulesProvider<YamlFractorRule> $rulesProvider
      */
     public function __construct(
-        private iterable $rules,
+        private RulesProvider $rulesProvider,
         private YamlParser $yamlParser,
         private YamlDumper $yamlDumper
     ) {
-        Assert::allIsInstanceOf($this->rules, YamlFractorRule::class);
     }
 
     public function canHandle(File $file): bool
@@ -38,7 +37,7 @@ final readonly class YamlFileProcessor implements FileProcessor
 
         $newYaml = $yaml;
 
-        foreach ($this->rules as $rule) {
+        foreach ($this->rulesProvider->getApplicableRules($file) as $rule) {
             $oldYaml = $newYaml;
             $newYaml = $rule->refactor($newYaml);
 
