@@ -1,0 +1,62 @@
+{
+    "name": "a9f/fractor-typoscript",
+    "description": "TypoScript extension for the File Read-Analyse-Change TOol. Allows modifying TYPO3 TypoScript configuration files",
+    "license": "MIT",
+    "type": "fractor-extension",
+    "authors": [
+        {
+            "name": "Andreas Wolf",
+            "email": "dev@a-w.io",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "a9f/fractor": "^0.2",
+        "a9f/fractor-extension-installer": "^0.2",
+        "helmich/typo3-typoscript-parser": "^2.6",
+        "webmozart/assert": "^1.11"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.42",
+        "phpstan/phpstan": "^1.10.9",
+        "phpunit/phpunit": "^10.5",
+        "rector/rector": "^1.0",
+        "symplify/easy-coding-standard": "^12.1"
+    },
+    "repositories": {
+        "fractor": {
+            "type": "path",
+            "url": "../*"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "a9f\\FractorTypoScript\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "a9f\\FractorTypoScript\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "a9f/fractor-extension-installer": true,
+            "ergebnis/composer-normalize": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.2-dev"
+        }
+    },
+    "scripts": {
+        "analyze:php": "phpstan analyze",
+        "rector": "rector",
+        "style:php:check": "ecs",
+        "style:php:fix": "ecs --fix",
+        "test:php": "phpunit"
+    }
+}
