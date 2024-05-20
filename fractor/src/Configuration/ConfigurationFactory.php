@@ -23,7 +23,8 @@ final readonly class ConfigurationFactory
             $this->allowedFileExtensionsResolver->resolve(),
             (array) $this->parameterBag->get(Option::PATHS),
             (array) $this->parameterBag->get(Option::SKIP),
-            (bool) $input->getOption(Option::DRY_RUN)
+            (bool) $input->getOption(Option::DRY_RUN),
+            (bool) $input->getOption(Option::QUIET)
         );
     }
 
@@ -39,6 +40,7 @@ final readonly class ConfigurationFactory
             $this->allowedFileExtensionsResolver->resolve(),
             $paths,
             (array) $this->parameterBag->get(Option::SKIP),
+            false,
             false
         );
     }
