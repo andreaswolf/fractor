@@ -18,7 +18,7 @@ cd $TEST_DIR
 cp -r fixtures/ output/
 
 cd $TESTS_BASE_DIR
-./vendor/bin/fractor process -c $TESTS_BASE_DIR/$TEST_DIR/fractor.php
+./vendor/bin/fractor process --quiet -c $TESTS_BASE_DIR/$TEST_DIR/fractor.php
 
 # TODO remove -b once we keep the output format when re-writing the file
 diff -rub $TEST_DIR/expected-output/ $TEST_DIR/output/

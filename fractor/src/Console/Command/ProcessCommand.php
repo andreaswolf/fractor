@@ -39,6 +39,12 @@ final class ProcessCommand extends Command
             InputOption::VALUE_NONE,
             'Only see the diff of changes, do not save them to files.'
         );
+        $this->addOption(
+            Option::QUIET,
+            Option::QUIET_SHORT,
+            InputOption::VALUE_NONE,
+            'Do not output diff of changes.'
+        );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

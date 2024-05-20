@@ -39,20 +39,23 @@ final readonly class FractorRunner
     {
         $filePaths = $this->fileFinder->findFiles($configuration->getPaths(), $configuration->getFileExtensions());
 
-        $output->progressStart(count($filePaths));
+        if (! $configuration->isQuiet()) {
+            $output->progressStart(count($filePaths));
+        }
 
         foreach ($filePaths as $filePath) {
             $file = new File($filePath, FileSystem::read($filePath));
             $this->fileCollector->addFile($file);
 
             foreach ($this->processors as $processor) {
-                if (! $processor->canHandle($file)) {
+                if (! $configuration->isQuiet()) {
                     $output->progressAdvance();
+                }
+                if (! $processor->canHandle($file)) {
                     continue;
                 }
 
                 $processor->handle($file);
-                $output->progressAdvance();
             }
 
             if (! $file->hasChanged()) {
@@ -62,21 +65,25 @@ final readonly class FractorRunner
             $file->setFileDiff($this->fileDiffFactory->createFileDiff($file));
         }
 
-        $output->progressFinish();
+        if (! $configuration->isQuiet()) {
+            $output->progressFinish();
+        }
 
         foreach ($this->fileCollector->getFiles() as $file) {
             if ($file->getFileDiff() === null) {
                 continue;
             }
 
-            $output->write($file->getFileDiff()->getDiffConsoleFormatted());
-            if ($file->getAppliedRules() !== []) {
-                $fractorsChangelogsLines = $this->fractorsChangelogLinesResolver->createFractorChangelogLines(
-                    $file->getAppliedRules()
-                );
-                $output->write('<options=underscore>Applied rules:</>');
-                $output->listing($fractorsChangelogsLines);
-                $output->newLine();
+            if (! $configuration->isQuiet()) {
+                $output->write($file->getFileDiff()->getDiffConsoleFormatted());
+                if ($file->getAppliedRules() !== []) {
+                    $fractorsChangelogsLines = $this->fractorsChangelogLinesResolver->createFractorChangelogLines(
+                        $file->getAppliedRules()
+                    );
+                    $output->write('<options=underscore>Applied rules:</>');
+                    $output->listing($fractorsChangelogsLines);
+                    $output->newLine();
+                }
             }
 
             if ($configuration->isDryRun()) {

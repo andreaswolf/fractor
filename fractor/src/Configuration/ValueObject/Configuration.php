@@ -17,7 +17,8 @@ final readonly class Configuration
         private array $fileExtensions,
         private array $paths,
         private array $skip,
-        private bool $dryRun
+        private bool $dryRun,
+        private bool $quiet
     ) {
         Assert::allStringNotEmpty($this->paths, 'No directories given');
     }
@@ -49,5 +50,10 @@ final readonly class Configuration
     public function isDryRun(): bool
     {
         return $this->dryRun;
+    }
+
+    public function isQuiet(): bool
+    {
+        return $this->quiet;
     }
 }
