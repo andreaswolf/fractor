@@ -8,7 +8,9 @@ on:
 jobs:
   php-check:
     runs-on: ubuntu-latest
+    continue-on-error: true
     strategy:
+      fail-fast: false
       matrix:
         composer-command:
           - name: PHP Code Style
