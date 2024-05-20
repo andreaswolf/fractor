@@ -11,6 +11,7 @@ use a9f\FractorXml\Contract\XmlFractor;
 use a9f\FractorXml\ValueObjectFactory\DomDocumentFactory;
 use DOMDocument;
 use Webmozart\Assert\Assert;
+use function Safe\file_get_contents;
 
 final readonly class XmlFileProcessor implements FileProcessor
 {
@@ -32,17 +33,22 @@ final readonly class XmlFileProcessor implements FileProcessor
     public function handle(File $file): void
     {
         $document = $this->domDocumentFactory->create();
-        $document->load($file->getFilePath());
+        $originalXml = file_get_contents($file->getFilePath());
+        $document->loadXML($originalXml);
 
         // This is a hacky trick to keep format and create a nice diff later
         $file->changeOriginalContent($this->saveXml($document));
 
         $iterator = new DomDocumentIterator($this->rules);
-        $iterator->traverseDocument($document);
+        $iterator->traverseDocument($file, $document);
 
-        $newFileContent = $this->saveXml($document);
+        $newXml = $this->saveXml($document);
 
-        $file->changeFileContent($newFileContent);
+        if ($newXml === $originalXml) {
+            return;
+        }
+
+        $file->changeFileContent($newXml);
     }
 
     public function allowedFileExtensions(): array

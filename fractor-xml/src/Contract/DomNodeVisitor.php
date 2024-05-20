@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\FractorXml\Contract;
 
+use a9f\Fractor\Application\ValueObject\File;
 use a9f\FractorXml\DomDocumentIterator;
 
 /**
@@ -11,7 +12,7 @@ use a9f\FractorXml\DomDocumentIterator;
  */
 interface DomNodeVisitor
 {
-    public function beforeTraversal(\DOMNode $rootNode): void;
+    public function beforeTraversal(File $file, \DOMNode $rootNode): void;
 
     /**
      * @return \DOMNode|DomDocumentIterator::*

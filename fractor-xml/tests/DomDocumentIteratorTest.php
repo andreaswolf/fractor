@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\FractorXml\Tests;
 
+use a9f\Fractor\Application\ValueObject\File;
 use a9f\FractorXml\Contract\DomNodeVisitor;
 use a9f\FractorXml\DomDocumentIterator;
 use a9f\FractorXml\Tests\Fixtures\CollectingDomNodeVisitor;
@@ -25,7 +26,7 @@ final class DomDocumentIteratorTest extends TestCase
 <Root/>
 XML);
         $subject = new DomDocumentIterator([$nameCollectingVisitor]);
-        $subject->traverseDocument($document);
+        $subject->traverseDocument(new File('does-not-matter.xml', ''), $document);
 
         self::assertSame([
             'beforeTraversal:#document',
@@ -46,7 +47,7 @@ XML);
 <Root><Child /></Root>
 XML);
         $subject = new DomDocumentIterator([$nameCollectingVisitor]);
-        $subject->traverseDocument($document);
+        $subject->traverseDocument(new File('does-not-matter.xml', ''), $document);
 
         self::assertSame([
             'beforeTraversal:#document',
@@ -72,7 +73,7 @@ XML);
             $this->getCallRecordingDomNodeVisitor('visitor1', $calls),
             $this->getCallRecordingDomNodeVisitor('visitor2', $calls),
         ]);
-        $subject->traverseDocument($document);
+        $subject->traverseDocument(new File('does-not-matter.xml', ''), $document);
 
         self::assertSame([
             'visitor1:beforeTraversal:#document',
@@ -101,7 +102,7 @@ XML);
 <Root><ChildOne /><ChildTwo /></Root>
 XML);
         $subject = new DomDocumentIterator([$nameCollectingVisitor]);
-        $subject->traverseDocument($document);
+        $subject->traverseDocument(new File('does-not-matter.xml', ''), $document);
 
         self::assertSame([
             'beforeTraversal:#document',
@@ -126,7 +127,7 @@ XML);
 <Root><Child><GrandChild /></Child></Root>
 XML);
         $subject = new DomDocumentIterator([$nameCollectingVisitor]);
-        $subject->traverseDocument($document);
+        $subject->traverseDocument(new File('does-not-matter.xml', ''), $document);
 
         self::assertSame([
             'beforeTraversal:#document',
@@ -159,7 +160,7 @@ XML);
 <Root><Child><GrandChild /></Child></Root>
 XML);
         $subject = new DomDocumentIterator([$nodeRemovingVisitor]);
-        $subject->traverseDocument($document);
+        $subject->traverseDocument(new File('does-not-matter.xml', ''), $document);
 
         self::assertSame([
             'beforeTraversal:#document',
@@ -196,7 +197,7 @@ XML);
 <Root><Child><GrandChild /></Child></Root>
 XML);
         $subject = new DomDocumentIterator([$nodeRemovingVisitor]);
-        $subject->traverseDocument($document);
+        $subject->traverseDocument(new File('does-not-matter.xml', ''), $document);
 
         self::assertSame([
             'beforeTraversal:#document',
@@ -230,7 +231,7 @@ XML);
             ) {
             }
 
-            public function beforeTraversal(\DOMNode $rootNode): void
+            public function beforeTraversal(File $file, \DOMNode $rootNode): void
             {
                 $this->calls[] = sprintf('%s:beforeTraversal:%s', $this->visitorName, $rootNode->nodeName);
             }
