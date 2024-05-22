@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  # see https://github.com/composer/composer/issues/9368#issuecomment-718112361
+  COMPOSER_ROOT_VERSION: "dev-main"
+
 jobs:
   php-check:
     runs-on: ubuntu-latest
@@ -23,18 +27,12 @@ jobs:
             command: test:php
           - name: Rector
             command: 'rector --dry-run'
-        directory: [ '', 'extension-installer', 'fractor', 'fractor-xml', 'typo3-fractor', 'fractor-doc-generator', 'fractor-yaml', 'fractor-fluid', 'fractor-composer-json']
+        directory: ['extension-installer', 'fractor', 'fractor-xml', 'typo3-fractor', 'fractor-doc-generator', 'fractor-yaml', 'fractor-fluid', 'fractor-composer-json']
         exclude:
           - directory: extension-installer
             composer-command: {name: 'PHPUnit', command: 'test:php'}
-          - directory: ''
-            composer-command: {name: 'PHPUnit', command: 'test:php'}
-          - directory: ''
-            composer-command: {name: 'PHPStan', command: 'analyze:php'}
-          - directory: ''
-            composer-command: {name: 'Rector', command: 'rector --dry-run'}
 
-    name: ${{ matrix.composer-command.name }}/${{ matrix.directory || '(root)' }}
+    name: '${{ matrix.composer-command.name }}/${{ matrix.directory }}'
 
     steps:
       - uses: actions/checkout@v4
@@ -44,13 +42,13 @@ jobs:
       - name: Install composer dependencies
         uses: php-actions/composer@v6
         with:
-          container_workdir: /app/${{ matrix.directory }}
+          container_workdir: /app/packages/${{ matrix.directory }}
           memory_limit: 512M
 
       - name: 'Run check "${{ matrix.composer-command.name }}"'
         uses: php-actions/composer@v6
         with:
-          container_workdir: /app/${{ matrix.directory }}
+          container_workdir: /app/packages/${{ matrix.directory }}
           command: ${{ matrix.composer-command.command }}
           memory_limit: 512M
 

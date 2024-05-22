@@ -34,7 +34,7 @@ jobs:
             repository: git@github.com:andreaswolf/fractor-yaml.git
             deploy-key: DEPLOY_KEY_YAML
 
-    name: Split subtree ${{ matrix.package.path }}
+    name: Split subtree packages/${{ matrix.package.path }}
 
     steps:
       - uses: actions/checkout@v4
