@@ -1,0 +1,30 @@
+{
+    "name": "a9f/fractor-monorepo",
+    "description": "Mono repository for the File Read-Analyse-Change TOol",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Andreas Wolf",
+            "email": "dev@a-w.io"
+        }
+    ],
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.42",
+        "symplify/easy-coding-standard": "^12.1",
+        "symplify/monorepo-builder": "^11.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "A9f\\FractorMonorepo\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "scripts": {
+        "style:php:check": "ecs",
+        "style:php:fix": "ecs --fix"
+    }
+}

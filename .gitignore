@@ -1,3 +1,5 @@
 .phpunit.result.cache
 ./run-test.sh
 .run-test.sh
+/composer.lock
+/vendor/
