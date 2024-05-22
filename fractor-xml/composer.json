@@ -16,7 +16,6 @@
         "ext-xml": "*",
         "a9f/fractor": "@dev",
         "a9f/fractor-extension-installer": "@dev",
-        "thecodingmachine/safe": "^2.5",
         "webmozart/assert": "^1.11"
     },
     "require-dev": {

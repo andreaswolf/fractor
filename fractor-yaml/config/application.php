@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use a9f\Fractor\Rules\RulesProvider;
 use a9f\FractorYaml\Contract\YamlDumper;
 use a9f\FractorYaml\Contract\YamlFractorRule;
 use a9f\FractorYaml\Contract\YamlParser;
@@ -10,6 +11,7 @@ use a9f\FractorYaml\SymfonyYamlParser;
 use a9f\FractorYaml\YamlFileProcessor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 
 return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
@@ -23,7 +25,12 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     $services->alias(YamlParser::class, SymfonyYamlParser::class);
     $services->alias(YamlDumper::class, SymfonyYamlDumper::class);
 
-    $services->set(YamlFileProcessor::class)->arg('$rules', tagged_iterator('fractor.yaml_rule'));
+    $services->set('rules_providers.yaml_rule')
+        ->class(RulesProvider::class)
+        ->arg('$baseClassOrInterface', YamlFractorRule::class)
+        ->arg('$rules', tagged_iterator('fractor.yaml_rule'));
+    $services->set(YamlFileProcessor::class)
+        ->arg('$rulesProvider', service('rules_providers.yaml_rule'));
 
     $containerBuilder->registerForAutoconfiguration(YamlFractorRule::class)->addTag('fractor.yaml_rule');
 };

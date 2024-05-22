@@ -7,22 +7,20 @@ namespace a9f\FractorXml;
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Exception\ShouldNotHappenException;
+use a9f\Fractor\Rules\RulesProvider;
 use a9f\FractorXml\Contract\XmlFractor;
 use a9f\FractorXml\ValueObjectFactory\DomDocumentFactory;
 use DOMDocument;
-use Webmozart\Assert\Assert;
-use function Safe\file_get_contents;
 
 final readonly class XmlFileProcessor implements FileProcessor
 {
     /**
-     * @param XmlFractor[] $rules
+     * @param RulesProvider<XmlFractor> $rulesProvider
      */
     public function __construct(
-        private iterable $rules,
-        private DomDocumentFactory $domDocumentFactory
+        private DomDocumentFactory $domDocumentFactory,
+        private RulesProvider $rulesProvider
     ) {
-        Assert::allIsInstanceOf($this->rules, XmlFractor::class);
     }
 
     public function canHandle(File $file): bool
@@ -33,13 +31,15 @@ final readonly class XmlFileProcessor implements FileProcessor
     public function handle(File $file): void
     {
         $document = $this->domDocumentFactory->create();
-        $originalXml = file_get_contents($file->getFilePath());
+        $originalXml = $file->getOriginalContent();
         $document->loadXML($originalXml);
 
         // This is a hacky trick to keep format and create a nice diff later
         $file->changeOriginalContent($this->saveXml($document));
 
-        $iterator = new DomDocumentIterator($this->rules);
+        $applicableRulesForFile = $this->rulesProvider->getApplicableRules($file);
+
+        $iterator = new DomDocumentIterator($applicableRulesForFile);
         $iterator->traverseDocument($file, $document);
 
         $newXml = $this->saveXml($document);

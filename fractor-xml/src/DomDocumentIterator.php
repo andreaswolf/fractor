@@ -17,12 +17,19 @@ final readonly class DomDocumentIterator
     public const REMOVE_NODE = 3;
 
     /**
+     * @var array<DomNodeVisitor>
+     */
+    private iterable $visitors;
+
+    /**
      * @param list<DomNodeVisitor> $visitors
      */
     public function __construct(
-        private iterable $visitors
+        iterable $visitors
     ) {
-        Assert::allIsInstanceOf($this->visitors, DomNodeVisitor::class);
+        $visitors = iterator_to_array($visitors);
+        Assert::allIsInstanceOf($visitors, DomNodeVisitor::class);
+        $this->visitors = $visitors;
     }
 
     public function traverseDocument(File $file, \DOMDocument $document): void
