@@ -52,7 +52,7 @@ final class RulesProviderTest extends TestCase
     public function constructorThrowsExceptionIfRuleOfDifferentClassIsPassed(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $subject = new RulesProvider([new RuleA()], TextRule::class, $this->getService(RuleSkipper::class));
+        new RulesProvider([new RuleA()], TextRule::class, $this->getService(RuleSkipper::class));
     }
 
     #[Test]

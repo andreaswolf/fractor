@@ -27,9 +27,4 @@ final class RenamePackageComposerJsonFractorRuleTest extends AbstractFractorTest
     {
         return __DIR__ . '/config/fractor.php';
     }
-
-    protected function additionalConfigurationFiles(): array
-    {
-        return [__DIR__ . '/config/config.php'];
-    }
 }

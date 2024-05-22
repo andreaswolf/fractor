@@ -8,11 +8,11 @@ use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use a9f\Fractor\FileSystem\Skipper\FileInfoMatcher;
 
-final class RuleSkipper
+final readonly class RuleSkipper
 {
     public function __construct(
-        private readonly SkipConfiguration $configuration,
-        private readonly FileInfoMatcher $fileInfoMatcher
+        private SkipConfiguration $configuration,
+        private FileInfoMatcher $fileInfoMatcher
     ) {
     }
 
