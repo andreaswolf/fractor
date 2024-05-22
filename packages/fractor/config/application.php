@@ -10,7 +10,6 @@ use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use a9f\Fractor\Differ\ConsoleDiffer;
 use a9f\Fractor\Differ\Contract\Differ;
 use a9f\Fractor\FractorApplication;
-use a9f\Fractor\Rules\RulesProvider;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -90,8 +89,5 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     $services->set(FractorRunner::class)->arg('$processors', tagged_iterator('fractor.file_processor'));
     $services->set(AllowedFileExtensionsResolver::class)->arg('$processors', tagged_iterator('fractor.file_processor'));
     $services->set(Filesystem::class);
-    // RulesProvider must be wired individually for each processor to ensure the correct rules base class is set
-    $services->set(RulesProvider::class)->autowire(false);
-
     $containerBuilder->registerForAutoconfiguration(FileProcessor::class)->addTag('fractor.file_processor');
 };

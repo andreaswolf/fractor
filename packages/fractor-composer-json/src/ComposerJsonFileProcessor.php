@@ -11,6 +11,9 @@ use a9f\Fractor\ValueObject\Indent;
 use a9f\FractorComposerJson\Contract\ComposerJsonFractorRule;
 use a9f\FractorComposerJson\Contract\ComposerJsonPrinter;
 
+/**
+ * @implements FileProcessor<ComposerJsonFractorRule>
+ */
 final readonly class ComposerJsonFileProcessor implements FileProcessor
 {
     /**
@@ -23,13 +26,13 @@ final readonly class ComposerJsonFileProcessor implements FileProcessor
     ) {
     }
 
-    public function handle(File $file): void
+    public function handle(File $file, iterable $appliedRules): void
     {
         $composerJson = $this->composerJsonFactory->createFromFile($file);
         $oldComposerJson = $this->composerJsonFactory->createFromFile($file);
         $ident = Indent::fromFile($file);
 
-        foreach ($this->rules as $rule) {
+        foreach ($appliedRules as $rule) {
             $rule->refactor($composerJson);
 
             if ($oldComposerJson->getJsonArray() !== $composerJson->getJsonArray()) {
@@ -47,5 +50,10 @@ final readonly class ComposerJsonFileProcessor implements FileProcessor
     public function allowedFileExtensions(): array
     {
         return ['json'];
+    }
+
+    public function getAllRules(): iterable
+    {
+        return $this->rules;
     }
 }

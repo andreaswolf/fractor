@@ -6,16 +6,18 @@ namespace a9f\Fractor\Tests\Fixture\DummyProcessor\FileProcessor;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
-use a9f\Fractor\Rules\RulesProvider;
 use a9f\Fractor\Tests\Fixture\DummyProcessor\Contract\TextRule;
 
+/**
+ * @implements FileProcessor<TextRule>
+ */
 final readonly class TextFileProcessor implements FileProcessor
 {
     /**
-     * @param RulesProvider<TextRule> $rulesProvider
+     * @param iterable<TextRule> $rules
      */
     public function __construct(
-        private RulesProvider $rulesProvider
+        private iterable $rules
     ) {
     }
 
@@ -24,9 +26,9 @@ final readonly class TextFileProcessor implements FileProcessor
         return $file->getFileExtension() === 'txt';
     }
 
-    public function handle(File $file): void
+    public function handle(File $file, iterable $appliedRules): void
     {
-        foreach ($this->rulesProvider->getApplicableRules($file) as $rule) {
+        foreach ($appliedRules as $rule) {
             $rule->apply($file);
         }
     }
@@ -34,5 +36,10 @@ final readonly class TextFileProcessor implements FileProcessor
     public function allowedFileExtensions(): array
     {
         return ['txt'];
+    }
+
+    public function getAllRules(): iterable
+    {
+        return $this->rules;
     }
 }

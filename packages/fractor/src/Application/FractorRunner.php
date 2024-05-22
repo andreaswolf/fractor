@@ -6,6 +6,7 @@ namespace a9f\Fractor\Application;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\Contract\FileWriter;
+use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Console\Contract\Output;
@@ -22,7 +23,7 @@ use Webmozart\Assert\Assert;
 final readonly class FractorRunner
 {
     /**
-     * @param FileProcessor[] $processors
+     * @param iterable<FileProcessor<FractorRule>> $processors
      */
     public function __construct(
         private FractorsChangelogLinesResolver $fractorsChangelogLinesResolver,
@@ -30,7 +31,8 @@ final readonly class FractorRunner
         private FilesCollector $fileCollector,
         private iterable $processors,
         private FileWriter $fileWriter,
-        private FileDiffFactory $fileDiffFactory
+        private FileDiffFactory $fileDiffFactory,
+        private RuleSkipper $ruleSkipper
     ) {
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
@@ -55,7 +57,9 @@ final readonly class FractorRunner
                     continue;
                 }
 
-                $processor->handle($file);
+                $applicableRules = $this->filterApplicableRules($processor->getAllRules(), $file);
+
+                $processor->handle($file, $applicableRules);
             }
 
             if (! $file->hasChanged()) {
@@ -91,6 +95,21 @@ final readonly class FractorRunner
             }
 
             $this->fileWriter->write($file);
+        }
+    }
+
+    /**
+     * @param iterable<FractorRule> $rules
+     * @return \Generator<FractorRule>
+     */
+    private function filterApplicableRules(iterable $rules, File $file): \Generator
+    {
+        foreach ($rules as $rule) {
+            if ($this->ruleSkipper->shouldSkip($rule::class, $file->getFilePath())) {
+                continue;
+            }
+
+            yield $rule;
         }
     }
 }
