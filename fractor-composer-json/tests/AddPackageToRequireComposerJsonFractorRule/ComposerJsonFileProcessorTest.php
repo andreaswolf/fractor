@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace a9f\FractorFluid\Tests\FluidFileProcessor;
+namespace a9f\FractorComposerJson\Tests\AddPackageToRequireComposerJsonFractorRule;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
-use a9f\FractorFluid\Tests\Fixtures\DummyFluidFractorRule;
+use a9f\FractorComposerJson\AddPackageToRequireComposerJsonFractorRule;
 use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-final class FluidFileProcessorTest extends AbstractFractorTestCase
+final class ComposerJsonFileProcessorTest extends AbstractFractorTestCase
 {
     #[DataProvider('provideData')]
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);
-        $this->assertThatRuleIsApplied($filePath, DummyFluidFractorRule::class);
+        $this->assertThatRuleIsApplied($filePath, AddPackageToRequireComposerJsonFractorRule::class);
     }
 
     public static function provideData(): Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.html');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.json');
     }
 
     public function provideConfigFilePath(): ?string

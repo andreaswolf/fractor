@@ -13,7 +13,7 @@ jobs:
         composer-command:
           - name: Generate docs
             command: 'docs:generate'
-        directory: ['typo3-fractor']
+        directory: ['typo3-fractor', 'fractor-composer-json']
 
     name: ${{ matrix.composer-command.name }}/${{ matrix.directory }}
 
