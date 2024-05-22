@@ -6,6 +6,9 @@ namespace a9f\Fractor\Configuration\ValueObject;
 
 use Webmozart\Assert\Assert;
 
+/**
+ * This is class is created on runtime and cannot be injected via Dependency Injection
+ */
 final readonly class Configuration
 {
     /**
