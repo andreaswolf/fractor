@@ -27,9 +27,4 @@ final class YamlFileProcessorTest extends AbstractFractorTestCase
     {
         return __DIR__ . '/config/fractor.php';
     }
-
-    protected function additionalConfigurationFiles(): array
-    {
-        return [__DIR__ . '/config/config.php'];
-    }
 }

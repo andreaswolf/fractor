@@ -36,6 +36,11 @@ final class FractorConfigurationBuilder
      */
     private array $rulesWithConfigurations = [];
 
+    /**
+     * @var string[]
+     */
+    private array $imports = [];
+
     public function __invoke(ContainerConfigurator $containerConfigurator): void
     {
         Assert::allString($this->paths);
@@ -77,6 +82,10 @@ final class FractorConfigurationBuilder
                 ->call('configure', $configuration)
                 ->autoconfigure()
                 ->autowire();
+        }
+
+        foreach ($this->imports as $import) {
+            $containerConfigurator->import($import);
         }
     }
 
@@ -127,6 +136,13 @@ final class FractorConfigurationBuilder
     public function withRules(array $rules): self
     {
         $this->rules = array_merge($this->rules, $rules);
+
+        return $this;
+    }
+
+    public function import(string $import): self
+    {
+        $this->imports[] = $import;
 
         return $this;
     }
