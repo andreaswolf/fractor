@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\FractorXml;
 
+use a9f\Fractor\Application\ValueObject\File;
 use a9f\FractorXml\Contract\DomNodeVisitor;
 use a9f\FractorXml\Exception\ShouldNotHappenException;
 use Webmozart\Assert\Assert;
@@ -24,10 +25,10 @@ final readonly class DomDocumentIterator
         Assert::allIsInstanceOf($this->visitors, DomNodeVisitor::class);
     }
 
-    public function traverseDocument(\DOMDocument $document): void
+    public function traverseDocument(File $file, \DOMDocument $document): void
     {
         foreach ($this->visitors as $visitor) {
-            $visitor->beforeTraversal($document);
+            $visitor->beforeTraversal($file, $document);
         }
 
         if ($document->firstChild instanceof \DOMNode) {
@@ -41,7 +42,7 @@ final readonly class DomDocumentIterator
 
     private function traverseNode(\DOMNode $node): void
     {
-        $nodeRemoved = false;
+        $traverseChildren = true;
         foreach ($this->visitors as $visitor) {
             $result = $visitor->enterNode($node);
 
@@ -51,14 +52,14 @@ final readonly class DomDocumentIterator
 
             if ($result === self::REMOVE_NODE) {
                 $node->parentNode->removeChild($node);
-                $nodeRemoved = true;
+                $traverseChildren = false;
             } elseif ($result->isSameNode($node) === false) {
                 $node->parentNode->replaceChild($result, $node);
-                $nodeRemoved = true; // "replaced", actually, but that's close enough for us
+                $traverseChildren = false;
             }
         }
 
-        if ($nodeRemoved === false) {
+        if ($traverseChildren) {
             foreach ($node->childNodes->getIterator() as $childNode) {
                 $this->traverseNode($childNode);
             }

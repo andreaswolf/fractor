@@ -30,7 +30,7 @@ final class AddRenderTypeToFlexFormFractor extends AbstractFlexformFractor
         }
 
         if (! $isSelectElement) {
-            return $node;
+            return null;
         }
 
         $isSingleSelect = false;
@@ -54,9 +54,11 @@ final class AddRenderTypeToFlexFormFractor extends AbstractFlexformFractor
             $renderType = $ownerDocument->createElement('renderType');
             $renderType->nodeValue = 'selectSingle';
             $node->appendChild($renderType);
+
+            return $node;
         }
 
-        return $node;
+        return null;
     }
 
     public function getRuleDefinition(): RuleDefinition

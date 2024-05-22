@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\FractorXml\Tests\Fixtures;
 
+use a9f\Fractor\Application\ValueObject\File;
 use a9f\FractorXml\Contract\DomNodeVisitor;
 
 class CollectingDomNodeVisitor implements DomNodeVisitor
@@ -13,7 +14,7 @@ class CollectingDomNodeVisitor implements DomNodeVisitor
      */
     public array $calls = [];
 
-    public function beforeTraversal(\DOMNode $rootNode): void
+    public function beforeTraversal(File $file, \DOMNode $rootNode): void
     {
         $this->calls[] = sprintf('beforeTraversal:%s', $rootNode->nodeName);
     }
