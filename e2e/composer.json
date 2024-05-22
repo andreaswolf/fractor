@@ -2,13 +2,7 @@
   "name": "a9f/fractor-tests-typo3-flexform",
   "type": "project",
   "require": {
-    "a9f/fractor": "@dev",
-    "a9f/fractor-doc-generator": "@dev",
-    "a9f/fractor-extension-installer": "@dev",
-    "a9f/fractor-fluid": "@dev",
-    "a9f/fractor-xml": "@dev",
-    "a9f/fractor-yaml": "@dev",
-    "a9f/typo3-fractor": "@dev"
+    "a9f/typo3-fractor": "^0.1"
   },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.42"
@@ -16,7 +10,7 @@
   "repositories": {
     "fractor": {
       "type": "path",
-      "url": "../*"
+      "url": "../packages/*"
     }
   },
   "config": {
@@ -24,5 +18,7 @@
       "a9f/fractor-extension-installer": true,
       "ergebnis/composer-normalize": true
     }
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

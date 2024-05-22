@@ -15,11 +15,11 @@ jobs:
             command: 'docs:generate'
         directory: ['typo3-fractor', 'fractor-composer-json']
 
-    name: ${{ matrix.composer-command.name }}/${{ matrix.directory }}
+    name: '${{ matrix.composer-command.name }}/packages/${{ matrix.directory }}'
 
     defaults:
       run:
-        working-directory: ${{ matrix.directory }}
+        working-directory: packages/${{ matrix.directory }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,13 +28,13 @@ jobs:
       - name: Install composer dependencies
         uses: php-actions/composer@v6
         with:
-          container_workdir: /app/${{ matrix.directory }}
+          container_workdir: /app/packages/${{ matrix.directory }}
           memory_limit: 512M
 
       - name: 'Run check "${{ matrix.composer-command.name }}"'
         uses: php-actions/composer@v6
         with:
-          container_workdir: /app/${{ matrix.directory }}
+          container_workdir: /app/packages/${{ matrix.directory }}
           command: ${{ matrix.composer-command.command }}
           memory_limit: 512M
       - name: "Commit documentation"

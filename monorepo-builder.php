@@ -13,6 +13,13 @@ use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateBranchAliasReleaseWorke
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateReplaceReleaseWorker;
 
 return static function (MBConfig $mbConfig): void {
+    $mbConfig->packageDirectories([__DIR__ . '/packages']);
+    $mbConfig->packageAliasFormat('<major>.<minor>.x-dev');
+    $mbConfig->defaultBranch('main');
+    $mbConfig->dataToRemove([
+        'minimum-stability' => 'dev',
+        'prefer-stable' => true,
+    ]);
     // release workers - in order of execution
     $mbConfig->workers([
         UpdateReplaceReleaseWorker::class,

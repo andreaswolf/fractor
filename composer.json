@@ -23,6 +23,11 @@
             "ergebnis/composer-normalize": true
         }
     },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
     "scripts": {
         "style:php:check": "ecs",
         "style:php:fix": "ecs --fix"

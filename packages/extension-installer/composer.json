@@ -1,0 +1,47 @@
+{
+    "name": "a9f/fractor-extension-installer",
+    "description": "Installer for Fractor extensions.",
+    "license": "MIT",
+    "type": "composer-plugin",
+    "authors": [
+        {
+            "name": "Andreas Wolf",
+            "email": "dev@a-w.io",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "composer-plugin-api": "^2.0"
+    },
+    "require-dev": {
+        "composer/composer": "^2.7",
+        "ergebnis/composer-normalize": "^2.42",
+        "phpstan/phpstan": "^1.10",
+        "rector/rector": "^1.0",
+        "symplify/easy-coding-standard": "^12.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "a9f\\FractorExtensionInstaller\\": "src/",
+            "a9f\\FractorExtensionInstaller\\Generated\\": "generated/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        },
+        "class": "a9f\\FractorExtensionInstaller\\InstallerPlugin"
+    },
+    "scripts": {
+        "analyze:php": "phpstan analyze",
+        "rector": "rector",
+        "style:php:check": "ecs",
+        "style:php:fix": "ecs --fix"
+    }
+}
