@@ -33,4 +33,56 @@ final readonly class EtaOrionisComposerJson implements ComposerJson
     {
         return $this->composerJson->toJsonString($this->composerJson->getJsonArray());
     }
+
+    public function addRequiredDevPackage(PackageAndVersion $packageAndVersion): void
+    {
+        $this->composerJson->addRequiredDevPackage(
+            $packageAndVersion->getPackageName(),
+            $packageAndVersion->getVersion()
+        );
+    }
+
+    public function changePackageVersion(PackageAndVersion $packageAndVersion): void
+    {
+        $this->composerJson->changePackageVersion(
+            $packageAndVersion->getPackageName(),
+            $packageAndVersion->getVersion()
+        );
+    }
+
+    public function removePackage(string $packageName): void
+    {
+        $this->composerJson->removePackage($packageName);
+    }
+
+    public function hasRequiredPackage(string $packageName): bool
+    {
+        return $this->composerJson->hasRequiredPackage($packageName);
+    }
+
+    public function hasRequiredDevPackage(string $packageName): bool
+    {
+        return $this->composerJson->hasRequiredDevPackage($packageName);
+    }
+
+    public function replaceRequiredPackage(RenamePackage $renamePackage): void
+    {
+        $version = $this->composerJson->getRequire()[$renamePackage->getOldPackageName()];
+        $this->replacePackage($version, $renamePackage);
+    }
+
+    public function replaceRequiredDevPackage(RenamePackage $renamePackage): void
+    {
+        $version = $this->composerJson->getRequireDev()[$renamePackage->getOldPackageName()];
+        $this->replacePackage($version, $renamePackage);
+    }
+
+    public function replacePackage(mixed $version, RenamePackage $renamePackage): void
+    {
+        $this->composerJson->replacePackage(
+            $renamePackage->getOldPackageName(),
+            $renamePackage->getNewPackageName(),
+            $version
+        );
+    }
 }
