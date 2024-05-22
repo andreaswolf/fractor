@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Testing\PHPUnit;
 
+use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Application\FilesCollector;
 use a9f\Fractor\Application\FractorRunner;
+use a9f\Fractor\Application\ValueObject\AppliedRule;
+use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Configuration\ConfigurationFactory;
 use a9f\Fractor\Console\Output\NullOutput;
 use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
@@ -117,6 +120,16 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
         FileSystem::write($inputFilePath, $inputFileContents, null);
 
         $this->doTestFileMatchesExpectedContent($inputFilePath, $expectedFileContents, $fixtureFilePath);
+    }
+
+    /**
+     * @param class-string<FractorRule> $rule
+     */
+    protected function assertThatRuleIsApplied(string $filePath, string $rule): void
+    {
+        $file = $this->fileCollector->getFileByPath($filePath);
+        self::assertInstanceOf(File::class, $file);
+        self::assertEquals([AppliedRule::fromClassString($rule)], $file->getAppliedRules());
     }
 
     private function bootContainer(): void
