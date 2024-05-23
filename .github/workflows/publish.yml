@@ -47,6 +47,6 @@ jobs:
 
       - name: Split and push
         run: |
-          SPLIT_REF=$(git subtree -P ${{ matrix.package.path }} split)
-          
+          SPLIT_REF=$(git subtree -P packages/${{ matrix.package.path }} split)
+
           git push ${{ matrix.package.repository }} $SPLIT_REF:${{ github.event.ref }} -f
