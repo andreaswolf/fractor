@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace a9f\FractorComposerJson\Tests\AddPackageToRequireComposerJsonFractorRule;
+namespace a9f\FractorComposerJson\Tests\AddPackageToRequireDevComposerJsonFractorRule;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use a9f\FractorComposerJson\AddPackageToRequireDevComposerJsonFractorRule;
