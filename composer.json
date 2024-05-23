@@ -48,16 +48,6 @@
         "a9f/fractor-yaml": "self.version",
         "a9f/typo3-fractor": "self.version"
     },
-    "replace": {
-        "a9f/fractor": "self.version",
-        "a9f/fractor-composer-json": "self.version",
-        "a9f/fractor-doc-generator": "self.version",
-        "a9f/fractor-extension-installer": "self.version",
-        "a9f/fractor-fluid": "self.version",
-        "a9f/fractor-xml": "self.version",
-        "a9f/fractor-yaml": "self.version",
-        "a9f/typo3-fractor": "self.version"
-    },
     "autoload": {
         "psr-4": {
             "a9f\\FractorComposerJson\\": [
