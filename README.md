@@ -33,15 +33,51 @@ At minimum, a configuration file must specify the paths to process:
 
 ```php
 <?php
-    
-use a9f\Fractor\DependencyInjection\FractorConfiguration;      
+
+use a9f\Fractor\Configuration\FractorConfiguration;
 
 return FractorConfiguration::configure()
     ->withPaths([__DIR__ . '/packages/'])
     ->withSets([
         Typo3LevelSetList::UP_TO_TYPO3_13
     ]);
+```
 
+If you want to apply only one specific rule you can do so:
+
+```php
+<?php
+
+use a9f\Fractor\Configuration\FractorConfiguration;
+use a9f\Typo3Fractor\TYPO3v7\FlexForm\AddRenderTypeToFlexFormFractor;
+use a9f\FractorComposerJson\AddPackageToRequireDevComposerJsonFractorRule;
+
+return FractorConfiguration::configure()
+    ->withPaths([__DIR__ . '/packages/'])
+    ->withConfiguredRule(AddPackageToRequireDevComposerJsonFractorRule::class, [new PackageAndVersion('vendor1/package3', '^3.0')]
+    )
+    ->withRules([AddRenderTypeToFlexFormFractor::class]);
+```
+
+You can even skip some rules or files and folders. Do it the following way:
+
+```php
+<?php
+
+use a9f\Fractor\Configuration\FractorConfiguration;
+
+return FractorConfiguration::configure()
+    ->withPaths([__DIR__ . '/packages/'])
+    ->withSkip([
+        __DIR__ . '/packages/my_package/crappy_file.txt',
+        AddRenderTypeToFlexFormFractor::class,
+        __DIR__ . '/packages/my_package/other_crappy_file.txt' => [
+            AddRenderTypeToFlexFormFractor::class,
+        ]
+    ])
+    ->withSets([
+        Typo3LevelSetList::UP_TO_TYPO3_13
+    ]);
 ```
 
 ## Processing
