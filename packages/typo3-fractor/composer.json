@@ -12,12 +12,12 @@
     ],
     "require": {
         "php": "^8.2",
-        "a9f/fractor": "^0.1.2",
-        "a9f/fractor-doc-generator": "^0.1.2",
-        "a9f/fractor-extension-installer": "^0.1.2",
-        "a9f/fractor-fluid": "^0.1.2",
-        "a9f/fractor-xml": "^0.1.2",
-        "a9f/fractor-yaml": "^0.1.2"
+        "a9f/fractor": "^0.2",
+        "a9f/fractor-doc-generator": "^0.2",
+        "a9f/fractor-extension-installer": "^0.2",
+        "a9f/fractor-fluid": "^0.2",
+        "a9f/fractor-xml": "^0.2",
+        "a9f/fractor-yaml": "^0.2"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",

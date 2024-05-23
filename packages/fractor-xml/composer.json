@@ -14,8 +14,8 @@
         "php": "^8.2",
         "ext-dom": "*",
         "ext-xml": "*",
-        "a9f/fractor": "^0.1.2",
-        "a9f/fractor-extension-installer": "^0.1.2",
+        "a9f/fractor": "^0.2",
+        "a9f/fractor-extension-installer": "^0.2",
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
