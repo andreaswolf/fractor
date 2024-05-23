@@ -10,13 +10,13 @@
         }
     ],
     "require": {
+        "php": "^8.2",
+        "ext-dom": "*",
+        "ext-xml": "*",
         "composer-plugin-api": "^2.0",
         "ergebnis/json-printer": "^3.5",
         "eta-orionis/composer-json-manipulator": "^1.0",
-        "ext-dom": "*",
-        "ext-xml": "*",
         "nette/utils": "^4.0",
-        "php": "^8.2",
         "sebastian/diff": "^5.0",
         "symfony/config": "^6.4",
         "symfony/console": "^6.4",
@@ -24,8 +24,6 @@
         "symfony/filesystem": "^6.4",
         "symfony/finder": "^6.4",
         "symfony/yaml": "^6.0",
-        "symplify/rule-doc-generator": "12.1.3",
-        "symplify/rule-doc-generator-contracts": "^11.2",
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
@@ -36,11 +34,22 @@
         "phpunit/phpunit": "^10.5",
         "rector/rector": "^1.0",
         "symplify/easy-coding-standard": "^12.1",
-        "symplify/monorepo-builder": "^11.2"
+        "symplify/monorepo-builder": "^11.2",
+        "symplify/rule-doc-generator": "12.1.3",
+        "symplify/rule-doc-generator-contracts": "^11.2"
+    },
+    "replace": {
+        "a9f/fractor": "self.version",
+        "a9f/fractor-composer-json": "self.version",
+        "a9f/fractor-doc-generator": "self.version",
+        "a9f/fractor-extension-installer": "self.version",
+        "a9f/fractor-fluid": "self.version",
+        "a9f/fractor-xml": "self.version",
+        "a9f/fractor-yaml": "self.version",
+        "a9f/typo3-fractor": "self.version"
     },
     "autoload": {
         "psr-4": {
-            "a9f\\FractorMonorepo\\": "src",
             "a9f\\FractorComposerJson\\": [
                 "packages/fractor-composer-json/rules",
                 "packages/fractor-composer-json/src"
@@ -49,6 +58,7 @@
             "a9f\\FractorExtensionInstaller\\": "packages/extension-installer/src/",
             "a9f\\FractorExtensionInstaller\\Generated\\": "packages/extension-installer/generated/",
             "a9f\\FractorFluid\\": "packages/fractor-fluid/src/",
+            "a9f\\FractorMonorepo\\": "src",
             "a9f\\FractorXml\\": "packages/fractor-xml/src/",
             "a9f\\FractorYaml\\": "packages/fractor-yaml/src/",
             "a9f\\Fractor\\": "packages/fractor/src/",
@@ -59,9 +69,6 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "packages/fractor-doc-generator/stubs"
-        ],
         "psr-4": {
             "a9f\\FractorComposerJson\\Tests\\": "packages/fractor-composer-json/tests/",
             "a9f\\FractorDocGenerator\\Tests\\": "packages/fractor-doc-generator/tests/",
@@ -70,7 +77,10 @@
             "a9f\\FractorYaml\\Tests\\": "packages/fractor-yaml/tests/",
             "a9f\\Fractor\\Tests\\": "packages/fractor/tests/",
             "a9f\\Typo3Fractor\\Tests\\": "packages/typo3-fractor/tests/"
-        }
+        },
+        "classmap": [
+            "packages/fractor-doc-generator/stubs"
+        ]
     },
     "config": {
         "allow-plugins": {
@@ -83,15 +93,5 @@
     "scripts": {
         "style:php:check": "ecs",
         "style:php:fix": "ecs --fix"
-    },
-    "replace": {
-        "a9f/fractor": "self.version",
-        "a9f/fractor-composer-json": "self.version",
-        "a9f/fractor-doc-generator": "self.version",
-        "a9f/fractor-extension-installer": "self.version",
-        "a9f/fractor-fluid": "self.version",
-        "a9f/fractor-xml": "self.version",
-        "a9f/fractor-yaml": "self.version",
-        "a9f/typo3-fractor": "self.version"
     }
 }
