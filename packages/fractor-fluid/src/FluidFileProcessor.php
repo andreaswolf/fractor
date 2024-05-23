@@ -7,16 +7,18 @@ namespace a9f\FractorFluid;
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\AppliedRule;
 use a9f\Fractor\Application\ValueObject\File;
-use a9f\Fractor\Rules\RulesProvider;
 use a9f\FractorFluid\Contract\FluidFractorRule;
 
+/**
+ * @implements FileProcessor<FluidFractorRule>
+ */
 final readonly class FluidFileProcessor implements FileProcessor
 {
     /**
-     * @param RulesProvider<FluidFractorRule> $rulesProvider
+     * @param iterable<FluidFractorRule> $rules
      */
     public function __construct(
-        private RulesProvider $rulesProvider
+        private iterable $rules
     ) {
     }
 
@@ -25,9 +27,9 @@ final readonly class FluidFileProcessor implements FileProcessor
         return in_array($file->getFileExtension(), $this->allowedFileExtensions(), true);
     }
 
-    public function handle(File $file): void
+    public function handle(File $file, iterable $appliedRules): void
     {
-        foreach ($this->rulesProvider->getApplicableRules($file) as $rule) {
+        foreach ($appliedRules as $rule) {
             $newContent = $rule->refactor($file->getContent());
 
             if ($newContent !== $file->getContent()) {
@@ -40,5 +42,10 @@ final readonly class FluidFileProcessor implements FileProcessor
     public function allowedFileExtensions(): array
     {
         return ['html', 'xml', 'txt'];
+    }
+
+    public function getAllRules(): iterable
+    {
+        return $this->rules;
     }
 }

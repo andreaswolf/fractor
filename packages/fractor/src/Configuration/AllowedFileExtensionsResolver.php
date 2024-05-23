@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace a9f\Fractor\Configuration;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
+use a9f\Fractor\Application\Contract\FractorRule;
 use Webmozart\Assert\Assert;
 
 final readonly class AllowedFileExtensionsResolver
 {
     /**
-     * @param FileProcessor[] $processors
+     * @param iterable<FileProcessor<FractorRule>> $processors
      */
     public function __construct(
         private iterable $processors

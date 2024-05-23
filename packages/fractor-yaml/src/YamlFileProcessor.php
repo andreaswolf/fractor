@@ -7,19 +7,21 @@ namespace a9f\FractorYaml;
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\AppliedRule;
 use a9f\Fractor\Application\ValueObject\File;
-use a9f\Fractor\Rules\RulesProvider;
 use a9f\Fractor\ValueObject\Indent;
 use a9f\FractorYaml\Contract\YamlDumper;
 use a9f\FractorYaml\Contract\YamlFractorRule;
 use a9f\FractorYaml\Contract\YamlParser;
 
+/**
+ * @implements FileProcessor<YamlFractorRule>
+ */
 final readonly class YamlFileProcessor implements FileProcessor
 {
     /**
-     * @param RulesProvider<YamlFractorRule> $rulesProvider
+     * @param iterable<YamlFractorRule> $rules
      */
     public function __construct(
-        private RulesProvider $rulesProvider,
+        private iterable $rules,
         private YamlParser $yamlParser,
         private YamlDumper $yamlDumper
     ) {
@@ -30,14 +32,14 @@ final readonly class YamlFileProcessor implements FileProcessor
         return in_array($file->getFileExtension(), $this->allowedFileExtensions(), true);
     }
 
-    public function handle(File $file): void
+    public function handle(File $file, iterable $appliedRules): void
     {
         $yaml = $this->yamlParser->parse($file);
         $indent = Indent::fromFile($file);
 
         $newYaml = $yaml;
 
-        foreach ($this->rulesProvider->getApplicableRules($file) as $rule) {
+        foreach ($appliedRules as $rule) {
             $oldYaml = $newYaml;
             $newYaml = $rule->refactor($newYaml);
 
@@ -57,5 +59,10 @@ final readonly class YamlFileProcessor implements FileProcessor
     public function allowedFileExtensions(): array
     {
         return ['yaml', 'yml'];
+    }
+
+    public function getAllRules(): iterable
+    {
+        return $this->rules;
     }
 }
