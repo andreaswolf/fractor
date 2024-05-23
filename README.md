@@ -91,6 +91,14 @@ Execute Fractor from the command line, passing the path to your configuration fi
 Fractor will apply the rules specified in the configuration file to the targeted files.
 Review the changes made by Fractor to ensure they meet your expectations.
 
+You would also run fractor in dry mode:
+
+```
+./vendor/bin/fractor process -f fractor.php --dry-run
+```
+
+Fractor will output all the potential changes on the console without really execution.
+
 ## Customization
 
 You can modify existing rules or create new ones to tailor Fractor's behavior to your specific needs.
