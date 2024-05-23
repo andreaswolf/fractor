@@ -1,0 +1,71 @@
+name: 'Packages Split'
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
+env:
+  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+jobs:
+  packages_split:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          -
+            local_path: 'fractor'
+            split_repository: 'fractor-fractor'
+          -
+            local_path: 'extension-installer'
+            split_repository: 'fractor-extension-installer'
+          -
+            local_path: 'typo3-fractor'
+            split_repository: 'fractor-typo3-fractor'
+          -
+            local_path: 'fractor-xml'
+            split_repository: 'fractor-xml'
+          -
+            local_path: 'fractor-doc-generator'
+            split_repository: 'fractor-doc-generator'
+          -
+            local_path: 'fractor-fluid'
+            split_repository: 'fractor-fluid'
+          -
+            local_path: 'fractor-yaml'
+            split_repository: 'fractor-yaml'
+    steps:
+      -   uses: actions/checkout@v2
+
+      # no tag
+      -
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        uses: "symplify/monorepo-split-github-action@2.1"
+        with:
+          package_directory: 'packages/${{ matrix.package.local_path }}'
+
+          repository_organization: 'andreaswolf'
+          repository_name: '${{ matrix.package.split_repository }}'
+
+          user_name: "fractor-ci"
+          user_email: "dev@a-w.io"
+
+      # with tag
+      -
+        if: "startsWith(github.ref, 'refs/tags/')"
+        uses: "symplify/monorepo-split-github-action@2.1"
+        with:
+          tag: ${GITHUB_REF#refs/tags/}
+
+          package_directory: 'packages/${{ matrix.package.local_path }}'
+
+          repository_organization: 'andreaswolf'
+          repository_name: '${{ matrix.package.split_repository }}'
+
+          user_name: "fractor-ci"
+          user_email: "dev@a-w.io"
