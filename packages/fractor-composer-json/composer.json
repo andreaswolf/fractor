@@ -13,7 +13,6 @@
     "require": {
         "php": "^8.2",
         "a9f/fractor": "^0.2",
-        "a9f/fractor-doc-generator": "^0.2",
         "a9f/fractor-extension-installer": "^0.2",
         "ergebnis/json-printer": "^3.5",
         "eta-orionis/composer-json-manipulator": "^1.0",
@@ -21,6 +20,7 @@
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
+        "a9f/fractor-doc-generator": "^0.2",
         "ergebnis/composer-normalize": "^2.42",
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^10.5",

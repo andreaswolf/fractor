@@ -13,13 +13,13 @@
     "require": {
         "php": "^8.2",
         "a9f/fractor": "^0.2",
-        "a9f/fractor-doc-generator": "^0.2",
         "a9f/fractor-extension-installer": "^0.2",
         "a9f/fractor-fluid": "^0.2",
         "a9f/fractor-xml": "^0.2",
         "a9f/fractor-yaml": "^0.2"
     },
     "require-dev": {
+        "a9f/fractor-doc-generator": "^0.2",
         "ergebnis/composer-normalize": "^2.42",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-phpunit": "^1.3",
