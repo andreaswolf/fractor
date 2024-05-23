@@ -2,7 +2,7 @@
   "name": "a9f/fractor-tests-typo3-flexform",
   "type": "project",
   "require": {
-    "a9f/typo3-fractor": "^0.1"
+    "a9f/typo3-fractor": "@dev"
   },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.42"
