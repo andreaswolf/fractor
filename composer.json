@@ -40,7 +40,7 @@
     },
     "autoload": {
         "psr-4": {
-            "A9f\\FractorMonorepo\\": "src/",
+            "a9f\\FractorMonorepo\\": "src",
             "a9f\\FractorComposerJson\\": [
                 "packages/fractor-composer-json/rules",
                 "packages/fractor-composer-json/src"

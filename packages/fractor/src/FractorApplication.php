@@ -10,8 +10,10 @@ final class FractorApplication extends Application
 {
     public const NAME = 'Fractor';
 
+    private const FRACTOR_CONSOLE_VERSION = '0.1.0';
+
     public function __construct()
     {
-        parent::__construct(self::NAME, 'dev');
+        parent::__construct(self::NAME, self::FRACTOR_CONSOLE_VERSION);
     }
 }
