@@ -10,7 +10,6 @@ use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\Fractor\Rules\RulesProvider;
 use a9f\FractorXml\Contract\XmlFractor;
 use a9f\FractorXml\ValueObjectFactory\DomDocumentFactory;
-use DOMDocument;
 
 final readonly class XmlFileProcessor implements FileProcessor
 {
@@ -56,7 +55,7 @@ final readonly class XmlFileProcessor implements FileProcessor
         return ['xml'];
     }
 
-    private function saveXml(DOMDocument $document): string
+    private function saveXml(\DOMDocument $document): string
     {
         $xml = $document->saveXML();
         if ($xml === false) {

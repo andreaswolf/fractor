@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rules\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidRector;
+namespace a9f\Typo3Fractor\Tests\Rules\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidRector;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use Iterator;
