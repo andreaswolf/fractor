@@ -12,8 +12,8 @@
     ],
     "require": {
         "php": "^8.2",
-        "a9f/fractor": "^0.1.1",
-        "a9f/fractor-extension-installer": "^0.1.1",
+        "a9f/fractor": "^0.1.2",
+        "a9f/fractor-extension-installer": "^0.1.2",
         "symfony/yaml": "^6.0",
         "webmozart/assert": "^1.11"
     },
