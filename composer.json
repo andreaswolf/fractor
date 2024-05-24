@@ -101,8 +101,8 @@
             "@merge-composer-json"
         ],
         "docs": [
-            "fractor-doc-generator generate packages/typo3-fractor/rules --output-file packages/typo3-fractor/docs/typo3-fractor-rules.md",
-            "fractor-doc-generator generate packages/fractor-composer-json/rules --output-file packages/fractor-composer-json/docs/composer-json-fractor-rules.md"
+            "packages/fractor-doc-generator/bin/fractor-doc-generator generate packages/typo3-fractor/rules --output-file packages/typo3-fractor/docs/typo3-fractor-rules.md",
+            "packages/fractor-doc-generator/bin/fractor-doc-generator generate packages/fractor-composer-json/rules --output-file packages/fractor-composer-json/docs/composer-json-fractor-rules.md"
         ],
         "merge-composer-json": "monorepo-builder merge",
         "propagate": "monorepo-builder propagate",
