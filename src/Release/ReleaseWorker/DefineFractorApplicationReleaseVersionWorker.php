@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace a9f\FractorMonorepo\Release\ReleaseWorker;
@@ -9,8 +10,9 @@ use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterfa
 
 final readonly class DefineFractorApplicationReleaseVersionWorker implements ReleaseWorkerInterface
 {
-    public function __construct(private FractorApplicationReleaseWriter $fractorApplicationReleaseWriter)
-    {
+    public function __construct(
+        private FractorApplicationReleaseWriter $fractorApplicationReleaseWriter
+    ) {
     }
 
     public function getDescription(Version $version): string

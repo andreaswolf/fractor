@@ -10,7 +10,7 @@ env:
   COMPOSER_ROOT_VERSION: "dev-main"
 
 jobs:
-  php-check:
+  php-packages-check:
     runs-on: ubuntu-latest
     continue-on-error: true
     strategy:
@@ -32,7 +32,7 @@ jobs:
           - directory: extension-installer
             composer-command: {name: 'PHPUnit', command: 'test:php'}
 
-    name: '${{ matrix.composer-command.name }}/${{ matrix.directory }}'
+    name: ${{ matrix.composer-command.name }}/${{ matrix.directory }}
 
     steps:
       - uses: actions/checkout@v4
@@ -52,7 +52,42 @@ jobs:
           command: ${{ matrix.composer-command.command }}
           memory_limit: 512M
 
-  tests:
+  php-root-check:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        composer-command:
+          - name: PHP Code Style
+            command: 'style:php:check'
+          - name: Composer normalize
+            command: 'normalize --dry-run'
+          - name: PHPStan
+            command: analyze:php
+          - name: Rector
+            command: 'rector --dry-run'
+    name: ${{ matrix.composer-command.name }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Install composer dependencies
+        uses: php-actions/composer@v6
+        with:
+          container_workdir: /app/
+          memory_limit: 512M
+
+      - name: 'Run check "${{ matrix.composer-command.name }}"'
+        uses: php-actions/composer@v6
+        with:
+          container_workdir: /app/
+          command: ${{ matrix.composer-command.command }}
+          memory_limit: 512M
+
+  e2e-tests:
     runs-on: ubuntu-latest
     name: End to end tests
     steps:

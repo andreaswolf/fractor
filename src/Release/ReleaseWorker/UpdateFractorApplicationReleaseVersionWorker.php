@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace a9f\FractorMonorepo\Release\ReleaseWorker;
@@ -8,13 +9,15 @@ use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
-final class UpdateFractorApplicationReleaseVersionWorker implements ReleaseWorkerInterface
+final readonly class UpdateFractorApplicationReleaseVersionWorker implements ReleaseWorkerInterface
 {
-    public function __construct(private FractorApplicationReleaseWriter $fractorApplicationReleaseWriter, private VersionUtils $versionUtils)
-    {
+    public function __construct(
+        private FractorApplicationReleaseWriter $fractorApplicationReleaseWriter,
+        private VersionUtils $versionUtils
+    ) {
     }
 
-    public function getDescription(Version $version) : string
+    public function getDescription(Version $version): string
     {
         return $this->fractorApplicationReleaseWriter->getDescription($this->getVersionDev($version));
     }
@@ -24,7 +27,7 @@ final class UpdateFractorApplicationReleaseVersionWorker implements ReleaseWorke
         $this->fractorApplicationReleaseWriter->write($this->getVersionDev($version));
     }
 
-    private function getVersionDev(Version $version) : string
+    private function getVersionDev(Version $version): string
     {
         return $this->versionUtils->getNextAliasFormat($version);
     }
