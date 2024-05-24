@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace a9f\FractorMonorepo\Release;
@@ -13,7 +14,11 @@ final class FractorApplicationReleaseWriter
     {
         $applicationFile = __DIR__ . '/../../packages/fractor/src/FractorApplication.php';
         $content = Filesystem::read($applicationFile);
-        $content = Strings::replace($content, '/(const FRACTOR_CONSOLE_VERSION = \')\d+\.\d+\.\d+/', 'const FRACTOR_CONSOLE_VERSION = \'' . $version);
+        $content = Strings::replace(
+            $content,
+            '/(const FRACTOR_CONSOLE_VERSION = \')\d+\.\d+\.\d+/',
+            'const FRACTOR_CONSOLE_VERSION = \'' . $version
+        );
         FileSystem::write($applicationFile, $content);
     }
 
