@@ -1,4 +1,4 @@
-# Rector Extension Installer
+# Fractor Extension Installer
 
 Composer plugin for automatic installation of Fractor extensions.
 
@@ -12,7 +12,7 @@ composer require --dev a9f/fractor-extension-installer
 
 It's best to set the extension's composer package [type](https://getcomposer.org/doc/04-schema.md#type) to `fractor-extension` for this plugin to be able to recognize it and to be [discoverable on Packagist](https://packagist.org/explore/?type=fractor-extension).
 
-Add `rector` key in the extension `composer.json`'s `extra` section:
+Add `fractor` key in the extension `composer.json`'s `extra` section:
 
 ```json
 {
