@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace a9f\FractorComposerJson;
@@ -32,7 +33,7 @@ final class RenamePackageComposerJsonFractorRule implements ComposerJsonFractorR
 
     public function configure(array $configuration): void
     {
-        Assert::allIsAOf($configuration, RenamePackage::class);
+        Assert::allIsInstanceOf($configuration, RenamePackage::class);
         $this->renamePackages = $configuration;
     }
 

@@ -10,7 +10,6 @@ if (interface_exists(FractorRule::class)) {
     return;
 }
 
-
 interface FractorRule extends DocumentedRuleInterface
 {
 }

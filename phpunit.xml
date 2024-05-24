@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" bootstrap="vendor/autoload.php" colors="true" cacheDirectory=".phpunit.cache">
+    <source>
+        <include>
+            <directory>./src</directory>
+            <directory>packages/*/src</directory>
+        </include>
+    </source>
+    <testsuite name="all">
+        <directory>packages/**/tests</directory>
+    </testsuite>
+</phpunit>

@@ -31,4 +31,6 @@ interface ComposerJson
     public function replaceRequiredPackage(RenamePackage $renamePackage): void;
 
     public function replaceRequiredDevPackage(RenamePackage $renamePackage): void;
+
+    public function replacePackage(string $version, RenamePackage $renamePackage): void;
 }

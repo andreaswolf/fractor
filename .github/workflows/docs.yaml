@@ -12,35 +12,23 @@ jobs:
       # Give the default GITHUB_TOKEN write permission to commit and push the
       # added or changed files to the repository.
       contents: write
-    strategy:
-      matrix:
-        composer-command:
-          - name: Generate docs
-            command: 'docs:generate'
-        directory: ['typo3-fractor', 'fractor-composer-json']
 
-    name: '${{ matrix.composer-command.name }}/packages/${{ matrix.directory }}'
-
-    defaults:
-      run:
-        working-directory: packages/${{ matrix.directory }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Install composer dependencies
-        uses: php-actions/composer@v6
+      - name: "Setup PHP"
+        uses: shivammathur/setup-php@v2
         with:
-          container_workdir: /app/packages/${{ matrix.directory }}
-          memory_limit: 512M
+          php-version: 8.2
+          coverage: none
 
-      - name: 'Run check "${{ matrix.composer-command.name }}"'
-        uses: php-actions/composer@v6
-        with:
-          container_workdir: /app/packages/${{ matrix.directory }}
-          command: ${{ matrix.composer-command.command }}
-          memory_limit: 512M
+      # see https://github.com/ramsey/composer-install
+      - name: "Install Composer dependencies"
+        uses: ramsey/composer-install@v3
+
+      - name: "Generate documentation"
+        run: "composer docs"
+
       - name: 'Set Branch Name'
         id: set-branch-name
         run: |

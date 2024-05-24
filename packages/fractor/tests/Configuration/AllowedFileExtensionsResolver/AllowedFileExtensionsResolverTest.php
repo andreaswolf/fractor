@@ -15,7 +15,14 @@ final class AllowedFileExtensionsResolverTest extends AbstractFractorTestCase
         $allowedFileExtensionsResolver = $this->getService(AllowedFileExtensionsResolver::class);
 
         // Act & Assert
-        self::assertSame(['txt'], $allowedFileExtensionsResolver->resolve());
+        $allowedFileExtensions = $allowedFileExtensionsResolver->resolve();
+
+        self::assertContains('yaml', $allowedFileExtensions);
+        self::assertContains('yml', $allowedFileExtensions);
+        self::assertContains('json', $allowedFileExtensions);
+        self::assertContains('xml', $allowedFileExtensions);
+        self::assertContains('html', $allowedFileExtensions);
+        self::assertContains('txt', $allowedFileExtensions);
     }
 
     protected function additionalConfigurationFiles(): array

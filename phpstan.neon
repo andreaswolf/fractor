@@ -1,5 +1,12 @@
 parameters:
     level: 8
-
+    parallel:
+        # to prevent full thread lagging pc
+        maximumNumberOfProcesses: 7
     paths:
         - src/
+        - packages/
+        - ecs.php
+        - rector.php
+    excludePaths:
+        - packages/extension-installer/generated
