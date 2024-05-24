@@ -120,6 +120,7 @@
         "rector": "rector --dry-run",
         "release": "monorepo-builder release patch",
         "style:composer:normalize": [
+            "@composer normalize --dry-run",
             "@composer normalize --dry-run e2e/composer.json",
             "@composer normalize --dry-run packages/extension-installer/composer.json",
             "@composer normalize --dry-run packages/fractor/composer.json",
@@ -131,7 +132,7 @@
             "@composer normalize --dry-run packages/typo3-fractor/composer.json"
         ],
         "style:composer:normalize:fix": [
-            "@composer normalize --no-check-lock composer.json",
+            "@composer normalize --no-check-lock",
             "@composer normalize --no-check-lock e2e/composer.json",
             "@composer normalize --no-check-lock packages/extension-installer/composer.json",
             "@composer normalize --no-check-lock packages/fractor/composer.json",
