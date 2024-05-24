@@ -1,0 +1,7 @@
+{
+    "name": "package/package-1",
+    "type": "fractor-extension",
+    "extra": {
+
+    }
+}

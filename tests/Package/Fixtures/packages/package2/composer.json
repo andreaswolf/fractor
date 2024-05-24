@@ -1,0 +1,7 @@
+{
+    "name": "package/package-2",
+    "type": "fractor-extension",
+    "extra": {
+        "split-repository": "fractor-package-2"
+    }
+}

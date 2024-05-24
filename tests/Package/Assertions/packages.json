@@ -1,0 +1,14 @@
+[
+    {
+        "local_path": "package1",
+        "split_repository": "fractor-package-1"
+    },
+    {
+        "local_path": "package2",
+        "split_repository": "fractor-package-2"
+    },
+    {
+        "local_path": "package3",
+        "split_repository": "package3"
+    }
+]

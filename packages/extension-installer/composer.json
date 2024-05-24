@@ -27,6 +27,7 @@
         "branch-alias": {
             "dev-main": "0.2-dev"
         },
-        "class": "a9f\\FractorExtensionInstaller\\InstallerPlugin"
+        "class": "a9f\\FractorExtensionInstaller\\InstallerPlugin",
+        "split-repository": "fractor-extension-installer"
     }
 }

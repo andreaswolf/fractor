@@ -73,6 +73,7 @@
             "a9f\\FractorComposerJson\\Tests\\": "packages/fractor-composer-json/tests/",
             "a9f\\FractorDocGenerator\\Tests\\": "packages/fractor-doc-generator/tests/",
             "a9f\\FractorFluid\\Tests\\": "packages/fractor-fluid/tests/",
+            "a9f\\FractorMonorepo\\Tests\\": "tests",
             "a9f\\FractorXml\\Tests\\": "packages/fractor-xml/tests/",
             "a9f\\FractorYaml\\Tests\\": "packages/fractor-yaml/tests/",
             "a9f\\Fractor\\Tests\\": "packages/fractor/tests/",
@@ -89,7 +90,12 @@
         }
     },
     "extra": {
-        "class": "a9f\\FractorExtensionInstaller\\InstallerPlugin"
+        "class": "a9f\\FractorExtensionInstaller\\InstallerPlugin",
+        "split-repository": [
+            "fractor-extension-installer",
+            "fractor-fractor",
+            "fractor-typo3-fractor"
+        ]
     },
     "scripts": {
         "post-install-cmd": [

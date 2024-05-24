@@ -52,6 +52,7 @@
     "extra": {
         "branch-alias": {
             "dev-main": "0.2-dev"
-        }
+        },
+        "split-repository": "fractor-typo3-fractor"
     }
 }

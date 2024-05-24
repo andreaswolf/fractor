@@ -11,34 +11,40 @@ env:
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
-  packages_split:
+  provide_packages_json:
+    # see json juggling: https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#example-6
+    # see https://stackoverflow.com/a/62953566/1348344
     runs-on: ubuntu-latest
 
+    steps:
+      -
+        uses: actions/checkout@v2
+
+      # required for matrix of packages set
+      -   uses: shivammathur/setup-php@v2
+          with:
+            php-version: '8.2'
+            coverage: none
+
+      -   uses: "ramsey/composer-install@v3"
+
+      # get package json list
+      -
+        id: output_data
+        run: echo "::set-output name=matrix::$(bin/packages-json)"
+
+    # this step is needed, so the output gets to the next defined job
+    outputs:
+      matrix: ${{ steps.output_data.outputs.matrix }}
+
+  packages_split:
+    needs: provide_packages_json
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        package:
-          -
-            local_path: 'fractor'
-            split_repository: 'fractor-fractor'
-          -
-            local_path: 'extension-installer'
-            split_repository: 'fractor-extension-installer'
-          -
-            local_path: 'typo3-fractor'
-            split_repository: 'fractor-typo3-fractor'
-          -
-            local_path: 'fractor-xml'
-            split_repository: 'fractor-xml'
-          -
-            local_path: 'fractor-doc-generator'
-            split_repository: 'fractor-doc-generator'
-          -
-            local_path: 'fractor-fluid'
-            split_repository: 'fractor-fluid'
-          -
-            local_path: 'fractor-yaml'
-            split_repository: 'fractor-yaml'
+        package: ${{fromJson(needs.provide_packages_json.outputs.matrix)}}
+
     steps:
       -   uses: actions/checkout@v2
 
@@ -48,10 +54,8 @@ jobs:
         uses: "symplify/monorepo-split-github-action@2.1"
         with:
           package_directory: 'packages/${{ matrix.package.local_path }}'
-
           repository_organization: 'andreaswolf'
           repository_name: '${{ matrix.package.split_repository }}'
-
           user_name: "fractor-ci"
           user_email: "dev@a-w.io"
 
@@ -61,11 +65,8 @@ jobs:
         uses: "symplify/monorepo-split-github-action@2.1"
         with:
           tag: ${GITHUB_REF#refs/tags/}
-
           package_directory: 'packages/${{ matrix.package.local_path }}'
-
           repository_organization: 'andreaswolf'
           repository_name: '${{ matrix.package.split_repository }}'
-
           user_name: "fractor-ci"
           user_email: "dev@a-w.io"
