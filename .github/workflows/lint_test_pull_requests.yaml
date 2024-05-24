@@ -20,72 +20,34 @@ jobs:
           - name: PHP Code Style
             command: 'style:php:check'
           - name: Composer normalize
-            command: 'normalize --dry-run'
+            command: 'style:composer:normalize'
           - name: PHPStan
             command: analyze:php
           - name: PHPUnit
             command: test:php
           - name: Rector
-            command: 'rector --dry-run'
-        directory: ['extension-installer', 'fractor', 'fractor-xml', 'typo3-fractor', 'fractor-doc-generator', 'fractor-yaml', 'fractor-fluid', 'fractor-composer-json']
-        exclude:
-          - directory: extension-installer
-            composer-command: {name: 'PHPUnit', command: 'test:php'}
+            command: 'rector'
 
-    name: ${{ matrix.composer-command.name }}/${{ matrix.directory }}
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Install composer dependencies
-        uses: php-actions/composer@v6
-        with:
-          container_workdir: /app/packages/${{ matrix.directory }}
-          memory_limit: 512M
-
-      - name: 'Run check "${{ matrix.composer-command.name }}"'
-        uses: php-actions/composer@v6
-        with:
-          container_workdir: /app/packages/${{ matrix.directory }}
-          command: ${{ matrix.composer-command.command }}
-          memory_limit: 512M
-
-  php-root-check:
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    strategy:
-      fail-fast: false
-      matrix:
-        composer-command:
-          - name: PHP Code Style
-            command: 'style:php:check'
-          - name: Composer normalize
-            command: 'normalize --dry-run'
-          - name: PHPStan
-            command: analyze:php
-          - name: Rector
-            command: 'rector --dry-run'
     name: ${{ matrix.composer-command.name }}
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
+      - name: "Checkout"
+        uses: actions/checkout@v4
 
-      - name: Install composer dependencies
-        uses: php-actions/composer@v6
+      # see https://github.com/shivammathur/setup-php
+      - name: "Setup PHP"
+        uses: shivammathur/setup-php@v2
         with:
-          container_workdir: /app/
-          memory_limit: 512M
+          php-version: 8.2
+          coverage: none
+
+      # see https://github.com/ramsey/composer-install
+      - name: "Install Composer dependencies"
+        uses: ramsey/composer-install@v3
 
       - name: 'Run check "${{ matrix.composer-command.name }}"'
-        uses: php-actions/composer@v6
-        with:
-          container_workdir: /app/
-          command: ${{ matrix.composer-command.command }}
-          memory_limit: 512M
+        run: composer ${{ matrix.composer-command.command }}
+
 
   e2e-tests:
     runs-on: ubuntu-latest

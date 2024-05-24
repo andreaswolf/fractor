@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace a9f\FractorComposerJson;
@@ -23,14 +24,17 @@ final class ReplacePackageAndVersionComposerJsonFractorRule implements ComposerJ
         foreach ($this->replacePackagesAndVersions as $replacePackageAndVersion) {
             $composerJson->replacePackage(
                 $replacePackageAndVersion->getVersion(),
-                new RenamePackage($replacePackageAndVersion->getOldPackageName(), $replacePackageAndVersion->getNewPackageName())
+                new RenamePackage(
+                    $replacePackageAndVersion->getOldPackageName(),
+                    $replacePackageAndVersion->getNewPackageName()
+                )
             );
         }
     }
 
     public function configure(array $configuration): void
     {
-        Assert::allIsAOf($configuration, ReplacePackageAndVersion::class);
+        Assert::allIsInstanceOf($configuration, ReplacePackageAndVersion::class);
 
         $this->replacePackagesAndVersions = $configuration;
     }

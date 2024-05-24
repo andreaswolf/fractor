@@ -77,7 +77,7 @@ final readonly class EtaOrionisComposerJson implements ComposerJson
         $this->replacePackage($version, $renamePackage);
     }
 
-    public function replacePackage(mixed $version, RenamePackage $renamePackage): void
+    public function replacePackage(string $version, RenamePackage $renamePackage): void
     {
         $this->composerJson->replacePackage(
             $renamePackage->getOldPackageName(),

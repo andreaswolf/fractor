@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use a9f\Fractor\Configuration\ConfigResolver;
 use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
 use a9f\Fractor\FractorApplication;
@@ -19,7 +21,7 @@ $autoloadFile = (static function (): ?string {
     return null;
 })();
 if ($autoloadFile === null) {
-    echo "Could not find autoload.php file";
+    echo 'Could not find autoload.php file';
     exit(1);
 }
 include $autoloadFile;

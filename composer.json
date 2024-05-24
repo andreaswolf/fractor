@@ -96,8 +96,23 @@
             "@style:composer:normalize:fix",
             "@merge-composer-json"
         ],
+        "propagate": "monorepo-builder propagate",
+        "validate-monorepo": "monorepo-builder validate",
+        "release": "monorepo-builder release patch",
         "merge-composer-json": "monorepo-builder merge",
-        "rector": "rector",
+        "rectify": "rector",
+        "rector": "rector --dry-run",
+        "style:composer:normalize": [
+            "@composer normalize --dry-run e2e/composer.json",
+            "@composer normalize --dry-run packages/extension-installer/composer.json",
+            "@composer normalize --dry-run packages/fractor/composer.json",
+            "@composer normalize --dry-run packages/fractor-composer-json/composer.json",
+            "@composer normalize --dry-run packages/fractor-doc-generator/composer.json",
+            "@composer normalize --dry-run packages/fractor-fluid/composer.json",
+            "@composer normalize --dry-run packages/fractor-xml/composer.json",
+            "@composer normalize --dry-run packages/fractor-yaml/composer.json",
+            "@composer normalize --dry-run packages/typo3-fractor/composer.json"
+        ],
         "style:composer:normalize:fix": [
             "@composer normalize --no-check-lock e2e/composer.json",
             "@composer normalize --no-check-lock packages/extension-installer/composer.json",
@@ -109,7 +124,12 @@
             "@composer normalize --no-check-lock packages/fractor-yaml/composer.json",
             "@composer normalize --no-check-lock packages/typo3-fractor/composer.json"
         ],
+        "docs": [
+            "fractor-doc-generator generate packages/typo3-fractor/rules --output-file packages/typo3-fractor/docs/typo3-fractor-rules.md",
+            "fractor-doc-generator generate packages/fractor-composer-json/rules --output-file packages/fractor-composer-json/docs/composer-json-fractor-rules.md"
+        ],
         "style:php:check": "ecs",
-        "style:php:fix": "ecs --fix"
+        "style:php:fix": "ecs --fix",
+        "test:php": "phpunit"
     }
 }

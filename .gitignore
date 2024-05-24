@@ -3,3 +3,4 @@
 .run-test.sh
 /composer.lock
 /vendor/
+.phpunit.cache

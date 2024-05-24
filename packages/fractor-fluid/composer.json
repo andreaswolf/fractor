@@ -18,11 +18,6 @@
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.42",
-        "phpstan/phpstan": "^1.10",
-        "phpunit/phpunit": "^10.5",
-        "rector/rector": "^1.0",
-        "symplify/easy-coding-standard": "^12.1",
         "symplify/rule-doc-generator-contracts": "^11.2"
     },
     "repositories": {
@@ -54,12 +49,5 @@
         "branch-alias": {
             "dev-main": "0.2-dev"
         }
-    },
-    "scripts": {
-        "analyze:php": "phpstan analyze",
-        "rector": "rector",
-        "style:php:check": "ecs",
-        "style:php:fix": "ecs --fix",
-        "test:php": "phpunit"
     }
 }

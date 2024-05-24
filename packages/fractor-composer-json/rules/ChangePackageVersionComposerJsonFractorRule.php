@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace a9f\FractorComposerJson;
@@ -50,7 +51,7 @@ CODE_SAMPLE
 
     public function configure(array $configuration): void
     {
-        Assert::allIsAOf($configuration, PackageAndVersion::class);
+        Assert::allIsInstanceOf($configuration, PackageAndVersion::class);
 
         $this->packagesAndVersions = $configuration;
     }
