@@ -10,13 +10,13 @@
         }
     ],
     "require": {
+        "php": "^8.2",
+        "ext-dom": "*",
+        "ext-xml": "*",
         "composer-plugin-api": "^2.0",
         "ergebnis/json-printer": "^3.5",
         "eta-orionis/composer-json-manipulator": "^1.0",
-        "ext-dom": "*",
-        "ext-xml": "*",
         "nette/utils": "^4.0",
-        "php": "^8.2",
         "sebastian/diff": "^5.0",
         "symfony/config": "^6.4 || ^7.0",
         "symfony/console": "^6.4 || ^7.0",
@@ -69,9 +69,6 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "packages/fractor-doc-generator/stubs"
-        ],
         "psr-4": {
             "a9f\\FractorComposerJson\\Tests\\": "packages/fractor-composer-json/tests/",
             "a9f\\FractorDocGenerator\\Tests\\": "packages/fractor-doc-generator/tests/",
@@ -80,7 +77,10 @@
             "a9f\\FractorYaml\\Tests\\": "packages/fractor-yaml/tests/",
             "a9f\\Fractor\\Tests\\": "packages/fractor/tests/",
             "a9f\\Typo3Fractor\\Tests\\": "packages/typo3-fractor/tests/"
-        }
+        },
+        "classmap": [
+            "packages/fractor-doc-generator/stubs"
+        ]
     },
     "config": {
         "allow-plugins": {
