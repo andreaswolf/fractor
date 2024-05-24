@@ -92,17 +92,27 @@
         "class": "a9f\\FractorExtensionInstaller\\InstallerPlugin"
     },
     "scripts": {
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "analyze:php": "phpstan analyze",
         "auto-scripts": {
             "fractor:installer": "a9f\\FractorMonorepo\\Composer\\Scripts\\FractorPackageInstaller::generate"
         },
-        "analyze:php": "phpstan analyze",
-        "contribute": [
-            "@style:composer:normalize:fix",
-            "@merge-composer-json"
-        ],
         "docs": [
             "packages/fractor-doc-generator/bin/fractor-doc-generator generate packages/typo3-fractor/rules --output-file packages/typo3-fractor/docs/typo3-fractor-rules.md",
             "packages/fractor-doc-generator/bin/fractor-doc-generator generate packages/fractor-composer-json/rules --output-file packages/fractor-composer-json/docs/composer-json-fractor-rules.md"
+        ],
+        "local:contribute": [
+            "@rectify",
+            "@analyze:php",
+            "@style:php:fix",
+            "@merge-composer-json",
+            "@style:composer:normalize:fix",
+            "@test:php"
         ],
         "merge-composer-json": "monorepo-builder merge",
         "propagate": "monorepo-builder propagate",
@@ -121,6 +131,7 @@
             "@composer normalize --dry-run packages/typo3-fractor/composer.json"
         ],
         "style:composer:normalize:fix": [
+            "@composer normalize --no-check-lock composer.json",
             "@composer normalize --no-check-lock e2e/composer.json",
             "@composer normalize --no-check-lock packages/extension-installer/composer.json",
             "@composer normalize --no-check-lock packages/fractor/composer.json",
@@ -131,22 +142,9 @@
             "@composer normalize --no-check-lock packages/fractor-yaml/composer.json",
             "@composer normalize --no-check-lock packages/typo3-fractor/composer.json"
         ],
-        "local:contribute": [
-            "@rectify",
-            "@analyze:php",
-            "@style:php:fix",
-            "@style:composer:normalize:fix",
-            "@test:php"
-        ],
         "style:php:check": "ecs",
         "style:php:fix": "ecs --fix",
         "test:php": "phpunit",
-        "validate-monorepo": "monorepo-builder validate",
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ]
+        "validate-monorepo": "monorepo-builder validate"
     }
 }
