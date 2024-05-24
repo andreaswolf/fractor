@@ -8,3 +8,5 @@ parameters:
         - packages/
         - ecs.php
         - rector.php
+    excludePaths:
+        - packages/extension-installer/generated

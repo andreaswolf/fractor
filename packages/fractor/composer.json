@@ -38,9 +38,6 @@
         "bin/fractor"
     ],
     "config": {
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true
-        },
         "sort-packages": true
     },
     "extra": {

@@ -33,6 +33,7 @@ return ECSConfig::configure()
         OperatorLinebreakFixer::class,
 
     ])
+    ->withSkip([__DIR__ . '/packages/extension-installer/generated'])
     ->withPreparedSets(psr12: true, symplify: true, common: true, cleanCode: true)
     ->withPaths([__DIR__ . '/e2e', __DIR__ . '/src', __DIR__ . '/packages'])
     ->withRootFiles();

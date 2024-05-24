@@ -37,14 +37,26 @@ PHP;
             }
 
             $path = $this->installationManager->getInstallPath($package);
+
+            if ($path === null) {
+                continue;
+            }
+
             $installedPackages[$package->getName()] = [
-                'name' => $package->getName(),
                 'path' => $path,
-                'version' => $package->getFullPrettyVersion(),
             ];
         }
+
+        self::write($installedPackages, $this->fileToGenerate);
+    }
+
+    /**
+     * @param array<string, array{'path': string}> $installedPackages
+     */
+    public static function write(array $installedPackages, string $fileToGenerate): void
+    {
         $installedPackagesCode = var_export($installedPackages, true);
 
-        file_put_contents($this->fileToGenerate, sprintf(self::FILE_TEMPLATE, $installedPackagesCode));
+        file_put_contents($fileToGenerate, sprintf(self::FILE_TEMPLATE, $installedPackagesCode));
     }
 }

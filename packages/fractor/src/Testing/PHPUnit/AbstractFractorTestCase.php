@@ -47,6 +47,8 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
             // restore copied file
             FileSystem::rename($this->copiedFile, $this->inputFilePath);
         }
+
+        unset($this->currentContainer);
     }
 
     public function provideConfigFilePath(): ?string
