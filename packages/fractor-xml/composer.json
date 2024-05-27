@@ -21,12 +21,6 @@
     "require-dev": {
         "symplify/rule-doc-generator-contracts": "^11.2"
     },
-    "repositories": {
-        "fractor": {
-            "type": "path",
-            "url": "../*"
-        }
-    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
