@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace a9f\FractorComposerJson;
 
+use a9f\Fractor\Contract\NoChangelogRequired;
 use a9f\FractorComposerJson\Contract\ComposerJson;
 use a9f\FractorComposerJson\Contract\ComposerJsonFractorRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
 
-final class RemovePackageComposerJsonFractorRule implements ComposerJsonFractorRule
+final class RemovePackageComposerJsonFractorRule implements ComposerJsonFractorRule, NoChangelogRequired
 {
     /**
      * @var string[]

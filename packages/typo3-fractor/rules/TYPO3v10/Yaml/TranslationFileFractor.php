@@ -8,6 +8,9 @@ use a9f\FractorYaml\Contract\YamlFractorRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
+/**
+ * @changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/10.0/Breaking-87009-UseMultipleTranslationFilesByDefaultInEXTform.html
+ */
 final class TranslationFileFractor implements YamlFractorRule
 {
     /**

@@ -1,3 +1,5 @@
+includes:
+    - packages/fractor-phpstan-rules/config/config.neon
 parameters:
     level: 8
     parallel:
@@ -10,3 +12,6 @@ parameters:
         - rector.php
     excludePaths:
         - packages/extension-installer/generated
+        - packages/**/tests/**/Fixtures/*
+        - packages/**/tests/**/Fixture/*
+        - packages/**/tests/Fixtures/*
