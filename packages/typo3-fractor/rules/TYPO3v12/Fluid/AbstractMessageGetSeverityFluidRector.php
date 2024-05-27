@@ -9,6 +9,9 @@ use Nette\Utils\Strings;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
+/**
+ * @changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.0/Breaking-97787-AbstractMessageGetSeverityReturnsContextualFeedbackSeverity.html
+ */
 final class AbstractMessageGetSeverityFluidRector implements FluidFractorRule
 {
     /**

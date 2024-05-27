@@ -1,0 +1,46 @@
+{
+    "name": "a9f/fractor-phpstan-rules",
+    "description": "PHPStan rules for Fractor projects",
+    "keywords": [
+        "static analysis"
+    ],
+    "license": "MIT",
+    "type": "phpstan-extension",
+    "authors": [
+        {
+            "name": "Andreas Wolf",
+            "email": "dev@a-w.io",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "a9f/fractor": "^0.2",
+        "phpstan/phpstan": "^1.10.9"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "a9f\\FractorPhpStanRules\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "a9f\\FractorPhpStanRules\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.2-dev"
+        },
+        "phpstan": {
+            "includes": [
+                "config/config.neon"
+            ]
+        }
+    }
+}
