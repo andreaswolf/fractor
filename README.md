@@ -36,6 +36,7 @@ At minimum, a configuration file must specify the paths to process:
 <?php
 
 use a9f\Fractor\Configuration\FractorConfiguration;
+use a9f\Typo3Fractor\Set\Typo3LevelSetList;
 
 return FractorConfiguration::configure()
     ->withPaths([__DIR__ . '/packages/'])
