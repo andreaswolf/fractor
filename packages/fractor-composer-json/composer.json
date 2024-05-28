@@ -35,7 +35,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "a9f\\FractorComposerJson\\Tests\\": "tests/"
+            "a9f\\FractorComposerJson\\Tests\\": [
+                "tests",
+                "rules-tests"
+            ]
         }
     },
     "config": {

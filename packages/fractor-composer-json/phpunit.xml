@@ -3,11 +3,13 @@
   <testsuites>
     <testsuite name="fractor-composer-json">
       <directory>tests</directory>
+      <directory>rules-tests</directory>
     </testsuite>
   </testsuites>
   <source>
     <include>
       <directory>./src</directory>
+      <directory>./rules</directory>
     </include>
   </source>
 </phpunit>

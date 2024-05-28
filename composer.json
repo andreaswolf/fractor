@@ -72,14 +72,22 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "a9f\\FractorComposerJson\\Tests\\": "packages/fractor-composer-json/tests/",
+            "a9f\\FractorComposerJson\\Tests\\": [
+                "packages/fractor-composer-json/rules-tests",
+                "packages/fractor-composer-json/tests",
+                "packages/fractor-composer-json/tests/"
+            ],
             "a9f\\FractorDocGenerator\\Tests\\": "packages/fractor-doc-generator/tests/",
             "a9f\\FractorFluid\\Tests\\": "packages/fractor-fluid/tests/",
             "a9f\\FractorPhpStanRules\\Tests\\": "packages/fractor-phpstan-rules/tests/",
             "a9f\\FractorXml\\Tests\\": "packages/fractor-xml/tests/",
             "a9f\\FractorYaml\\Tests\\": "packages/fractor-yaml/tests/",
             "a9f\\Fractor\\Tests\\": "packages/fractor/tests/",
-            "a9f\\Typo3Fractor\\Tests\\": "packages/typo3-fractor/tests/"
+            "a9f\\Typo3Fractor\\Tests\\": [
+                "packages/typo3-fractor/rules-tests",
+                "packages/typo3-fractor/tests",
+                "packages/typo3-fractor/tests/"
+            ]
         },
         "classmap": [
             "packages/fractor-doc-generator/stubs"
