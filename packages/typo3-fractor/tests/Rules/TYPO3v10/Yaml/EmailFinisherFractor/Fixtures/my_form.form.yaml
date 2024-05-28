@@ -5,7 +5,7 @@ finishers:
         bar@domain.com: 'Bar'
       subject: 'Kontaktanfrage von Website'
       recipientAddress: foo@domain.com
-      recipientName: Stadtwerke Bonn
+      recipientName: Bar
       replyToAddress: foo@domain.com
       senderAddress: '{email}'
       senderName: '{lastName}'
@@ -20,7 +20,7 @@ finishers:
         bar@domain.com: 'Bar'
       subject: 'Kontaktanfrage von Website'
       recipientAddress: foo@domain.com
-      recipientName: Stadtwerke Bonn
+      recipientName: Bar
       replyToAddress: foo@domain.com
       senderAddress: '{email}'
       senderName: '{lastName}'
@@ -48,7 +48,7 @@ finishers:
   -
     options:
       recipients:
-        foo@domain.com: 'Stadtwerke Bonn'
+        foo@domain.com: Bar
         bar@domain.com: Bar
       subject: 'Kontaktanfrage von Website'
       senderAddress: '{email}'
@@ -65,7 +65,7 @@ finishers:
   -
     options:
       recipients:
-        foo@domain.com: 'Stadtwerke Bonn'
+        foo@domain.com: Bar
         bar@domain.com: Bar
       subject: 'Kontaktanfrage von Website'
       senderAddress: '{email}'

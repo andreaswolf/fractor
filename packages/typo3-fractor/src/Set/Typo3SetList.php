@@ -9,21 +9,6 @@ final class Typo3SetList
     /**
      * @var string
      */
-    public const TYPO3_7 = __DIR__ . '/../../config/typo3-7.php';
-
-    /**
-     * @var string
-     */
-    public const TYPO3_8 = __DIR__ . '/../../config/typo3-8.php';
-
-    /**
-     * @var string
-     */
-    public const TYPO3_9 = __DIR__ . '/../../config/typo3-9.php';
-
-    /**
-     * @var string
-     */
     public const TYPO3_10 = __DIR__ . '/../../config/typo3-10.php';
 
     /**
