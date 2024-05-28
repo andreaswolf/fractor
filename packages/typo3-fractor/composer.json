@@ -34,7 +34,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "a9f\\Typo3Fractor\\Tests\\": "tests/"
+            "a9f\\Typo3Fractor\\Tests\\": [
+                "tests",
+                "rules-tests"
+            ]
         }
     },
     "config": {

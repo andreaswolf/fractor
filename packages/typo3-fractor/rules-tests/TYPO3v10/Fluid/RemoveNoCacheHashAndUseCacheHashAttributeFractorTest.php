@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace a9f\Typo3Fractor\Tests\Rules\TYPO3v10\Yaml\EmailFinisherFractor;
+namespace a9f\Typo3Fractor\Tests\TYPO3v10\Fluid;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-final class EmailFinisherFractorTest extends AbstractFractorTestCase
+final class RemoveNoCacheHashAndUseCacheHashAttributeFractorTest extends AbstractFractorTestCase
 {
     #[DataProvider('provideData')]
     public function test(string $filePath): void
@@ -18,7 +18,7 @@ final class EmailFinisherFractorTest extends AbstractFractorTestCase
 
     public static function provideData(): Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.yaml');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.html');
     }
 
     public function provideConfigFilePath(): ?string

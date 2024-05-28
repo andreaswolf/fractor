@@ -4,9 +4,11 @@
         <include>
             <directory>./src</directory>
             <directory>packages/*/src</directory>
+            <directory>packages/*/rules</directory>
         </include>
     </source>
     <testsuite name="all">
         <directory>packages/**/tests</directory>
+        <directory>packages/**/rules-tests</directory>
     </testsuite>
 </phpunit>
