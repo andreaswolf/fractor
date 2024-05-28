@@ -10,7 +10,7 @@ cd $TESTS_BASE_DIR
 rm -r composer.lock vendor || true
 composer install
 
-TEST_DIR=typo3-flexform
+TEST_DIR=typo3-yaml
 
 cd $TEST_DIR
 
