@@ -1,6 +1,7 @@
-.phpunit.result.cache
-./run-test.sh
-.run-test.sh
-/composer.lock
+/.idea/
 /vendor/
-.phpunit.cache
+/run-test.sh
+/.run-test.sh
+/composer.lock
+/.phpunit.cache
+/.phpunit.result.cache
