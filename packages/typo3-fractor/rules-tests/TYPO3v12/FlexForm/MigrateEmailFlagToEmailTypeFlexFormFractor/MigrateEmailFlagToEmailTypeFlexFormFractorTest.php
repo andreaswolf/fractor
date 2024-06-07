@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace a9f\Typo3Fractor\Tests\Rules\TYPO3v12\FlexForm\MigrateEmailFlagToEmailTypeFlexFormFractor;
+namespace a9f\Typo3Fractor\Tests\TYPO3v12\FlexForm\MigrateEmailFlagToEmailTypeFlexFormFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use Iterator;

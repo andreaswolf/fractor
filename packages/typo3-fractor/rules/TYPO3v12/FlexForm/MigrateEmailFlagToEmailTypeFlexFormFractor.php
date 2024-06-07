@@ -14,7 +14,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.0/Feature-97013-NewTCATypeEmail.html
- * @see \a9f\Typo3Fractor\Tests\Rules\TYPO3v12\FlexForm\MigrateEmailFlagToEmailTypeFlexFormFractor\MigrateEmailFlagToEmailTypeFlexFormFractorTest
+ * @see \a9f\Typo3Fractor\Tests\TYPO3v12\FlexForm\MigrateEmailFlagToEmailTypeFlexFormFractor\MigrateEmailFlagToEmailTypeFlexFormFractorTest
  */
 final class MigrateEmailFlagToEmailTypeFlexFormFractor extends AbstractFlexformFractor
 {
