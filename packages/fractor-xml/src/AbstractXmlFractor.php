@@ -12,9 +12,9 @@ use Webmozart\Assert\Assert;
 
 abstract class AbstractXmlFractor implements DomNodeVisitor, XmlFractor
 {
-    private ?File $file = null;
+    protected ?File $file = null;
 
-    public function beforeTraversal(File $file, \DOMNode $rootNode): void
+    public function beforeTraversal(File $file, \DOMDocument $rootNode): void
     {
         $this->file = $file;
     }
@@ -41,7 +41,7 @@ abstract class AbstractXmlFractor implements DomNodeVisitor, XmlFractor
         // no-op for now
     }
 
-    public function afterTraversal(\DOMNode $rootNode): void
+    public function afterTraversal(\DOMDocument $rootNode): void
     {
         // no-op for now
     }

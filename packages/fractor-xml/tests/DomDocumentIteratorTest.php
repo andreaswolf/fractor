@@ -231,7 +231,7 @@ XML);
             ) {
             }
 
-            public function beforeTraversal(File $file, \DOMNode $rootNode): void
+            public function beforeTraversal(File $file, \DOMDocument $rootNode): void
             {
                 $this->calls[] = sprintf('%s:beforeTraversal:%s', $this->visitorName, $rootNode->nodeName);
             }
@@ -247,7 +247,7 @@ XML);
                 $this->calls[] = sprintf('%s:leaveNode:%s', $this->visitorName, $node->nodeName);
             }
 
-            public function afterTraversal(\DOMNode $rootNode): void
+            public function afterTraversal(\DOMDocument $rootNode): void
             {
                 $this->calls[] = sprintf('%s:afterTraversal:%s', $this->visitorName, $rootNode->nodeName);
             }

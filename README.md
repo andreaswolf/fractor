@@ -81,6 +81,25 @@ return FractorConfiguration::configure()
     ]);
 ```
 
+### Configure code style
+
+Fractor tries to format the code as good as possible.
+If you want to adjust the indentation of your xml files, you can configure it this way:
+
+```php
+<?php
+
+use a9f\Fractor\Configuration\FractorConfiguration;
+use a9f\Fractor\ValueObject\Indent;
+use a9f\FractorXml\Configuration\XmlProcessorOption;
+
+return FractorConfiguration::configure()
+    ->withOptions([
+        XmlProcessorOption::INDENT_CHARACTER => Indent::STYLE_TAB,
+        XmlProcessorOption::INDENT_SIZE => 1,
+    ])
+```
+
 ## Processing
 
 Execute Fractor from the command line, passing the path to your configuration file as an argument:

@@ -1,6 +1,6 @@
 {
     "name": "a9f/typo3-fractor",
-    "description": "TYPO3 extension for the File Read-Analyse-Change TOol. Allows modifying XML files",
+    "description": "TYPO3 extension for the File Read-Analyse-Change Tool. Allows modifying XML files",
     "license": "MIT",
     "type": "fractor-extension",
     "authors": [
@@ -12,6 +12,7 @@
     ],
     "require": {
         "php": "^8.2",
+        "ext-dom": "*",
         "a9f/fractor": "^0.2",
         "a9f/fractor-doc-generator": "^0.2",
         "a9f/fractor-extension-installer": "^0.2",

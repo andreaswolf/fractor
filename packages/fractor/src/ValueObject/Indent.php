@@ -12,12 +12,16 @@ use Webmozart\Assert\Assert;
  */
 final readonly class Indent
 {
+    public const STYLE_SPACE = 'space';
+
+    public const STYLE_TAB = 'tab';
+
     /**
      * @var array<string, string>
      */
     public const CHARACTERS = [
-        'space' => ' ',
-        'tab' => "\t",
+        self::STYLE_SPACE => ' ',
+        self::STYLE_TAB => "\t",
     ];
 
     private function __construct(
@@ -41,7 +45,7 @@ final readonly class Indent
 
     public function isSpace(): bool
     {
-        return \preg_match('#^( +).*#', $this->value) === 1;
+        return \preg_match('/^( +)/', $this->value) === 1;
     }
 
     public function length(): int
@@ -49,7 +53,10 @@ final readonly class Indent
         return strlen($this->value);
     }
 
-    private static function fromSizeAndStyle(int $size, string $style): self
+    /**
+     * @phpstan-param self::STYLE_* $style
+     */
+    public static function fromSizeAndStyle(int $size, string $style): self
     {
         Assert::greaterThanEq($size, 1);
         Assert::keyExists(self::CHARACTERS, $style);

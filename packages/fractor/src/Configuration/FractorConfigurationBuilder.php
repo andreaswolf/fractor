@@ -41,6 +41,11 @@ final class FractorConfigurationBuilder
      */
     private array $imports = [];
 
+    /**
+     * @var array<string, int|string>
+     */
+    private array $options = [];
+
     public function __invoke(ContainerConfigurator $containerConfigurator): void
     {
         Assert::allString($this->paths);
@@ -48,6 +53,10 @@ final class FractorConfigurationBuilder
         $parameters = $containerConfigurator->parameters();
         $parameters->set(Option::PATHS, $this->paths);
         $parameters->set(Option::SKIP, $this->skip);
+
+        foreach ($this->options as $optionName => $optionValue) {
+            $parameters->set($optionName, $optionValue);
+        }
 
         $services = $containerConfigurator->services();
 
@@ -143,6 +152,16 @@ final class FractorConfigurationBuilder
     public function import(string $import): self
     {
         $this->imports[] = $import;
+
+        return $this;
+    }
+
+    /**
+     * @param array<string, string|int> $options
+     */
+    public function withOptions(array $options): self
+    {
+        $this->options = $options;
 
         return $this;
     }
