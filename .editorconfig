@@ -15,3 +15,8 @@ indent_style = tab
 # YAML-Files
 [{*.yml,*.yaml}]
 indent_size = 2
+
+# XML-Files
+[*.xml]
+indent_style = tab
+indent_size = 4
