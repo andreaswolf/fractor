@@ -1,6 +1,6 @@
 {
     "name": "a9f/fractor-monorepo",
-    "description": "Mono repository for the File Read-Analyse-Change TOol",
+    "description": "Mono repository for the File Read-Analyse-Change Tool",
     "type": "project",
     "authors": [
         {
