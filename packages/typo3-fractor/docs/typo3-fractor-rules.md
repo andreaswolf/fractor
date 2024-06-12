@@ -1,4 +1,4 @@
-# 4 Rules Overview
+# 6 Rules Overview
 
 ## AbstractMessageGetSeverityFluidRector
 
@@ -29,6 +29,60 @@ Convert single recipient values to array for EmailFinisher
 -      recipientName: 'Bar'
 +      recipients:
 +        bar@domain.com: 'Bar'
+```
+
+<br>
+
+## MigrateEmailFlagToEmailTypeFlexFormFractor
+
+Migrate email flag to email type
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateEmailFlagToEmailTypeFlexFormFractor`](../rules/TYPO3v12/FlexForm/MigrateEmailFlagToEmailTypeFlexFormFractor.php)
+
+```diff
+ <T3DataStructure>
+     <ROOT>
+         <sheetTitle>aTitle</sheetTitle>
+         <type>array</type>
+         <el>
+             <email_field>
+                 <label>Email</label>
+                 <config>
+-                    <type>input</type>
+-                    <eval>trim,email</eval>
+-                    <max>255</max>
++                    <type>email</type>
+                 </config>
+             </email_field>
+         </el>
+     </ROOT>
+ </T3DataStructure>
+```
+
+<br>
+
+## MigrateNullFlagFlexFormFractor
+
+Migrate null flag
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateNullFlagFlexFormFractor`](../rules/TYPO3v12/FlexForm/MigrateNullFlagFlexFormFractor.php)
+
+```diff
+ <T3DataStructure>
+     <ROOT>
+         <sheetTitle>aTitle</sheetTitle>
+         <type>array</type>
+         <el>
+             <aFlexField>
+                 <label>aFlexFieldLabel</label>
+                 <config>
+-                    <eval>null</eval>
++                    <nullable>true</nullable>
+                 </config>
+             </aFlexField>
+         </el>
+     </ROOT>
+ </T3DataStructure>
 ```
 
 <br>
