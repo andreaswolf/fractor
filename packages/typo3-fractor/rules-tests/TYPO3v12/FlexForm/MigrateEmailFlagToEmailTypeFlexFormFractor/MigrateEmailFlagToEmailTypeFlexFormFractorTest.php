@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace a9f\Typo3Fractor\Tests\TYPO3v12\FlexForm\MigrateEmailFlagToEmailTypeFlexFormFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
-use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class MigrateEmailFlagToEmailTypeFlexFormFractorTest extends AbstractFractorTestCase
@@ -16,7 +15,7 @@ final class MigrateEmailFlagToEmailTypeFlexFormFractorTest extends AbstractFract
         $this->doTestFile($filePath);
     }
 
-    public static function provideData(): Iterator
+    public static function provideData(): \Iterator
     {
         return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.xml');
     }
