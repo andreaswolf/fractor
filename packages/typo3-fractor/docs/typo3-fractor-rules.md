@@ -1,4 +1,4 @@
-# 7 Rules Overview
+# 8 Rules Overview
 
 ## AbstractMessageGetSeverityFluidRector
 
@@ -85,6 +85,33 @@ Migrate eval int and double2 to type number
 +        <format>decimal</format>
      </config>
  </double2_field>
+```
+
+<br>
+
+## MigrateInternalTypeFolderToTypeFolderFlexFormFractor
+
+Migrates TCA internal_type into new new TCA type folder
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateInternalTypeFolderToTypeFolderFlexFormFractor`](../rules/TYPO3v12/FlexForm/MigrateInternalTypeFolderToTypeFolderFlexFormFractor.php)
+
+```diff
+ <T3DataStructure>
+     <ROOT>
+         <sheetTitle>aTitle</sheetTitle>
+         <type>array</type>
+         <el>
+             <aFlexField>
+                 <label>aFlexFieldLabel</label>
+                 <config>
+-                    <type>group</type>
+-                    <internal_type>folder</internal_type>
++                    <type>folder</type>
+                 </config>
+             </aFlexField>
+         </el>
+     </ROOT>
+ </T3DataStructure>
 ```
 
 <br>
