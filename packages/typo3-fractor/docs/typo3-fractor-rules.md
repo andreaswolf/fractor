@@ -1,4 +1,4 @@
-# 6 Rules Overview
+# 7 Rules Overview
 
 ## AbstractMessageGetSeverityFluidRector
 
@@ -57,6 +57,34 @@ Migrate email flag to email type
          </el>
      </ROOT>
  </T3DataStructure>
+```
+
+<br>
+
+## MigrateEvalIntAndDouble2ToTypeNumberFlexFormFractor
+
+Migrate eval int and double2 to type number
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateEvalIntAndDouble2ToTypeNumberFlexFormFractor`](../rules/TYPO3v12/FlexForm/MigrateEvalIntAndDouble2ToTypeNumberFlexFormFractor.php)
+
+```diff
+ <int_field>
+     <label>int field</label>
+     <config>
+-        <type>input</type>
+-        <eval>int</eval>
++        <type>number</type>
+     </config>
+ </int_field>
+ <double2_field>
+     <label>double2 field</label>
+     <config>
+-        <type>input</type>
+-        <eval>double2</eval>
++        <type>number</type>
++        <format>decimal</format>
+     </config>
+ </double2_field>
 ```
 
 <br>
