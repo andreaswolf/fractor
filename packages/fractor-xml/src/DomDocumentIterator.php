@@ -67,7 +67,10 @@ final readonly class DomDocumentIterator
         }
 
         if ($traverseChildren) {
-            foreach ($node->childNodes->getIterator() as $childNode) {
+            // the iterator is invalidated/modified if the nodes change during traversal => create a copy here to
+            // prevent this
+            $childNodes = iterator_to_array($node->childNodes->getIterator());
+            foreach ($childNodes as $childNode) {
                 $this->traverseNode($childNode);
             }
         }
