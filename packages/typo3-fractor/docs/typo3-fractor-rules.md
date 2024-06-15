@@ -1,4 +1,4 @@
-# 9 Rules Overview
+# 10 Rules Overview
 
 ## AbstractMessageGetSeverityFluidRector
 
@@ -171,6 +171,45 @@ Migrate password and salted password to password type
 +                    <hashed>false</hashed>
                  </config>
              </another_password_field>
+         </el>
+     </ROOT>
+ </T3DataStructure>
+```
+
+<br>
+
+## MigrateRenderTypeColorpickerToTypeColorFlexFormFractor
+
+Migrate renderType colorpicker to type color
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateRenderTypeColorpickerToTypeColorFlexFormFractor`](../rules/TYPO3v12/FlexForm/MigrateRenderTypeColorpickerToTypeColorFlexFormFractor.php)
+
+```diff
+ <T3DataStructure>
+     <ROOT>
+         <sheetTitle>aTitle</sheetTitle>
+         <type>array</type>
+         <el>
+             <a_color_field>
+                 <label>Color field</label>
+                 <config>
+-                    <type>input</type>
+-                    <renderType>colorpicker</renderType>
++                    <type>color</type>
+                     <required>1</required>
+                     <size>20</size>
+-                    <max>1234</max>
+-                    <eval>trim,null</eval>
+                     <valuePicker>
+                         <items type="array">
+                             <numIndex index="0" type="array">
+                                 <numIndex index="0">typo3 orange</numIndex>
+                                 <numIndex index="1">#FF8700</numIndex>
+                             </numIndex>
+                         </items>
+                     </valuePicker>
+                 </config>
+             </a_color_field>
          </el>
      </ROOT>
  </T3DataStructure>
