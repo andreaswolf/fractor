@@ -1,4 +1,4 @@
-# 8 Rules Overview
+# 9 Rules Overview
 
 ## AbstractMessageGetSeverityFluidRector
 
@@ -135,6 +135,42 @@ Migrate null flag
 +                    <nullable>true</nullable>
                  </config>
              </aFlexField>
+         </el>
+     </ROOT>
+ </T3DataStructure>
+```
+
+<br>
+
+## MigratePasswordAndSaltedPasswordToPasswordTypeFlexFormFractor
+
+Migrate password and salted password to password type
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\FlexForm\MigratePasswordAndSaltedPasswordToPasswordTypeFlexFormFractor`](../rules/TYPO3v12/FlexForm/MigratePasswordAndSaltedPasswordToPasswordTypeFlexFormFractor.php)
+
+```diff
+ <T3DataStructure>
+     <ROOT>
+         <sheetTitle>aTitle</sheetTitle>
+         <type>array</type>
+         <el>
+             <password_field>
+                 <label>Password</label>
+                 <config>
+-                    <type>input</type>
+-                    <eval>trim,password,saltedPassword</eval>
++                    <type>password</type>
+                 </config>
+             </password_field>
+             <another_password_field>
+                 <label>Password</label>
+                 <config>
+-                    <type>input</type>
+-                    <eval>trim,password</eval>
++                    <type>password</type>
++                    <hashed>false</hashed>
+                 </config>
+             </another_password_field>
          </el>
      </ROOT>
  </T3DataStructure>
