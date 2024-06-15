@@ -8,6 +8,7 @@ use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateInternalTypeFolderToTypeFolderFlex
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateNullFlagFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigratePasswordAndSaltedPasswordToPasswordTypeFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateRenderTypeColorpickerToTypeColorFlexFormFractor;
+use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateRequiredFlagFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidRector;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
@@ -24,4 +25,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(MigrateNullFlagFlexFormFractor::class);
     $services->set(MigratePasswordAndSaltedPasswordToPasswordTypeFlexFormFractor::class);
     $services->set(MigrateRenderTypeColorpickerToTypeColorFlexFormFractor::class);
+    $services->set(MigrateRequiredFlagFlexFormFractor::class);
 };
