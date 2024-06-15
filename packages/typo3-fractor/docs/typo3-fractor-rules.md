@@ -1,4 +1,4 @@
-# 10 Rules Overview
+# 11 Rules Overview
 
 ## AbstractMessageGetSeverityFluidRector
 
@@ -210,6 +210,33 @@ Migrate renderType colorpicker to type color
                      </valuePicker>
                  </config>
              </a_color_field>
+         </el>
+     </ROOT>
+ </T3DataStructure>
+```
+
+<br>
+
+## MigrateRequiredFlagFlexFormFractor
+
+Migrate required flag
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateRequiredFlagFlexFormFractor`](../rules/TYPO3v12/FlexForm/MigrateRequiredFlagFlexFormFractor.php)
+
+```diff
+ <T3DataStructure>
+     <ROOT>
+         <sheetTitle>aTitle</sheetTitle>
+         <type>array</type>
+         <el>
+             <some_column>
+                 <title>foo</title>
+                 <config>
+-                    <eval>trim,required</eval>
++                    <eval>trim</eval>
++                    <required>1</required>
+                 </config>
+             </some_column>
          </el>
      </ROOT>
  </T3DataStructure>
