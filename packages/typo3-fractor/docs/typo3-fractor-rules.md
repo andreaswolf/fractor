@@ -1,4 +1,4 @@
-# 11 Rules Overview
+# 12 Rules Overview
 
 ## AbstractMessageGetSeverityFluidRector
 
@@ -239,6 +239,39 @@ Migrate required flag
              </some_column>
          </el>
      </ROOT>
+ </T3DataStructure>
+```
+
+<br>
+
+## MigrateTypeNoneColsToSizeFlexFormFractor
+
+Migrates option cols to size for TCA type none
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateTypeNoneColsToSizeFlexFormFractor`](../rules/TYPO3v12/FlexForm/MigrateTypeNoneColsToSizeFlexFormFractor.php)
+
+```diff
+ <T3DataStructure>
+ 	<sheets>
+ 		<sDEF>
+ 			<ROOT>
+ 				<sheetTitle>Sheet Title</sheetTitle>
+ 				<type>array</type>
+ 				<el>
+ 					<aColumn>
+-						<config>
+-							<type>none</type>
+-							<cols>20</cols>
+-						</config>
++                        <config>
++                            <type>none</type>
++                            <size>20</size>
++                        </config>
+ 					</aColumn>
+ 				</el>
+ 			</ROOT>
+ 		</sDEF>
+ 	</sheets>
  </T3DataStructure>
 ```
 
