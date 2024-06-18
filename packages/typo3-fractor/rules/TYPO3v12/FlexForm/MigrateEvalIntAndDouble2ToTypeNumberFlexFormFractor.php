@@ -103,36 +103,60 @@ final class MigrateEvalIntAndDouble2ToTypeNumberFlexFormFractor extends Abstract
     {
         return new RuleDefinition('Migrate eval int and double2 to type number', [new CodeSample(
             <<<'CODE_SAMPLE'
-<int_field>
-    <label>int field</label>
-    <config>
-        <type>input</type>
-        <eval>int</eval>
-    </config>
-</int_field>
-<double2_field>
-    <label>double2 field</label>
-    <config>
-        <type>input</type>
-        <eval>double2</eval>
-    </config>
-</double2_field>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <int_field>
+                        <label>int field</label>
+                        <config>
+                            <type>input</type>
+                            <eval>int</eval>
+                        </config>
+                    </int_field>
+                    <double2_field>
+                        <label>double2 field</label>
+                        <config>
+                            <type>input</type>
+                            <eval>double2</eval>
+                        </config>
+                    </double2_field>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
 CODE_SAMPLE
             ,
             <<<'CODE_SAMPLE'
-<int_field>
-    <label>int field</label>
-    <config>
-        <type>number</type>
-    </config>
-</int_field>
-<double2_field>
-    <label>double2 field</label>
-    <config>
-        <type>number</type>
-        <format>decimal</format>
-    </config>
-</double2_field>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <int_field>
+                        <label>int field</label>
+                        <config>
+                            <type>number</type>
+                        </config>
+                    </int_field>
+                    <double2_field>
+                        <label>double2 field</label>
+                        <config>
+                            <type>number</type>
+                            <format>decimal</format>
+                        </config>
+                    </double2_field>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
 CODE_SAMPLE
         )]);
     }

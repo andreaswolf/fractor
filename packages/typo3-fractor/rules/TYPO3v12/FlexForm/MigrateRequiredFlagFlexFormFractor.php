@@ -85,36 +85,42 @@ final class MigrateRequiredFlagFlexFormFractor extends AbstractFlexformFractor
         return new RuleDefinition('Migrate required flag', [new CodeSample(
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <some_column>
-                <title>foo</title>
-                <config>
-                    <eval>trim,required</eval>
-                </config>
-            </some_column>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <aColumn>
+                        <config>
+                            <eval>trim,required</eval>
+                        </config>
+                    </aColumn>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
             ,
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <some_column>
-                <title>foo</title>
-                <config>
-                    <eval>trim</eval>
-                    <required>1</required>
-                </config>
-            </some_column>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <aColumn>
+                        <config>
+                            <eval>trim</eval>
+                            <required>1</required>
+                        </config>
+                    </aColumn>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
         )]);
