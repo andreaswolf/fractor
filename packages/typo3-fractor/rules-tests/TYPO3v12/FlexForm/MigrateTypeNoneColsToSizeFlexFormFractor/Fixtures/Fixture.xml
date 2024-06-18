@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<sheetTitle>sheetTitle</sheetTitle>
+				<type>array</type>
+				<el>
+					<aColumn>
+						<config>
+							<type>none</type>
+							<format>int</format>
+							<cols>20</cols>
+						</config>
+					</aColumn>
+					<bColumn>
+						<config>
+							<type>none</type>
+							<pass_content>1</pass_content>
+							<cols>20</cols>
+							<size>30</size>
+						</config>
+					</bColumn>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>
+-----
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<sheetTitle>sheetTitle</sheetTitle>
+				<type>array</type>
+				<el>
+					<aColumn>
+						<config>
+							<type>none</type>
+							<format>int</format>
+							<size>20</size>
+						</config>
+					</aColumn>
+					<bColumn>
+						<config>
+							<type>none</type>
+							<pass_content>1</pass_content>
+							<size>20</size>
+						</config>
+					</bColumn>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>
