@@ -82,58 +82,64 @@ final class MigrateRenderTypeColorpickerToTypeColorFlexFormFractor extends Abstr
         return new RuleDefinition('Migrate renderType colorpicker to type color', [new CodeSample(
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <a_color_field>
-                <label>Color field</label>
-                <config>
-                    <type>input</type>
-                    <renderType>colorpicker</renderType>
-                    <required>1</required>
-                    <size>20</size>
-                    <max>1234</max>
-                    <eval>trim,null</eval>
-                    <valuePicker>
-                        <items type="array">
-                            <numIndex index="0" type="array">
-                                <numIndex index="0">typo3 orange</numIndex>
-                                <numIndex index="1">#FF8700</numIndex>
-                            </numIndex>
-                        </items>
-                    </valuePicker>
-                </config>
-            </a_color_field>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <a_color_field>
+                        <config>
+                            <type>input</type>
+                            <renderType>colorpicker</renderType>
+                            <required>1</required>
+                            <size>20</size>
+                            <max>1234</max>
+                            <eval>trim,null</eval>
+                            <valuePicker>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">typo3 orange</numIndex>
+                                        <numIndex index="1">#FF8700</numIndex>
+                                    </numIndex>
+                                </items>
+                            </valuePicker>
+                        </config>
+                    </a_color_field>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
             ,
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <a_color_field>
-                <label>Color field</label>
-                <config>
-                    <type>color</type>
-                    <required>1</required>
-                    <size>20</size>
-                    <valuePicker>
-                        <items type="array">
-                            <numIndex index="0" type="array">
-                                <numIndex index="0">typo3 orange</numIndex>
-                                <numIndex index="1">#FF8700</numIndex>
-                            </numIndex>
-                        </items>
-                    </valuePicker>
-                </config>
-            </a_color_field>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <a_color_field>
+                        <config>
+                            <type>color</type>
+                            <required>1</required>
+                            <size>20</size>
+                            <valuePicker>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">typo3 orange</numIndex>
+                                        <numIndex index="1">#FF8700</numIndex>
+                                    </numIndex>
+                                </items>
+                            </valuePicker>
+                        </config>
+                    </a_color_field>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
         )]);

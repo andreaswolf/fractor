@@ -62,43 +62,43 @@ final class MigrateTypeNoneColsToSizeFlexFormFractor extends AbstractFlexformFra
         return new RuleDefinition('Migrates option cols to size for TCA type none', [new CodeSample(
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-	<sheets>
-		<sDEF>
-			<ROOT>
-				<sheetTitle>Sheet Title</sheetTitle>
-				<type>array</type>
-				<el>
-					<aColumn>
-						<config>
-							<type>none</type>
-							<cols>20</cols>
-						</config>
-					</aColumn>
-				</el>
-			</ROOT>
-		</sDEF>
-	</sheets>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <aColumn>
+                        <config>
+                            <type>none</type>
+                            <cols>20</cols>
+                        </config>
+                    </aColumn>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
             ,
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-	<sheets>
-		<sDEF>
-			<ROOT>
-				<sheetTitle>Sheet Title</sheetTitle>
-				<type>array</type>
-				<el>
-					<aColumn>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <aColumn>
                         <config>
                             <type>none</type>
                             <size>20</size>
                         </config>
-					</aColumn>
-				</el>
-			</ROOT>
-		</sDEF>
-	</sheets>
+                    </aColumn>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
         )]);

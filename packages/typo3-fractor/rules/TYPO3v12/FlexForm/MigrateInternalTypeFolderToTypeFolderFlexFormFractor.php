@@ -63,36 +63,42 @@ final class MigrateInternalTypeFolderToTypeFolderFlexFormFractor extends Abstrac
         return new RuleDefinition('Migrates TCA internal_type into new new TCA type folder', [new CodeSample(
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <aFlexField>
-                <label>aFlexFieldLabel</label>
-                <config>
-                    <type>group</type>
-                    <internal_type>folder</internal_type>
-                </config>
-            </aFlexField>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <aColumn>
+                        <config>
+                            <type>group</type>
+                            <internal_type>folder</internal_type>
+                        </config>
+                    </aColumn>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
             ,
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <aFlexField>
-                <label>aFlexFieldLabel</label>
-                <config>
-                    <type>folder</type>
-                </config>
-            </aFlexField>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <aColumn>
+                        <config>
+                            <type>folder</type>
+                        </config>
+                    </aColumn>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
         )]);

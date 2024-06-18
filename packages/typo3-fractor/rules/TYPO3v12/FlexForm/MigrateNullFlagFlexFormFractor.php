@@ -93,35 +93,41 @@ final class MigrateNullFlagFlexFormFractor extends AbstractFlexformFractor
         return new RuleDefinition('Migrate null flag', [new CodeSample(
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <aFlexField>
-                <label>aFlexFieldLabel</label>
-                <config>
-                    <eval>null</eval>
-                </config>
-            </aFlexField>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <aFlexField>
+                        <config>
+                            <eval>null</eval>
+                        </config>
+                    </aFlexField>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
             ,
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <aFlexField>
-                <label>aFlexFieldLabel</label>
-                <config>
-                    <nullable>true</nullable>
-                </config>
-            </aFlexField>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <aFlexField>
+                        <config>
+                            <nullable>true</nullable>
+                        </config>
+                    </aFlexField>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
         )]);

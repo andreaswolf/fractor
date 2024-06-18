@@ -104,50 +104,54 @@ final class MigratePasswordAndSaltedPasswordToPasswordTypeFlexFormFractor extend
         return new RuleDefinition('Migrate password and salted password to password type', [new CodeSample(
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <password_field>
-                <label>Password</label>
-                <config>
-                    <type>input</type>
-                    <eval>trim,password,saltedPassword</eval>
-                </config>
-            </password_field>
-            <another_password_field>
-                <label>Password</label>
-                <config>
-                    <type>input</type>
-                    <eval>trim,password</eval>
-                </config>
-            </another_password_field>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <password_field>
+                        <config>
+                            <type>input</type>
+                            <eval>trim,password,saltedPassword</eval>
+                        </config>
+                    </password_field>
+                    <another_password_field>
+                        <config>
+                            <type>input</type>
+                            <eval>trim,password</eval>
+                        </config>
+                    </another_password_field>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
             ,
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <password_field>
-                <label>Password</label>
-                <config>
-                    <type>password</type>
-                </config>
-            </password_field>
-            <another_password_field>
-                <label>Password</label>
-                <config>
-                    <type>password</type>
-                    <hashed>false</hashed>
-                </config>
-            </another_password_field>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <password_field>
+                        <config>
+                            <type>password</type>
+                        </config>
+                    </password_field>
+                    <another_password_field>
+                        <config>
+                            <type>password</type>
+                            <hashed>false</hashed>
+                        </config>
+                    </another_password_field>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
         )]);

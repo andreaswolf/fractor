@@ -88,37 +88,43 @@ final class MigrateEmailFlagToEmailTypeFlexFormFractor extends AbstractFlexformF
         return new RuleDefinition('Migrate email flag to email type', [new CodeSample(
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <email_field>
-                <label>Email</label>
-                <config>
-                    <type>input</type>
-                    <eval>trim,email</eval>
-                    <max>255</max>
-                </config>
-            </email_field>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <email_field>
+                        <config>
+                            <type>input</type>
+                            <eval>trim,email</eval>
+                            <max>255</max>
+                        </config>
+                    </email_field>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
             ,
             <<<'CODE_SAMPLE'
 <T3DataStructure>
-    <ROOT>
-        <sheetTitle>aTitle</sheetTitle>
-        <type>array</type>
-        <el>
-            <email_field>
-                <label>Email</label>
-                <config>
-                    <type>email</type>
-                </config>
-            </email_field>
-        </el>
-    </ROOT>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Sheet Title</sheetTitle>
+                <type>array</type>
+                <el>
+                    <email_field>
+                        <config>
+                            <type>email</type>
+                        </config>
+                    </email_field>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
 CODE_SAMPLE
         )]);
