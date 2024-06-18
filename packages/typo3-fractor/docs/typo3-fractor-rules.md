@@ -41,21 +41,24 @@ Migrate email flag to email type
 
 ```diff
  <T3DataStructure>
-     <ROOT>
-         <sheetTitle>aTitle</sheetTitle>
-         <type>array</type>
-         <el>
-             <email_field>
-                 <label>Email</label>
-                 <config>
--                    <type>input</type>
--                    <eval>trim,email</eval>
--                    <max>255</max>
-+                    <type>email</type>
-                 </config>
-             </email_field>
-         </el>
-     </ROOT>
+     <sheets>
+         <sDEF>
+             <ROOT>
+                 <sheetTitle>Sheet Title</sheetTitle>
+                 <type>array</type>
+                 <el>
+                     <email_field>
+                         <config>
+-                            <type>input</type>
+-                            <eval>trim,email</eval>
+-                            <max>255</max>
++                            <type>email</type>
+                         </config>
+                     </email_field>
+                 </el>
+             </ROOT>
+         </sDEF>
+     </sheets>
  </T3DataStructure>
 ```
 
@@ -68,23 +71,35 @@ Migrate eval int and double2 to type number
 - class: [`a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateEvalIntAndDouble2ToTypeNumberFlexFormFractor`](../rules/TYPO3v12/FlexForm/MigrateEvalIntAndDouble2ToTypeNumberFlexFormFractor.php)
 
 ```diff
- <int_field>
-     <label>int field</label>
-     <config>
--        <type>input</type>
--        <eval>int</eval>
-+        <type>number</type>
-     </config>
- </int_field>
- <double2_field>
-     <label>double2 field</label>
-     <config>
--        <type>input</type>
--        <eval>double2</eval>
-+        <type>number</type>
-+        <format>decimal</format>
-     </config>
- </double2_field>
+ <T3DataStructure>
+     <sheets>
+         <sDEF>
+             <ROOT>
+                 <sheetTitle>Sheet Title</sheetTitle>
+                 <type>array</type>
+                 <el>
+                     <int_field>
+                         <label>int field</label>
+                         <config>
+-                            <type>input</type>
+-                            <eval>int</eval>
++                            <type>number</type>
+                         </config>
+                     </int_field>
+                     <double2_field>
+                         <label>double2 field</label>
+                         <config>
+-                            <type>input</type>
+-                            <eval>double2</eval>
++                            <type>number</type>
++                            <format>decimal</format>
+                         </config>
+                     </double2_field>
+                 </el>
+             </ROOT>
+         </sDEF>
+     </sheets>
+ </T3DataStructure>
 ```
 
 <br>
@@ -97,20 +112,23 @@ Migrates TCA internal_type into new new TCA type folder
 
 ```diff
  <T3DataStructure>
-     <ROOT>
-         <sheetTitle>aTitle</sheetTitle>
-         <type>array</type>
-         <el>
-             <aFlexField>
-                 <label>aFlexFieldLabel</label>
-                 <config>
--                    <type>group</type>
--                    <internal_type>folder</internal_type>
-+                    <type>folder</type>
-                 </config>
-             </aFlexField>
-         </el>
-     </ROOT>
+     <sheets>
+         <sDEF>
+             <ROOT>
+                 <sheetTitle>Sheet Title</sheetTitle>
+                 <type>array</type>
+                 <el>
+                     <aColumn>
+                         <config>
+-                            <type>group</type>
+-                            <internal_type>folder</internal_type>
++                            <type>folder</type>
+                         </config>
+                     </aColumn>
+                 </el>
+             </ROOT>
+         </sDEF>
+     </sheets>
  </T3DataStructure>
 ```
 
@@ -124,19 +142,22 @@ Migrate null flag
 
 ```diff
  <T3DataStructure>
-     <ROOT>
-         <sheetTitle>aTitle</sheetTitle>
-         <type>array</type>
-         <el>
-             <aFlexField>
-                 <label>aFlexFieldLabel</label>
-                 <config>
--                    <eval>null</eval>
-+                    <nullable>true</nullable>
-                 </config>
-             </aFlexField>
-         </el>
-     </ROOT>
+     <sheets>
+         <sDEF>
+             <ROOT>
+                 <sheetTitle>Sheet Title</sheetTitle>
+                 <type>array</type>
+                 <el>
+                     <aFlexField>
+                         <config>
+-                            <eval>null</eval>
++                            <nullable>true</nullable>
+                         </config>
+                     </aFlexField>
+                 </el>
+             </ROOT>
+         </sDEF>
+     </sheets>
  </T3DataStructure>
 ```
 
@@ -150,29 +171,31 @@ Migrate password and salted password to password type
 
 ```diff
  <T3DataStructure>
-     <ROOT>
-         <sheetTitle>aTitle</sheetTitle>
-         <type>array</type>
-         <el>
-             <password_field>
-                 <label>Password</label>
-                 <config>
--                    <type>input</type>
--                    <eval>trim,password,saltedPassword</eval>
-+                    <type>password</type>
-                 </config>
-             </password_field>
-             <another_password_field>
-                 <label>Password</label>
-                 <config>
--                    <type>input</type>
--                    <eval>trim,password</eval>
-+                    <type>password</type>
-+                    <hashed>false</hashed>
-                 </config>
-             </another_password_field>
-         </el>
-     </ROOT>
+     <sheets>
+         <sDEF>
+             <ROOT>
+                 <sheetTitle>Sheet Title</sheetTitle>
+                 <type>array</type>
+                 <el>
+                     <password_field>
+                         <config>
+-                            <type>input</type>
+-                            <eval>trim,password,saltedPassword</eval>
++                            <type>password</type>
+                         </config>
+                     </password_field>
+                     <another_password_field>
+                         <config>
+-                            <type>input</type>
+-                            <eval>trim,password</eval>
++                            <type>password</type>
++                            <hashed>false</hashed>
+                         </config>
+                     </another_password_field>
+                 </el>
+             </ROOT>
+         </sDEF>
+     </sheets>
  </T3DataStructure>
 ```
 
@@ -186,32 +209,35 @@ Migrate renderType colorpicker to type color
 
 ```diff
  <T3DataStructure>
-     <ROOT>
-         <sheetTitle>aTitle</sheetTitle>
-         <type>array</type>
-         <el>
-             <a_color_field>
-                 <label>Color field</label>
-                 <config>
--                    <type>input</type>
--                    <renderType>colorpicker</renderType>
-+                    <type>color</type>
-                     <required>1</required>
-                     <size>20</size>
--                    <max>1234</max>
--                    <eval>trim,null</eval>
-                     <valuePicker>
-                         <items type="array">
-                             <numIndex index="0" type="array">
-                                 <numIndex index="0">typo3 orange</numIndex>
-                                 <numIndex index="1">#FF8700</numIndex>
-                             </numIndex>
-                         </items>
-                     </valuePicker>
-                 </config>
-             </a_color_field>
-         </el>
-     </ROOT>
+     <sheets>
+         <sDEF>
+             <ROOT>
+                 <sheetTitle>Sheet Title</sheetTitle>
+                 <type>array</type>
+                 <el>
+                     <a_color_field>
+                         <config>
+-                            <type>input</type>
+-                            <renderType>colorpicker</renderType>
++                            <type>color</type>
+                             <required>1</required>
+                             <size>20</size>
+-                            <max>1234</max>
+-                            <eval>trim,null</eval>
+                             <valuePicker>
+                                 <items type="array">
+                                     <numIndex index="0" type="array">
+                                         <numIndex index="0">typo3 orange</numIndex>
+                                         <numIndex index="1">#FF8700</numIndex>
+                                     </numIndex>
+                                 </items>
+                             </valuePicker>
+                         </config>
+                     </a_color_field>
+                 </el>
+             </ROOT>
+         </sDEF>
+     </sheets>
  </T3DataStructure>
 ```
 
@@ -225,20 +251,23 @@ Migrate required flag
 
 ```diff
  <T3DataStructure>
-     <ROOT>
-         <sheetTitle>aTitle</sheetTitle>
-         <type>array</type>
-         <el>
-             <some_column>
-                 <title>foo</title>
-                 <config>
--                    <eval>trim,required</eval>
-+                    <eval>trim</eval>
-+                    <required>1</required>
-                 </config>
-             </some_column>
-         </el>
-     </ROOT>
+     <sheets>
+         <sDEF>
+             <ROOT>
+                 <sheetTitle>Sheet Title</sheetTitle>
+                 <type>array</type>
+                 <el>
+                     <aColumn>
+                         <config>
+-                            <eval>trim,required</eval>
++                            <eval>trim</eval>
++                            <required>1</required>
+                         </config>
+                     </aColumn>
+                 </el>
+             </ROOT>
+         </sDEF>
+     </sheets>
  </T3DataStructure>
 ```
 
@@ -252,26 +281,23 @@ Migrates option cols to size for TCA type none
 
 ```diff
  <T3DataStructure>
- 	<sheets>
- 		<sDEF>
- 			<ROOT>
- 				<sheetTitle>Sheet Title</sheetTitle>
- 				<type>array</type>
- 				<el>
- 					<aColumn>
--						<config>
--							<type>none</type>
--							<cols>20</cols>
--						</config>
-+                        <config>
-+                            <type>none</type>
+     <sheets>
+         <sDEF>
+             <ROOT>
+                 <sheetTitle>Sheet Title</sheetTitle>
+                 <type>array</type>
+                 <el>
+                     <aColumn>
+                         <config>
+                             <type>none</type>
+-                            <cols>20</cols>
 +                            <size>20</size>
-+                        </config>
- 					</aColumn>
- 				</el>
- 			</ROOT>
- 		</sDEF>
- 	</sheets>
+                         </config>
+                     </aColumn>
+                 </el>
+             </ROOT>
+         </sDEF>
+     </sheets>
  </T3DataStructure>
 ```
 
