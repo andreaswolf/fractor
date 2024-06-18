@@ -66,6 +66,7 @@ You can also skip some rules or files and folders. Do it the following way:
 <?php
 
 use a9f\Fractor\Configuration\FractorConfiguration;
+use a9f\Typo3Fractor\Set\Typo3LevelSetList;
 
 return FractorConfiguration::configure()
     ->withPaths([__DIR__ . '/packages/'])

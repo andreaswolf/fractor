@@ -4,23 +4,25 @@ Ease your TYPO3 upgrades by also automatically change TypoScript, YAML and Fluid
 
 > [!WARNING]
 > :heavy_exclamation_mark: Never run this tool on production! Always run it on development environment where code is under version control (e.g. git).
-> Review and test changes before releasing to production. Code migrations could potentionally break your website!
+> Review and test changes before releasing to production. Code migrations could potentially break your website!
 
 ## Installation
 
-Install typo3-fractor via composer by running the following command in your terminal:
+Install TYPO3-Fractor via composer by running the following command in your terminal:
 
-```
+```bash
 composer require a9f/typo3-fractor --dev
 ```
 
 ## Configuration
-Create a PHP configuration file (e.g., fractor.php`) where you define the paths to your files and the rules to apply.
+
+Create a PHP configuration file `fractor.php` where you define the paths to your files and the rules to apply.
 
 ```php
 <?php
-    
-use a9f\Fractor\DependencyInjection\FractorConfiguration;      
+
+use a9f\Fractor\Configuration\FractorConfiguration;
+use a9f\Typo3Fractor\Set\Typo3LevelSetList;
 
 return FractorConfiguration::configure()
     ->withPaths([__DIR__ . '/packages/'])
@@ -33,13 +35,18 @@ Have a look at all available rules [Overview of all rules](docs/typo3-fractor-ru
 
 ## Usage
 
-Execute it from the command line:
+To see the code migrations that Fractor will do, run:
+
+```bash
+vendor/bin/fractor process --dry-run
 ```
-./vendor/bin/fractor process
+
+and when you want to execute the migrations run:
+
+```bash
+vendor/bin/fractor process
 ```
 
 Fractor will apply the rules specified in the configuration file to the targeted files.
 
 Review the changes to ensure they meet your expectations.
-
-
