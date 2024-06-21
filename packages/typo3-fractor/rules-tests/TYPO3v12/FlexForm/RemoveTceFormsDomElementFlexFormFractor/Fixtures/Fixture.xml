@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Sheet Title</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.a>
+						<TCEforms>
+							<label>Label a</label>
+							<config>
+								<todo>TODO</todo>
+							</config>
+						</TCEforms>
+					</settings.a>
+					<settings.b>
+						<TCEforms>
+							<label>Label b</label>
+							<config>
+								<todo>TODO</todo>
+							</config>
+						</TCEforms>
+					</settings.b>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>
+-----
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<sheetTitle>Sheet Title</sheetTitle>
+				<type>array</type>
+				<el>
+					<settings.a>
+						<label>Label a</label>
+						<config>
+							<todo>TODO</todo>
+						</config>
+					</settings.a>
+					<settings.b>
+						<label>Label b</label>
+						<config>
+							<todo>TODO</todo>
+						</config>
+					</settings.b>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<sheetTitle>Sheet Title</sheetTitle>
+				<type>array</type>
+				<el>
+					<settings.todo>
+						<label>Label</label>
+						<config>
+							<todo>TODO</todo>
+						</config>
+					</settings.todo>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>
