@@ -11,7 +11,7 @@ use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateRenderTypeColorpickerToTypeColorFl
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateRequiredFlagFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateTypeNoneColsToSizeFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\RemoveTceFormsDomElementFlexFormFractor;
-use a9f\Typo3Fractor\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidRector;
+use a9f\Typo3Fractor\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidFractor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -20,7 +20,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autoconfigure()
         ->autowire();
 
-    $services->set(AbstractMessageGetSeverityFluidRector::class);
+    $services->set(AbstractMessageGetSeverityFluidFractor::class);
     $services->set(MigrateEmailFlagToEmailTypeFlexFormFractor::class);
     $services->set(MigrateEvalIntAndDouble2ToTypeNumberFlexFormFractor::class);
     $services->set(MigrateInternalTypeFolderToTypeFolderFlexFormFractor::class);

@@ -11,8 +11,9 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/10.0/Deprecation-88406-SetCacheHashnoCacheHashOptionsInViewHelpersAndUriBuilder.html
+ * @see \a9f\Typo3Fractor\Tests\TYPO3v10\Fluid\RemoveNoCacheHashAndUseCacheHashAttributeFluidFractor\RemoveNoCacheHashAndUseCacheHashAttributeFractorTest
  */
-final class RemoveNoCacheHashAndUseCacheHashAttributeFractor implements FluidFractorRule
+final class RemoveNoCacheHashAndUseCacheHashAttributeFluidFractor implements FluidFractorRule
 {
     public function getRuleDefinition(): RuleDefinition
     {

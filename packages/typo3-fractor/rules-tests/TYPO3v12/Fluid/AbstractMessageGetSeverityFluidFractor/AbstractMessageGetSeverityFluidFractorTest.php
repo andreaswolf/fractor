@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace a9f\Typo3Fractor\Tests\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidRector;
+namespace a9f\Typo3Fractor\Tests\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-final class AbstractMessageGetSeverityFluidRectorTest extends AbstractFractorTestCase
+final class AbstractMessageGetSeverityFluidFractorTest extends AbstractFractorTestCase
 {
     #[DataProvider('provideData')]
     public function test(string $filePath): void

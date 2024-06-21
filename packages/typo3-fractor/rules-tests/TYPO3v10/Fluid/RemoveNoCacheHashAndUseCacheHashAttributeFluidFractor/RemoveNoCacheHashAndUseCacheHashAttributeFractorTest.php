@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace a9f\Typo3Fractor\Tests\TYPO3v10\Fluid;
+namespace a9f\Typo3Fractor\Tests\TYPO3v10\Fluid\RemoveNoCacheHashAndUseCacheHashAttributeFluidFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
-use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class RemoveNoCacheHashAndUseCacheHashAttributeFractorTest extends AbstractFractorTestCase
@@ -16,7 +15,7 @@ final class RemoveNoCacheHashAndUseCacheHashAttributeFractorTest extends Abstrac
         $this->doTestFile($filePath);
     }
 
-    public static function provideData(): Iterator
+    public static function provideData(): \Iterator
     {
         return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.html');
     }
