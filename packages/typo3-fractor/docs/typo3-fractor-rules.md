@@ -1,10 +1,10 @@
 # 13 Rules Overview
 
-## AbstractMessageGetSeverityFluidRector
+## AbstractMessageGetSeverityFluidFractor
 
 Migrate to severity property 'value'
 
-- class: [`a9f\Typo3Fractor\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidRector`](../rules/TYPO3v12/Fluid/AbstractMessageGetSeverityFluidRector.php)
+- class: [`a9f\Typo3Fractor\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidFractor`](../rules/TYPO3v12/Fluid/AbstractMessageGetSeverityFluidFractor.php)
 
 ```diff
 -<div class="{severityClassMapping.{status.severity}}">
@@ -15,11 +15,11 @@ Migrate to severity property 'value'
 
 <br>
 
-## EmailFinisherFractor
+## EmailFinisherYamlFractor
 
 Convert single recipient values to array for EmailFinisher
 
-- class: [`a9f\Typo3Fractor\TYPO3v10\Yaml\EmailFinisherFractor`](../rules/TYPO3v10/Yaml/EmailFinisherFractor.php)
+- class: [`a9f\Typo3Fractor\TYPO3v10\Yaml\EmailFinisherYamlFractor`](../rules/TYPO3v10/Yaml/EmailFinisherYamlFractor.php)
 
 ```diff
  finishers:
@@ -303,11 +303,11 @@ Migrates option cols to size for TCA type none
 
 <br>
 
-## RemoveNoCacheHashAndUseCacheHashAttributeFractor
+## RemoveNoCacheHashAndUseCacheHashAttributeFluidFractor
 
 Remove noCacheHash="1" and useCacheHash="1" attribute
 
-- class: [`a9f\Typo3Fractor\TYPO3v10\Fluid\RemoveNoCacheHashAndUseCacheHashAttributeFractor`](../rules/TYPO3v10/Fluid/RemoveNoCacheHashAndUseCacheHashAttributeFractor.php)
+- class: [`a9f\Typo3Fractor\TYPO3v10\Fluid\RemoveNoCacheHashAndUseCacheHashAttributeFluidFractor`](../rules/TYPO3v10/Fluid/RemoveNoCacheHashAndUseCacheHashAttributeFluidFractor.php)
 
 ```diff
 -<f:link.page noCacheHash="1">Link</f:link.page>
@@ -352,11 +352,11 @@ Remove TCEForms key from all elements in data structure
 
 <br>
 
-## TranslationFileFractor
+## TranslationFileYamlFractor
 
 Use key translationFiles instead of translationFile
 
-- class: [`a9f\Typo3Fractor\TYPO3v10\Yaml\TranslationFileFractor`](../rules/TYPO3v10/Yaml/TranslationFileFractor.php)
+- class: [`a9f\Typo3Fractor\TYPO3v10\Yaml\TranslationFileYamlFractor`](../rules/TYPO3v10/Yaml/TranslationFileYamlFractor.php)
 
 ```diff
  TYPO3:
