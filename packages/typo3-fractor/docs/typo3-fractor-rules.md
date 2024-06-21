@@ -1,4 +1,4 @@
-# 12 Rules Overview
+# 13 Rules Overview
 
 ## AbstractMessageGetSeverityFluidRector
 
@@ -314,6 +314,40 @@ Remove noCacheHash="1" and useCacheHash="1" attribute
 -<f:link.typolink useCacheHash="1">Link</f:link.typolink>
 +<f:link.page>Link</f:link.page>
 +<f:link.typolink>Link</f:link.typolink>
+```
+
+<br>
+
+## RemoveTceFormsDomElementFlexFormFractor
+
+Remove TCEForms key from all elements in data structure
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\FlexForm\RemoveTceFormsDomElementFlexFormFractor`](../rules/TYPO3v12/FlexForm/RemoveTceFormsDomElementFlexFormFractor.php)
+
+```diff
+ <T3DataStructure>
+     <ROOT>
+-        <TCEforms>
+-            <sheetTitle>aTitle</sheetTitle>
+-        </TCEforms>
++        <sheetTitle>aTitle</sheetTitle>
+         <type>array</type>
+         <el>
+             <aFlexField>
+-                <TCEforms>
+-                    <label>aFlexFieldLabel</label>
+-                    <config>
+-                        <type>input</type>
+-                    </config>
+-                </TCEforms>
++                <label>aFlexFieldLabel</label>
++                <config>
++                    <type>input</type>
++                </config>
+             </aFlexField>
+         </el>
+     </ROOT>
+ </T3DataStructure>
 ```
 
 <br>
