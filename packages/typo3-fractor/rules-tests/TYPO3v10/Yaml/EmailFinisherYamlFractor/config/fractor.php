@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use a9f\Fractor\Configuration\FractorConfiguration;
-use a9f\Typo3Fractor\TYPO3v10\Yaml\TranslationFileFractor;
+use a9f\Typo3Fractor\TYPO3v10\Yaml\EmailFinisherYamlFractor;
 
 return FractorConfiguration::configure()
-    ->withRules([TranslationFileFractor::class]);
+    ->withRules([EmailFinisherYamlFractor::class]);

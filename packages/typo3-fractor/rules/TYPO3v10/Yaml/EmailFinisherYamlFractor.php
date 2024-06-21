@@ -10,8 +10,9 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/10.0/Feature-80420-AllowMultipleRecipientsInEmailFinisher.html
+ * @see \a9f\Typo3Fractor\Tests\TYPO3v10\Yaml\EmailFinisherYamlFractor\EmailFinisherFractorTest
  */
-final class EmailFinisherFractor implements YamlFractorRule
+final class EmailFinisherYamlFractor implements YamlFractorRule
 {
     /**
      * @var string

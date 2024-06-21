@@ -10,8 +10,9 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/10.0/Breaking-87009-UseMultipleTranslationFilesByDefaultInEXTform.html
+ * @see \a9f\Typo3Fractor\Tests\TYPO3v10\Yaml\TranslationFileYamlFractor\TranslationFileYamlFractorTest
  */
-final class TranslationFileFractor implements YamlFractorRule
+final class TranslationFileYamlFractor implements YamlFractorRule
 {
     /**
      * @var string

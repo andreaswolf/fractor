@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace a9f\Typo3Fractor\Tests\TYPO3v10\Yaml\EmailFinisherFractor;
+namespace a9f\Typo3Fractor\Tests\TYPO3v10\Yaml\TranslationFileYamlFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-final class EmailFinisherFractorTest extends AbstractFractorTestCase
+final class TranslationFileYamlFractorTest extends AbstractFractorTestCase
 {
     #[DataProvider('provideData')]
     public function test(string $filePath): void

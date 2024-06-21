@@ -11,8 +11,9 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.0/Breaking-97787-AbstractMessageGetSeverityReturnsContextualFeedbackSeverity.html
+ * @see \a9f\Typo3Fractor\Tests\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidFractor\AbstractMessageGetSeverityFluidFractorTest
  */
-final class AbstractMessageGetSeverityFluidRector implements FluidFractorRule
+final class AbstractMessageGetSeverityFluidFractor implements FluidFractorRule
 {
     /**
      * @var string
