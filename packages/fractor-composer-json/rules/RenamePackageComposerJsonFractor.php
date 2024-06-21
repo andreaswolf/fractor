@@ -12,7 +12,10 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
 
-final class RenamePackageComposerJsonFractorRule implements ComposerJsonFractorRule, NoChangelogRequired
+/**
+ * @see \a9f\FractorComposerJson\Tests\RenamePackageComposerJsonFractor\RenamePackageComposerJsonFractorTest
+ */
+final class RenamePackageComposerJsonFractor implements ComposerJsonFractorRule, NoChangelogRequired
 {
     /**
      * @var RenamePackage[]

@@ -12,21 +12,26 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
 
-final class AddPackageToRequireComposerJsonFractorRule implements ComposerJsonFractorRule, NoChangelogRequired
+/**
+ * @see \a9f\FractorComposerJson\Tests\ChangePackageVersionComposerJsonFractor\ChangePackageVersionComposerJsonFractorTest
+ */
+final class ChangePackageVersionComposerJsonFractor implements ComposerJsonFractorRule, NoChangelogRequired
 {
     /**
      * @var PackageAndVersion[]
      */
     private array $packagesAndVersions = [];
 
+    public function refactor(ComposerJson $composerJson): void
+    {
+        foreach ($this->packagesAndVersions as $packageAndVersion) {
+            $composerJson->changePackageVersion($packageAndVersion);
+        }
+    }
+
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition('Add package to "require" in `composer.json`', [new ConfiguredCodeSample(
-            <<<'CODE_SAMPLE'
-{
-}
-CODE_SAMPLE
-            ,
+        return new RuleDefinition('Change package version `composer.json`', [new ConfiguredCodeSample(
             <<<'CODE_SAMPLE'
 {
     "require": {
@@ -35,16 +40,17 @@ CODE_SAMPLE
 }
 CODE_SAMPLE
             ,
-            [new PackageAndVersion('symfony/console', '^3.4')]
+            <<<'CODE_SAMPLE'
+{
+    "require": {
+        "symfony/console": "^4.4"
+    }
+}
+CODE_SAMPLE
+            ,
+            [new PackageAndVersion('symfony/console', '^4.4')]
         ),
         ]);
-    }
-
-    public function refactor(ComposerJson $composerJson): void
-    {
-        foreach ($this->packagesAndVersions as $packageAndVersion) {
-            $composerJson->addRequiredPackage($packageAndVersion);
-        }
     }
 
     public function configure(array $configuration): void

@@ -1,12 +1,12 @@
 # 6 Rules Overview
 
-## AddPackageToRequireComposerJsonFractorRule
+## AddPackageToRequireComposerJsonFractor
 
 Add package to "require" in `composer.json`
 
 :wrench: **configure it!**
 
-- class: [`a9f\FractorComposerJson\AddPackageToRequireComposerJsonFractorRule`](../rules/AddPackageToRequireComposerJsonFractorRule.php)
+- class: [`a9f\FractorComposerJson\AddPackageToRequireComposerJsonFractor`](../rules/AddPackageToRequireComposerJsonFractor.php)
 
 ```diff
  {
@@ -18,13 +18,13 @@ Add package to "require" in `composer.json`
 
 <br>
 
-## AddPackageToRequireDevComposerJsonFractorRule
+## AddPackageToRequireDevComposerJsonFractor
 
 Add package to "require-dev" in `composer.json`
 
 :wrench: **configure it!**
 
-- class: [`a9f\FractorComposerJson\AddPackageToRequireDevComposerJsonFractorRule`](../rules/AddPackageToRequireDevComposerJsonFractorRule.php)
+- class: [`a9f\FractorComposerJson\AddPackageToRequireDevComposerJsonFractor`](../rules/AddPackageToRequireDevComposerJsonFractor.php)
 
 ```diff
  {
@@ -36,13 +36,13 @@ Add package to "require-dev" in `composer.json`
 
 <br>
 
-## ChangePackageVersionComposerJsonFractorRule
+## ChangePackageVersionComposerJsonFractor
 
 Change package version `composer.json`
 
 :wrench: **configure it!**
 
-- class: [`a9f\FractorComposerJson\ChangePackageVersionComposerJsonFractorRule`](../rules/ChangePackageVersionComposerJsonFractorRule.php)
+- class: [`a9f\FractorComposerJson\ChangePackageVersionComposerJsonFractor`](../rules/ChangePackageVersionComposerJsonFractor.php)
 
 ```diff
  {
@@ -55,13 +55,13 @@ Change package version `composer.json`
 
 <br>
 
-## RemovePackageComposerJsonFractorRule
+## RemovePackageComposerJsonFractor
 
 Remove package from "require" and "require-dev" in `composer.json`
 
 :wrench: **configure it!**
 
-- class: [`a9f\FractorComposerJson\RemovePackageComposerJsonFractorRule`](../rules/RemovePackageComposerJsonFractorRule.php)
+- class: [`a9f\FractorComposerJson\RemovePackageComposerJsonFractor`](../rules/RemovePackageComposerJsonFractor.php)
 
 ```diff
  {
@@ -73,13 +73,13 @@ Remove package from "require" and "require-dev" in `composer.json`
 
 <br>
 
-## RenamePackageComposerJsonFractorRule
+## RenamePackageComposerJsonFractor
 
 Change package name in `composer.json`
 
 :wrench: **configure it!**
 
-- class: [`a9f\FractorComposerJson\RenamePackageComposerJsonFractorRule`](../rules/RenamePackageComposerJsonFractorRule.php)
+- class: [`a9f\FractorComposerJson\RenamePackageComposerJsonFractor`](../rules/RenamePackageComposerJsonFractor.php)
 
 ```diff
  {
@@ -92,13 +92,13 @@ Change package name in `composer.json`
 
 <br>
 
-## ReplacePackageAndVersionComposerJsonFractorRule
+## ReplacePackageAndVersionComposerJsonFractor
 
 Change package name and version `composer.json`
 
 :wrench: **configure it!**
 
-- class: [`a9f\FractorComposerJson\ReplacePackageAndVersionComposerJsonFractorRule`](../rules/ReplacePackageAndVersionComposerJsonFractorRule.php)
+- class: [`a9f\FractorComposerJson\ReplacePackageAndVersionComposerJsonFractor`](../rules/ReplacePackageAndVersionComposerJsonFractor.php)
 
 ```diff
  {

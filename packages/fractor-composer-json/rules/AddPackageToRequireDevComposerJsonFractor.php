@@ -12,7 +12,10 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
 
-final class AddPackageToRequireDevComposerJsonFractorRule implements ComposerJsonFractorRule, NoChangelogRequired
+/**
+ * @see \a9f\FractorComposerJson\Tests\AddPackageToRequireDevComposerJsonFractor\AddPackageToRequireDevComposerJsonFractorTest
+ */
+final class AddPackageToRequireDevComposerJsonFractor implements ComposerJsonFractorRule, NoChangelogRequired
 {
     /**
      * @var PackageAndVersion[]

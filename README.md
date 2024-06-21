@@ -52,11 +52,11 @@ If you want to apply only one specific rule, you can do so:
 
 use a9f\Fractor\Configuration\FractorConfiguration;
 use a9f\Typo3Fractor\TYPO3v7\FlexForm\AddRenderTypeToFlexFormFractor;
-use a9f\FractorComposerJson\AddPackageToRequireDevComposerJsonFractorRule;
+use a9f\FractorComposerJson\AddPackageToRequireDevComposerJsonFractor;
 
 return FractorConfiguration::configure()
     ->withPaths([__DIR__ . '/packages/'])
-    ->withConfiguredRule(AddPackageToRequireDevComposerJsonFractorRule::class, [new PackageAndVersion('vendor1/package3', '^3.0')])
+    ->withConfiguredRule(AddPackageToRequireDevComposerJsonFractor::class, [new PackageAndVersion('vendor1/package3', '^3.0')])
     ->withRules([AddRenderTypeToFlexFormFractor::class]);
 ```
 
