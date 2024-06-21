@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace a9f\Typo3Fractor\Tests\TYPO3v10\TypoScript\RemoveUseCacheHashFromTypolinkTypoScriptFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
-use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class RemoveUseCacheHashFromTypolinkTypoScriptFractorTest extends AbstractFractorTestCase
@@ -16,7 +15,7 @@ final class RemoveUseCacheHashFromTypolinkTypoScriptFractorTest extends Abstract
         $this->doTestFile($filePath);
     }
 
-    public static function provideData(): Iterator
+    public static function provideData(): \Iterator
     {
         return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.typoscript');
     }
