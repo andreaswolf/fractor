@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace a9f\Typo3Fractor\Tests\TYPO3v10\Fluid;
+namespace a9f\Typo3Fractor\Tests\TYPO3v10\TypoScript\RemoveUseCacheHashFromTypolinkTypoScriptFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-final class RemoveUseCacheHashFromTypolinkTest extends AbstractFractorTestCase
+final class RemoveUseCacheHashFromTypolinkTypoScriptFractorTest extends AbstractFractorTestCase
 {
     #[DataProvider('provideData')]
     public function test(string $filePath): void

@@ -1,6 +1,6 @@
 {
     "name": "a9f/fractor-typoscript",
-    "description": "TypoScript extension for the File Read-Analyse-Change TOol. Allows modifying TYPO3 TypoScript configuration files",
+    "description": "TypoScript extension for the File Read-Analyse-Change Tool. Allows modifying TYPO3 TypoScript configuration files",
     "license": "MIT",
     "type": "fractor-extension",
     "authors": [
