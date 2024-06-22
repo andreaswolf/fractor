@@ -18,7 +18,7 @@ abstract class AbstractTypoScriptFractor implements TypoScriptFractor
     /**
      * @param list<Statement> $statements
      */
-    public function beforeTraversal(File $file, array $statements): void
+    final public function beforeTraversal(File $file, array $statements): void
     {
         $this->file = $file;
     }
@@ -26,7 +26,7 @@ abstract class AbstractTypoScriptFractor implements TypoScriptFractor
     /**
      * @return Statement|list<Statement>|int
      */
-    public function enterNode(Statement $node): Statement|array|int
+    final public function enterNode(Statement $node): Statement|array|int
     {
         $result = $this->refactor($node);
 
@@ -40,14 +40,14 @@ abstract class AbstractTypoScriptFractor implements TypoScriptFractor
         return $result;
     }
 
-    public function leaveNode(Statement $node): void
+    final public function leaveNode(Statement $node): void
     {
     }
 
     /**
      * @param list<Statement> $statements
      */
-    public function afterTraversal(array $statements): void
+    final public function afterTraversal(array $statements): void
     {
     }
 }
