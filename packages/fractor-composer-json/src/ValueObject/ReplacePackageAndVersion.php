@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\FractorComposerJson\ValueObject;
 
-use a9f\FractorComposerJson\ChangePackageVersionComposerJsonFractorRule;
+use a9f\FractorComposerJson\ChangePackageVersionComposerJsonFractor;
 use Webmozart\Assert\Assert;
 
 final readonly class ReplacePackageAndVersion
@@ -21,7 +21,7 @@ final readonly class ReplacePackageAndVersion
         Assert::notSame(
             $oldPackageName,
             $newPackageName,
-            'Old and new package have to be different. If you want to only change package version, use ' . ChangePackageVersionComposerJsonFractorRule::class
+            'Old and new package have to be different. If you want to only change package version, use ' . ChangePackageVersionComposerJsonFractor::class
         );
 
         $this->oldPackageName = $oldPackageName;

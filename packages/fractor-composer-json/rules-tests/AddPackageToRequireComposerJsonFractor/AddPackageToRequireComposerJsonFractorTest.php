@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace a9f\FractorComposerJson\Tests\RenamePackageComposerJsonFractorRule;
+namespace a9f\FractorComposerJson\Tests\AddPackageToRequireComposerJsonFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
-use a9f\FractorComposerJson\RenamePackageComposerJsonFractorRule;
+use a9f\FractorComposerJson\AddPackageToRequireComposerJsonFractor;
 use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-final class RenamePackageComposerJsonFractorRuleTest extends AbstractFractorTestCase
+final class AddPackageToRequireComposerJsonFractorTest extends AbstractFractorTestCase
 {
     #[DataProvider('provideData')]
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);
-        $this->assertThatRuleIsApplied($filePath, RenamePackageComposerJsonFractorRule::class);
+        $this->assertThatRuleIsApplied($filePath, AddPackageToRequireComposerJsonFractor::class);
     }
 
     public static function provideData(): Iterator
