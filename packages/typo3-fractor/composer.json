@@ -17,6 +17,7 @@
         "a9f/fractor-doc-generator": "^0.2",
         "a9f/fractor-extension-installer": "^0.2",
         "a9f/fractor-fluid": "^0.2",
+        "a9f/fractor-typoscript": "^0.2",
         "a9f/fractor-xml": "^0.2",
         "a9f/fractor-yaml": "^0.2"
     },

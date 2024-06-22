@@ -16,6 +16,7 @@
         "composer-plugin-api": "^2.0",
         "ergebnis/json-printer": "^3.5",
         "eta-orionis/composer-json-manipulator": "^1.0",
+        "helmich/typo3-typoscript-parser": "^2.6",
         "nette/utils": "^4.0",
         "phpstan/phpstan": "^1.10.9",
         "sebastian/diff": "^5.0",
@@ -46,6 +47,7 @@
         "a9f/fractor-extension-installer": "self.version",
         "a9f/fractor-fluid": "self.version",
         "a9f/fractor-phpstan-rules": "self.version",
+        "a9f/fractor-typoscript": "self.version",
         "a9f/fractor-xml": "self.version",
         "a9f/fractor-yaml": "self.version",
         "a9f/typo3-fractor": "self.version"
@@ -62,6 +64,7 @@
             "a9f\\FractorFluid\\": "packages/fractor-fluid/src/",
             "a9f\\FractorMonorepo\\": "src",
             "a9f\\FractorPhpStanRules\\": "packages/fractor-phpstan-rules/src/",
+            "a9f\\FractorTypoScript\\": "packages/fractor-typoscript/src/",
             "a9f\\FractorXml\\": "packages/fractor-xml/src/",
             "a9f\\FractorYaml\\": "packages/fractor-yaml/src/",
             "a9f\\Fractor\\": "packages/fractor/src/",
@@ -81,6 +84,7 @@
             "a9f\\FractorDocGenerator\\Tests\\": "packages/fractor-doc-generator/tests/",
             "a9f\\FractorFluid\\Tests\\": "packages/fractor-fluid/tests/",
             "a9f\\FractorPhpStanRules\\Tests\\": "packages/fractor-phpstan-rules/tests/",
+            "a9f\\FractorTypoScript\\Tests\\": "packages/fractor-typoscript/tests/",
             "a9f\\FractorXml\\Tests\\": "packages/fractor-xml/tests/",
             "a9f\\FractorYaml\\Tests\\": "packages/fractor-yaml/tests/",
             "a9f\\Fractor\\Tests\\": "packages/fractor/tests/",
@@ -139,6 +143,7 @@
             "@composer normalize --dry-run packages/fractor-composer-json/composer.json",
             "@composer normalize --dry-run packages/fractor-doc-generator/composer.json",
             "@composer normalize --dry-run packages/fractor-fluid/composer.json",
+            "@composer normalize --dry-run packages/fractor-typoscript/composer.json",
             "@composer normalize --dry-run packages/fractor-xml/composer.json",
             "@composer normalize --dry-run packages/fractor-yaml/composer.json",
             "@composer normalize --dry-run packages/typo3-fractor/composer.json"
@@ -151,6 +156,7 @@
             "@composer normalize --no-check-lock packages/fractor-composer-json/composer.json",
             "@composer normalize --no-check-lock packages/fractor-doc-generator/composer.json",
             "@composer normalize --no-check-lock packages/fractor-fluid/composer.json",
+            "@composer normalize --no-check-lock packages/fractor-typoscript/composer.json",
             "@composer normalize --no-check-lock packages/fractor-xml/composer.json",
             "@composer normalize --no-check-lock packages/fractor-yaml/composer.json",
             "@composer normalize --no-check-lock packages/typo3-fractor/composer.json"
