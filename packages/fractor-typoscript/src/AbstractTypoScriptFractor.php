@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\FractorTypoScript;
 
+use a9f\Fractor\Application\ValueObject\AppliedRule;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\FractorTypoScript\Contract\TypoScriptFractor;
 use Helmich\TypoScriptParser\Parser\AST\Statement;
@@ -33,6 +34,8 @@ abstract class AbstractTypoScriptFractor implements TypoScriptFractor
         if ($result === null) {
             return $node;
         }
+
+        $this->file->addAppliedRule(AppliedRule::fromRule($this));
 
         return $result;
     }
