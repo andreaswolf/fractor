@@ -1,4 +1,4 @@
-# 13 Rules Overview
+# 14 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -348,6 +348,21 @@ Remove TCEForms key from all elements in data structure
          </el>
      </ROOT>
  </T3DataStructure>
+```
+
+<br>
+
+## RemoveUseCacheHashFromTypolinkTypoScriptFractor
+
+Remove useCacheHash TypoScript setting
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveUseCacheHashFromTypolinkTypoScriptFractor`](../rules/TYPO3v10/TypoScript/RemoveUseCacheHashFromTypolinkTypoScriptFractor.php)
+
+```diff
+ typolink {
+     parameter = 3
+-    useCacheHash = 1
+ }
 ```
 
 <br>
