@@ -27,8 +27,13 @@ jobs:
             command: test:php
           - name: Rector
             command: 'rector'
+        dependency-versions:
+          - name: Newest
+            parameter: 'highest'
+          - name: Oldest
+            parameter: 'lowest'
 
-    name: ${{ matrix.composer-command.name }}
+    name: ${{ matrix.composer-command.name }}/${{ matrix.dependency-versions.name }} deps
 
     steps:
       - name: "Checkout"
@@ -44,6 +49,8 @@ jobs:
       # see https://github.com/ramsey/composer-install
       - name: "Install Composer dependencies"
         uses: ramsey/composer-install@v3
+        with:
+          dependency-versions: '${{ matrix.dependency-versions.parameter }}'
 
       - name: 'Run check "${{ matrix.composer-command.name }}"'
         run: composer ${{ matrix.composer-command.command }}
