@@ -14,9 +14,9 @@
         "php": "^8.2",
         "nette/utils": "^4.0",
         "sebastian/diff": "^5.0 || ^6.0",
-        "symfony/config": "^6.4 || ^7.0",
-        "symfony/console": "^6.4 || ^7.0",
-        "symfony/dependency-injection": "^6.4 || ^7.0"
+        "symfony/config": "^5.4 || ^6.4 || ^7.0",
+        "symfony/console": "^5.4 || ^6.4 || ^7.0",
+        "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.0"
     },
     "require-dev": {
         "symplify/rule-doc-generator": "12.1.3"

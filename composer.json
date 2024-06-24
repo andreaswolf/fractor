@@ -21,12 +21,12 @@
         "phpstan/phpstan": "^1.10.9",
         "sebastian/diff": "^5.0 || ^6.0",
         "shanethehat/pretty-xml": "^1.0",
-        "symfony/config": "^6.4 || ^7.0",
-        "symfony/console": "^6.4 || ^7.0",
-        "symfony/dependency-injection": "^6.4 || ^7.0",
-        "symfony/filesystem": "^6.4 || ^7.0",
-        "symfony/finder": "^6.4 || ^7.0",
-        "symfony/yaml": "^6.0 || ^7.0",
+        "symfony/config": "^5.4 || ^6.4 || ^7.0",
+        "symfony/console": "^5.4 || ^6.4 || ^7.0",
+        "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.0",
+        "symfony/filesystem": "^5.4 || ^6.4 || ^7.0",
+        "symfony/finder": "^5.4 || ^6.4 || ^7.0",
+        "symfony/yaml": "^5.4 || ^6.4 || ^7.0",
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
