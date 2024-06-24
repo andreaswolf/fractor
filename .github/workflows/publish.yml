@@ -33,6 +33,9 @@ jobs:
           - path: fractor-fluid
             repository: git@github.com:andreaswolf/fractor-fluid.git
             deploy-key: DEPLOY_KEY_FLUID
+          - path: fractor-typoscript
+            repository: git@github.com:andreaswolf/fractor-typoscript.git
+            deploy-key: DEPLOY_KEY_TYPOSCRIPT
           - path: fractor-yaml
             repository: git@github.com:andreaswolf/fractor-yaml.git
             deploy-key: DEPLOY_KEY_YAML
