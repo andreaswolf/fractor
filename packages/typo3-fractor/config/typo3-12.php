@@ -13,6 +13,7 @@ use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateTypeNoneColsToSizeFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\RemoveTceFormsDomElementFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveWorkspaceModeOptionsFractor;
+use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveNewContentElementWizardOptionsFractor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -30,6 +31,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(MigrateRenderTypeColorpickerToTypeColorFlexFormFractor::class);
     $services->set(MigrateRequiredFlagFlexFormFractor::class);
     $services->set(MigrateTypeNoneColsToSizeFlexFormFractor::class);
+    $services->set(RemoveNewContentElementWizardOptionsFractor::class);
     $services->set(RemoveTceFormsDomElementFlexFormFractor::class);
     $services->set(RemoveWorkspaceModeOptionsFractor::class);
 };
