@@ -14,6 +14,7 @@ use a9f\Typo3Fractor\TYPO3v12\FlexForm\RemoveTceFormsDomElementFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigDisablePageExternalUrlFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigDoctypeSwitchFractor;
+use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigMetaCharsetFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveNewContentElementWizardOptionsFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveWorkspaceModeOptionsFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RenameConfigXhtmlDoctypeToDoctypeFractor;
@@ -36,6 +37,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(MigrateTypeNoneColsToSizeFlexFormFractor::class);
     $services->set(RemoveConfigDisablePageExternalUrlFractor::class);
     $services->set(RemoveConfigDoctypeSwitchFractor::class);
+    $services->set(RemoveConfigMetaCharsetFractor::class);
     $services->set(RemoveNewContentElementWizardOptionsFractor::class);
     $services->set(RemoveTceFormsDomElementFlexFormFractor::class);
     $services->set(RemoveWorkspaceModeOptionsFractor::class);
