@@ -21,6 +21,7 @@ use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveNewContentElementWizardOptionsFra
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveWorkspaceModeOptionsFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RenameConfigXhtmlDoctypeToDoctypeFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RenameTcemainLinkHandlerMailKeyFractor;
+use a9f\Typo3Fractor\TYPO3v12\TypoScript\UseConfigArrayForTSFEPropertiesFractor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -48,4 +49,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(RemoveWorkspaceModeOptionsFractor::class);
     $services->set(RenameConfigXhtmlDoctypeToDoctypeFractor::class);
     $services->set(RenameTcemainLinkHandlerMailKeyFractor::class);
+    $services->set(UseConfigArrayForTSFEPropertiesFractor::class);
 };
