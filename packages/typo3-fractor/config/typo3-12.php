@@ -14,6 +14,7 @@ use a9f\Typo3Fractor\TYPO3v12\FlexForm\RemoveTceFormsDomElementFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveWorkspaceModeOptionsFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveNewContentElementWizardOptionsFractor;
+use a9f\Typo3Fractor\TYPO3v12\TypoScript\RenameConfigXhtmlDoctypeToDoctypeFractor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -34,4 +35,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(RemoveNewContentElementWizardOptionsFractor::class);
     $services->set(RemoveTceFormsDomElementFlexFormFractor::class);
     $services->set(RemoveWorkspaceModeOptionsFractor::class);
+    $services->set(RenameConfigXhtmlDoctypeToDoctypeFractor::class);
 };
