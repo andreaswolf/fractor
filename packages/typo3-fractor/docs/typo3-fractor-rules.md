@@ -1,4 +1,4 @@
-# 14 Rules Overview
+# 24 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -303,6 +303,85 @@ Migrates option cols to size for TCA type none
 
 <br>
 
+## RemoveConfigDisablePageExternalUrlFractor
+
+Remove config.disablePageExternalUrl
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigDisablePageExternalUrlFractor`](../rules/TYPO3v12/TypoScript/RemoveConfigDisablePageExternalUrlFractor.php)
+
+```diff
+-config.disablePageExternalUrl = 1
++-
+```
+
+<br>
+
+## RemoveConfigDoctypeSwitchFractor
+
+Remove config.doctypeSwitch
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigDoctypeSwitchFractor`](../rules/TYPO3v12/TypoScript/RemoveConfigDoctypeSwitchFractor.php)
+
+```diff
+-config.doctypeSwitch = 1
++-
+```
+
+<br>
+
+## RemoveConfigMetaCharsetFractor
+
+Remove config.metaCharset
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigMetaCharsetFractor`](../rules/TYPO3v12/TypoScript/RemoveConfigMetaCharsetFractor.php)
+
+```diff
+-config.metaCharset = 1
++-
+```
+
+<br>
+
+## RemoveConfigSendCacheHeadersOnlyWhenLoginDeniedInBranchFractor
+
+Remove config.sendCacheHeaders_onlyWhenLoginDeniedInBranch
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigSendCacheHeadersOnlyWhenLoginDeniedInBranchFractor`](../rules/TYPO3v12/TypoScript/RemoveConfigSendCacheHeadersOnlyWhenLoginDeniedInBranchFractor.php)
+
+```diff
+-config.sendCacheHeaders_onlyWhenLoginDeniedInBranch = 1
++-
+```
+
+<br>
+
+## RemoveConfigSpamProtectEmailAddressesAsciiOptionFractor
+
+Remove config.spamProtectEmailAddresses with option ascii
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigSpamProtectEmailAddressesAsciiOptionFractor`](../rules/TYPO3v12/TypoScript/RemoveConfigSpamProtectEmailAddressesAsciiOptionFractor.php)
+
+```diff
+-config.spamProtectEmailAddresses = ascii
++-
+```
+
+<br>
+
+## RemoveNewContentElementWizardOptionsFractor
+
+Remove TSConfig mod.web_layout.disableNewContentElementWizard and mod.newContentElementWizard.override
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveNewContentElementWizardOptionsFractor`](../rules/TYPO3v12/TypoScript/RemoveNewContentElementWizardOptionsFractor.php)
+
+```diff
+-mod.web_layout.disableNewContentElementWizard = 1
+-mod.newContentElementWizard.override = 1
++-
+```
+
+<br>
+
 ## RemoveNoCacheHashAndUseCacheHashAttributeFluidFractor
 
 Remove noCacheHash="1" and useCacheHash="1" attribute
@@ -367,6 +446,53 @@ Remove useCacheHash TypoScript setting
 
 <br>
 
+## RemoveWorkspaceModeOptionsFractor
+
+Remove TSConfig options.workspaces.swapMode and options.workspaces.changeStageMode
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveWorkspaceModeOptionsFractor`](../rules/TYPO3v12/TypoScript/RemoveWorkspaceModeOptionsFractor.php)
+
+```diff
+-options.workspaces.swapMode = any
+-options.workspaces.changeStageMode = any
++-
+```
+
+<br>
+
+## RenameConfigXhtmlDoctypeToDoctypeFractor
+
+Migrate typoscript xhtmlDoctype to doctype
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\RenameConfigXhtmlDoctypeToDoctypeFractor`](../rules/TYPO3v12/TypoScript/RenameConfigXhtmlDoctypeToDoctypeFractor.php)
+
+```diff
+-config.xhtmlDoctype = 1
++config.doctype = 1
+```
+
+<br>
+
+## RenameTcemainLinkHandlerMailKeyFractor
+
+Rename key mail to email for MailLinkHandler
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\RenameTcemainLinkHandlerMailKeyFractor`](../rules/TYPO3v12/TypoScript/RenameTcemainLinkHandlerMailKeyFractor.php)
+
+```diff
+ TCEMAIN.linkHandler {
+-    mail {
++    email {
+         handler = TYPO3\\CMS\\Recordlist\\LinkHandler\\MailLinkHandler
+         label = LLL:EXT:recordlist/Resources/Private/Language/locallang_browse_links.xlf:email
+         displayAfter = page,file,folder,url
+         scanBefore = url
+     }
+ }
+```
+
+<br>
+
 ## TranslationFileYamlFractor
 
 Use key translationFiles instead of translationFile
@@ -387,6 +513,19 @@ Use key translationFiles instead of translationFile
 -                    10: 'EXT:form/Resources/Private/Language/locallang.xlf'
 +                  translationFiles:
                      20: 'EXT:myextension/Resources/Private/Language/locallang.xlf'
+```
+
+<br>
+
+## UseConfigArrayForTSFEPropertiesFractor
+
+Use config array in TSFE instead of deprecated class properties
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\UseConfigArrayForTSFEPropertiesFractor`](../rules/TYPO3v12/TypoScript/UseConfigArrayForTSFEPropertiesFractor.php)
+
+```diff
+-page.10.data = TSFE:fileTarget
++page.10.data = TSFE:config|config|fileTarget
 ```
 
 <br>
