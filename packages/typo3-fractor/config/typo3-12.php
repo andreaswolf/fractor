@@ -16,6 +16,7 @@ use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigDisablePageExternalUrlFract
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigDoctypeSwitchFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigMetaCharsetFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigSendCacheHeadersOnlyWhenLoginDeniedInBranchFractor;
+use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigSpamProtectEmailAddressesAsciiOptionFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveNewContentElementWizardOptionsFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveWorkspaceModeOptionsFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RenameConfigXhtmlDoctypeToDoctypeFractor;
@@ -40,6 +41,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(RemoveConfigDoctypeSwitchFractor::class);
     $services->set(RemoveConfigMetaCharsetFractor::class);
     $services->set(RemoveConfigSendCacheHeadersOnlyWhenLoginDeniedInBranchFractor::class);
+    $services->set(RemoveConfigSpamProtectEmailAddressesAsciiOptionFractor::class);
     $services->set(RemoveNewContentElementWizardOptionsFractor::class);
     $services->set(RemoveTceFormsDomElementFlexFormFractor::class);
     $services->set(RemoveWorkspaceModeOptionsFractor::class);
