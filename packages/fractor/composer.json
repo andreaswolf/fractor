@@ -19,10 +19,8 @@
         "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.0",
         "symfony/filesystem": "^5.4 || ^6.4 || ^7.0",
         "symfony/finder": "^5.4 || ^6.4 || ^7.0",
+        "symplify/rule-doc-generator-contracts": "^11.2",
         "webmozart/assert": "^1.11"
-    },
-    "require-dev": {
-        "symplify/rule-doc-generator-contracts": "^11.2"
     },
     "autoload": {
         "psr-4": {
