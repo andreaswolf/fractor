@@ -15,10 +15,8 @@
         "a9f/fractor": "^0.2",
         "a9f/fractor-extension-installer": "^0.2",
         "nette/utils": "^4.0",
+        "symplify/rule-doc-generator-contracts": "^11.2",
         "webmozart/assert": "^1.11"
-    },
-    "require-dev": {
-        "symplify/rule-doc-generator-contracts": "^11.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
