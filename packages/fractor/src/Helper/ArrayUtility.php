@@ -30,6 +30,6 @@ class ArrayUtility
             $result = $temp;
         }
 
-        return array_map('trim', $result);
+        return array_map(trim(...), $result);
     }
 }
