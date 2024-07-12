@@ -49,10 +49,10 @@ final readonly class FractorRunner
             $file = new File($filePath, FileSystem::read($filePath));
             $this->fileCollector->addFile($file);
 
+            if (! $configuration->isQuiet()) {
+                $output->progressAdvance();
+            }
             foreach ($this->processors as $processor) {
-                if (! $configuration->isQuiet()) {
-                    $output->progressAdvance();
-                }
                 if (! $processor->canHandle($file)) {
                     continue;
                 }
