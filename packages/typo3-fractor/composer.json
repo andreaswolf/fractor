@@ -14,7 +14,6 @@
         "php": "^8.2",
         "ext-dom": "*",
         "a9f/fractor": "^0.2.2",
-        "a9f/fractor-doc-generator": "^0.2.2",
         "a9f/fractor-extension-installer": "^0.2.2",
         "a9f/fractor-fluid": "^0.2.2",
         "a9f/fractor-typoscript": "^0.2.2",
