@@ -1,6 +1,7 @@
-# TYPO3-Fractor – An enhancement for [TYPO3-Rector](https://github.com/sabbelasichon/typo3-rector)
+# TYPO3 Fractor
 
-Ease your TYPO3 upgrades by also automatically change TypoScript, YAML and Fluid.
+Ease your TYPO3 upgrades by also automatically changing TypoScript, YAML and Fluid.
+An enhancement for [TYPO3-Rector](https://github.com/sabbelasichon/typo3-rector).
 
 > [!WARNING]
 > :heavy_exclamation_mark: Never run this tool on production! Always run it on development environment where code is under version control (e.g. git).
@@ -8,7 +9,7 @@ Ease your TYPO3 upgrades by also automatically change TypoScript, YAML and Fluid
 
 ## Installation
 
-Install TYPO3-Fractor via composer by running the following command in your terminal:
+Install TYPO3 Fractor via composer by running the following command in your terminal:
 
 ```bash
 composer require a9f/typo3-fractor --dev
@@ -31,7 +32,7 @@ return FractorConfiguration::configure()
     ]);
 ```
 
-Have a look at all available rules [Overview of all rules](docs/typo3-fractor-rules.md)
+Have a look at all available rules: [Overview of all rules](docs/typo3-fractor-rules.md)
 
 ## Usage
 
@@ -50,3 +51,7 @@ vendor/bin/fractor process
 Fractor will apply the rules specified in the configuration file to the targeted files.
 
 Review the changes to ensure they meet your expectations.
+
+## Development
+
+Development happens in the [Fractor monorepo on GitHub](https://github.com/andreaswolf/fractor/)
