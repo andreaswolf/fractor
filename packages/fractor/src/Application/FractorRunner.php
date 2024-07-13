@@ -79,6 +79,9 @@ final readonly class FractorRunner
             }
 
             if (! $configuration->isQuiet()) {
+                $output->write(sprintf('File: %s', $file->getFilePath()));
+                $output->write('');
+
                 $output->write($file->getFileDiff()->getDiffConsoleFormatted());
                 if ($file->getAppliedRules() !== []) {
                     $fractorsChangelogsLines = $this->fractorsChangelogLinesResolver->createFractorChangelogLines(

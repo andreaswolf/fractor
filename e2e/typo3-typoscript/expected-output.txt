@@ -1,3 +1,5 @@
+File: [e2e dir]/typo3-typoscript/result/cache-hash.typoscript
+
     ---------- begin diff ----------
 @@ @@
  page.10.value = Link to page 23
