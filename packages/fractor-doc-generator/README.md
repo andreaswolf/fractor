@@ -1,6 +1,6 @@
-# Fractor Rule Doc Generator
+# Fractor Rule Documentation Generator
 
-Generate Documentation for you Fractor rules
+Generate Documentation for your Fractor rules
 
 ## Installation
 
@@ -23,3 +23,7 @@ vendor/bin/fractor-doc-generator generate src/rules --output-file docs/my_rules.
 ```
 
 Happy coding!
+
+## Development
+
+Development happens in the [Fractor monorepo on GitHub](https://github.com/andreaswolf/fractor/)

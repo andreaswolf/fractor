@@ -2,6 +2,10 @@
 
 Fractor is a generic tool for changing all kinds of files via defined rules—similar to what [Rector](https://github.com/rectorphp/rector/) does for PHP.
 
+> [!WARNING]
+> :heavy_exclamation_mark: Never run this tool on production! Always run it on development environment where code is under version control (e.g. git).
+> Review and test changes before releasing to production. Code migrations could potentially break your website!
+
 ## How it works
 
 The main package `a9f/fractor` provides infrastructure for configuring, running and extending Fractor,
@@ -19,11 +23,19 @@ Such a structure also provides advantages in keeping formatting intact as much a
 However, since PHP does not have strong parsers for these formats that emit an AST for them,
 there is no advanced support available right now.
 
+### Rules overview
+
+* Available rules for composer.json files are documented in [the fractor-composer-json package](./packages/fractor-composer-json/docs/composer-json-fractor-rules.md)
+* Available rules for TYPO3 are documented in [the typo3-fractor package](./packages/typo3-fractor/docs/typo3-fractor-rules.md)
+
+
 ## Installation
 
 Install Fractor via composer by running the following command in your terminal:
 
 ```bash
+# you can use any combination of packages here;
+# as TYPO3 users, you probably want a9f/typo3-fractor foremost.
 composer require a9f/fractor a9f/fractor-xml --dev
 ```
 
@@ -56,7 +68,10 @@ use a9f\FractorComposerJson\AddPackageToRequireDevComposerJsonFractor;
 
 return FractorConfiguration::configure()
     ->withPaths([__DIR__ . '/packages/'])
-    ->withConfiguredRule(AddPackageToRequireDevComposerJsonFractor::class, [new PackageAndVersion('vendor1/package3', '^3.0')])
+    ->withConfiguredRule(
+        AddPackageToRequireDevComposerJsonFractor::class,
+        [new PackageAndVersion('vendor1/package3', '^3.0')]
+    )
     ->withRules([AddRenderTypeToFlexFormFractor::class]);
 ```
 
@@ -184,7 +199,8 @@ Fractor is licensed under the MIT License.
 ## Acknowledgments
 
 Fractor wouldn't be possible without the amazing work of all the open source libraries we rely on.
-We're grateful for their contributions to the PHP ecosystem.
+A special mention goes to [Rector](https://github.com/rectorphp/rector/) that inspired many of the concepts and implementations in Fractor.
+We're grateful for all their contributions to the PHP ecosystem.
 
 -----
 
