@@ -1,3 +1,5 @@
+File: [e2e dir]/typo3-yaml/result/my_form.form.yaml
+
     ---------- begin diff ----------
 @@ @@
    -
