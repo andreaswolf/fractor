@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\FractorRunner;
+use a9f\Fractor\ChangesReporting\Contract\Output\OutputFormatterInterface;
 use a9f\Fractor\Configuration\AllowedFileExtensionsResolver;
 use a9f\Fractor\Configuration\SkipConfigurationFactory;
 use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
+use a9f\Fractor\Console\Output\OutputFormatterCollector;
 use a9f\Fractor\Differ\ConsoleDiffer;
 use a9f\Fractor\Differ\Contract\Differ;
 use a9f\Fractor\FractorApplication;
@@ -88,6 +90,13 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     $services->set(SkipConfiguration::class)->factory([service(SkipConfigurationFactory::class), 'create']);
     $services->set(FractorRunner::class)->arg('$processors', tagged_iterator('fractor.file_processor'));
     $services->set(AllowedFileExtensionsResolver::class)->arg('$processors', tagged_iterator('fractor.file_processor'));
+    $services->set(OutputFormatterCollector::class)->arg(
+        '$outputFormatters',
+        tagged_iterator('fractor.output_formatter')
+    );
     $services->set(Filesystem::class);
     $containerBuilder->registerForAutoconfiguration(FileProcessor::class)->addTag('fractor.file_processor');
+    $containerBuilder->registerForAutoconfiguration(OutputFormatterInterface::class)->addTag(
+        'fractor.output_formatter'
+    );
 };

@@ -10,9 +10,11 @@ use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Console\Contract\Output;
+use a9f\Fractor\Differ\ValueObject\FileDiff;
 use a9f\Fractor\Differ\ValueObjectFactory\FileDiffFactory;
 use a9f\Fractor\FileSystem\FilesFinder;
-use a9f\Fractor\Reporting\FractorsChangelogLinesResolver;
+use a9f\Fractor\ValueObject\FileProcessResult;
+use a9f\Fractor\ValueObject\ProcessResult;
 use Nette\Utils\FileSystem;
 use Webmozart\Assert\Assert;
 
@@ -26,7 +28,6 @@ final readonly class FractorRunner
      * @param iterable<FileProcessor<FractorRule>> $processors
      */
     public function __construct(
-        private FractorsChangelogLinesResolver $fractorsChangelogLinesResolver,
         private FilesFinder $fileFinder,
         private FilesCollector $fileCollector,
         private iterable $processors,
@@ -37,13 +38,16 @@ final readonly class FractorRunner
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
 
-    public function run(Output $output, Configuration $configuration): void
+    public function run(Output $output, Configuration $configuration): ProcessResult
     {
         $filePaths = $this->fileFinder->findFiles($configuration->getPaths(), $configuration->getFileExtensions());
 
         if (! $configuration->isQuiet()) {
             $output->progressStart(count($filePaths));
         }
+
+        /** @var FileDiff[] $fileDiffs */
+        $fileDiffs = [];
 
         foreach ($filePaths as $filePath) {
             $file = new File($filePath, FileSystem::read($filePath));
@@ -67,6 +71,12 @@ final readonly class FractorRunner
             }
 
             $file->setFileDiff($this->fileDiffFactory->createFileDiff($file));
+
+            $fileProcessResult = new FileProcessResult($file->getFileDiff());
+            $currentFileDiff = $fileProcessResult->getFileDiff();
+            if ($currentFileDiff instanceof FileDiff) {
+                $fileDiffs[] = $currentFileDiff;
+            }
         }
 
         if (! $configuration->isQuiet()) {
@@ -78,24 +88,14 @@ final readonly class FractorRunner
                 continue;
             }
 
-            if (! $configuration->isQuiet()) {
-                $output->write($file->getFileDiff()->getDiffConsoleFormatted());
-                if ($file->getAppliedRules() !== []) {
-                    $fractorsChangelogsLines = $this->fractorsChangelogLinesResolver->createFractorChangelogLines(
-                        $file->getAppliedRules()
-                    );
-                    $output->write('<options=underscore>Applied rules:</>');
-                    $output->listing($fractorsChangelogsLines);
-                    $output->newLine();
-                }
-            }
-
             if ($configuration->isDryRun()) {
                 continue;
             }
 
             $this->fileWriter->write($file);
         }
+
+        return new ProcessResult($fileDiffs);
     }
 
     /**

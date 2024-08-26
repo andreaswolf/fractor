@@ -1,3 +1,9 @@
+
+1 file with changes
+===================
+
+1) typo3-yaml/result/my_form.form.yaml
+
     ---------- begin diff ----------
 @@ @@
    -
@@ -64,5 +70,8 @@
     ----------- end diff -----------
 
 Applied rules:
-EmailFinisherYamlFractor (https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/10.0/Feature-80420-AllowMultipleRecipientsInEmailFinisher.html)
+ * EmailFinisherYamlFractor (https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/10.0/Feature-80420-AllowMultipleRecipientsInEmailFinisher.html)
+
+
+ [OK] 1 file has been changed by Fractor
 

@@ -1,3 +1,9 @@
+
+1 file with changes
+===================
+
+1) typo3-typoscript/result/cache-hash.typoscript
+
     ---------- begin diff ----------
 @@ @@
  page.10.value = Link to page 23
@@ -13,5 +19,8 @@
     ----------- end diff -----------
 
 Applied rules:
-RemoveUseCacheHashFromTypolinkTypoScriptFractor (https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/10.0/Deprecation-88406-SetCacheHashnoCacheHashOptionsInViewHelpersAndUriBuilder.html)
+ * RemoveUseCacheHashFromTypolinkTypoScriptFractor (https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/10.0/Deprecation-88406-SetCacheHashnoCacheHashOptionsInViewHelpersAndUriBuilder.html)
+
+
+ [OK] 1 file has been changed by Fractor
 
