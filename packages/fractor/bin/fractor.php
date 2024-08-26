@@ -32,4 +32,4 @@ $container = (new ContainerContainerBuilder())->createDependencyInjectionContain
 
 /** @var FractorApplication $application */
 $application = $container->get(FractorApplication::class);
-$application->run();
+exit($application->run());
