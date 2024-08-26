@@ -47,5 +47,5 @@ do
     echo
     set -x
 
-    diff -u --color=auto $TEST_DIR/expected-output.txt $TEST_DIR/output.txt
+    diff -u --ignore-trailing-space --color=auto $TEST_DIR/expected-output.txt $TEST_DIR/output.txt
 done
