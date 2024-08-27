@@ -7,9 +7,11 @@ namespace a9f\FractorTypoScript;
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\FractorTypoScript\Contract\TypoScriptFractor;
+use a9f\FractorTypoScript\Factory\PrettyPrinterConfigurationFactory;
+use Helmich\TypoScriptParser\Parser\ParseError;
 use Helmich\TypoScriptParser\Parser\Parser;
 use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinter;
-use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinterConfiguration;
+use Helmich\TypoScriptParser\Tokenizer\TokenizerException;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 /**
@@ -17,14 +19,18 @@ use Symfony\Component\Console\Output\BufferedOutput;
  */
 final readonly class TypoScriptFileProcessor implements FileProcessor
 {
+    private BufferedOutput $output;
+
     /**
      * @param iterable<TypoScriptFractor> $rules
      */
     public function __construct(
         private iterable $rules,
         private Parser $parser,
-        private PrettyPrinter $printer
+        private PrettyPrinter $printer,
+        private PrettyPrinterConfigurationFactory $prettyPrinterConfigurationFactory
     ) {
+        $this->output = new BufferedOutput();
     }
 
     public function canHandle(File $file): bool
@@ -34,15 +40,24 @@ final readonly class TypoScriptFileProcessor implements FileProcessor
 
     public function handle(File $file, iterable $appliedRules): void
     {
-        $statements = $this->parser->parseString($file->getContent());
+        try {
+            $statements = $this->parser->parseString($file->getContent());
 
-        $statementsIterator = new TypoScriptStatementsIterator($this->rules);
-        $statements = $statementsIterator->traverseDocument($file, $statements);
+            $statementsIterator = new TypoScriptStatementsIterator($this->rules);
+            $statements = $statementsIterator->traverseDocument($file, $statements);
 
-        $output = new BufferedOutput();
-        $this->printer->setPrettyPrinterConfiguration(PrettyPrinterConfiguration::create() ->withEmptyLineBreaks());
-        $this->printer->printStatements($statements, $output);
-        $file->changeFileContent($output->fetch());
+            $this->printer->setPrettyPrinterConfiguration(
+                $this->prettyPrinterConfigurationFactory->createPrettyPrinterConfiguration($file)
+            );
+            $this->printer->printStatements($statements, $this->output);
+
+            $newTypoScriptContent = $this->output->fetch();
+            $typoScriptContent = rtrim($newTypoScriptContent) . "\n";
+            $file->changeFileContent($typoScriptContent);
+        } catch (TokenizerException) {
+            return;
+        } catch (ParseError) {
+        }
     }
 
     public function allowedFileExtensions(): array
