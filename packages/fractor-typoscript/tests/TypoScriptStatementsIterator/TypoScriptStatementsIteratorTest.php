@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace a9f\FractorTypoScript\Tests;
+namespace a9f\FractorTypoScript\Tests\TypoScriptStatementsIterator;
 
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
 use a9f\Fractor\Exception\ShouldNotHappenException;
-use a9f\FractorTypoScript\Tests\Fixture\StatementCollectingVisitor;
+use a9f\FractorTypoScript\Tests\TypoScriptStatementsIterator\Fixture\StatementCollectingVisitor;
 use a9f\FractorTypoScript\TypoScriptStatementsIterator;
 use Helmich\TypoScriptParser\Parser\Parser;
 use PHPUnit\Framework\Attributes\Test;

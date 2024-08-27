@@ -116,6 +116,26 @@ return FractorConfiguration::configure()
     ])
 ```
 
+If you want to adjust the format of your typoscript files, you can configure it this way:
+
+```php
+<?php
+
+use a9f\Fractor\Configuration\FractorConfiguration;
+use a9f\FractorTypoScript\Configuration\TypoScriptProcessorOption;
+use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinterConfiguration;
+
+return FractorConfiguration::configure()
+    ->withOptions([
+        TypoScriptProcessorOption::INDENT_SIZE => 2,
+        TypoScriptProcessorOption::INDENT_CHARACTER => PrettyPrinterConfiguration::INDENTATION_STYLE_SPACES,
+        //TypoScriptProcessorOption::INDENT_CHARACTER => 'auto', // this detects the indent from the file and keeps it
+        TypoScriptProcessorOption::ADD_CLOSING_GLOBAL => false,
+        TypoScriptProcessorOption::INCLUDE_EMPTY_LINE_BREAKS => true,
+        TypoScriptProcessorOption::INDENT_CONDITIONS => true,
+    ])
+```
+
 ## Processing
 
 Execute Fractor from the command line, passing the path to your configuration file as an argument:

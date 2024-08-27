@@ -42,7 +42,7 @@ final class FractorConfigurationBuilder
     private array $imports = [];
 
     /**
-     * @var array<string, int|string>
+     * @var array<string, string|int|bool>
      */
     private array $options = [];
 
@@ -157,7 +157,7 @@ final class FractorConfigurationBuilder
     }
 
     /**
-     * @param array<string, string|int> $options
+     * @param array<string, string|int|bool> $options
      */
     public function withOptions(array $options): self
     {

@@ -1,0 +1,17 @@
+page = PAGE
+page.10 = TEXT
+page.10.value = german
+
+[siteLanguage('languageId') == 1]
+    page.10.value = english
+[global]
+
+config.spamProtectEmailAddresses = ascii
+-----
+page = PAGE
+page.10 = TEXT
+page.10.value = german
+
+[siteLanguage('languageId') == 1]
+    page.10.value = english
+[global]
