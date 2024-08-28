@@ -40,13 +40,15 @@ final readonly class XmlFileProcessor implements FileProcessor
         $document->loadXML($originalXml);
 
         // This is a hacky trick to keep format and create a nice diff later
-        $file->changeOriginalContent($this->saveXml($document));
+        $oldXml = $this->saveXml($document);
+        $oldXml = $this->formatter->format($this->indent, $oldXml) . "\n";
+        $file->changeOriginalContent($oldXml);
 
         $iterator = new DomDocumentIterator($appliedRules);
         $iterator->traverseDocument($file, $document);
 
         $newXml = $this->saveXml($document);
-        $newXml = $this->formatter->format($this->indent, $newXml);
+        $newXml = $this->formatter->format($this->indent, $newXml) . "\n";
 
         if ($newXml === $originalXml) {
             return;

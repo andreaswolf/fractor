@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<sheetTitle>sheetTitle</sheetTitle>
+				<type>array</type>
+				<el>
+					<settings.nullable_field_trimmed>
+						<label>Nullable field trimmed</label>
+						<config>
+							<eval>trim</eval>
+							<nullable>true</nullable>
+						</config>
+					</settings.nullable_field_trimmed>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>

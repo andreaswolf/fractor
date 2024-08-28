@@ -10,7 +10,7 @@ cd $TESTS_BASE_DIR
 rm -r composer.lock vendor || true
 composer install
 
-for TEST_DIR in typo3-yaml typo3-typoscript
+for TEST_DIR in typo3-typoscript typo3-xml typo3-yaml
 do
     set +x
     echo
