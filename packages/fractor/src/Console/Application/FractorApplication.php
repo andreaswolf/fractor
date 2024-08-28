@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor;
+namespace a9f\Fractor\Console\Application;
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputDefinition;

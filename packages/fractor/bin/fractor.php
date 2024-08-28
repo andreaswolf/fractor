@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use a9f\Fractor\Configuration\ConfigResolver;
+use a9f\Fractor\Console\Application\FractorApplication;
 use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
-use a9f\Fractor\FractorApplication;
 use Symfony\Component\Console\Input\ArgvInput;
 
 $autoloadFile = (static function (): ?string {

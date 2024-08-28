@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\FractorMonorepo\Release;
 
-use a9f\Fractor\FractorApplication;
+use a9f\Fractor\Console\Application\FractorApplication;
 use Nette\Utils\FileSystem;
 use Nette\Utils\Strings;
 
