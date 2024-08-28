@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace a9f\FractorTypoScript;
+namespace a9f\FractorTypoScript\Tests;
 
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\FractorTypoScript\Tests\Fixture\StatementCollectingVisitor;
+use a9f\FractorTypoScript\TypoScriptStatementsIterator;
 use Helmich\TypoScriptParser\Parser\Parser;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -91,7 +92,7 @@ TS);
     protected function getService(string $type): object
     {
         if ($this->currentContainer === null) {
-            throw new ShouldNotHappenException('Container is not initalized');
+            throw new ShouldNotHappenException('Container is not initialized');
         }
 
         return $this->currentContainer->get($type)

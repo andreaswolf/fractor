@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace a9f\Typo3Fractor\Tests\TYPO3v12\TypoScript\RemoveConfigSpamProtectEmailAddressesAsciiOptionFractorTest;
+namespace a9f\Typo3Fractor\Tests\TYPO3v12\TypoScript\RemoveConfigSpamProtectEmailAddressesAsciiOptionFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigSpamProtectEmailAddressesAsciiOptionFractor;
