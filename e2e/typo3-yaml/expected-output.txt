@@ -2,7 +2,7 @@
 1 file with changes
 ===================
 
-1) typo3-yaml/result/my_form.form.yaml
+1) typo3-yaml/result/my_form.form.yaml:2
 
     ---------- begin diff ----------
 @@ @@
