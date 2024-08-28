@@ -9,7 +9,8 @@
 					<settings.nullable_field_trimmed>
 						<label>Nullable field trimmed</label>
 						<config>
-							<eval>null,trim</eval>
+							<eval>trim</eval>
+							<nullable>true</nullable>
 						</config>
 					</settings.nullable_field_trimmed>
 				</el>
