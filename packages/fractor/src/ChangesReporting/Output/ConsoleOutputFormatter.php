@@ -61,6 +61,11 @@ class ConsoleOutputFormatter implements OutputFormatterInterface
         $i = 0;
         foreach ($fileDiffs as $fileDiff) {
             $filePath = $absoluteFilePath ? $fileDiff->getAbsoluteFilePath() ?? '' : $fileDiff->getRelativeFilePath();
+            // append line number for faster file jump in diff
+            $firstLineNumber = $fileDiff->getFirstLineNumber();
+            if ($firstLineNumber !== null) {
+                $filePath .= ':' . $firstLineNumber;
+            }
             $message = \sprintf('<options=bold>%d) %s</>', ++$i, $filePath);
             $this->symfonyStyle->writeln($message);
             $this->symfonyStyle->newLine();

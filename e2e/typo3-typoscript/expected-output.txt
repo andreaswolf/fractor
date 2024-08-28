@@ -2,7 +2,7 @@
 1 file with changes
 ===================
 
-1) typo3-typoscript/result/cache-hash.typoscript
+1) typo3-typoscript/result/cache-hash.typoscript:3
 
     ---------- begin diff ----------
 @@ @@
