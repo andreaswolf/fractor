@@ -41,7 +41,7 @@ final class ProcessCommand extends Command
 
         $this->addOption(
             Option::DRY_RUN,
-            null,
+            Option::DRY_RUN_SHORT,
             InputOption::VALUE_NONE,
             'Only see the diff of changes, do not save them to files.'
         );

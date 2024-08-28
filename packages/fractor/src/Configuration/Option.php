@@ -24,6 +24,11 @@ final class Option
     /**
      * @var string
      */
+    public const DRY_RUN_SHORT = 'n';
+
+    /**
+     * @var string
+     */
     public const QUIET = 'quiet';
 
     /**
