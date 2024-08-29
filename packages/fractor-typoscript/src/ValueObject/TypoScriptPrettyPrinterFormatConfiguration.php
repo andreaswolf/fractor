@@ -10,11 +10,11 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 final readonly class TypoScriptPrettyPrinterFormatConfiguration
 {
     public function __construct(
-        private int $size,
-        private string $style,
-        private bool $addClosingGlobal,
-        private bool $includeEmptyLineBreaks,
-        private bool $indentConditions
+        public int $size,
+        public string $style,
+        public bool $addClosingGlobal,
+        public bool $includeEmptyLineBreaks,
+        public bool $indentConditions
     ) {
     }
 
@@ -42,30 +42,5 @@ final readonly class TypoScriptPrettyPrinterFormatConfiguration
             && (bool) $parameterBag->get(TypoScriptProcessorOption::INDENT_CONDITIONS);
 
         return new self($size, $style, $addClosingGlobal, $includeEmptyLineBreaks, $indentConditions);
-    }
-
-    public function getSize(): int
-    {
-        return $this->size;
-    }
-
-    public function getStyle(): string
-    {
-        return $this->style;
-    }
-
-    public function shouldAddClosingGlobal(): bool
-    {
-        return $this->addClosingGlobal;
-    }
-
-    public function shouldIncludeEmptyLineBreaks(): bool
-    {
-        return $this->includeEmptyLineBreaks;
-    }
-
-    public function shouldIndentConditions(): bool
-    {
-        return $this->indentConditions;
     }
 }

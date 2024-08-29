@@ -17,7 +17,7 @@ final class PrettyPrinterConfigurationFactory
     ): PrettyPrinterConfiguration {
         $prettyPrinterConfiguration = PrettyPrinterConfiguration::create();
 
-        if ($prettyPrinterFormatConfiguration->getStyle() === 'auto') {
+        if ($prettyPrinterFormatConfiguration->style === 'auto') {
             // keep original TypoScript format
             $indent = Indent::fromFile($file);
 
@@ -26,23 +26,23 @@ final class PrettyPrinterConfigurationFactory
             } else {
                 $prettyPrinterConfiguration = $prettyPrinterConfiguration->withTabs();
             }
-        } elseif ($prettyPrinterFormatConfiguration->getStyle() === PrettyPrinterConfiguration::INDENTATION_STYLE_TABS) {
+        } elseif ($prettyPrinterFormatConfiguration->style === PrettyPrinterConfiguration::INDENTATION_STYLE_TABS) {
             $prettyPrinterConfiguration = $prettyPrinterConfiguration->withTabs();
         } else {
             $prettyPrinterConfiguration = $prettyPrinterConfiguration->withSpaceIndentation(
-                $prettyPrinterFormatConfiguration->getSize()
+                $prettyPrinterFormatConfiguration->size
             );
         }
 
-        if ($prettyPrinterFormatConfiguration->shouldIndentConditions()) {
+        if ($prettyPrinterFormatConfiguration->indentConditions) {
             $prettyPrinterConfiguration = $prettyPrinterConfiguration->withIndentConditions();
         }
 
-        if ($prettyPrinterFormatConfiguration->shouldAddClosingGlobal()) {
+        if ($prettyPrinterFormatConfiguration->addClosingGlobal) {
             $prettyPrinterConfiguration = $prettyPrinterConfiguration->withClosingGlobalStatement();
         }
 
-        if ($prettyPrinterFormatConfiguration->shouldIncludeEmptyLineBreaks()) {
+        if ($prettyPrinterFormatConfiguration->includeEmptyLineBreaks) {
             return $prettyPrinterConfiguration->withEmptyLineBreaks();
         }
 
