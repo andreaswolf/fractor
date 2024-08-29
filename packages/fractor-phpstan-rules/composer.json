@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "a9f/fractor": "^0.2.2",
+        "a9f/fractor": "^0.3",
         "phpstan/phpstan": "^1.10.9"
     },
     "minimum-stability": "dev",
