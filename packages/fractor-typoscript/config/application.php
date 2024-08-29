@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use a9f\FractorTypoScript\Contract\TypoScriptFractor;
-use a9f\FractorTypoScript\Factory\PrettyPrinterFormatFactory;
 use a9f\FractorTypoScript\TypoScriptFileProcessor;
 use a9f\FractorTypoScript\ValueObject\TypoScriptPrettyPrinterFormatConfiguration;
 use Helmich\TypoScriptParser\Parser\Parser;
@@ -29,7 +28,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     $services->set(PrettyPrinter::class);
 
     $services->set('fractor.typoscript_processor.pretty_printer', TypoScriptPrettyPrinterFormatConfiguration::class)
-        ->factory([service(PrettyPrinterFormatFactory::class), 'create']);
+        ->factory([null, 'createFromParameterBag']);
 
     $services->set(TypoScriptFileProcessor::class)
         ->arg('$typoScriptPrettyPrinterFormatConfiguration', service('fractor.typoscript_processor.pretty_printer'))
