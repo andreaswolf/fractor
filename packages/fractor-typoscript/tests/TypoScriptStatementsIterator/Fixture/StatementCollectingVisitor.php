@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace a9f\FractorTypoScript\Tests\Fixture;
+namespace a9f\FractorTypoScript\Tests\TypoScriptStatementsIterator\Fixture;
 
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\FractorTypoScript\Contract\TypoScriptNodeVisitor;

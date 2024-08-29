@@ -2,19 +2,16 @@
 
 declare(strict_types=1);
 
-namespace a9f\Typo3Fractor\TYPO3v12\TypoScript;
+namespace a9f\FractorTypoScript\Tests\Fixtures;
 
 use a9f\FractorTypoScript\AbstractTypoScriptFractor;
 use a9f\FractorTypoScript\TypoScriptStatementsIterator;
 use Helmich\TypoScriptParser\Parser\AST\Operator\Assignment;
 use Helmich\TypoScriptParser\Parser\AST\Statement;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
+use Symfony\Component\DependencyInjection\Exception\BadMethodCallException;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
-/**
- * @changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.0/Breaking-90044-ConfigspamProtectEmailAddressesWithOptionAsciiRemoved.html
- */
-final class RemoveConfigSpamProtectEmailAddressesAsciiOptionFractor extends AbstractTypoScriptFractor
+final class DummyTypoScriptFractorRule extends AbstractTypoScriptFractor
 {
     public function refactor(Statement $statement): null|Statement|int
     {
@@ -33,14 +30,6 @@ final class RemoveConfigSpamProtectEmailAddressesAsciiOptionFractor extends Abst
 
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition('Remove config.spamProtectEmailAddresses with option ascii', [new CodeSample(
-            <<<'CODE_SAMPLE'
-config.spamProtectEmailAddresses = ascii
-CODE_SAMPLE
-            ,
-            <<<'CODE_SAMPLE'
--
-CODE_SAMPLE
-        )]);
+        throw new BadMethodCallException('Not implemented yet');
     }
 }

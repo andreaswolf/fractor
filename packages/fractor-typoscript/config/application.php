@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use a9f\FractorTypoScript\Contract\TypoScriptFractor;
 use a9f\FractorTypoScript\TypoScriptFileProcessor;
+use a9f\FractorTypoScript\ValueObject\TypoScriptPrettyPrinterFormatConfiguration;
 use Helmich\TypoScriptParser\Parser\Parser;
 use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinter;
 use Helmich\TypoScriptParser\Tokenizer\Tokenizer;
@@ -26,7 +27,11 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         ->public();
     $services->set(PrettyPrinter::class);
 
+    $services->set('fractor.typoscript_processor.pretty_printer', TypoScriptPrettyPrinterFormatConfiguration::class)
+        ->factory([null, 'createFromParameterBag']);
+
     $services->set(TypoScriptFileProcessor::class)
+        ->arg('$typoScriptPrettyPrinterFormatConfiguration', service('fractor.typoscript_processor.pretty_printer'))
         ->arg('$rules', tagged_iterator('fractor.typoscript_rule'));
 
     $containerBuilder->registerForAutoconfiguration(TypoScriptFractor::class)
