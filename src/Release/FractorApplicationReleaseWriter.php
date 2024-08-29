@@ -12,7 +12,7 @@ final class FractorApplicationReleaseWriter
 {
     public function write(string $version): void
     {
-        $applicationFile = __DIR__ . '/../../packages/fractor/src/FractorApplication.php';
+        $applicationFile = __DIR__ . '/../../packages/fractor/src/Console/Application/FractorApplication.php';
         $content = Filesystem::read($applicationFile);
         $content = Strings::replace(
             $content,
