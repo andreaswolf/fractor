@@ -12,9 +12,9 @@
     ],
     "require": {
         "php": "^8.2",
-        "a9f/fractor": "^0.2.2",
-        "a9f/fractor-doc-generator": "^0.2.2",
-        "a9f/fractor-extension-installer": "^0.2.2",
+        "a9f/fractor": "^0.3",
+        "a9f/fractor-doc-generator": "^0.3",
+        "a9f/fractor-extension-installer": "^0.3",
         "ergebnis/json-printer": "^3.5",
         "eta-orionis/composer-json-manipulator": "^1.0.1",
         "nette/utils": "^4.0",
@@ -50,7 +50,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "0.2-dev"
+            "dev-main": "0.3-dev"
         }
     }
 }
