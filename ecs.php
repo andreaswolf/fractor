@@ -15,7 +15,6 @@ use Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return ECSConfig::configure()
-    // add a single rule
     ->withConfiguredRule(NoSuperfluousPhpdocTagsFixer::class, [
         'allow_mixed' => true,
     ])
@@ -31,9 +30,12 @@ return ECSConfig::configure()
         LineLengthFixer::class,
         YodaStyleFixer::class,
         OperatorLinebreakFixer::class,
-
     ])
     ->withSkip([__DIR__ . '/packages/extension-installer/generated'])
-    ->withPreparedSets(psr12: true, symplify: true, common: true, cleanCode: true)
-    ->withPaths([__DIR__ . '/e2e', __DIR__ . '/src', __DIR__ . '/packages'])
+    ->withPreparedSets(psr12: true, common: true, symplify: true, cleanCode: true)
+    ->withPaths([
+        __DIR__ . '/e2e',
+        __DIR__ . '/src',
+        __DIR__ . '/packages',
+    ])
     ->withRootFiles();
