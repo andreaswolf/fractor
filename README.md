@@ -10,8 +10,8 @@ Fractor is a generic tool for changing all kinds of files via defined rules—si
 
 The main package `a9f/fractor` provides infrastructure for configuring, running and extending Fractor,
 but no rules for changing any files.
-These are provided by individual packages specific for different file types (like `a9f/fractor-xml`)
-or ecosystems (like `a9f/typo3-fractor`).
+These are provided by individual packages specific for different file types
+(like `a9f/fractor-composer-json`, `a9f/fractor-xml` or `a9f/fractor-yaml`) or ecosystems (like `a9f/typo3-fractor`).
 
 For different file types, different operation modes are possible.
 For XML, there is a full-blown tree traversal implemented in `a9f/fractor-xml`,
@@ -28,15 +28,29 @@ there is no advanced support available right now.
 * Available rules for composer.json files are documented in [the fractor-composer-json package](./packages/fractor-composer-json/docs/composer-json-fractor-rules.md)
 * Available rules for TYPO3 are documented in [the typo3-fractor package](./packages/typo3-fractor/docs/typo3-fractor-rules.md)
 
+## Requirements
+
+Fractor needs at least PHP 8.2.
+If you want to migrate outdated systems, that don't support PHP 8.2, you can install Fractor, for example, in a Docker
+container that is based on a PHP 8.2 image and then run it from there.
+Alternatively, you can run Fractor within a CI Pipeline that is using PHP 8.2 and then commit the code changes within CI.
 
 ## Installation
 
-Install Fractor via composer by running the following command in your terminal:
+If you want to migrate common files, you can specify the file types you want to support.
+Fractor core will be installed automatically and doesn't need to be required directly.
+
+Install Fractor with the file types you need via composer by running the following command in your terminal:
 
 ```bash
-# you can use any combination of packages here;
-# as TYPO3 users, you probably want a9f/typo3-fractor foremost.
-composer require a9f/fractor a9f/fractor-xml --dev
+composer require a9f/fractor-composer-json a9f/fractor-xml a9f/fractor-yaml --dev
+```
+
+As **TYPO3** users, you probably want to use `a9f/typo3-fractor` only which will install all necessary file types for
+you like fluid, typoscript, xml and yaml:
+
+```bash
+composer require a9f/typo3-fractor --dev
 ```
 
 ## Configuration
@@ -113,10 +127,10 @@ return FractorConfiguration::configure()
     ->withOptions([
         XmlProcessorOption::INDENT_CHARACTER => Indent::STYLE_TAB,
         XmlProcessorOption::INDENT_SIZE => 1,
-    ])
+    ]);
 ```
 
-If you want to adjust the format of your typoscript files, you can configure it this way:
+If you want to adjust the format of your TypoScript files, you can configure it this way:
 
 ```php
 <?php
@@ -133,27 +147,30 @@ return FractorConfiguration::configure()
         TypoScriptProcessorOption::ADD_CLOSING_GLOBAL => false,
         TypoScriptProcessorOption::INCLUDE_EMPTY_LINE_BREAKS => true,
         TypoScriptProcessorOption::INDENT_CONDITIONS => true,
-    ])
+    ]);
 ```
 
 ## Processing
 
-Execute Fractor from the command line, passing the path to your configuration file as an argument:
+Before executing the code migrations, run the following command to see a preview of what Fractor will do:
 
 ```bash
-vendor/bin/fractor process -f fractor.php
-```
-
-Fractor will apply the rules specified in the configuration file to the targeted files.
-Review the changes made by Fractor to ensure they meet your expectations.
-
-You would also run fractor in dry mode:
-
-```bash
-vendor/bin/fractor process -f fractor.php --dry-run
+vendor/bin/fractor process --dry-run
 ```
 
 Fractor will output all the potential changes on the console without real execution.
+
+Review the changes made by Fractor to ensure they meet your expectations.
+If you see some things that Fractor should not migrate for some reason, adjust your config file and exclude either rules,
+some paths or single files.
+
+When you feel confident, execute the code migrations with the following command:
+
+```bash
+vendor/bin/fractor process
+```
+
+Fractor will now apply the rules specified in the configuration file to the targeted files.
 
 ## Customization
 
@@ -181,8 +198,6 @@ Here's how you can extend Fractor with a custom rule:
 
 ### Supporting New File Types
 
-#### Supporting New File Types
-
 - To support a new file type, you will need to implement an instance of `\a9f\Fractor\Fractor\FileProcessor`.
   This processor must take care of decoding a file and then traversing the decoded file structure
   (e.g., the DOM tree of an XML file; see `\a9f\FractorXml\XmlFileProcessor` for an example)
@@ -196,7 +211,8 @@ Here's how you can extend Fractor with a custom rule:
 
 - Document your custom rules and file type extensions to aid other users in understanding and utilizing your contributions.
 
-By extending Fractor in this manner, you can enhance its capabilities and adapt it to handle a wider range of file formats and transformation scenarios.
+By extending Fractor in this manner, you can enhance its capabilities and adapt it to handle a wider range of file formats
+and transformation scenarios.
 
 ## Contributing
 
@@ -210,7 +226,7 @@ we welcome contributions from the community. Here's how you can contribute:
 
 ## Support
 
-For any questions or support regarding Fractor, please open an issue on GitHub. We'll do our best to assist you promptly.
+For any questions or support regarding Fractor, please open an issue on GitHub. We'll do our best to help you promptly.
 
 ## License
 
