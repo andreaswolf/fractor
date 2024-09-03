@@ -10,7 +10,12 @@ cd $TESTS_BASE_DIR
 rm -r composer.lock vendor || true
 composer install
 
-for TEST_DIR in typo3-typoscript typo3-xml typo3-yaml
+ALL_TESTS="no-config-file typo3-typoscript typo3-xml typo3-yaml"
+TESTS_TO_RUN=${1:-$ALL_TESTS}
+
+echo "Running tests: " $TESTS_TO_RUN
+
+for TEST_DIR in $TESTS_TO_RUN
 do
     set +x
     echo
