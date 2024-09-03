@@ -28,7 +28,13 @@ do
     # copy over our fixture to the path that Fractor will run in
     cp -r $TEST_DIR/fixtures/ $TEST_DIR/result/
 
-    ./vendor/bin/fractor process -c $TESTS_BASE_DIR/$TEST_DIR/fractor.php > $TEST_DIR/output.txt
+    CONFIG_FILE=""
+    if [ -f $TESTS_BASE_DIR/$TEST_DIR/fractor.php ]
+    then
+        CONFIG_FILE="-c $TESTS_BASE_DIR/$TEST_DIR/fractor.php"
+    fi
+
+    ./vendor/bin/fractor process $CONFIG_FILE > $TEST_DIR/output.txt
 
     set +x
     echo
