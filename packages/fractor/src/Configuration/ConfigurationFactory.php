@@ -20,6 +20,7 @@ final readonly class ConfigurationFactory
     public function createFromInput(InputInterface $input): Configuration
     {
         return new Configuration(
+            $this->getConfigurationFile(),
             $this->allowedFileExtensionsResolver->resolve(),
             (array) $this->parameterBag->get(Option::PATHS),
             (array) $this->parameterBag->get(Option::SKIP),
@@ -37,11 +38,21 @@ final readonly class ConfigurationFactory
         Assert::allStringNotEmpty($paths, 'No directories given');
 
         return new Configuration(
+            $this->getConfigurationFile(),
             $this->allowedFileExtensionsResolver->resolve(),
             $paths,
             (array) $this->parameterBag->get(Option::SKIP),
             false,
             false
         );
+    }
+
+    private function getConfigurationFile(): ?string
+    {
+        $configurationFile = $this->parameterBag->get('fractor_config_file');
+        if ($configurationFile !== null) {
+            Assert::string($configurationFile);
+        }
+        return $configurationFile;
     }
 }
