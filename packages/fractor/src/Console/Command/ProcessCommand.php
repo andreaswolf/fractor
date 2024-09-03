@@ -60,12 +60,19 @@ final class ProcessCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $io = new SymfonyStyle($input, $output);
         $configuration = $this->configurationFactory->createFromInput($input);
+
+        if ($configuration->getConfigurationFile() === null) {
+            $io->error('No configuration file specified, cannot run Fractor.');
+            return Command::FAILURE;
+        }
+
         $processResult = $this->runner->run(new SymfonyConsoleOutput($output), $configuration);
 
         $outputFormat = 'console';
         $outputFormatter = $this->outputFormatterCollector->getByName($outputFormat);
-        $outputFormatter->setSymfonyStyle(new SymfonyStyle($input, $output));
+        $outputFormatter->setSymfonyStyle($io);
         $outputFormatter->report($processResult, $configuration);
 
         return $this->resolveReturnCode($processResult, $configuration);

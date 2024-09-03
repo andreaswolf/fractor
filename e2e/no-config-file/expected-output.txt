@@ -1,0 +1,4 @@
+
+
+ [ERROR] No configuration file specified, cannot run Fractor.
+
