@@ -62,7 +62,7 @@
             "a9f\\FractorExtensionInstaller\\": "packages/extension-installer/src/",
             "a9f\\FractorExtensionInstaller\\Generated\\": "packages/extension-installer/generated/",
             "a9f\\FractorFluid\\": "packages/fractor-fluid/src/",
-            "a9f\\FractorMonorepo\\": "src",
+            "a9f\\FractorMonorepo\\": "src/",
             "a9f\\FractorPhpStanRules\\": "packages/fractor-phpstan-rules/src/",
             "a9f\\FractorTypoScript\\": "packages/fractor-typoscript/src/",
             "a9f\\FractorXml\\": "packages/fractor-xml/src/",
