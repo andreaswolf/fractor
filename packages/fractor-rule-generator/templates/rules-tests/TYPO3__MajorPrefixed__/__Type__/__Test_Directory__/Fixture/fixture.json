@@ -1,0 +1,7 @@
+{
+    "key": "code that should be migrated"
+}
+-----
+{
+    "key": "migrated code"
+}

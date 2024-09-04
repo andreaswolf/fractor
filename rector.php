@@ -8,7 +8,10 @@ return RectorConfig::configure()
     ->withPhpSets(php82: true)
     ->withPreparedSets(deadCode: true, typeDeclarations: true, earlyReturn: true, strictBooleans: true)
     ->withImportNames(true, true, false, true)
-    ->withSkip([__DIR__ . '/packages/extension-installer/generated'])
+    ->withSkip([
+        __DIR__ . '/packages/extension-installer/generated',
+        __DIR__ . '/packages/fractor-rule-generator/templates',
+    ])
     ->withPaths([
         __DIR__ . '/ecs.php',
         __DIR__ . '/packages',
