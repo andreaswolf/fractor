@@ -29,16 +29,16 @@
     "autoload": {
         "psr-4": {
             "a9f\\FractorComposerJson\\": [
-                "src",
-                "rules"
+                "src/",
+                "rules/"
             ]
         }
     },
     "autoload-dev": {
         "psr-4": {
             "a9f\\FractorComposerJson\\Tests\\": [
-                "tests",
-                "rules-tests"
+                "tests/",
+                "rules-tests/"
             ]
         }
     },

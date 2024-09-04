@@ -55,8 +55,8 @@
     "autoload": {
         "psr-4": {
             "a9f\\FractorComposerJson\\": [
-                "packages/fractor-composer-json/rules",
-                "packages/fractor-composer-json/src"
+                "packages/fractor-composer-json/rules/",
+                "packages/fractor-composer-json/src/"
             ],
             "a9f\\FractorDocGenerator\\": "packages/fractor-doc-generator/src/",
             "a9f\\FractorExtensionInstaller\\": "packages/extension-installer/src/",
@@ -69,16 +69,15 @@
             "a9f\\FractorYaml\\": "packages/fractor-yaml/src/",
             "a9f\\Fractor\\": "packages/fractor/src/",
             "a9f\\Typo3Fractor\\": [
-                "packages/typo3-fractor/rules",
-                "packages/typo3-fractor/src"
+                "packages/typo3-fractor/rules/",
+                "packages/typo3-fractor/src/"
             ]
         }
     },
     "autoload-dev": {
         "psr-4": {
             "a9f\\FractorComposerJson\\Tests\\": [
-                "packages/fractor-composer-json/rules-tests",
-                "packages/fractor-composer-json/tests",
+                "packages/fractor-composer-json/rules-tests/",
                 "packages/fractor-composer-json/tests/"
             ],
             "a9f\\FractorDocGenerator\\Tests\\": "packages/fractor-doc-generator/tests/",
@@ -89,8 +88,7 @@
             "a9f\\FractorYaml\\Tests\\": "packages/fractor-yaml/tests/",
             "a9f\\Fractor\\Tests\\": "packages/fractor/tests/",
             "a9f\\Typo3Fractor\\Tests\\": [
-                "packages/typo3-fractor/rules-tests",
-                "packages/typo3-fractor/tests",
+                "packages/typo3-fractor/rules-tests/",
                 "packages/typo3-fractor/tests/"
             ]
         },
