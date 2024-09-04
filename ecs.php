@@ -33,9 +33,5 @@ return ECSConfig::configure()
     ])
     ->withSkip([__DIR__ . '/packages/extension-installer/generated'])
     ->withPreparedSets(psr12: true, common: true, symplify: true, cleanCode: true)
-    ->withPaths([
-        __DIR__ . '/e2e',
-        __DIR__ . '/src',
-        __DIR__ . '/packages',
-    ])
+    ->withPaths([__DIR__ . '/e2e', __DIR__ . '/src', __DIR__ . '/packages'])
     ->withRootFiles();
