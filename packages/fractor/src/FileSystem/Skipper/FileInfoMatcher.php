@@ -7,7 +7,7 @@ namespace a9f\Fractor\FileSystem\Skipper;
 final readonly class FileInfoMatcher
 {
     public function __construct(
-        private FnmatchMatcher $fnmatcher,
+        private FnMatchMatcher $fnMatcher,
         private RealpathMatcher $realpathMatcher
     ) {
     }
@@ -50,7 +50,7 @@ final readonly class FileInfoMatcher
             return true;
         }
 
-        if ($this->fnmatcher->match($ignoredPath, $filePath)) {
+        if ($this->fnMatcher->match($ignoredPath, $filePath)) {
             return true;
         }
 
