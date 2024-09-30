@@ -12,8 +12,8 @@
     ],
     "require": {
         "php": "^8.2",
-        "a9f/fractor": "^0.3",
-        "a9f/fractor-extension-installer": "^0.3",
+        "a9f/fractor": "^0.4",
+        "a9f/fractor-extension-installer": "^0.4",
         "helmich/typo3-typoscript-parser": "^2.6",
         "symplify/rule-doc-generator-contracts": "^11.2",
         "webmozart/assert": "^1.11"
@@ -43,7 +43,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "0.3-dev"
+            "dev-main": "0.4-dev"
         }
     },
     "scripts": {
