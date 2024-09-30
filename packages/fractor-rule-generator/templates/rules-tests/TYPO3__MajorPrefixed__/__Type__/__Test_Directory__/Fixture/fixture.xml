@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<sheetTitle>sheetTitle</sheetTitle>
+				<type>array</type>
+				<el>
+					<aColumn>
+						<config>
+							<type>input</type>
+							<todo>code that should be migrated</todo>
+						</config>
+					</aColumn>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>
+-----
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<sheetTitle>sheetTitle</sheetTitle>
+				<type>array</type>
+				<el>
+					<aColumn>
+						<config>
+							<type>input</type>
+							<todo>migrated code</todo>
+						</config>
+					</aColumn>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>

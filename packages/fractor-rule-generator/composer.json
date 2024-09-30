@@ -1,0 +1,43 @@
+{
+    "name": "a9f/fractor-rule-generator",
+    "description": "Fractor rule generator",
+    "license": "MIT",
+    "type": "fractor-extension",
+    "authors": [],
+    "require": {
+        "php": "^8.2",
+        "a9f/fractor": "^0.3",
+        "a9f/fractor-extension-installer": "^0.3",
+        "nette/utils": "^4.0",
+        "symfony/config": "^5.4 || ^6.4 || ^7.0",
+        "symfony/console": "^5.4 || ^6.4 || ^7.0",
+        "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.0",
+        "symfony/filesystem": "^5.4 || ^6.4 || ^7.0",
+        "symfony/finder": "^5.4 || ^6.4 || ^7.0",
+        "symplify/rule-doc-generator-contracts": "^11.2",
+        "webmozart/assert": "^1.11"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "a9f\\FractorRuleGenerator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "a9f\\FractorRuleGenerator\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "a9f/fractor-extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.3-dev"
+        }
+    }
+}

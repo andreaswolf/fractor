@@ -31,7 +31,10 @@ return ECSConfig::configure()
         YodaStyleFixer::class,
         OperatorLinebreakFixer::class,
     ])
-    ->withSkip([__DIR__ . '/packages/extension-installer/generated'])
+    ->withSkip([
+        __DIR__ . '/packages/extension-installer/generated',
+        __DIR__ . '/packages/fractor-rule-generator/templates',
+    ])
     ->withPreparedSets(psr12: true, common: true, symplify: true, cleanCode: true)
     ->withPaths([__DIR__ . '/e2e', __DIR__ . '/src', __DIR__ . '/packages'])
     ->withRootFiles();

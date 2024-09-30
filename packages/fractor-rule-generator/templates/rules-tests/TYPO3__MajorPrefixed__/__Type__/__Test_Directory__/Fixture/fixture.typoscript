@@ -1,0 +1,7 @@
+config {
+    a = code that should be migrated
+}
+-----
+config {
+    a = migrated code
+}
