@@ -9,8 +9,11 @@ use a9f\Fractor\Differ\ValueObject\Diff;
 use SebastianBergmann\Diff\Differ as CoreDiffer;
 use SebastianBergmann\Diff\Output\StrictUnifiedDiffOutputBuilder;
 
-final readonly class DefaultDiffer implements Differ
+final class DefaultDiffer implements Differ
 {
+    /**
+     * @readonly
+     */
     private CoreDiffer $differ;
 
     public function __construct()

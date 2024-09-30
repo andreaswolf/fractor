@@ -10,13 +10,22 @@ use a9f\Fractor\Differ\ValueObject\Diff;
 use SebastianBergmann\Diff\Differ as CoreDiffer;
 use SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder;
 
-final readonly class ConsoleDiffer implements Differ
+final class ConsoleDiffer implements Differ
 {
+    /**
+     * @readonly
+     */
+    private ColorConsoleDiffFormatter $colorConsoleDiffFormatter;
+
+    /**
+     * @readonly
+     */
     private CoreDiffer $differ;
 
     public function __construct(
-        private ColorConsoleDiffFormatter $colorConsoleDiffFormatter
+        ColorConsoleDiffFormatter $colorConsoleDiffFormatter
     ) {
+        $this->colorConsoleDiffFormatter = $colorConsoleDiffFormatter;
         $unifiedDiffOutputBuilder = new UnifiedDiffOutputBuilder();
         $this->differ = new CoreDiffer($unifiedDiffOutputBuilder);
     }

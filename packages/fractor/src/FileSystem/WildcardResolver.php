@@ -16,9 +16,9 @@ final class WildcardResolver
     {
         $absolutePathsFound = [];
         foreach ($paths as $path) {
-            if (\str_contains($path, '*')) {
+            if (strpos($path, '*') !== false) {
                 $foundPaths = $this->foundInGlob($path);
-                $absolutePathsFound = [...$absolutePathsFound, ...$foundPaths];
+                $absolutePathsFound = array_merge($absolutePathsFound, $foundPaths);
             } else {
                 $absolutePathsFound[] = $path;
             }

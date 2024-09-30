@@ -9,5 +9,8 @@ use Helmich\TypoScriptParser\Parser\AST\Statement;
 
 interface TypoScriptFractor extends FractorRule, TypoScriptNodeVisitor
 {
-    public function refactor(Statement $statement): null|Statement|int;
+    /**
+     * @return null|Statement|int
+     */
+    public function refactor(Statement $statement);
 }

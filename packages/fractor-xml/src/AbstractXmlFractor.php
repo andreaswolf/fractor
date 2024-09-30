@@ -19,7 +19,10 @@ abstract class AbstractXmlFractor implements DomNodeVisitor, XmlFractor
         $this->file = $file;
     }
 
-    public function enterNode(\DOMNode $node): \DOMNode|int
+    /**
+     * @return \DOMNode|int
+     */
+    public function enterNode(\DOMNode $node)
     {
         Assert::isInstanceOf($this->file, File::class);
         if (! $this->canHandle($node)) {

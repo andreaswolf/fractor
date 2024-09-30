@@ -9,6 +9,7 @@ use a9f\Fractor\Configuration\AllowedFileExtensionsResolver;
 use a9f\Fractor\Configuration\SkipConfigurationFactory;
 use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use a9f\Fractor\Console\Application\FractorApplication;
+use a9f\Fractor\Console\Command\ProcessCommand;
 use a9f\Fractor\Console\Output\OutputFormatterCollector;
 use a9f\Fractor\Differ\ConsoleDiffer;
 use a9f\Fractor\Differ\Contract\Differ;
@@ -79,6 +80,13 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             }
         }
     );
+    // PHP 7.4 compatibility
+    $containerBuilder->register(ProcessCommand::class)
+        ->addTag('console.command', [
+            'command' => 'process',
+            'description' => 'Runs Fractor with the given configuration file',
+        ])
+        ->setAutowired(true);
 
     $services->set('parameter_bag', ContainerBag::class)
         ->args([service('service_container')])

@@ -8,14 +8,21 @@ use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\Contract\FractorRule;
 use Webmozart\Assert\Assert;
 
-final readonly class AllowedFileExtensionsResolver
+final class AllowedFileExtensionsResolver
 {
+    /**
+     * @var iterable<FileProcessor<FractorRule>>
+     * @readonly
+     */
+    private iterable $processors;
+
     /**
      * @param iterable<FileProcessor<FractorRule>> $processors
      */
     public function __construct(
-        private iterable $processors
+        iterable $processors
     ) {
+        $this->processors = $processors;
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
 

@@ -7,11 +7,16 @@ namespace a9f\Fractor\Configuration;
 use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
-final readonly class SkipConfigurationFactory
+final class SkipConfigurationFactory
 {
-    public function __construct(
-        private ContainerBagInterface $parameterBag
-    ) {
+    /**
+     * @readonly
+     */
+    private ContainerBagInterface $parameterBag;
+
+    public function __construct(ContainerBagInterface $parameterBag)
+    {
+        $this->parameterBag = $parameterBag;
     }
 
     public function create(): SkipConfiguration

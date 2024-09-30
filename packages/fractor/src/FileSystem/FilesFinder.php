@@ -7,13 +7,28 @@ namespace a9f\Fractor\FileSystem;
 use Symfony\Component\Finder\Finder;
 use Webmozart\Assert\Assert;
 
-final readonly class FilesFinder
+final class FilesFinder
 {
-    public function __construct(
-        private WildcardResolver $wildcardResolver,
-        private FileAndDirectoryFilter $fileAndDirectoryFilter,
-        private PathSkipper $pathSkipper
-    ) {
+    /**
+     * @readonly
+     */
+    private WildcardResolver $wildcardResolver;
+
+    /**
+     * @readonly
+     */
+    private FileAndDirectoryFilter $fileAndDirectoryFilter;
+
+    /**
+     * @readonly
+     */
+    private PathSkipper $pathSkipper;
+
+    public function __construct(WildcardResolver $wildcardResolver, FileAndDirectoryFilter $fileAndDirectoryFilter, PathSkipper $pathSkipper)
+    {
+        $this->wildcardResolver = $wildcardResolver;
+        $this->fileAndDirectoryFilter = $fileAndDirectoryFilter;
+        $this->pathSkipper = $pathSkipper;
     }
 
     /**
@@ -45,7 +60,7 @@ final readonly class FilesFinder
         $directories = $this->fileAndDirectoryFilter->filterDirectories($filesAndDirectories);
         $filteredFilePathsInDirectories = $this->findInDirectories($directories, $suffixes, $sortByName);
 
-        return [...$filteredFilePaths, ...$filteredFilePathsInDirectories];
+        return array_merge($filteredFilePaths, $filteredFilePathsInDirectories);
     }
 
     /**

@@ -43,7 +43,10 @@ final class MigratePasswordAndSaltedPasswordToPasswordTypeFlexFormFractor extend
         $this->domDocument = $rootNode;
     }
 
-    public function refactor(\DOMNode $node): \DOMNode|int|null
+    /**
+     * @return \DOMNode|int|null
+     */
+    public function refactor(\DOMNode $node)
     {
         if (! $node instanceof \DOMElement) {
             return null;

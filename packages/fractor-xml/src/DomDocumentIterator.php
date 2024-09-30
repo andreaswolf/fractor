@@ -9,7 +9,7 @@ use a9f\FractorXml\Contract\DomNodeVisitor;
 use a9f\FractorXml\Exception\ShouldNotHappenException;
 use Webmozart\Assert\Assert;
 
-final readonly class DomDocumentIterator
+final class DomDocumentIterator
 {
     /**
      * @var int
@@ -18,6 +18,7 @@ final readonly class DomDocumentIterator
 
     /**
      * @var array<DomNodeVisitor>
+     * @readonly
      */
     private iterable $visitors;
 

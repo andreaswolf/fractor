@@ -18,20 +18,54 @@ use Symfony\Component\Console\Output\BufferedOutput;
 /**
  * @implements FileProcessor<TypoScriptFractor>
  */
-final readonly class TypoScriptFileProcessor implements FileProcessor
+final class TypoScriptFileProcessor implements FileProcessor
 {
+    /**
+     * @var iterable<TypoScriptFractor>
+     * @readonly
+     */
+    private iterable $rules;
+
+    /**
+     * @readonly
+     */
+    private Parser $parser;
+
+    /**
+     * @readonly
+     */
+    private PrettyPrinter $printer;
+
+    /**
+     * @readonly
+     */
+    private PrettyPrinterConfigurationFactory $prettyPrinterConfigurationFactory;
+
+    /**
+     * @readonly
+     */
+    private TypoScriptPrettyPrinterFormatConfiguration $typoScriptPrettyPrinterFormatConfiguration;
+
+    /**
+     * @readonly
+     */
     private BufferedOutput $output;
 
     /**
      * @param iterable<TypoScriptFractor> $rules
      */
     public function __construct(
-        private iterable $rules,
-        private Parser $parser,
-        private PrettyPrinter $printer,
-        private PrettyPrinterConfigurationFactory $prettyPrinterConfigurationFactory,
-        private TypoScriptPrettyPrinterFormatConfiguration $typoScriptPrettyPrinterFormatConfiguration
+        iterable $rules,
+        Parser $parser,
+        PrettyPrinter $printer,
+        PrettyPrinterConfigurationFactory $prettyPrinterConfigurationFactory,
+        TypoScriptPrettyPrinterFormatConfiguration $typoScriptPrettyPrinterFormatConfiguration
     ) {
+        $this->rules = $rules;
+        $this->parser = $parser;
+        $this->printer = $printer;
+        $this->prettyPrinterConfigurationFactory = $prettyPrinterConfigurationFactory;
+        $this->typoScriptPrettyPrinterFormatConfiguration = $typoScriptPrettyPrinterFormatConfiguration;
         $this->output = new BufferedOutput();
     }
 
@@ -59,9 +93,9 @@ final readonly class TypoScriptFileProcessor implements FileProcessor
             $newTypoScriptContent = $this->output->fetch();
             $typoScriptContent = rtrim($newTypoScriptContent) . "\n";
             $file->changeFileContent($typoScriptContent);
-        } catch (TokenizerException) {
+        } catch (TokenizerException $exception) {
             return;
-        } catch (ParseError) {
+        } catch (ParseError $exception) {
         }
     }
 

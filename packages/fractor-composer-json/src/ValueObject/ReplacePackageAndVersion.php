@@ -7,17 +7,29 @@ namespace a9f\FractorComposerJson\ValueObject;
 use a9f\FractorComposerJson\ChangePackageVersionComposerJsonFractor;
 use Webmozart\Assert\Assert;
 
-final readonly class ReplacePackageAndVersion
+final class ReplacePackageAndVersion
 {
+    /**
+     * @readonly
+     */
+    private string $version;
+
+    /**
+     * @readonly
+     */
     private string $oldPackageName;
 
+    /**
+     * @readonly
+     */
     private string $newPackageName;
 
     public function __construct(
         string $oldPackageName,
         string $newPackageName,
-        private string $version
+        string $version
     ) {
+        $this->version = $version;
         Assert::notSame(
             $oldPackageName,
             $newPackageName,

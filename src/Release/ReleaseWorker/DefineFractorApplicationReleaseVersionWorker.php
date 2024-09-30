@@ -8,11 +8,16 @@ use a9f\FractorMonorepo\Release\FractorApplicationReleaseWriter;
 use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 
-final readonly class DefineFractorApplicationReleaseVersionWorker implements ReleaseWorkerInterface
+final class DefineFractorApplicationReleaseVersionWorker implements ReleaseWorkerInterface
 {
-    public function __construct(
-        private FractorApplicationReleaseWriter $fractorApplicationReleaseWriter
-    ) {
+    /**
+     * @readonly
+     */
+    private FractorApplicationReleaseWriter $fractorApplicationReleaseWriter;
+
+    public function __construct(FractorApplicationReleaseWriter $fractorApplicationReleaseWriter)
+    {
+        $this->fractorApplicationReleaseWriter = $fractorApplicationReleaseWriter;
     }
 
     public function getDescription(Version $version): string

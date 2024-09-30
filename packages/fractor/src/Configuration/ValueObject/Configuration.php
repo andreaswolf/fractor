@@ -9,20 +9,53 @@ use Webmozart\Assert\Assert;
 /**
  * This is class is created on runtime and cannot be injected via Dependency Injection
  */
-final readonly class Configuration
+final class Configuration
 {
+    /**
+     * @var string[]
+     * @readonly
+     */
+    private array $fileExtensions;
+
+    /**
+     * @var list<non-empty-string>
+     * @readonly
+     */
+    private array $paths;
+
+    /**
+     * @var string[]
+     * @readonly
+     */
+    private array $skip;
+
+    /**
+     * @readonly
+     */
+    private bool $dryRun;
+
+    /**
+     * @readonly
+     */
+    private bool $quiet;
+
     /**
      * @param string[] $fileExtensions
      * @param list<non-empty-string> $paths
      * @param string[] $skip
      */
     public function __construct(
-        private array $fileExtensions,
-        private array $paths,
-        private array $skip,
-        private bool $dryRun,
-        private bool $quiet
+        array $fileExtensions,
+        array $paths,
+        array $skip,
+        bool $dryRun,
+        bool $quiet
     ) {
+        $this->fileExtensions = $fileExtensions;
+        $this->paths = $paths;
+        $this->skip = $skip;
+        $this->dryRun = $dryRun;
+        $this->quiet = $quiet;
         Assert::allStringNotEmpty($this->paths, 'No directories given');
     }
 

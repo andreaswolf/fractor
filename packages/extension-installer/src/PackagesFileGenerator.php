@@ -21,11 +21,26 @@ class InstalledPackages {
 }
 PHP;
 
-    public function __construct(
-        private readonly InstalledRepositoryInterface $repository,
-        private readonly InstallationManager $installationManager,
-        private readonly string $fileToGenerate
-    ) {
+    /**
+     * @readonly
+     */
+    private InstalledRepositoryInterface $repository;
+
+    /**
+     * @readonly
+     */
+    private InstallationManager $installationManager;
+
+    /**
+     * @readonly
+     */
+    private string $fileToGenerate;
+
+    public function __construct(InstalledRepositoryInterface $repository, InstallationManager $installationManager, string $fileToGenerate)
+    {
+        $this->repository = $repository;
+        $this->installationManager = $installationManager;
+        $this->fileToGenerate = $fileToGenerate;
     }
 
     public function generate(): void

@@ -11,7 +11,7 @@ use Helmich\TypoScriptParser\Parser\AST\NestedAssignment;
 use Helmich\TypoScriptParser\Parser\AST\Statement;
 use Webmozart\Assert\Assert;
 
-final readonly class TypoScriptStatementsIterator
+final class TypoScriptStatementsIterator
 {
     /**
      * @var int
@@ -20,6 +20,7 @@ final readonly class TypoScriptStatementsIterator
 
     /**
      * @var array<TypoScriptNodeVisitor>
+     * @readonly
      */
     private iterable $visitors;
 
@@ -75,7 +76,7 @@ final readonly class TypoScriptStatementsIterator
     /**
      * @return self::*|Statement|list<Statement>
      */
-    private function traverseNode(Statement $node): int|Statement|array
+    private function traverseNode(Statement $node)
     {
         $lastCalledVisitor = null;
         $result = $node;

@@ -7,11 +7,16 @@ namespace a9f\FractorComposerJson\ValueObject;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\FractorComposerJson\Contract\ComposerJson;
 
-final readonly class EtaOrionisComposerJson implements ComposerJson
+final class EtaOrionisComposerJson implements ComposerJson
 {
-    public function __construct(
-        private \EtaOrionis\ComposerJsonManipulator\ComposerJson $composerJson
-    ) {
+    /**
+     * @readonly
+     */
+    private \EtaOrionis\ComposerJsonManipulator\ComposerJson $composerJson;
+
+    public function __construct(\EtaOrionis\ComposerJsonManipulator\ComposerJson $composerJson)
+    {
+        $this->composerJson = $composerJson;
     }
 
     public static function fromFile(File $file): self

@@ -9,12 +9,22 @@ use PharIo\Version\Version;
 use Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface;
 use Symplify\MonorepoBuilder\Utils\VersionUtils;
 
-final readonly class UpdateFractorApplicationReleaseVersionWorker implements ReleaseWorkerInterface
+final class UpdateFractorApplicationReleaseVersionWorker implements ReleaseWorkerInterface
 {
-    public function __construct(
-        private FractorApplicationReleaseWriter $fractorApplicationReleaseWriter,
-        private VersionUtils $versionUtils
-    ) {
+    /**
+     * @readonly
+     */
+    private FractorApplicationReleaseWriter $fractorApplicationReleaseWriter;
+
+    /**
+     * @readonly
+     */
+    private VersionUtils $versionUtils;
+
+    public function __construct(FractorApplicationReleaseWriter $fractorApplicationReleaseWriter, VersionUtils $versionUtils)
+    {
+        $this->fractorApplicationReleaseWriter = $fractorApplicationReleaseWriter;
+        $this->versionUtils = $versionUtils;
     }
 
     public function getDescription(Version $version): string

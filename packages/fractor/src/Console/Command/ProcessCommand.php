@@ -12,21 +12,37 @@ use a9f\Fractor\Console\ExitCode;
 use a9f\Fractor\Console\Output\OutputFormatterCollector;
 use a9f\Fractor\Console\Output\SymfonyConsoleOutput;
 use a9f\Fractor\ValueObject\ProcessResult;
-use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-#[AsCommand(name: 'process', description: 'Runs Fractor with the given configuration file')]
 final class ProcessCommand extends Command
 {
+    /**
+     * @readonly
+     */
+    private FractorRunner $runner;
+
+    /**
+     * @readonly
+     */
+    private ConfigurationFactory $configurationFactory;
+
+    /**
+     * @readonly
+     */
+    private OutputFormatterCollector $outputFormatterCollector;
+
     public function __construct(
-        private readonly FractorRunner $runner,
-        private readonly ConfigurationFactory $configurationFactory,
-        private readonly OutputFormatterCollector $outputFormatterCollector
+        FractorRunner $runner,
+        ConfigurationFactory $configurationFactory,
+        OutputFormatterCollector $outputFormatterCollector
     ) {
+        $this->runner = $runner;
+        $this->configurationFactory = $configurationFactory;
+        $this->outputFormatterCollector = $outputFormatterCollector;
         parent::__construct();
     }
 

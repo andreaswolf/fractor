@@ -17,6 +17,6 @@ class StringUtility
      */
     public static function inList(string $list, string $item): bool
     {
-        return str_contains(',' . $list . ',', ',' . $item . ',');
+        return strpos(',' . $list . ',', ',' . $item . ',') !== false;
     }
 }

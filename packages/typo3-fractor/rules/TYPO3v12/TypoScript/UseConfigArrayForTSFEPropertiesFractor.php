@@ -23,17 +23,20 @@ final class UseConfigArrayForTSFEPropertiesFractor extends AbstractTypoScriptFra
         'baseUrl',
     ];
 
-    public function refactor(Statement $statement): null|Statement|int
+    /**
+     * @return null|Statement
+     */
+    public function refactor(Statement $statement)
     {
         if (! $statement instanceof Assignment) {
             return null;
         }
 
-        if (! str_ends_with($statement->object->absoluteName, '.data')) {
+        if (substr_compare($statement->object->absoluteName, '.data', -strlen('.data')) !== 0) {
             return null;
         }
 
-        if (! str_starts_with($statement->value->value, 'TSFE:')) {
+        if (strncmp($statement->value->value, 'TSFE:', strlen('TSFE:')) !== 0) {
             return null;
         }
 

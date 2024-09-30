@@ -14,5 +14,5 @@ interface XmlFractor extends DomNodeVisitor, FractorRule
     /**
      * @return \DOMNode|DomDocumentIterator::*|null
      */
-    public function refactor(\DOMNode $node): \DOMNode|int|null;
+    public function refactor(\DOMNode $node);
 }

@@ -17,7 +17,10 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  */
 final class RenameTcemainLinkHandlerMailKeyFractor extends AbstractTypoScriptFractor
 {
-    public function refactor(Statement $statement): null|Statement|int
+    /**
+     * @return null|Statement|int
+     */
+    public function refactor(Statement $statement)
     {
         if (! $statement instanceof NestedAssignment && ! $statement instanceof Assignment) {
             return null;

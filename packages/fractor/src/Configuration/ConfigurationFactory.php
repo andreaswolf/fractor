@@ -9,12 +9,22 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Webmozart\Assert\Assert;
 
-final readonly class ConfigurationFactory
+final class ConfigurationFactory
 {
-    public function __construct(
-        private ContainerBagInterface $parameterBag,
-        private AllowedFileExtensionsResolver $allowedFileExtensionsResolver
-    ) {
+    /**
+     * @readonly
+     */
+    private ContainerBagInterface $parameterBag;
+
+    /**
+     * @readonly
+     */
+    private AllowedFileExtensionsResolver $allowedFileExtensionsResolver;
+
+    public function __construct(ContainerBagInterface $parameterBag, AllowedFileExtensionsResolver $allowedFileExtensionsResolver)
+    {
+        $this->parameterBag = $parameterBag;
+        $this->allowedFileExtensionsResolver = $allowedFileExtensionsResolver;
     }
 
     public function createFromInput(InputInterface $input): Configuration

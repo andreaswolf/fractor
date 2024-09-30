@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Configuration\ValueObject;
 
-final readonly class SkipConfiguration
+final class SkipConfiguration
 {
+    /**
+     * @var string[]
+     * @readonly
+     */
+    private array $skip;
+
     /**
      * @param string[] $skip
      */
-    public function __construct(
-        private array $skip
-    ) {
+    public function __construct(array $skip)
+    {
+        $this->skip = $skip;
     }
 
     /**

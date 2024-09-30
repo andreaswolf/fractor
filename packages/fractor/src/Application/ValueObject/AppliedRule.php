@@ -6,19 +6,25 @@ namespace a9f\Fractor\Application\ValueObject;
 
 use a9f\Fractor\Application\Contract\FractorRule;
 
-final readonly class AppliedRule
+final class AppliedRule
 {
+    /**
+     * @var class-string<FractorRule>
+     * @readonly
+     */
+    private string $fractorRule;
+
     /**
      * @param class-string<FractorRule> $fractorRule
      */
-    private function __construct(
-        private string $fractorRule,
-    ) {
+    private function __construct(string $fractorRule)
+    {
+        $this->fractorRule = $fractorRule;
     }
 
     public static function fromRule(FractorRule $fractorRule): self
     {
-        return new self($fractorRule::class);
+        return new self(get_class($fractorRule));
     }
 
     /**

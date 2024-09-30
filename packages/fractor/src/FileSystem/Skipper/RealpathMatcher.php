@@ -33,6 +33,6 @@ final class RealpathMatcher
             $normalizedMatchingPath = rtrim($normalizedMatchingPath, '/') . '/';
         }
 
-        return str_starts_with($normalizedFilePath, $normalizedMatchingPath);
+        return strncmp($normalizedFilePath, $normalizedMatchingPath, strlen($normalizedMatchingPath)) === 0;
     }
 }

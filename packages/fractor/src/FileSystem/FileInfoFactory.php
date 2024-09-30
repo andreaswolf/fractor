@@ -8,11 +8,16 @@ use a9f\Fractor\Exception\ShouldNotHappenException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\SplFileInfo;
 
-final readonly class FileInfoFactory
+final class FileInfoFactory
 {
-    public function __construct(
-        private Filesystem $filesystem
-    ) {
+    /**
+     * @readonly
+     */
+    private Filesystem $filesystem;
+
+    public function __construct(Filesystem $filesystem)
+    {
+        $this->filesystem = $filesystem;
     }
 
     public function createFileInfoFromPath(string $filePath): SplFileInfo

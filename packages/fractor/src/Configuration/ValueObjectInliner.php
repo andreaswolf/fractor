@@ -15,7 +15,7 @@ final class ValueObjectInliner
      * @param object|object[] $object
      * @return InlineServiceConfigurator|InlineServiceConfigurator[]
      */
-    public static function inline(object | array $object): InlineServiceConfigurator | array
+    public static function inline($object)
     {
         if (is_object($object)) {
             return self::inlineSingle($object);

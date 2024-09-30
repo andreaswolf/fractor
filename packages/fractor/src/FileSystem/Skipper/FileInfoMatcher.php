@@ -4,12 +4,22 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\FileSystem\Skipper;
 
-final readonly class FileInfoMatcher
+final class FileInfoMatcher
 {
-    public function __construct(
-        private FnMatchMatcher $fnMatcher,
-        private RealpathMatcher $realpathMatcher
-    ) {
+    /**
+     * @readonly
+     */
+    private FnMatchMatcher $fnMatcher;
+
+    /**
+     * @readonly
+     */
+    private RealpathMatcher $realpathMatcher;
+
+    public function __construct(FnMatchMatcher $fnMatcher, RealpathMatcher $realpathMatcher)
+    {
+        $this->fnMatcher = $fnMatcher;
+        $this->realpathMatcher = $realpathMatcher;
     }
 
     /**
@@ -42,11 +52,11 @@ final readonly class FileInfoMatcher
             return false;
         }
 
-        if (str_starts_with($filePath, $ignoredPath)) {
+        if (strncmp($filePath, $ignoredPath, strlen($ignoredPath)) === 0) {
             return true;
         }
 
-        if (str_ends_with($filePath, $ignoredPath)) {
+        if (substr_compare($filePath, $ignoredPath, -strlen($ignoredPath)) === 0) {
             return true;
         }
 

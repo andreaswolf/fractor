@@ -15,16 +15,32 @@ use a9f\FractorYaml\Contract\YamlParser;
 /**
  * @implements FileProcessor<YamlFractorRule>
  */
-final readonly class YamlFileProcessor implements FileProcessor
+final class YamlFileProcessor implements FileProcessor
 {
+    /**
+     * @var iterable<YamlFractorRule>
+     * @readonly
+     */
+    private iterable $rules;
+
+    /**
+     * @readonly
+     */
+    private YamlParser $yamlParser;
+
+    /**
+     * @readonly
+     */
+    private YamlDumper $yamlDumper;
+
     /**
      * @param iterable<YamlFractorRule> $rules
      */
-    public function __construct(
-        private iterable $rules,
-        private YamlParser $yamlParser,
-        private YamlDumper $yamlDumper
-    ) {
+    public function __construct(iterable $rules, YamlParser $yamlParser, YamlDumper $yamlDumper)
+    {
+        $this->rules = $rules;
+        $this->yamlParser = $yamlParser;
+        $this->yamlDumper = $yamlDumper;
     }
 
     public function canHandle(File $file): bool

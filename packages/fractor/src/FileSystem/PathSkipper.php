@@ -7,12 +7,22 @@ namespace a9f\Fractor\FileSystem;
 use a9f\Fractor\FileSystem\Skipper\FileInfoMatcher;
 use a9f\Fractor\FileSystem\Skipper\SkippedPathsResolver;
 
-final readonly class PathSkipper
+final class PathSkipper
 {
-    public function __construct(
-        private FileInfoMatcher $fileInfoMatcher,
-        private SkippedPathsResolver $skippedPathsResolver
-    ) {
+    /**
+     * @readonly
+     */
+    private FileInfoMatcher $fileInfoMatcher;
+
+    /**
+     * @readonly
+     */
+    private SkippedPathsResolver $skippedPathsResolver;
+
+    public function __construct(FileInfoMatcher $fileInfoMatcher, SkippedPathsResolver $skippedPathsResolver)
+    {
+        $this->fileInfoMatcher = $fileInfoMatcher;
+        $this->skippedPathsResolver = $skippedPathsResolver;
     }
 
     /**

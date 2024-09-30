@@ -8,11 +8,16 @@ use a9f\Fractor\ValueObject\Indent;
 use a9f\FractorXml\Configuration\XmlProcessorOption;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
-final readonly class IndentFactory
+final class IndentFactory
 {
-    public function __construct(
-        private ContainerBagInterface $parameterBag
-    ) {
+    /**
+     * @readonly
+     */
+    private ContainerBagInterface $parameterBag;
+
+    public function __construct(ContainerBagInterface $parameterBag)
+    {
+        $this->parameterBag = $parameterBag;
     }
 
     public function create(): Indent

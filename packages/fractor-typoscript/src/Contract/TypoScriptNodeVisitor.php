@@ -21,7 +21,7 @@ interface TypoScriptNodeVisitor
     /**
      * @return Statement|list<Statement>|TypoScriptStatementsIterator::*
      */
-    public function enterNode(Statement $node): Statement|array|int;
+    public function enterNode(Statement $node);
 
     public function leaveNode(Statement $node): void;
 

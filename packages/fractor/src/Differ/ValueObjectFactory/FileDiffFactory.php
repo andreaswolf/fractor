@@ -11,14 +11,34 @@ use a9f\Fractor\Differ\ValueObject\FileDiff;
 use a9f\Fractor\FileSystem\FilePathHelper;
 use a9f\Fractor\Reporting\FractorsChangelogLinesResolver;
 
-final readonly class FileDiffFactory
+final class FileDiffFactory
 {
-    public function __construct(
-        private DefaultDiffer $defaultDiffer,
-        private ConsoleDiffer $consoleDiffer,
-        private FilePathHelper $filePathHelper,
-        private FractorsChangelogLinesResolver $fractorsChangelogLinesResolver,
-    ) {
+    /**
+     * @readonly
+     */
+    private DefaultDiffer $defaultDiffer;
+
+    /**
+     * @readonly
+     */
+    private ConsoleDiffer $consoleDiffer;
+
+    /**
+     * @readonly
+     */
+    private FilePathHelper $filePathHelper;
+
+    /**
+     * @readonly
+     */
+    private FractorsChangelogLinesResolver $fractorsChangelogLinesResolver;
+
+    public function __construct(DefaultDiffer $defaultDiffer, ConsoleDiffer $consoleDiffer, FilePathHelper $filePathHelper, FractorsChangelogLinesResolver $fractorsChangelogLinesResolver)
+    {
+        $this->defaultDiffer = $defaultDiffer;
+        $this->consoleDiffer = $consoleDiffer;
+        $this->filePathHelper = $filePathHelper;
+        $this->fractorsChangelogLinesResolver = $fractorsChangelogLinesResolver;
     }
 
     public function createFileDiff(File $file): FileDiff

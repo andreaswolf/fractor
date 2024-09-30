@@ -4,12 +4,22 @@ declare(strict_types=1);
 
 namespace a9f\FractorComposerJson\ValueObject;
 
-final readonly class RenamePackage
+final class RenamePackage
 {
-    public function __construct(
-        private string $oldPackageName,
-        private string $newPackageName
-    ) {
+    /**
+     * @readonly
+     */
+    private string $oldPackageName;
+
+    /**
+     * @readonly
+     */
+    private string $newPackageName;
+
+    public function __construct(string $oldPackageName, string $newPackageName)
+    {
+        $this->oldPackageName = $oldPackageName;
+        $this->newPackageName = $newPackageName;
     }
 
     public function getOldPackageName(): string

@@ -18,17 +18,27 @@ use PHPStan\Type\FileTypeMapper;
 /**
  * @implements Rule<Class_>
  */
-final readonly class AddChangelogDocBlockForFractorRule implements Rule
+final class AddChangelogDocBlockForFractorRule implements Rule
 {
     /**
      * @var string
      */
     public const ERROR_MESSAGE = 'Provide @changelog doc block for "%s" Fractor rule';
 
-    public function __construct(
-        private ReflectionProvider $reflectionProvider,
-        private FileTypeMapper $fileTypeMapper
-    ) {
+    /**
+     * @readonly
+     */
+    private ReflectionProvider $reflectionProvider;
+
+    /**
+     * @readonly
+     */
+    private FileTypeMapper $fileTypeMapper;
+
+    public function __construct(ReflectionProvider $reflectionProvider, FileTypeMapper $fileTypeMapper)
+    {
+        $this->reflectionProvider = $reflectionProvider;
+        $this->fileTypeMapper = $fileTypeMapper;
     }
 
     public function getNodeType(): string
@@ -84,7 +94,7 @@ final readonly class AddChangelogDocBlockForFractorRule implements Rule
         );
 
         $phpDocString = $resolvedPhpDoc->getPhpDocString();
-        if (\str_contains($phpDocString, '@changelog')) {
+        if (strpos($phpDocString, '@changelog') !== false) {
             return [];
         }
 

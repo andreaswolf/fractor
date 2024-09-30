@@ -6,7 +6,7 @@ namespace a9f\Fractor\Differ\ValueObject;
 
 use Nette\Utils\Strings;
 
-final readonly class FileDiff
+final class FileDiff
 {
     /**
      * @var string
@@ -19,13 +19,36 @@ final readonly class FileDiff
      */
     private const FIRST_LINE_REGEX = '#@@(.*?)(?<' . self::FIRST_LINE_KEY . '>\\d+)(.*?)@@#';
 
-    public function __construct(
-        private string $relativeFilePath,
-        private string $diff,
-        private string $diffConsoleFormatted,
-        /** @var string[] $appliedRules */
-        private array $appliedRules = []
-    ) {
+    /**
+     * @readonly
+     */
+    private string $relativeFilePath;
+
+    /**
+     * @readonly
+     */
+    private string $diff;
+
+    /**
+     * @readonly
+     */
+    private string $diffConsoleFormatted;
+
+    /**
+     * @readonly
+     * @var string[]
+     */
+    private array $appliedRules = [];
+
+    /**
+     * @param string[] $appliedRules
+     */
+    public function __construct(string $relativeFilePath, string $diff, string $diffConsoleFormatted, array $appliedRules = [])
+    {
+        $this->relativeFilePath = $relativeFilePath;
+        $this->diff = $diff;
+        $this->diffConsoleFormatted = $diffConsoleFormatted;
+        $this->appliedRules = $appliedRules;
     }
 
     public function getRelativeFilePath(): string

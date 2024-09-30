@@ -15,17 +15,38 @@ use a9f\FractorXml\ValueObjectFactory\DomDocumentFactory;
 /**
  * @implements FileProcessor<XmlFractor>
  */
-final readonly class XmlFileProcessor implements FileProcessor
+final class XmlFileProcessor implements FileProcessor
 {
+    /**
+     * @readonly
+     */
+    private DomDocumentFactory $domDocumentFactory;
+
+    /**
+     * @readonly
+     */
+    private Formatter $formatter;
+
+    /**
+     * @var iterable<XmlFractor>
+     * @readonly
+     */
+    private iterable $rules;
+
+    /**
+     * @readonly
+     */
+    private Indent $indent;
+
     /**
      * @param iterable<XmlFractor> $rules
      */
-    public function __construct(
-        private DomDocumentFactory $domDocumentFactory,
-        private Formatter $formatter,
-        private iterable $rules,
-        private Indent $indent
-    ) {
+    public function __construct(DomDocumentFactory $domDocumentFactory, Formatter $formatter, iterable $rules, Indent $indent)
+    {
+        $this->domDocumentFactory = $domDocumentFactory;
+        $this->formatter = $formatter;
+        $this->rules = $rules;
+        $this->indent = $indent;
     }
 
     public function canHandle(File $file): bool

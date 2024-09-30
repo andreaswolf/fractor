@@ -9,11 +9,16 @@ use a9f\FractorComposerJson\Contract\ComposerJson;
 use a9f\FractorComposerJson\Contract\ComposerJsonPrinter;
 use Ergebnis\Json\Printer\PrinterInterface;
 
-final readonly class ErgebnisComposerJsonPrinter implements ComposerJsonPrinter
+final class ErgebnisComposerJsonPrinter implements ComposerJsonPrinter
 {
-    public function __construct(
-        private PrinterInterface $printer
-    ) {
+    /**
+     * @readonly
+     */
+    private PrinterInterface $printer;
+
+    public function __construct(PrinterInterface $printer)
+    {
+        $this->printer = $printer;
     }
 
     public function printToString(Indent $indent, ComposerJson $composerJson): string

@@ -4,12 +4,22 @@ declare(strict_types=1);
 
 namespace a9f\FractorComposerJson\ValueObject;
 
-final readonly class PackageAndVersion
+final class PackageAndVersion
 {
-    public function __construct(
-        private string $packageName,
-        private string $version
-    ) {
+    /**
+     * @readonly
+     */
+    private string $packageName;
+
+    /**
+     * @readonly
+     */
+    private string $version;
+
+    public function __construct(string $packageName, string $version)
+    {
+        $this->packageName = $packageName;
+        $this->version = $version;
     }
 
     public function getPackageName(): string

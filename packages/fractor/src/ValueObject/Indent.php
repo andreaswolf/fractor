@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
 /**
  * @see https://github.com/ergebnis/json-normalizer/blob/main/src/Format/Indent.php
  */
-final readonly class Indent
+final class Indent
 {
     public const STYLE_SPACE = 'space';
 
@@ -24,9 +24,14 @@ final readonly class Indent
         self::STYLE_TAB => "\t",
     ];
 
-    private function __construct(
-        private string $value
-    ) {
+    /**
+     * @readonly
+     */
+    private string $value;
+
+    private function __construct(string $value)
+    {
+        $this->value = $value;
     }
 
     public static function fromFile(File $file): self

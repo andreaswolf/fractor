@@ -14,16 +14,32 @@ use a9f\FractorComposerJson\Contract\ComposerJsonPrinter;
 /**
  * @implements FileProcessor<ComposerJsonFractorRule>
  */
-final readonly class ComposerJsonFileProcessor implements FileProcessor
+final class ComposerJsonFileProcessor implements FileProcessor
 {
+    /**
+     * @var iterable<ComposerJsonFractorRule>
+     * @readonly
+     */
+    private iterable $rules;
+
+    /**
+     * @readonly
+     */
+    private ComposerJsonPrinter $composerJsonPrinter;
+
+    /**
+     * @readonly
+     */
+    private ComposerJsonFactory $composerJsonFactory;
+
     /**
      * @param iterable<ComposerJsonFractorRule> $rules
      */
-    public function __construct(
-        private iterable $rules,
-        private ComposerJsonPrinter $composerJsonPrinter,
-        private ComposerJsonFactory $composerJsonFactory
-    ) {
+    public function __construct(iterable $rules, ComposerJsonPrinter $composerJsonPrinter, ComposerJsonFactory $composerJsonFactory)
+    {
+        $this->rules = $rules;
+        $this->composerJsonPrinter = $composerJsonPrinter;
+        $this->composerJsonFactory = $composerJsonFactory;
     }
 
     public function handle(File $file, iterable $appliedRules): void

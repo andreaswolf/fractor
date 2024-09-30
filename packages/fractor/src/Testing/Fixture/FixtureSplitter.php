@@ -10,7 +10,7 @@ final class FixtureSplitter
 {
     public static function containsSplit(string $fixtureFileContent): bool
     {
-        return str_contains($fixtureFileContent, "-----\n") || str_contains($fixtureFileContent, "-----\r\n");
+        return strpos($fixtureFileContent, "-----\n") !== false || strpos($fixtureFileContent, "-----\r\n") !== false;
     }
 
     /**

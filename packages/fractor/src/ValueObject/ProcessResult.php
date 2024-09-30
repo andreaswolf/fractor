@@ -10,11 +10,18 @@ use Webmozart\Assert\Assert;
 class ProcessResult
 {
     /**
+     * @var FileDiff[]
+     * @readonly
+     */
+    private array $fileDiffs;
+
+    /**
      * @param FileDiff[] $fileDiffs
      */
     public function __construct(
-        private readonly array $fileDiffs
+        array $fileDiffs
     ) {
+        $this->fileDiffs = $fileDiffs;
         Assert::allIsInstanceOf($this->fileDiffs, FileDiff::class);
     }
 

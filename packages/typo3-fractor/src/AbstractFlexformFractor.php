@@ -11,7 +11,7 @@ abstract class AbstractFlexformFractor extends AbstractXmlFractor
 {
     public function canHandle(\DOMNode $node): bool
     {
-        $rootNode = $node->ownerDocument?->firstChild;
+        $rootNode = ($nullsafeVariable1 = $node->ownerDocument) instanceof \DOMDocument ? $nullsafeVariable1->firstChild : null;
 
         if ($rootNode === null) {
             throw new ShouldNotHappenException('Node\'s document does not have a root node');

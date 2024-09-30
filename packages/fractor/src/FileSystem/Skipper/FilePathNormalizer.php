@@ -6,7 +6,7 @@ namespace a9f\Fractor\FileSystem\Skipper;
 
 use Nette\Utils\Strings;
 
-final readonly class FilePathNormalizer
+final class FilePathNormalizer
 {
     /**
      * @see https://regex101.com/r/d4F5Fm/1
@@ -52,7 +52,7 @@ final readonly class FilePathNormalizer
         $normalizedPath = self::normalizeDirectorySeparator((string) $path);
         $path = Strings::replace($normalizedPath, self::TWO_AND_MORE_SLASHES_REGEX, '/');
 
-        $pathRoot = str_starts_with($path, '/') ? $directorySeparator : '';
+        $pathRoot = strncmp($path, '/', strlen('/')) === 0 ? $directorySeparator : '';
         $pathParts = explode('/', trim($path, '/'));
 
         $normalizedPathParts = $this->normalizePathParts($pathParts, $scheme);
@@ -87,7 +87,7 @@ final readonly class FilePathNormalizer
                 continue;
             }
 
-            if (! \str_ends_with($removedPart, '.phar')) {
+            if (substr_compare($removedPart, '.phar', -strlen('.phar')) !== 0) {
                 continue;
             }
 

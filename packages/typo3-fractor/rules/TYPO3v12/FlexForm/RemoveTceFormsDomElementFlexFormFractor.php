@@ -24,7 +24,10 @@ final class RemoveTceFormsDomElementFlexFormFractor extends AbstractFlexformFrac
         return parent::canHandle($node) && $node->nodeName === 'TCEforms';
     }
 
-    public function refactor(\DOMNode $node): \DOMNode|int|null
+    /**
+     * @return \DOMNode|int|null
+     */
+    public function refactor(\DOMNode $node)
     {
         $parent = $node->parentNode;
         if (! $parent instanceof \DOMNode) {
@@ -35,7 +38,7 @@ final class RemoveTceFormsDomElementFlexFormFractor extends AbstractFlexformFrac
         $childNodes = iterator_to_array($node->childNodes->getIterator());
         foreach ($childNodes as $child) {
             if (! $child instanceof \DOMNode) {
-                throw new ShouldNotHappenException(sprintf('Expected DOMNode, got %s', $child::class), 1718997872);
+                throw new ShouldNotHappenException(sprintf('Expected DOMNode, got %s', get_class($child)), 1718997872);
             }
             $parent->insertBefore($child->cloneNode(true), $node);
 

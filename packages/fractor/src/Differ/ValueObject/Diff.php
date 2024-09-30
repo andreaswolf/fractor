@@ -4,12 +4,22 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Differ\ValueObject;
 
-final readonly class Diff
+final class Diff
 {
-    public function __construct(
-        private string $oldContent,
-        private string $newContent
-    ) {
+    /**
+     * @readonly
+     */
+    private string $oldContent;
+
+    /**
+     * @readonly
+     */
+    private string $newContent;
+
+    public function __construct(string $oldContent, string $newContent)
+    {
+        $this->oldContent = $oldContent;
+        $this->newContent = $newContent;
     }
 
     public function getOldContent(): string

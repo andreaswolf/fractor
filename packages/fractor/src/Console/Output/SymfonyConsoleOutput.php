@@ -11,11 +11,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class SymfonyConsoleOutput implements Output
 {
+    /**
+     * @readonly
+     */
+    private OutputInterface $output;
+
     private ?ProgressBar $progressBar = null;
 
-    public function __construct(
-        private readonly OutputInterface $output
-    ) {
+    public function __construct(OutputInterface $output)
+    {
+        $this->output = $output;
     }
 
     public function progressStart(int $max = 0): void
@@ -55,6 +60,9 @@ final class SymfonyConsoleOutput implements Output
 
     private function getProgressBar(): ProgressBar
     {
-        return $this->progressBar ?? throw new RuntimeException('The ProgressBar is not started.');
+        if (! isset($this->progressBar)) {
+            throw new RuntimeException('The ProgressBar is not started.');
+        }
+        return $this->progressBar;
     }
 }

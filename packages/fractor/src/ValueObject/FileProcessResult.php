@@ -8,9 +8,14 @@ use a9f\Fractor\Differ\ValueObject\FileDiff;
 
 class FileProcessResult
 {
-    public function __construct(
-        private readonly ?FileDiff $fileDiff
-    ) {
+    /**
+     * @readonly
+     */
+    private ?FileDiff $fileDiff;
+
+    public function __construct(?FileDiff $fileDiff)
+    {
+        $this->fileDiff = $fileDiff;
     }
 
     public function getFileDiff(): ?FileDiff

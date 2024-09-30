@@ -7,11 +7,16 @@ namespace a9f\Fractor\Reporting;
 use a9f\Fractor\Application\ValueObject\AppliedRule;
 use Nette\Utils\Strings;
 
-final readonly class FractorsChangelogLinesResolver
+final class FractorsChangelogLinesResolver
 {
-    public function __construct(
-        private FractorsChangelogResolver $fractorsChangelogResolver
-    ) {
+    /**
+     * @readonly
+     */
+    private FractorsChangelogResolver $fractorsChangelogResolver;
+
+    public function __construct(FractorsChangelogResolver $fractorsChangelogResolver)
+    {
+        $this->fractorsChangelogResolver = $fractorsChangelogResolver;
     }
 
     /**

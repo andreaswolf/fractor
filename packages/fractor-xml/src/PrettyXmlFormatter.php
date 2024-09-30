@@ -7,11 +7,16 @@ namespace a9f\FractorXml;
 use a9f\Fractor\ValueObject\Indent;
 use a9f\FractorXml\Contract\Formatter;
 
-final readonly class PrettyXmlFormatter implements Formatter
+final class PrettyXmlFormatter implements Formatter
 {
-    public function __construct(
-        private \PrettyXml\Formatter $prettyXmlFormatter
-    ) {
+    /**
+     * @readonly
+     */
+    private \PrettyXml\Formatter $prettyXmlFormatter;
+
+    public function __construct(\PrettyXml\Formatter $prettyXmlFormatter)
+    {
+        $this->prettyXmlFormatter = $prettyXmlFormatter;
     }
 
     public function format(Indent $indent, string $content): string

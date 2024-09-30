@@ -8,11 +8,16 @@ use a9f\Fractor\Skipper\FileSystem\PathNormalizer;
 use Symfony\Component\Filesystem\Filesystem;
 use Webmozart\Assert\Assert;
 
-final readonly class FilePathHelper
+final class FilePathHelper
 {
-    public function __construct(
-        private Filesystem $filesystem
-    ) {
+    /**
+     * @readonly
+     */
+    private Filesystem $filesystem;
+
+    public function __construct(Filesystem $filesystem)
+    {
+        $this->filesystem = $filesystem;
     }
 
     public function relativePath(string $fileRealPath): string

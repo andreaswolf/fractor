@@ -7,15 +7,40 @@ namespace a9f\FractorTypoScript\ValueObject;
 use a9f\FractorTypoScript\Configuration\TypoScriptProcessorOption;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-final readonly class TypoScriptPrettyPrinterFormatConfiguration
+final class TypoScriptPrettyPrinterFormatConfiguration
 {
-    public function __construct(
-        public int $size,
-        public string $style,
-        public bool $addClosingGlobal,
-        public bool $includeEmptyLineBreaks,
-        public bool $indentConditions
-    ) {
+    /**
+     * @readonly
+     */
+    public int $size;
+
+    /**
+     * @readonly
+     */
+    public string $style;
+
+    /**
+     * @readonly
+     */
+    public bool $addClosingGlobal;
+
+    /**
+     * @readonly
+     */
+    public bool $includeEmptyLineBreaks;
+
+    /**
+     * @readonly
+     */
+    public bool $indentConditions;
+
+    public function __construct(int $size, string $style, bool $addClosingGlobal, bool $includeEmptyLineBreaks, bool $indentConditions)
+    {
+        $this->size = $size;
+        $this->style = $style;
+        $this->addClosingGlobal = $addClosingGlobal;
+        $this->includeEmptyLineBreaks = $includeEmptyLineBreaks;
+        $this->indentConditions = $indentConditions;
     }
 
     public static function createFromParameterBag(ParameterBagInterface $parameterBag): self

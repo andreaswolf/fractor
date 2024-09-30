@@ -12,14 +12,20 @@ use a9f\FractorFluid\Contract\FluidFractorRule;
 /**
  * @implements FileProcessor<FluidFractorRule>
  */
-final readonly class FluidFileProcessor implements FileProcessor
+final class FluidFileProcessor implements FileProcessor
 {
+    /**
+     * @var iterable<FluidFractorRule>
+     * @readonly
+     */
+    private iterable $rules;
+
     /**
      * @param iterable<FluidFractorRule> $rules
      */
-    public function __construct(
-        private iterable $rules
-    ) {
+    public function __construct(iterable $rules)
+    {
+        $this->rules = $rules;
     }
 
     public function canHandle(File $file): bool

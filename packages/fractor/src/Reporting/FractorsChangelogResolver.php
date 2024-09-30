@@ -6,11 +6,16 @@ namespace a9f\Fractor\Reporting;
 
 use a9f\Fractor\Application\ValueObject\AppliedRule;
 
-final readonly class FractorsChangelogResolver
+final class FractorsChangelogResolver
 {
-    public function __construct(
-        private ChangelogExtractor $changelogExtractor
-    ) {
+    /**
+     * @readonly
+     */
+    private ChangelogExtractor $changelogExtractor;
+
+    public function __construct(ChangelogExtractor $changelogExtractor)
+    {
+        $this->changelogExtractor = $changelogExtractor;
     }
 
     /**

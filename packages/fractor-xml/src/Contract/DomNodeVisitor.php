@@ -17,7 +17,7 @@ interface DomNodeVisitor
     /**
      * @return \DOMNode|DomDocumentIterator::*
      */
-    public function enterNode(\DOMNode $node): \DOMNode|int;
+    public function enterNode(\DOMNode $node);
 
     public function leaveNode(\DOMNode $node): void;
 

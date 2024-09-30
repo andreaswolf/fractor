@@ -17,14 +17,21 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  */
 final class RemoveUseCacheHashFromTypolinkTypoScriptFractor extends AbstractTypoScriptFractor
 {
-    public function refactor(Statement $statement): null|Statement|int
+    /**
+     * @return null|Statement|int
+     */
+    public function refactor(Statement $statement)
     {
         if (! $statement instanceof Assignment) {
             return $statement;
         }
 
         // for some weird reason, "foo.bar.baz = 1" leads to "relativeName" being "foo.bar.baz"
-        if (! str_ends_with($statement->object->absoluteName, '.typolink.useCacheHash')) {
+        if (substr_compare(
+            $statement->object->absoluteName,
+            '.typolink.useCacheHash',
+            -strlen('.typolink.useCacheHash')
+        ) !== 0) {
             return $statement;
         }
 

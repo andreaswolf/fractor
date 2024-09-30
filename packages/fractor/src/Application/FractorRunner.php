@@ -22,19 +22,56 @@ use Webmozart\Assert\Assert;
  * Main Fractor class. This takes care of collecting a list of files, iterating over them and calling all registered
  * processors for them.
  */
-final readonly class FractorRunner
+final class FractorRunner
 {
+    /**
+     * @readonly
+     */
+    private FilesFinder $fileFinder;
+
+    /**
+     * @readonly
+     */
+    private FilesCollector $fileCollector;
+
+    /**
+     * @var iterable<FileProcessor<FractorRule>>
+     * @readonly
+     */
+    private iterable $processors;
+
+    /**
+     * @readonly
+     */
+    private FileWriter $fileWriter;
+
+    /**
+     * @readonly
+     */
+    private FileDiffFactory $fileDiffFactory;
+
+    /**
+     * @readonly
+     */
+    private RuleSkipper $ruleSkipper;
+
     /**
      * @param iterable<FileProcessor<FractorRule>> $processors
      */
     public function __construct(
-        private FilesFinder $fileFinder,
-        private FilesCollector $fileCollector,
-        private iterable $processors,
-        private FileWriter $fileWriter,
-        private FileDiffFactory $fileDiffFactory,
-        private RuleSkipper $ruleSkipper
+        FilesFinder $fileFinder,
+        FilesCollector $fileCollector,
+        iterable $processors,
+        FileWriter $fileWriter,
+        FileDiffFactory $fileDiffFactory,
+        RuleSkipper $ruleSkipper
     ) {
+        $this->fileFinder = $fileFinder;
+        $this->fileCollector = $fileCollector;
+        $this->processors = $processors;
+        $this->fileWriter = $fileWriter;
+        $this->fileDiffFactory = $fileDiffFactory;
+        $this->ruleSkipper = $ruleSkipper;
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
 
@@ -105,7 +142,7 @@ final readonly class FractorRunner
     private function filterApplicableRules(iterable $rules, File $file): \Generator
     {
         foreach ($rules as $rule) {
-            if ($this->ruleSkipper->shouldSkip($rule::class, $file->getFilePath())) {
+            if ($this->ruleSkipper->shouldSkip(get_class($rule), $file->getFilePath())) {
                 continue;
             }
 

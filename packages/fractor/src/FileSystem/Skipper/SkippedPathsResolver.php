@@ -9,14 +9,24 @@ use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 final class SkippedPathsResolver
 {
     /**
+     * @readonly
+     */
+    private FilePathNormalizer $filePathNormalizer;
+
+    /**
+     * @readonly
+     */
+    private SkipConfiguration $skip;
+
+    /**
      * @var null|string[]
      */
-    private null|array $skippedPaths = null;
+    private ?array $skippedPaths = null;
 
-    public function __construct(
-        private readonly FilePathNormalizer $filePathNormalizer,
-        private readonly SkipConfiguration $skip
-    ) {
+    public function __construct(FilePathNormalizer $filePathNormalizer, SkipConfiguration $skip)
+    {
+        $this->filePathNormalizer = $filePathNormalizer;
+        $this->skip = $skip;
     }
 
     /**
@@ -36,7 +46,7 @@ final class SkippedPathsResolver
                 continue;
             }
 
-            if (\str_contains((string) $value, '*')) {
+            if (strpos((string) $value, '*') !== false) {
                 $this->skippedPaths[] = $this->filePathNormalizer->normalizePathAndSchema($value);
                 continue;
             }
