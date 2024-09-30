@@ -13,12 +13,12 @@
     "require": {
         "php": "^8.2",
         "ext-dom": "*",
-        "a9f/fractor": "^0.3",
-        "a9f/fractor-extension-installer": "^0.3",
-        "a9f/fractor-fluid": "^0.3",
-        "a9f/fractor-typoscript": "^0.3",
-        "a9f/fractor-xml": "^0.3",
-        "a9f/fractor-yaml": "^0.3",
+        "a9f/fractor": "^0.4",
+        "a9f/fractor-extension-installer": "^0.4",
+        "a9f/fractor-fluid": "^0.4",
+        "a9f/fractor-typoscript": "^0.4",
+        "a9f/fractor-xml": "^0.4",
+        "a9f/fractor-yaml": "^0.4",
         "symplify/rule-doc-generator-contracts": "^11.2"
     },
     "minimum-stability": "dev",
@@ -47,7 +47,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "0.3-dev"
+            "dev-main": "0.4-dev"
         }
     }
 }
