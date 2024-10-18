@@ -5,6 +5,7 @@ declare(strict_types=1);
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateEmailFlagToEmailTypeFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateEvalIntAndDouble2ToTypeNumberFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateInternalTypeFolderToTypeFolderFlexFormFractor;
+use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateItemsIndexedKeysToAssociativeFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateNullFlagFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigratePasswordAndSaltedPasswordToPasswordTypeFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateRenderTypeColorpickerToTypeColorFlexFormFractor;
@@ -50,4 +51,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(RenameConfigXhtmlDoctypeToDoctypeFractor::class);
     $services->set(RenameTcemainLinkHandlerMailKeyFractor::class);
     $services->set(UseConfigArrayForTSFEPropertiesFractor::class);
+    $services->set(MigrateItemsIndexedKeysToAssociativeFractor::class);
 };

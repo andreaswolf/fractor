@@ -26,6 +26,31 @@ trait FlexFormHelperTrait
         return null;
     }
 
+    protected function extractDomElementFromArrayByIndex(?\DOMElement $element, string $index): ?\DOMElement
+    {
+        if (! $element instanceof \DOMElement) {
+            return null;
+        }
+
+        foreach ($element->childNodes as $childNode) {
+            if (! $childNode instanceof \DOMElement) {
+                continue;
+            }
+
+            if (! $childNode->hasAttribute('index')) {
+                continue;
+            }
+
+            $indexValue = $childNode->getAttribute('index');
+
+            if ($childNode->nodeName === 'numIndex' && $index === $indexValue) {
+                return $childNode;
+            }
+        }
+
+        return null;
+    }
+
     protected function hasKey(?\DOMElement $columnItemConfigurationArray, string $configKey): bool
     {
         if (! $columnItemConfigurationArray instanceof \DOMElement) {
