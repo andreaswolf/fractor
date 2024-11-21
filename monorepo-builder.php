@@ -4,17 +4,13 @@ declare(strict_types=1);
 
 use a9f\FractorMonorepo\Release\FractorApplicationReleaseWriter;
 use a9f\FractorMonorepo\Release\ReleaseWorker\DefineFractorApplicationReleaseVersionWorker;
-use a9f\FractorMonorepo\Release\ReleaseWorker\UpdateFractorApplicationReleaseVersionWorker;
 use Symplify\MonorepoBuilder\ComposerJsonManipulator\ValueObject\ComposerJsonSection;
 use Symplify\MonorepoBuilder\Config\MBConfig;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushTagReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\SetCurrentMutualDependenciesReleaseWorker;
-use Symplify\MonorepoBuilder\Release\ReleaseWorker\SetNextMutualDependenciesReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\TagVersionReleaseWorker;
-use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateBranchAliasReleaseWorker;
 use Symplify\MonorepoBuilder\ValueObject\Option;
 
-// MonoRepoBuilder uses own autoloader in custom vendor folder
 require_once __DIR__ . '/vendor/autoload.php';
 
 return static function (MBConfig $mbConfig): void {
@@ -37,8 +33,7 @@ return static function (MBConfig $mbConfig): void {
         SetCurrentMutualDependenciesReleaseWorker::class,
         TagVersionReleaseWorker::class,
         PushTagReleaseWorker::class,
-        SetNextMutualDependenciesReleaseWorker::class,
-        UpdateBranchAliasReleaseWorker::class,
-        UpdateFractorApplicationReleaseVersionWorker::class,
+        // we don't raise the dependency versions and branch alias here b/c of a bug in symplify/monorepo-builder,
+        // see docs/release.md and https://github.com/symplify/monorepo-builder/issues/77 for more information
     ]);
 };
