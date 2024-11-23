@@ -23,7 +23,8 @@ final class RemoveWorkspaceModeOptionsFractor extends AbstractTypoScriptFractor
         }
 
         if ($statement->object->absoluteName !== 'options.workspaces.swapMode'
-            && $statement->object->absoluteName !== 'options.workspaces.changeStageMode') {
+            && $statement->object->absoluteName !== 'options.workspaces.changeStageMode'
+        ) {
             return null;
         }
 
@@ -45,7 +46,6 @@ CODE_SAMPLE
 -
 CODE_SAMPLE
                 ),
-
             ]
         );
     }

@@ -23,7 +23,8 @@ final class RemoveNewContentElementWizardOptionsFractor extends AbstractTypoScri
         }
 
         if ($statement->object->absoluteName !== 'mod.web_layout.disableNewContentElementWizard'
-            && $statement->object->absoluteName !== 'mod.newContentElementWizard.override') {
+            && $statement->object->absoluteName !== 'mod.newContentElementWizard.override'
+        ) {
             return null;
         }
 
@@ -45,7 +46,6 @@ CODE_SAMPLE
 -
 CODE_SAMPLE
                 ),
-
             ]
         );
     }
