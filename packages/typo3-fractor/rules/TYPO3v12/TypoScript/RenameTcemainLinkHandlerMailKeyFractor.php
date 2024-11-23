@@ -43,7 +43,7 @@ final class RenameTcemainLinkHandlerMailKeyFractor extends AbstractTypoScriptFra
             <<<'CODE_SAMPLE'
 TCEMAIN.linkHandler {
     mail {
-        handler = TYPO3\\CMS\\Recordlist\\LinkHandler\\MailLinkHandler
+        handler = TYPO3\CMS\Recordlist\LinkHandler\MailLinkHandler
         label = LLL:EXT:recordlist/Resources/Private/Language/locallang_browse_links.xlf:email
         displayAfter = page,file,folder,url
         scanBefore = url
@@ -54,7 +54,7 @@ CODE_SAMPLE
             <<<'CODE_SAMPLE'
 TCEMAIN.linkHandler {
     email {
-        handler = TYPO3\\CMS\\Recordlist\\LinkHandler\\MailLinkHandler
+        handler = TYPO3\CMS\Recordlist\LinkHandler\MailLinkHandler
         label = LLL:EXT:recordlist/Resources/Private/Language/locallang_browse_links.xlf:email
         displayAfter = page,file,folder,url
         scanBefore = url
