@@ -42,7 +42,7 @@ final readonly class TemplateFinder
         return [
             __DIR__ . '/../../templates/rules/TYPO3__MajorPrefixed__/__Type__/__Name__.php',
             __DIR__ . '/../../templates/rules-tests/TYPO3__MajorPrefixed__/__Type__/__Test_Directory__/__Name__Test.php.inc',
-            __DIR__ . '/../../templates/rules-tests/TYPO3__MajorPrefixed__/__Type__/__Test_Directory__/Fixture/fixture.' . $fixtureFileExtension,
+            __DIR__ . '/../../templates/rules-tests/TYPO3__MajorPrefixed__/__Type__/__Test_Directory__/Fixtures/fixture.' . $fixtureFileExtension,
             __DIR__ . '/../../templates/rules-tests/TYPO3__MajorPrefixed__/__Type__/__Test_Directory__/config/fractor.php.inc',
         ];
     }
