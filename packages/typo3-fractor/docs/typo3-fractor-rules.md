@@ -1,4 +1,4 @@
-# 25 Rules Overview
+# 26 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -252,6 +252,26 @@ Migrate password and salted password to password type
          </sDEF>
      </sheets>
  </T3DataStructure>
+```
+
+<br>
+
+## MigratePluginContentElementAndPluginSubtypesFractor
+
+Migrate plugin content element and plugin subtypes (list_type)
+
+- class: [`a9f\Typo3Fractor\TYPO3v13\TypoScript\MigratePluginContentElementAndPluginSubtypesFractor`](../rules/TYPO3v13/TypoScript/MigratePluginContentElementAndPluginSubtypesFractor.php)
+
+```diff
+-tt_content.list.20.examples_pi1 = USER
+-tt_content.list.20.examples_pi1 {
++tt_content.examples_pi1 = USER
++tt_content.examples_pi1 {
+     userFunc = MyVendor\Examples\Controller\ExampleController->example
+ }
+
+-tt_content.list.20.examples_pi1 < plugin.tx_examples_pi1
++tt_content.examples_pi1 < plugin.tx_examples_pi1
 ```
 
 <br>
