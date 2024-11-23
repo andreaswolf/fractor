@@ -135,7 +135,6 @@
         "propagate": "monorepo-builder propagate",
         "rectify": "rector",
         "rector": "rector --dry-run",
-        "release": "monorepo-builder release patch",
         "style:composer:normalize": [
             "@composer normalize --dry-run",
             "@composer normalize --dry-run e2e/composer.json",

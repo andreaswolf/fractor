@@ -14,7 +14,6 @@ use Symplify\MonorepoBuilder\Release\ReleaseWorker\TagVersionReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateBranchAliasReleaseWorker;
 use Symplify\MonorepoBuilder\ValueObject\Option;
 
-// MonoRepoBuilder uses own autoloader in custom vendor folder
 require_once __DIR__ . '/vendor/autoload.php';
 
 return static function (MBConfig $mbConfig): void {
