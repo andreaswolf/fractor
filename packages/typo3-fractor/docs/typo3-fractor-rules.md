@@ -538,7 +538,7 @@ Rename key mail to email for MailLinkHandler
  TCEMAIN.linkHandler {
 -    mail {
 +    email {
-         handler = TYPO3\\CMS\\Recordlist\\LinkHandler\\MailLinkHandler
+         handler = TYPO3\CMS\Recordlist\LinkHandler\MailLinkHandler
          label = LLL:EXT:recordlist/Resources/Private/Language/locallang_browse_links.xlf:email
          displayAfter = page,file,folder,url
          scanBefore = url
