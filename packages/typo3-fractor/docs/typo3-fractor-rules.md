@@ -1,4 +1,4 @@
-# 26 Rules Overview
+# 27 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -418,6 +418,19 @@ Remove config.spamProtectEmailAddresses with option ascii
 
 ```diff
 -config.spamProtectEmailAddresses = ascii
++-
+```
+
+<br>
+
+## RemoveModNewPageWizOverrideWithExtensionFractor
+
+Remove mod.web_list.newPageWiz.overrideWithExtension
+
+- class: [`a9f\Typo3Fractor\TYPO3v8\TypoScript\RemoveModNewPageWizOverrideWithExtensionFractor`](../rules/TYPO3v8/TypoScript/RemoveModNewPageWizOverrideWithExtensionFractor.php)
+
+```diff
+-mod.web_list.newPageWiz.overrideWithExtension = 1
 +-
 ```
 
