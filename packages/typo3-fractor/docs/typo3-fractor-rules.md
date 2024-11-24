@@ -1,4 +1,4 @@
-# 25 Rules Overview
+# 26 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -448,6 +448,19 @@ Remove noCacheHash="1" and useCacheHash="1" attribute
 -<f:link.typolink useCacheHash="1">Link</f:link.typolink>
 +<f:link.page>Link</f:link.page>
 +<f:link.typolink>Link</f:link.typolink>
+```
+
+<br>
+
+## RemoveOptionAlternateBgColorsFractor
+
+Remove mod.web_list.alternateBgColors
+
+- class: [`a9f\Typo3Fractor\TYPO3v7\TypoScript\RemoveOptionAlternateBgColorsFractor`](../rules/TYPO3v7/TypoScript/RemoveOptionAlternateBgColorsFractor.php)
+
+```diff
+-mod.web_list.alternateBgColors = 1
++-
 ```
 
 <br>
