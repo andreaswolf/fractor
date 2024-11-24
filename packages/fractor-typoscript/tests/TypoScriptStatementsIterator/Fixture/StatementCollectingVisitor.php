@@ -33,9 +33,10 @@ final class StatementCollectingVisitor implements TypoScriptNodeVisitor
         return $node;
     }
 
-    public function leaveNode(Statement $node): void
+    public function leaveNode(Statement $node): int|Statement|null
     {
         $this->calls[] = sprintf('%s:leaveNode:%s:l-%d', $this->visitorName, $node::class, $node->sourceLine);
+        return $node;
     }
 
     /**
