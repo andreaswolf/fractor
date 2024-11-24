@@ -83,7 +83,7 @@ final class GenerateRuleCommandTest extends TestCase
 
     public function testCreateRuleForFlexFormWithoutChangelog(): void
     {
-        $this->commandTester->setInputs(['7', 'x', 'MigrateFlexForm', 'Migrate FlexForm field', '0']);
+        $this->commandTester->setInputs(['9999', 'x', 'MigrateFlexForm', 'Migrate FlexForm field', '0']);
         $this->commandTester->execute([
             'command' => 'generate-rule',
         ]);
@@ -94,16 +94,16 @@ final class GenerateRuleCommandTest extends TestCase
         $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
         $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
 
-        $this->testFilesToDelete[] = $basePathConfig . '/typo3-7.php';
-        self::assertFileExists($basePathConfig . '/typo3-7.php');
-        self::assertFileExists($basePathRules . '/TYPO3v7/FlexForm/MigrateFlexFormFractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/FlexForm/MigrateFlexFormFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/FlexForm/MigrateFlexFormFractor/Fixtures/fixture.xml');
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/config/fractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/Fixtures/fixture.xml');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/FlexForm/MigrateFlexFormFractor/MigrateFlexFormFractorTest.php.inc'
+            $basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/MigrateFlexFormFractorTest.php.inc'
         );
 
-        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v7/FlexForm/MigrateFlexFormFractor.php');
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor.php');
         if ($fractorFileContent !== false) {
             self::assertStringContainsString('use a9f\Fractor\Contract\NoChangelogRequired;', $fractorFileContent);
             self::assertStringContainsString(
@@ -112,16 +112,16 @@ final class GenerateRuleCommandTest extends TestCase
             );
         }
 
-        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v7';
-        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v7';
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
     }
 
     public function testCreateRuleForFlexFormWithChangelog(): void
     {
         $this->commandTester->setInputs(
             [
-                '7',
-                'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Feature-123-Bla.html',
+                '9999',
+                'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
                 'MigrateFlexForm',
                 'Migrate FlexForm field',
                 '0',
@@ -137,30 +137,30 @@ final class GenerateRuleCommandTest extends TestCase
         $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
         $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
 
-        $this->testFilesToDelete[] = $basePathConfig . '/typo3-7.php';
-        self::assertFileExists($basePathConfig . '/typo3-7.php');
-        self::assertFileExists($basePathRules . '/TYPO3v7/FlexForm/MigrateFlexFormFractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/FlexForm/MigrateFlexFormFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/FlexForm/MigrateFlexFormFractor/Fixtures/fixture.xml');
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/config/fractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/Fixtures/fixture.xml');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/FlexForm/MigrateFlexFormFractor/MigrateFlexFormFractorTest.php.inc'
+            $basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/MigrateFlexFormFractorTest.php.inc'
         );
 
-        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v7/FlexForm/MigrateFlexFormFractor.php');
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor.php');
         if ($fractorFileContent !== false) {
             self::assertStringContainsString(
-                '@changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Feature-123-Bla.html',
+                '@changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
                 $fractorFileContent
             );
         }
 
-        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v7';
-        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v7';
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
     }
 
     public function testCreateRuleForFluidWithoutChangelog(): void
     {
-        $this->commandTester->setInputs(['7', 'x', 'MigrateFluid', 'Migrate Fluid field', '1']);
+        $this->commandTester->setInputs(['9999', 'x', 'MigrateFluid', 'Migrate Fluid field', '1']);
 
         $this->commandTester->execute([
             'command' => 'generate-rule',
@@ -172,31 +172,31 @@ final class GenerateRuleCommandTest extends TestCase
         $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
         $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
 
-        $this->testFilesToDelete[] = $basePathConfig . '/typo3-7.php';
-        self::assertFileExists($basePathConfig . '/typo3-7.php');
-        self::assertFileExists($basePathRules . '/TYPO3v7/Fluid/MigrateFluidFractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Fluid/MigrateFluidFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Fluid/MigrateFluidFractor/Fixtures/fixture.html');
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/Fluid/MigrateFluidFractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/config/fractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/Fixtures/fixture.html');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/Fluid/MigrateFluidFractor/MigrateFluidFractorTest.php.inc'
+            $basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/MigrateFluidFractorTest.php.inc'
         );
 
-        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v7/Fluid/MigrateFluidFractor.php');
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/Fluid/MigrateFluidFractor.php');
         if ($fractorFileContent !== false) {
             self::assertStringContainsString('use a9f\Fractor\Contract\NoChangelogRequired;', $fractorFileContent);
             self::assertStringContainsString('implements FluidFractorRule, NoChangelogRequired', $fractorFileContent);
         }
 
-        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v7';
-        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v7';
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
     }
 
     public function testCreateRuleForFluidWithChangelog(): void
     {
         $this->commandTester->setInputs(
             [
-                '7',
-                'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Feature-123-Bla.html',
+                '9999',
+                'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
                 'MigrateFluid',
                 'Migrate Fluid field',
                 '1',
@@ -212,30 +212,30 @@ final class GenerateRuleCommandTest extends TestCase
         $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
         $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
 
-        $this->testFilesToDelete[] = $basePathConfig . '/typo3-7.php';
-        self::assertFileExists($basePathConfig . '/typo3-7.php');
-        self::assertFileExists($basePathRules . '/TYPO3v7/Fluid/MigrateFluidFractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Fluid/MigrateFluidFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Fluid/MigrateFluidFractor/Fixtures/fixture.html');
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/Fluid/MigrateFluidFractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/config/fractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/Fixtures/fixture.html');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/Fluid/MigrateFluidFractor/MigrateFluidFractorTest.php.inc'
+            $basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/MigrateFluidFractorTest.php.inc'
         );
 
-        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v7/Fluid/MigrateFluidFractor.php');
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/Fluid/MigrateFluidFractor.php');
         if ($fractorFileContent !== false) {
             self::assertStringContainsString(
-                '@changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Feature-123-Bla.html',
+                '@changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
                 $fractorFileContent
             );
         }
 
-        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v7';
-        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v7';
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
     }
 
     public function testCreateRuleForTypoScriptWithoutChangelog(): void
     {
-        $this->commandTester->setInputs(['7', 'x', 'MigrateTypoScript', 'Migrate TypoScript setting', '2']);
+        $this->commandTester->setInputs(['9999', 'x', 'MigrateTypoScript', 'Migrate TypoScript setting', '2']);
         $this->commandTester->execute([
             'command' => 'generate-rule',
         ]);
@@ -246,18 +246,20 @@ final class GenerateRuleCommandTest extends TestCase
         $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
         $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
 
-        $this->testFilesToDelete[] = $basePathConfig . '/typo3-7.php';
-        self::assertFileExists($basePathConfig . '/typo3-7.php');
-        self::assertFileExists($basePathRules . '/TYPO3v7/TypoScript/MigrateTypoScriptFractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/TypoScript/MigrateTypoScriptFractor/config/fractor.php');
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor.php');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/TypoScript/MigrateTypoScriptFractor/Fixtures/fixture.typoscript'
+            $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/config/fractor.php'
         );
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/TypoScript/MigrateTypoScriptFractor/MigrateTypoScriptFractorTest.php.inc'
+            $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/Fixtures/fixture.typoscript'
+        );
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/MigrateTypoScriptFractorTest.php.inc'
         );
 
-        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v7/TypoScript/MigrateTypoScriptFractor.php');
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor.php');
         if ($fractorFileContent !== false) {
             self::assertStringContainsString('use a9f\Fractor\Contract\NoChangelogRequired;', $fractorFileContent);
             self::assertStringContainsString(
@@ -266,16 +268,16 @@ final class GenerateRuleCommandTest extends TestCase
             );
         }
 
-        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v7';
-        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v7';
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
     }
 
     public function testCreateRuleForTypoScriptWithChangelog(): void
     {
         $this->commandTester->setInputs(
             [
-                '7',
-                'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Feature-123-Bla.html',
+                '9999',
+                'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
                 'MigrateTypoScript',
                 'Migrate TypoScript setting',
                 '2',
@@ -291,32 +293,34 @@ final class GenerateRuleCommandTest extends TestCase
         $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
         $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
 
-        $this->testFilesToDelete[] = $basePathConfig . '/typo3-7.php';
-        self::assertFileExists($basePathConfig . '/typo3-7.php');
-        self::assertFileExists($basePathRules . '/TYPO3v7/TypoScript/MigrateTypoScriptFractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/TypoScript/MigrateTypoScriptFractor/config/fractor.php');
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor.php');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/TypoScript/MigrateTypoScriptFractor/Fixtures/fixture.typoscript'
+            $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/config/fractor.php'
         );
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/TypoScript/MigrateTypoScriptFractor/MigrateTypoScriptFractorTest.php.inc'
+            $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/Fixtures/fixture.typoscript'
+        );
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/MigrateTypoScriptFractorTest.php.inc'
         );
 
-        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v7/TypoScript/MigrateTypoScriptFractor.php');
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor.php');
         if ($fractorFileContent !== false) {
             self::assertStringContainsString(
-                '@changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Feature-123-Bla.html',
+                '@changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
                 $fractorFileContent
             );
         }
 
-        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v7';
-        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v7';
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
     }
 
     public function testCreateRuleForYamlWithoutChangelog(): void
     {
-        $this->commandTester->setInputs(['7', 'x', 'MigrateYaml', 'Migrate Yaml setting', '3']);
+        $this->commandTester->setInputs(['9999', 'x', 'MigrateYaml', 'Migrate Yaml setting', '3']);
         $this->commandTester->execute([
             'command' => 'generate-rule',
         ]);
@@ -327,31 +331,31 @@ final class GenerateRuleCommandTest extends TestCase
         $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
         $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
 
-        $this->testFilesToDelete[] = $basePathConfig . '/typo3-7.php';
-        self::assertFileExists($basePathConfig . '/typo3-7.php');
-        self::assertFileExists($basePathRules . '/TYPO3v7/Yaml/MigrateYamlFractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Yaml/MigrateYamlFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Yaml/MigrateYamlFractor/Fixtures/fixture.yaml');
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/Yaml/MigrateYamlFractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/config/fractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/Fixtures/fixture.yaml');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/Yaml/MigrateYamlFractor/MigrateYamlFractorTest.php.inc'
+            $basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/MigrateYamlFractorTest.php.inc'
         );
 
-        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v7/Yaml/MigrateYamlFractor.php');
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/Yaml/MigrateYamlFractor.php');
         if ($fractorFileContent !== false) {
             self::assertStringContainsString('use a9f\Fractor\Contract\NoChangelogRequired;', $fractorFileContent);
             self::assertStringContainsString('implements YamlFractorRule, NoChangelogRequired', $fractorFileContent);
         }
 
-        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v7';
-        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v7';
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
     }
 
     public function testCreateRuleForYamlWithChangelog(): void
     {
         $this->commandTester->setInputs(
             [
-                '7',
-                'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Feature-123-Bla.html',
+                '9999',
+                'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
                 'MigrateYaml',
                 'Migrate Yaml setting',
                 '3',
@@ -367,30 +371,30 @@ final class GenerateRuleCommandTest extends TestCase
         $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
         $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
 
-        $this->testFilesToDelete[] = $basePathConfig . '/typo3-7.php';
-        self::assertFileExists($basePathConfig . '/typo3-7.php');
-        self::assertFileExists($basePathRules . '/TYPO3v7/Yaml/MigrateYamlFractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Yaml/MigrateYamlFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Yaml/MigrateYamlFractor/Fixtures/fixture.yaml');
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/Yaml/MigrateYamlFractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/config/fractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/Fixtures/fixture.yaml');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/Yaml/MigrateYamlFractor/MigrateYamlFractorTest.php.inc'
+            $basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/MigrateYamlFractorTest.php.inc'
         );
 
-        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v7/Yaml/MigrateYamlFractor.php');
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/Yaml/MigrateYamlFractor.php');
         if ($fractorFileContent !== false) {
             self::assertStringContainsString(
-                '@changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Feature-123-Bla.html',
+                '@changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
                 $fractorFileContent
             );
         }
 
-        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v7';
-        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v7';
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
     }
 
     public function testCreateRuleForComposerWithoutChangelog(): void
     {
-        $this->commandTester->setInputs(['7', 'x', 'MigrateComposer', 'Migrate Composer setting', '4']);
+        $this->commandTester->setInputs(['9999', 'x', 'MigrateComposer', 'Migrate Composer setting', '4']);
         $this->commandTester->execute([
             'command' => 'generate-rule',
         ]);
@@ -401,16 +405,18 @@ final class GenerateRuleCommandTest extends TestCase
         $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
         $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
 
-        $this->testFilesToDelete[] = $basePathConfig . '/typo3-7.php';
-        self::assertFileExists($basePathConfig . '/typo3-7.php');
-        self::assertFileExists($basePathRules . '/TYPO3v7/Composer/MigrateComposerFractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Composer/MigrateComposerFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Composer/MigrateComposerFractor/Fixtures/fixture.json');
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/Composer/MigrateComposerFractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/config/fractor.php');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/Composer/MigrateComposerFractor/MigrateComposerFractorTest.php.inc'
+            $basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/Fixtures/fixture.json'
+        );
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/MigrateComposerFractorTest.php.inc'
         );
 
-        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v7/Composer/MigrateComposerFractor.php');
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/Composer/MigrateComposerFractor.php');
         if ($fractorFileContent !== false) {
             self::assertStringContainsString('use a9f\Fractor\Contract\NoChangelogRequired;', $fractorFileContent);
             self::assertStringContainsString(
@@ -419,16 +425,16 @@ final class GenerateRuleCommandTest extends TestCase
             );
         }
 
-        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v7';
-        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v7';
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
     }
 
     public function testCreateRuleForComposerWithChangelog(): void
     {
         $this->commandTester->setInputs(
             [
-                '7',
-                'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Feature-123-Bla.html',
+                '9999',
+                'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
                 'MigrateComposer',
                 'Migrate Composer setting',
                 '4',
@@ -444,25 +450,27 @@ final class GenerateRuleCommandTest extends TestCase
         $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
         $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
 
-        $this->testFilesToDelete[] = $basePathConfig . '/typo3-7.php';
-        self::assertFileExists($basePathConfig . '/typo3-7.php');
-        self::assertFileExists($basePathRules . '/TYPO3v7/Composer/MigrateComposerFractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Composer/MigrateComposerFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v7/Composer/MigrateComposerFractor/Fixtures/fixture.json');
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/Composer/MigrateComposerFractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/config/fractor.php');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v7/Composer/MigrateComposerFractor/MigrateComposerFractorTest.php.inc'
+            $basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/Fixtures/fixture.json'
+        );
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/MigrateComposerFractorTest.php.inc'
         );
 
-        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v7/Composer/MigrateComposerFractor.php');
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/Composer/MigrateComposerFractor.php');
         if ($fractorFileContent !== false) {
             self::assertStringContainsString(
-                '@changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/7.6/Feature-123-Bla.html',
+                '@changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
                 $fractorFileContent
             );
         }
 
-        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v7';
-        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v7';
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
     }
 
     /**
