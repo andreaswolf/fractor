@@ -23,10 +23,7 @@ abstract class AbstractTypoScriptFractor implements TypoScriptFractor
         $this->file = $file;
     }
 
-    /**
-     * @return Statement|list<Statement>|int
-     */
-    final public function enterNode(Statement $node): Statement|array|int
+    final public function enterNode(Statement $node): Statement|int
     {
         $result = $this->refactor($node);
 

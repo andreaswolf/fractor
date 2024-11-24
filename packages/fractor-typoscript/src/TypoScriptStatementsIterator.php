@@ -26,9 +26,8 @@ final readonly class TypoScriptStatementsIterator
     /**
      * @param list<TypoScriptNodeVisitor> $visitors
      */
-    public function __construct(
-        iterable $visitors
-    ) {
+    public function __construct(iterable $visitors)
+    {
         $visitors = iterator_to_array($visitors);
         Assert::allIsInstanceOf($visitors, TypoScriptNodeVisitor::class);
         $this->visitors = $visitors;
@@ -63,19 +62,14 @@ final readonly class TypoScriptStatementsIterator
         foreach ($statements as $statement) {
             $result = $this->traverseNode($statement);
 
-            if (is_array($result)) {
-                $resultingStatements[] = $result;
-            } elseif ($result instanceof Statement) {
+            if ($result instanceof Statement) {
                 $resultingStatements[] = [$result];
             }
         }
         return array_merge(...$resultingStatements);
     }
 
-    /**
-     * @return self::*|Statement|list<Statement>
-     */
-    private function traverseNode(Statement $node): int|Statement|array
+    private function traverseNode(Statement $node): int|Statement
     {
         $lastCalledVisitor = null;
         $result = $node;
