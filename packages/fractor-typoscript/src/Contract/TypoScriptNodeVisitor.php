@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace a9f\FractorTypoScript\Contract;
 
 use a9f\Fractor\Application\ValueObject\File;
-use a9f\FractorTypoScript\TypoScriptStatementsIterator;
 use Helmich\TypoScriptParser\Parser\AST\Statement;
 
 /**
@@ -18,10 +17,7 @@ interface TypoScriptNodeVisitor
      */
     public function beforeTraversal(File $file, array $statements): void;
 
-    /**
-     * @return Statement|list<Statement>|TypoScriptStatementsIterator::*
-     */
-    public function enterNode(Statement $node): Statement|array|int;
+    public function enterNode(Statement $node): Statement|int;
 
     public function leaveNode(Statement $node): void;
 
