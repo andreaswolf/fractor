@@ -1,0 +1,8 @@
+mod {
+    dummy = 1
+    web_list.newPageWiz.overrideWithExtension = myextension
+}
+-----
+mod {
+    dummy = 1
+}
