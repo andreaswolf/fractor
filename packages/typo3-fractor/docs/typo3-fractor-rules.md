@@ -148,38 +148,38 @@ Migrates indexed item array keys to associative for type select, radio and check
                  <sheetTitle>Sheet Title</sheetTitle>
                  <type>array</type>
                  <el>
- 					<selectSingleColumn>
- 						<config>
- 							<type>select</type>
- 							<renderType>selectSingle</renderType>
- 							<items type="array">
- 								<numIndex index="0" type="array">
--									<numIndex index="0"/>
--									<numIndex index="1"/>
-+									<label/>
-+									<value/>
- 								</numIndex>
- 								<numIndex index="1" type="array">
--									<numIndex index="0">Label 1</numIndex>
--									<numIndex index="1">1</numIndex>
-+									<label>Label 1</label>
-+									<value>1</value>
- 								</numIndex>
- 								<numIndex index="2" type="array">
--									<numIndex index="0">Label 2</numIndex>
--									<numIndex index="1">2</numIndex>
-+									<label>Label 2</label>
-+									<value>2</value>
- 								</numIndex>
- 								<numIndex index="3" type="array">
--									<numIndex index="0">Label 3</numIndex>
--									<numIndex index="1">3</numIndex>
-+									<label>Label 3</label>
-+									<value>3</value>
- 								</numIndex>
- 							</items>
- 						</config>
- 					</selectSingleColumn>
+                     <selectSingleColumn>
+                         <config>
+                             <type>select</type>
+                             <renderType>selectSingle</renderType>
+                             <items type="array">
+                                 <numIndex index="0" type="array">
+-                                    <numIndex index="0"/>
+-                                    <numIndex index="1"/>
++                                    <label/>
++                                    <value/>
+                                 </numIndex>
+                                 <numIndex index="1" type="array">
+-                                    <numIndex index="0">Label 1</numIndex>
+-                                    <numIndex index="1">1</numIndex>
++                                    <label>Label 1</label>
++                                    <value>1</value>
+                                 </numIndex>
+                                 <numIndex index="2" type="array">
+-                                    <numIndex index="0">Label 2</numIndex>
+-                                    <numIndex index="1">2</numIndex>
++                                    <label>Label 2</label>
++                                    <value>2</value>
+                                 </numIndex>
+                                 <numIndex index="3" type="array">
+-                                    <numIndex index="0">Label 3</numIndex>
+-                                    <numIndex index="1">3</numIndex>
++                                    <label>Label 3</label>
++                                    <value>3</value>
+                                 </numIndex>
+                             </items>
+                         </config>
+                     </selectSingleColumn>
                  </el>
              </ROOT>
          </sDEF>
