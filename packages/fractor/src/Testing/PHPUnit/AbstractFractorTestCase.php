@@ -16,7 +16,9 @@ use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\Fractor\Testing\Contract\FractorTestInterface;
 use a9f\Fractor\Testing\Fixture\FixtureFileFinder;
 use a9f\Fractor\Testing\Fixture\FixtureSplitter;
+use a9f\Fractor\Testing\PHPUnit\ValueObject\FractorTestResult;
 use Nette\Utils\FileSystem;
+use Nette\Utils\Strings;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -30,8 +32,6 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
 
     private FractorRunner $fractorRunner;
 
-    private ?string $copiedFile = null;
-
     protected function setUp(): void
     {
         $this->bootContainer();
@@ -42,10 +42,8 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
     protected function tearDown(): void
     {
         // clear temporary file
-        if (is_string($this->inputFilePath) && is_string($this->copiedFile)) {
+        if (\is_string($this->inputFilePath)) {
             FileSystem::delete($this->inputFilePath);
-            // restore copied file
-            FileSystem::rename($this->copiedFile, $this->inputFilePath);
         }
 
         unset($this->currentContainer);
@@ -93,9 +91,6 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
 
     protected function doTestFile(string $fixtureFilePath): void
     {
-        $this->copiedFile = $fixtureFilePath . '.tmp';
-
-        FileSystem::copy($fixtureFilePath, $this->copiedFile);
         // prepare input file contents and expected file output contents
         $fixtureFileContents = FileSystem::read($fixtureFilePath);
 
@@ -113,9 +108,8 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
         $inputFilePath = $this->createInputFilePath($fixtureFilePath);
         // to remove later in tearDown()
         $this->inputFilePath = $inputFilePath;
-
-        if ($fixtureFilePath === $this->copiedFile) {
-            throw new ShouldNotHappenException('Fixture file and copied file cannot be the same: ' . $fixtureFilePath);
+        if ($fixtureFilePath === $inputFilePath) {
+            throw new ShouldNotHappenException('Fixture file and input file cannot be the same: ' . $fixtureFilePath);
         }
 
         // write temp file
@@ -127,9 +121,12 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
     /**
      * @param class-string<FractorRule> $rule
      */
-    protected function assertThatRuleIsApplied(string $filePath, string $rule): void
+    protected function assertThatRuleIsApplied(string $rule): void
     {
-        $file = $this->fileCollector->getFileByPath($filePath);
+        if (! \is_string($this->inputFilePath)) {
+            self::fail('inputFilePath is not a string');
+        }
+        $file = $this->fileCollector->getFileByPath($this->inputFilePath);
         self::assertInstanceOf(File::class, $file);
         self::assertEquals([AppliedRule::fromClassString($rule)], $file->getAppliedRules());
     }
@@ -148,32 +145,46 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
         string $fixtureFilePath
     ): void {
         // the file is now changed (if any rule matches)
-        $changedContents = $this->processFilePath($originalFilePath);
+        $fractorTestResult = $this->processFilePath($originalFilePath);
+        $changedContents = $fractorTestResult->getChangedContents();
 
         $fixtureFilename = basename($fixtureFilePath);
         $failureMessage = sprintf('Failed on fixture file "%s"', $fixtureFilename);
+        // give more context about used rules in case of set testing
+        if (\count($fractorTestResult->getAppliedFractorRules()) > 0) {
+            $failureMessage .= \PHP_EOL . \PHP_EOL;
+            $failureMessage .= 'Applied Fractor rules:' . \PHP_EOL;
+            foreach ($fractorTestResult->getAppliedFractorRules() as $appliedFractorRule) {
+                $failureMessage .= ' * ' . $appliedFractorRule . \PHP_EOL;
+            }
+        }
 
         self::assertSame(trim($expectedFileContents), trim($changedContents), $failureMessage);
     }
 
-    private function processFilePath(string $filePath): string
+    private function processFilePath(string $filePath): FractorTestResult
     {
         $configurationFactory = $this->getService(ConfigurationFactory::class);
         $configuration = $configurationFactory->createForTests([$filePath]);
 
-        $this->fractorRunner->run(new NullOutput(), $configuration);
+        $processResult = $this->fractorRunner->run(new NullOutput(), $configuration);
 
         // return changed file contents
-        return FileSystem::read($filePath);
+        $changedFileContents = FileSystem::read($filePath);
+
+        return new FractorTestResult($changedFileContents, $processResult);
     }
 
     private function createInputFilePath(string $fixtureFilePath): string
     {
-        $inputFileDirectory = dirname($fixtureFilePath);
-
-        $trimmedFixtureFilePath = $fixtureFilePath;
-
-        $fixtureBasename = pathinfo($trimmedFixtureFilePath, PATHINFO_BASENAME);
+        $inputFileDirectory = \dirname($fixtureFilePath);
+        // remove ".fixture" suffix
+        if (str_ends_with($fixtureFilePath, '.fixture')) {
+            $trimmedFixtureFilePath = Strings::substring($fixtureFilePath, 0, -8);
+        } else {
+            $trimmedFixtureFilePath = $fixtureFilePath;
+        }
+        $fixtureBasename = \pathinfo($trimmedFixtureFilePath, \PATHINFO_BASENAME);
         return $inputFileDirectory . '/' . $fixtureBasename;
     }
 }

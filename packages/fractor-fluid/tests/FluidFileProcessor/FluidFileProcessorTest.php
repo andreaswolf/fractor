@@ -15,12 +15,12 @@ final class FluidFileProcessorTest extends AbstractFractorTestCase
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);
-        $this->assertThatRuleIsApplied($filePath, DummyFluidFractorRule::class);
+        $this->assertThatRuleIsApplied(DummyFluidFractorRule::class);
     }
 
     public static function provideData(): Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.html');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.html.fixture');
     }
 
     public function provideConfigFilePath(): ?string

@@ -15,12 +15,12 @@ final class ChangePackageVersionComposerJsonFractorTest extends AbstractFractorT
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);
-        $this->assertThatRuleIsApplied($filePath, ChangePackageVersionComposerJsonFractor::class);
+        $this->assertThatRuleIsApplied(ChangePackageVersionComposerJsonFractor::class);
     }
 
     public static function provideData(): Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.json');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.json.fixture');
     }
 
     public function provideConfigFilePath(): ?string

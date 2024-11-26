@@ -18,7 +18,7 @@ final class AbstractMessageGetSeverityFluidFractorTest extends AbstractFractorTe
 
     public static function provideData(): Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.html');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.html.fixture');
     }
 
     public function provideConfigFilePath(): ?string

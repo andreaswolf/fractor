@@ -18,7 +18,7 @@ final class TranslationFileYamlFractorTest extends AbstractFractorTestCase
 
     public static function provideData(): Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.yaml');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.yaml.fixture');
     }
 
     public function provideConfigFilePath(): ?string

@@ -15,12 +15,12 @@ final class AddPackageToRequireDevComposerJsonFractorTest extends AbstractFracto
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);
-        $this->assertThatRuleIsApplied($filePath, AddPackageToRequireDevComposerJsonFractor::class);
+        $this->assertThatRuleIsApplied(AddPackageToRequireDevComposerJsonFractor::class);
     }
 
     public static function provideData(): Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.json');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.json.fixture');
     }
 
     public function provideConfigFilePath(): ?string

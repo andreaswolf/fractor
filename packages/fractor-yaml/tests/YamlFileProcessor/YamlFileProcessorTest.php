@@ -15,12 +15,12 @@ final class YamlFileProcessorTest extends AbstractFractorTestCase
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);
-        $this->assertThatRuleIsApplied($filePath, DummyYamlFractorRule::class);
+        $this->assertThatRuleIsApplied(DummyYamlFractorRule::class);
     }
 
     public static function provideData(): Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.yaml');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.yaml.fixture');
     }
 
     public function provideConfigFilePath(): ?string

@@ -17,7 +17,7 @@ final class MigrateItemsIndexedKeysToAssociativeFractorTest extends AbstractFrac
 
     public static function provideData(): \Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.xml');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.xml.fixture');
     }
 
     public function provideConfigFilePath(): ?string
