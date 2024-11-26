@@ -14,12 +14,12 @@ class TypoScriptFileProcessorTest extends AbstractFractorTestCase
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);
-        $this->assertThatRuleIsApplied($filePath, DummyTypoScriptFractorRule::class);
+        $this->assertThatRuleIsApplied(DummyTypoScriptFractorRule::class);
     }
 
     public static function provideData(): \Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.typoscript');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.typoscript.fixture');
     }
 
     public function provideConfigFilePath(): ?string

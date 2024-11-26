@@ -17,7 +17,7 @@ final class RemoveUseCacheHashFromTypolinkTypoScriptFractorTest extends Abstract
 
     public static function provideData(): \Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.typoscript');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.typoscript.fixture');
     }
 
     public function provideConfigFilePath(): ?string

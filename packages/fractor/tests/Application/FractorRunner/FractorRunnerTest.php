@@ -18,7 +18,7 @@ final class FractorRunnerTest extends AbstractFractorTestCase
 
     public static function provideData(): Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.txt');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.txt.fixture');
     }
 
     public function provideConfigFilePath(): ?string

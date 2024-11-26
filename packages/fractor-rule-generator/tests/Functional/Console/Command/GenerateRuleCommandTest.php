@@ -98,7 +98,9 @@ final class GenerateRuleCommandTest extends TestCase
         self::assertFileExists($basePathConfig . '/typo3-9999.php');
         self::assertFileExists($basePathRules . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor.php');
         self::assertFileExists($basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/Fixtures/fixture.xml');
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/Fixtures/fixture.xml.fixture'
+        );
         self::assertFileExists(
             $basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/MigrateFlexFormFractorTest.php.inc'
         );
@@ -141,7 +143,9 @@ final class GenerateRuleCommandTest extends TestCase
         self::assertFileExists($basePathConfig . '/typo3-9999.php');
         self::assertFileExists($basePathRules . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor.php');
         self::assertFileExists($basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/Fixtures/fixture.xml');
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/Fixtures/fixture.xml.fixture'
+        );
         self::assertFileExists(
             $basePathRuleTests . '/TYPO3v9999/FlexForm/MigrateFlexFormFractor/MigrateFlexFormFractorTest.php.inc'
         );
@@ -176,7 +180,9 @@ final class GenerateRuleCommandTest extends TestCase
         self::assertFileExists($basePathConfig . '/typo3-9999.php');
         self::assertFileExists($basePathRules . '/TYPO3v9999/Fluid/MigrateFluidFractor.php');
         self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/Fixtures/fixture.html');
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/Fixtures/fixture.html.fixture'
+        );
         self::assertFileExists(
             $basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/MigrateFluidFractorTest.php.inc'
         );
@@ -216,7 +222,9 @@ final class GenerateRuleCommandTest extends TestCase
         self::assertFileExists($basePathConfig . '/typo3-9999.php');
         self::assertFileExists($basePathRules . '/TYPO3v9999/Fluid/MigrateFluidFractor.php');
         self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/Fixtures/fixture.html');
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/Fixtures/fixture.html.fixture'
+        );
         self::assertFileExists(
             $basePathRuleTests . '/TYPO3v9999/Fluid/MigrateFluidFractor/MigrateFluidFractorTest.php.inc'
         );
@@ -253,7 +261,7 @@ final class GenerateRuleCommandTest extends TestCase
             $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/config/fractor.php'
         );
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/Fixtures/fixture.typoscript'
+            $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/Fixtures/fixture.typoscript.fixture'
         );
         self::assertFileExists(
             $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/MigrateTypoScriptFractorTest.php.inc'
@@ -300,7 +308,7 @@ final class GenerateRuleCommandTest extends TestCase
             $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/config/fractor.php'
         );
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/Fixtures/fixture.typoscript'
+            $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/Fixtures/fixture.typoscript.fixture'
         );
         self::assertFileExists(
             $basePathRuleTests . '/TYPO3v9999/TypoScript/MigrateTypoScriptFractor/MigrateTypoScriptFractorTest.php.inc'
@@ -335,7 +343,9 @@ final class GenerateRuleCommandTest extends TestCase
         self::assertFileExists($basePathConfig . '/typo3-9999.php');
         self::assertFileExists($basePathRules . '/TYPO3v9999/Yaml/MigrateYamlFractor.php');
         self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/Fixtures/fixture.yaml');
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/Fixtures/fixture.yaml.fixture'
+        );
         self::assertFileExists(
             $basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/MigrateYamlFractorTest.php.inc'
         );
@@ -375,7 +385,9 @@ final class GenerateRuleCommandTest extends TestCase
         self::assertFileExists($basePathConfig . '/typo3-9999.php');
         self::assertFileExists($basePathRules . '/TYPO3v9999/Yaml/MigrateYamlFractor.php');
         self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/config/fractor.php');
-        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/Fixtures/fixture.yaml');
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/Fixtures/fixture.yaml.fixture'
+        );
         self::assertFileExists(
             $basePathRuleTests . '/TYPO3v9999/Yaml/MigrateYamlFractor/MigrateYamlFractorTest.php.inc'
         );
@@ -410,7 +422,7 @@ final class GenerateRuleCommandTest extends TestCase
         self::assertFileExists($basePathRules . '/TYPO3v9999/Composer/MigrateComposerFractor.php');
         self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/config/fractor.php');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/Fixtures/fixture.json'
+            $basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/Fixtures/fixture.json.fixture'
         );
         self::assertFileExists(
             $basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/MigrateComposerFractorTest.php.inc'
@@ -455,7 +467,7 @@ final class GenerateRuleCommandTest extends TestCase
         self::assertFileExists($basePathRules . '/TYPO3v9999/Composer/MigrateComposerFractor.php');
         self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/config/fractor.php');
         self::assertFileExists(
-            $basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/Fixtures/fixture.json'
+            $basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/Fixtures/fixture.json.fixture'
         );
         self::assertFileExists(
             $basePathRuleTests . '/TYPO3v9999/Composer/MigrateComposerFractor/MigrateComposerFractorTest.php.inc'
