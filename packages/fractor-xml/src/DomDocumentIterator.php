@@ -53,14 +53,23 @@ final readonly class DomDocumentIterator
         foreach ($this->visitors as $visitor) {
             $result = $visitor->enterNode($node);
 
-            if ($node->parentNode === null) {
-                throw new ShouldNotHappenException('Node has no parent node');
-            }
-
+            /** @var \DOMElement $node */
             if ($result === self::REMOVE_NODE) {
+                if ($node->parentNode === null) {
+                    throw new ShouldNotHappenException(sprintf(
+                        'Node with tagName "%s" has no parent node and cannot be removed.',
+                        $node->tagName
+                    ));
+                }
                 $node->parentNode->removeChild($node);
                 $traverseChildren = false;
             } elseif ($result->isSameNode($node) === false) {
+                if ($node->parentNode === null) {
+                    throw new ShouldNotHappenException(sprintf(
+                        'Node with tagName "%s" has no parent node and cannot be replaced.',
+                        $node->tagName
+                    ));
+                }
                 $node->parentNode->replaceChild($result, $node);
                 $traverseChildren = false;
             }
