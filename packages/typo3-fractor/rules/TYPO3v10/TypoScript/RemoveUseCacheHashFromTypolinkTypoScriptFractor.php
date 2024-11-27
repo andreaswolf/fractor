@@ -20,15 +20,14 @@ final class RemoveUseCacheHashFromTypolinkTypoScriptFractor extends AbstractTypo
     public function refactor(Statement $statement): null|Statement|int
     {
         if (! $statement instanceof Assignment) {
-            return $statement;
+            return null;
         }
 
         // for some weird reason, "foo.bar.baz = 1" leads to "relativeName" being "foo.bar.baz"
         if (! str_ends_with($statement->object->absoluteName, '.typolink.useCacheHash')) {
-            return $statement;
+            return null;
         }
 
-        $this->hasChanged = true;
         return TypoScriptStatementsIterator::REMOVE_NODE;
     }
 
