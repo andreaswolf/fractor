@@ -13,8 +13,6 @@ abstract class AbstractTypoScriptFractor implements TypoScriptFractor
 {
     protected File $file;
 
-    protected bool $hasChanged = false;
-
     /**
      * @param list<Statement> $statements
      */
