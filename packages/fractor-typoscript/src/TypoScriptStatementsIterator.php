@@ -19,12 +19,12 @@ final readonly class TypoScriptStatementsIterator
     public const REMOVE_NODE = 3;
 
     /**
-     * @var array<TypoScriptNodeVisitor>
+     * @var TypoScriptNodeVisitor[]
      */
     private iterable $visitors;
 
     /**
-     * @param list<TypoScriptNodeVisitor> $visitors
+     * @param TypoScriptNodeVisitor[] $visitors
      */
     public function __construct(iterable $visitors)
     {
@@ -34,8 +34,8 @@ final readonly class TypoScriptStatementsIterator
     }
 
     /**
-     * @param list<Statement> $statements
-     * @return list<Statement>
+     * @param Statement[] $statements
+     * @return Statement[]
      */
     public function traverseDocument(File $file, array $statements): array
     {
@@ -53,8 +53,8 @@ final readonly class TypoScriptStatementsIterator
     }
 
     /**
-     * @param list<Statement> $statements
-     * @return list<Statement>
+     * @param Statement[] $statements
+     * @return Statement[]
      */
     private function processStatementList(array $statements): array
     {
