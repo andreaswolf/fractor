@@ -17,9 +17,6 @@ class ConsoleOutputFormatter implements OutputFormatterInterface
      */
     public const NAME = 'console';
 
-    /**
-     * @readonly
-     */
     private SymfonyStyle $symfonyStyle;
 
     public function setSymfonyStyle(SymfonyStyle $symfonyStyle): void

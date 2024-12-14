@@ -16,3 +16,7 @@ parameters:
         - packages/**/tests/**/Fixture/*
         - packages/**/tests/Fixtures/*
         - packages/fractor-rule-generator/templates
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+        - identifier: return.unusedType
+        - identifier: varTag.nativeType

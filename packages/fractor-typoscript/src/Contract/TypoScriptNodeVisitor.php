@@ -13,7 +13,7 @@ use Helmich\TypoScriptParser\Parser\AST\Statement;
 interface TypoScriptNodeVisitor
 {
     /**
-     * @param list<Statement> $statements
+     * @param Statement[] $statements
      */
     public function beforeTraversal(File $file, array $statements): void;
 
@@ -25,7 +25,7 @@ interface TypoScriptNodeVisitor
     public function leaveNode(Statement $node): void;
 
     /**
-     * @param list<Statement> $statements
+     * @param Statement[] $statements
      */
     public function afterTraversal(array $statements): void;
 }

@@ -6,7 +6,6 @@ namespace a9f\Typo3Fractor\TYPO3v12\TypoScript;
 
 use a9f\FractorTypoScript\AbstractTypoScriptFractor;
 use Helmich\TypoScriptParser\Parser\AST\NestedAssignment;
-use Helmich\TypoScriptParser\Parser\AST\ObjectPath;
 use Helmich\TypoScriptParser\Parser\AST\Operator\Assignment;
 use Helmich\TypoScriptParser\Parser\AST\Statement;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -20,10 +19,6 @@ final class RenameTcemainLinkHandlerMailKeyFractor extends AbstractTypoScriptFra
     public function refactor(Statement $statement): null|Statement|int
     {
         if (! $statement instanceof NestedAssignment && ! $statement instanceof Assignment) {
-            return null;
-        }
-
-        if (! $statement->object instanceof ObjectPath) {
             return null;
         }
 

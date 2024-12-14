@@ -139,6 +139,9 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
         );
     }
 
+    /**
+     * @param non-empty-string $originalFilePath
+     */
     private function doTestFileMatchesExpectedContent(
         string $originalFilePath,
         string $expectedFileContents,
@@ -162,6 +165,9 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
         self::assertSame(trim($expectedFileContents), trim($changedContents), $failureMessage);
     }
 
+    /**
+     * @param non-empty-string $filePath
+     */
     private function processFilePath(string $filePath): FractorTestResult
     {
         $configurationFactory = $this->getService(ConfigurationFactory::class);
@@ -175,6 +181,9 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
         return new FractorTestResult($changedFileContents, $processResult);
     }
 
+    /**
+     * @return non-empty-string
+     */
     private function createInputFilePath(string $fixtureFilePath): string
     {
         $inputFileDirectory = \dirname($fixtureFilePath);
