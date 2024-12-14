@@ -16,9 +16,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class AddChangelogDocBlockForFractorRuleTest extends RuleTestCase
 {
     /**
-     * @param array<int, mixed> $expectedErrorsWithLines
+     * @param list<array{0: string, 1: int, 2?: string|null}> $expectedErrorsWithLines
      */
-    #[DataProvider(methodName: 'provideData')]
+    #[DataProvider('provideData')]
     public function testRule(string $filePath, array $expectedErrorsWithLines): void
     {
         $this->analyse([$filePath], $expectedErrorsWithLines);
