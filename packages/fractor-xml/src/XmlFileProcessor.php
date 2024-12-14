@@ -8,6 +8,7 @@ use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\Fractor\ValueObject\Indent;
+use a9f\FractorXml\Contract\DomNodeVisitor;
 use a9f\FractorXml\Contract\Formatter;
 use a9f\FractorXml\Contract\XmlFractor;
 use a9f\FractorXml\ValueObjectFactory\DomDocumentFactory;
@@ -33,6 +34,9 @@ final readonly class XmlFileProcessor implements FileProcessor
         return $file->getFileExtension() === 'xml';
     }
 
+    /**
+     * @param list<DomNodeVisitor> $appliedRules
+     */
     public function handle(File $file, iterable $appliedRules): void
     {
         $document = $this->domDocumentFactory->create();

@@ -19,9 +19,12 @@ final readonly class ConfigurationFactory
 
     public function createFromInput(InputInterface $input): Configuration
     {
+        /** @var list<non-empty-string> $paths */
+        $paths = (array) $this->parameterBag->get(Option::PATHS);
+
         return new Configuration(
             $this->allowedFileExtensionsResolver->resolve(),
-            (array) $this->parameterBag->get(Option::PATHS),
+            $paths,
             (array) $this->parameterBag->get(Option::SKIP),
             (bool) $input->getOption(Option::DRY_RUN),
             (bool) $input->getOption(Option::QUIET)
@@ -30,7 +33,7 @@ final readonly class ConfigurationFactory
 
     /**
      * @api used in tests
-     * @param string[] $paths
+     * @param list<non-empty-string> $paths
      */
     public function createForTests(array $paths): Configuration
     {
