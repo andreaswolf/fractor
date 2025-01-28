@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\DependencyInjection;
 
+use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\FractorExtensionInstaller\Generated\InstalledPackages;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\DependencyInjection\AddConsoleCommandPass;
@@ -60,7 +61,13 @@ class ContainerContainerBuilder
         }
 
         foreach (InstalledPackages::PACKAGES as $package) {
-            $collectedConfigFiles[] = $package['path'] . '/config/application.php';
+            $configPath = $package['path'] . '/config/application.php';
+
+            if (! is_readable($configPath)) {
+                throw new ShouldNotHappenException(sprintf('Config file "%s" is not readable or does not exist.', $configPath));
+            }
+
+            $collectedConfigFiles[] = $configPath;
         }
 
         return $collectedConfigFiles;
