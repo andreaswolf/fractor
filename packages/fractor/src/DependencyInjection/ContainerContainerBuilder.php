@@ -64,7 +64,10 @@ class ContainerContainerBuilder
             $configPath = $package['path'] . '/config/application.php';
 
             if (! is_readable($configPath)) {
-                throw new ShouldNotHappenException(sprintf('Config file "%s" is not readable or does not exist.', $configPath));
+                throw new ShouldNotHappenException(sprintf(
+                    'Config file "%s" is not readable or does not exist.',
+                    $configPath
+                ));
             }
 
             $collectedConfigFiles[] = $configPath;
