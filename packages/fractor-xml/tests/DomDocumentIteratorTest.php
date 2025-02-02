@@ -217,7 +217,7 @@ XML);
     }
 
     /**
-     * @param list<string> $recorder
+     * @param list<non-empty-string> $recorder
      */
     private function getCallRecordingDomNodeVisitor(string $visitorName, array &$recorder): DomNodeVisitor
     {
