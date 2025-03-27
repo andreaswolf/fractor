@@ -24,9 +24,8 @@ final readonly class DomDocumentIterator
     /**
      * @param list<DomNodeVisitor> $visitors
      */
-    public function __construct(
-        iterable $visitors
-    ) {
+    public function __construct(iterable $visitors)
+    {
         $visitors = iterator_to_array($visitors);
         Assert::allIsInstanceOf($visitors, DomNodeVisitor::class);
         $this->visitors = $visitors;
