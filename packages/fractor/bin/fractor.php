@@ -9,9 +9,11 @@ use Symfony\Component\Console\Input\ArgvInput;
 
 $autoloadFile = (static function (): ?string {
     $candidates = [
-        getcwd() . '/vendor/autoload.php',
+        // first try the vendor folder, where fractor is installed to
         __DIR__ . '/../../../autoload.php',
         __DIR__ . '/../vendor/autoload.php',
+        // fallback to the project's vendor folder
+        getcwd() . '/vendor/autoload.php',
     ];
     foreach ($candidates as $candidate) {
         if (file_exists($candidate)) {
