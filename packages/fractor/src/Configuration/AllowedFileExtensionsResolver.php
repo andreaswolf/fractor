@@ -20,7 +20,7 @@ final readonly class AllowedFileExtensionsResolver
     }
 
     /**
-     * @return list<non-empty-string>
+     * @return array<int<0, max>, non-empty-string>
      */
     public function resolve(): array
     {
