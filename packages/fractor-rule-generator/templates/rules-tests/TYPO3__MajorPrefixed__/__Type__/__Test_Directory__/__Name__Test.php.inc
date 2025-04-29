@@ -17,7 +17,7 @@ final class __Name__Test extends AbstractFractorTestCase
 
     public static function provideData(): \Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.__FixtureFileExtension__');
+        return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.__FixtureFileExtension__.fixture');
     }
 
     public function provideConfigFilePath(): ?string
