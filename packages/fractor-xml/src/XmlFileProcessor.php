@@ -6,6 +6,7 @@ namespace a9f\FractorXml;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
+use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\Fractor\ValueObject\Indent;
 use a9f\FractorXml\Contract\Formatter;
@@ -24,7 +25,8 @@ final readonly class XmlFileProcessor implements FileProcessor
         private DomDocumentFactory $domDocumentFactory,
         private Formatter $formatter,
         private iterable $rules,
-        private Indent $indent
+        private Indent $indent,
+        private ChangedFilesDetector $changedFilesDetector
     ) {
     }
 
@@ -35,6 +37,7 @@ final readonly class XmlFileProcessor implements FileProcessor
 
     public function handle(File $file, iterable $appliedRules): void
     {
+        $fileHasChanged = \false;
         $document = $this->domDocumentFactory->create();
         $originalXml = $file->getOriginalContent();
         $document->loadXML($originalXml);
@@ -55,6 +58,12 @@ final readonly class XmlFileProcessor implements FileProcessor
         }
 
         $file->changeFileContent($newXml);
+        if ($file->hasChanged()) {
+            $fileHasChanged = \true;
+        }
+        if (! $fileHasChanged) {
+            $this->changedFilesDetector->addCachableFile($file->getFilePath());
+        }
     }
 
     public function allowedFileExtensions(): array

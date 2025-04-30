@@ -7,6 +7,7 @@ namespace a9f\FractorYaml;
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\AppliedRule;
 use a9f\Fractor\Application\ValueObject\File;
+use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
 use a9f\Fractor\ValueObject\Indent;
 use a9f\FractorYaml\Contract\YamlDumper;
 use a9f\FractorYaml\Contract\YamlFractorRule;
@@ -23,7 +24,8 @@ final readonly class YamlFileProcessor implements FileProcessor
     public function __construct(
         private iterable $rules,
         private YamlParser $yamlParser,
-        private YamlDumper $yamlDumper
+        private YamlDumper $yamlDumper,
+        private ChangedFilesDetector $changedFilesDetector
     ) {
     }
 
@@ -50,6 +52,7 @@ final readonly class YamlFileProcessor implements FileProcessor
 
         // Nothing has changed.
         if ($newYaml === $yaml) {
+            $this->changedFilesDetector->addCachableFile($file->getFilePath());
             return;
         }
 

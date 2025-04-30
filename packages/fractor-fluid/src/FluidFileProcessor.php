@@ -7,6 +7,7 @@ namespace a9f\FractorFluid;
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\AppliedRule;
 use a9f\Fractor\Application\ValueObject\File;
+use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
 use a9f\FractorFluid\Contract\FluidFractorRule;
 
 /**
@@ -18,7 +19,8 @@ final readonly class FluidFileProcessor implements FileProcessor
      * @param iterable<FluidFractorRule> $rules
      */
     public function __construct(
-        private iterable $rules
+        private iterable $rules,
+        private ChangedFilesDetector $changedFilesDetector
     ) {
     }
 
@@ -35,6 +37,8 @@ final readonly class FluidFileProcessor implements FileProcessor
             if ($newContent !== $file->getContent()) {
                 $file->changeFileContent($newContent);
                 $file->addAppliedRule(AppliedRule::fromRule($rule));
+            } else {
+                $this->changedFilesDetector->addCachableFile($file->getFilePath());
             }
         }
     }

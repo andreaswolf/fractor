@@ -6,6 +6,7 @@ namespace a9f\FractorTypoScript;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\ValueObject\File;
+use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
 use a9f\FractorTypoScript\Contract\TypoScriptFractor;
 use a9f\FractorTypoScript\Factory\PrettyPrinterConfigurationFactory;
 use a9f\FractorTypoScript\ValueObject\TypoScriptPrettyPrinterFormatConfiguration;
@@ -30,7 +31,8 @@ final readonly class TypoScriptFileProcessor implements FileProcessor
         private Parser $parser,
         private PrettyPrinter $printer,
         private PrettyPrinterConfigurationFactory $prettyPrinterConfigurationFactory,
-        private TypoScriptPrettyPrinterFormatConfiguration $typoScriptPrettyPrinterFormatConfiguration
+        private TypoScriptPrettyPrinterFormatConfiguration $typoScriptPrettyPrinterFormatConfiguration,
+        private ChangedFilesDetector $changedFilesDetector
     ) {
         $this->output = new BufferedOutput();
     }
@@ -42,6 +44,7 @@ final readonly class TypoScriptFileProcessor implements FileProcessor
 
     public function handle(File $file, iterable $appliedRules): void
     {
+        $fileHasChanged = \false;
         try {
             $statements = $this->parser->parseString($file->getContent());
 
@@ -59,9 +62,16 @@ final readonly class TypoScriptFileProcessor implements FileProcessor
             $newTypoScriptContent = $this->output->fetch();
             $typoScriptContent = rtrim($newTypoScriptContent) . "\n";
             $file->changeFileContent($typoScriptContent);
+            if ($file->hasChanged()) {
+                $fileHasChanged = \true;
+            }
         } catch (TokenizerException) {
             return;
         } catch (ParseError) {
+        }
+
+        if (! $fileHasChanged) {
+            $this->changedFilesDetector->addCachableFile($file->getFilePath());
         }
     }
 
