@@ -143,12 +143,24 @@ return FractorConfiguration::configure()
     ->withOptions([
         TypoScriptProcessorOption::INDENT_SIZE => 2,
         TypoScriptProcessorOption::INDENT_CHARACTER => PrettyPrinterConfiguration::INDENTATION_STYLE_SPACES,
-        //TypoScriptProcessorOption::INDENT_CHARACTER => 'auto', // this detects the indent from the file and keeps it
         TypoScriptProcessorOption::ADD_CLOSING_GLOBAL => false,
         TypoScriptProcessorOption::INCLUDE_EMPTY_LINE_BREAKS => true,
         TypoScriptProcessorOption::INDENT_CONDITIONS => true,
+        TypoScriptProcessorOption::CONDITION_TERMINATION => PrettyPrinterConditionTermination::Keep,
     ]);
 ```
+
+Possible values for `TypoScriptProcessorOption::INDENT_CHARACTER`:
+
+- `PrettyPrinterConfiguration::INDENTATION_STYLE_SPACES` will use spaces
+- `PrettyPrinterConfiguration::INDENTATION_STYLE_TABS` will use tabs
+- `'auto'` will detect the indentation from the file and keep it
+
+Possible values for `TypoScriptProcessorOption::CONDITION_TERMINATION`:
+
+- `PrettyPrinterConditionTermination::Keep` will keep existing termination
+- `PrettyPrinterConditionTermination::EnforceGlobal` will always end with `[global]`
+- `PrettyPrinterConditionTermination::EnforceEnd` will always end with `[end]`
 
 ## Processing
 
