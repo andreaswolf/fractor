@@ -1,0 +1,9 @@
+[siteLanguage('languageId') == 1]
+    page.10.value = english
+[end]
+
+config.spamProtectEmailAddresses = ascii
+-----
+[siteLanguage('languageId') == 1]
+    page.10.value = english
+[end]

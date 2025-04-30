@@ -9,6 +9,7 @@ use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Caching\Contract\ValueObject\Storage\CacheStorageInterface;
 use a9f\Fractor\Caching\ValueObject\Storage\MemoryCacheStorage;
 use a9f\Fractor\Configuration\Parameter\SimpleParameterProvider;
+use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinterConditionTermination;
 use OndraM\CiDetector\CiDetector;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Webmozart\Assert\Assert;
@@ -46,7 +47,7 @@ final class FractorConfigurationBuilder
     private array $imports = [];
 
     /**
-     * @var array<string, string|int|bool>
+     * @var array<string, string|int|bool|PrettyPrinterConditionTermination>
      */
     private array $options = [];
 
@@ -198,7 +199,7 @@ final class FractorConfigurationBuilder
     }
 
     /**
-     * @param array<string, string|int|bool> $options
+     * @param array<string, string|int|bool|PrettyPrinterConditionTermination> $options
      */
     public function withOptions(array $options): self
     {
