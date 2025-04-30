@@ -2,4 +2,4 @@
 -----
 [frontend.user.isLoggedIn]
 @import 'EXT:my_extension/Configuration/TypoScript/user.typoscript'
-[global]
+[end]

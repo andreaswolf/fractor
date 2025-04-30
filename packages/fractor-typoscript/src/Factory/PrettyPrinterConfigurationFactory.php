@@ -43,9 +43,11 @@ final class PrettyPrinterConfigurationFactory
         }
 
         if ($prettyPrinterFormatConfiguration->includeEmptyLineBreaks) {
-            return $prettyPrinterConfiguration->withEmptyLineBreaks();
+            $prettyPrinterConfiguration = $prettyPrinterConfiguration->withEmptyLineBreaks();
         }
 
-        return $prettyPrinterConfiguration;
+        return $prettyPrinterConfiguration->withConditionTermination(
+            $prettyPrinterFormatConfiguration->conditionTermination
+        );
     }
 }
