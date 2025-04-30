@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Configuration;
 
+use a9f\Fractor\Caching\ValueObject\Storage\FileCacheStorage;
+
 final class Option
 {
     /**
@@ -45,4 +47,16 @@ final class Option
      * @var string
      */
     public const CONFIG_SHORT = 'c';
+
+    public const CACHE_DIR = 'cache_dir';
+
+    public const CACHE_CLASS = FileCacheStorage::class;
+
+    public const CONTAINER_CACHE_DIRECTORY = 'container-cache-directory';
+
+    public const CLEAR_CACHE = 'clear-cache';
+
+    public const REGISTERED_FRACTOR_RULES = 'registered_fractor_rules';
+
+    public const OPTIONS = 'options';
 }

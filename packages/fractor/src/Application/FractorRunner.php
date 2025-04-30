@@ -8,6 +8,7 @@ use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\Contract\FileWriter;
 use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Application\ValueObject\File;
+use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Console\Contract\Output;
 use a9f\Fractor\Differ\ValueObject\FileDiff;
@@ -33,7 +34,8 @@ final readonly class FractorRunner
         private iterable $processors,
         private FileWriter $fileWriter,
         private FileDiffFactory $fileDiffFactory,
-        private RuleSkipper $ruleSkipper
+        private RuleSkipper $ruleSkipper,
+        private ChangedFilesDetector $changedFilesDetector
     ) {
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
@@ -67,6 +69,7 @@ final readonly class FractorRunner
             }
 
             if (! $file->hasChanged()) {
+                $this->changedFilesDetector->cacheFile($file->getFilePath());
                 continue;
             }
 

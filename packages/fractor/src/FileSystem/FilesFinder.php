@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\FileSystem;
 
+use a9f\Fractor\Caching\UnchangedFilesFilter;
 use Symfony\Component\Finder\Finder;
 use Webmozart\Assert\Assert;
 
@@ -12,7 +13,8 @@ final readonly class FilesFinder
     public function __construct(
         private WildcardResolver $wildcardResolver,
         private FileAndDirectoryFilter $fileAndDirectoryFilter,
-        private PathSkipper $pathSkipper
+        private PathSkipper $pathSkipper,
+        private UnchangedFilesFilter $unchangedFilesFilter
     ) {
     }
 
@@ -45,7 +47,8 @@ final readonly class FilesFinder
         $directories = $this->fileAndDirectoryFilter->filterDirectories($filesAndDirectories);
         $filteredFilePathsInDirectories = $this->findInDirectories($directories, $suffixes, $sortByName);
 
-        return [...$filteredFilePaths, ...$filteredFilePathsInDirectories];
+        $filePaths = [...$filteredFilePaths, ...$filteredFilePathsInDirectories];
+        return $this->unchangedFilesFilter->filterFilePaths($filePaths);
     }
 
     /**

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\FractorRunner;
+use a9f\Fractor\Caching\Cache;
+use a9f\Fractor\Caching\CacheFactory;
 use a9f\Fractor\ChangesReporting\Contract\Output\OutputFormatterInterface;
 use a9f\Fractor\Configuration\AllowedFileExtensionsResolver;
 use a9f\Fractor\Configuration\SkipConfigurationFactory;
@@ -95,6 +97,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         tagged_iterator('fractor.output_formatter')
     );
     $services->set(Filesystem::class);
+    $services->set(Cache::class)->factory([service(CacheFactory::class), 'create']);
     $containerBuilder->registerForAutoconfiguration(FileProcessor::class)->addTag('fractor.file_processor');
     $containerBuilder->registerForAutoconfiguration(OutputFormatterInterface::class)->addTag(
         'fractor.output_formatter'
