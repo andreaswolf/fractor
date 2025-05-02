@@ -21,7 +21,7 @@
         "ondram/ci-detector": "^4.2",
         "phpstan/phpstan": "^1.10.9",
         "sebastian/diff": "^4.0 || ^5.0 || ^6.0",
-        "simonschaufi/pretty-xml": "^2.0.0",
+        "simonschaufi/pretty-xml": "^3.0.0",
         "symfony/config": "^5.4 || ^6.4 || ^7.0",
         "symfony/console": "^5.4 || ^6.4 || ^7.0",
         "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.0",
