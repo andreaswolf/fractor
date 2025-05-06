@@ -1,4 +1,4 @@
-# 27 Rules Overview
+# 28 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -29,6 +29,23 @@ Convert single recipient values to array for EmailFinisher
 -      recipientName: 'Bar'
 +      recipients:
 +        bar@domain.com: 'Bar'
+```
+
+<br>
+
+## MigrateBooleanAndNullAttributeValuesToNativeTypesFractor
+
+Migrate boolean and null attribute values to native types
+
+- class: [`a9f\Typo3Fractor\TYPO3v13\Fluid\MigrateBooleanAndNullAttributeValuesToNativeTypesFractor`](../rules/TYPO3v13/Fluid/MigrateBooleanAndNullAttributeValuesToNativeTypesFractor.php)
+
+```diff
+-<my:viewhelper foo="true" bar="1" />
+-<my:viewhelper foo="false" bar="0" />
+-<my:viewhelper foo="null" />
++<my:viewhelper foo="{true}" bar="{true}" />
++<my:viewhelper foo="{false}" bar="{false}" />
++<my:viewhelper foo="{null}" />
 ```
 
 <br>
