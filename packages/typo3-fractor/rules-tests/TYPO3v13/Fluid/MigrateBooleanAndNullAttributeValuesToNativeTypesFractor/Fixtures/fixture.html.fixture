@@ -1,0 +1,19 @@
+<my:viewhelper foo="true" bar="1" baz="TRUE"/>
+<my:viewhelper foo="false" bar="0" baz="FALSE"/>
+<my:viewhelper foo="null" />
+<my:viewhelper data-foo="1" />
+<my:viewhelper data-do-not-change="-1" />
+<my:viewhelper data-do-not-change="hello" />
+<my:viewhelper data-already-migrated="{true}" />
+<my:viewhelper data-already-migrated="{false}" />
+<my:viewhelper data-already-migrated="{null}" />
+-----
+<my:viewhelper foo="{true}" bar="{true}" baz="{true}"/>
+<my:viewhelper foo="{false}" bar="{false}" baz="{false}"/>
+<my:viewhelper foo="{null}" />
+<my:viewhelper data-foo="{true}" />
+<my:viewhelper data-do-not-change="-1" />
+<my:viewhelper data-do-not-change="hello" />
+<my:viewhelper data-already-migrated="{true}" />
+<my:viewhelper data-already-migrated="{false}" />
+<my:viewhelper data-already-migrated="{null}" />
