@@ -7,11 +7,19 @@ namespace a9f\FractorTypoScript;
 use a9f\Fractor\Application\ValueObject\AppliedRule;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\FractorTypoScript\Contract\TypoScriptFractor;
+use a9f\FractorTypoScript\NodeTraverser\SimpleCallableStatementTraverser;
 use Helmich\TypoScriptParser\Parser\AST\Statement;
 
 abstract class AbstractTypoScriptFractor implements TypoScriptFractor
 {
     protected File $file;
+
+    protected bool $hasChanged = false;
+
+    public function __construct(
+        private readonly SimpleCallableStatementTraverser $simpleCallableStatementTraverser
+    ) {
+    }
 
     /**
      * @param list<Statement> $statements
@@ -21,7 +29,7 @@ abstract class AbstractTypoScriptFractor implements TypoScriptFractor
         $this->file = $file;
     }
 
-    final public function enterNode(Statement $node): Statement|int
+    final public function enterNode(Statement $node): Statement|int|null
     {
         $result = $this->refactor($node);
 
@@ -35,8 +43,9 @@ abstract class AbstractTypoScriptFractor implements TypoScriptFractor
         return $result;
     }
 
-    final public function leaveNode(Statement $node): void
+    final public function leaveNode(Statement $node): int|Statement|null
     {
+        return null;
     }
 
     /**
@@ -44,5 +53,10 @@ abstract class AbstractTypoScriptFractor implements TypoScriptFractor
      */
     final public function afterTraversal(array $statements): void
     {
+    }
+
+    protected function traverseStatementsWithCallable(?Statement $statement, callable $callable): void
+    {
+        $this->simpleCallableStatementTraverser->traverseNodesWithCallable($statement, $callable);
     }
 }

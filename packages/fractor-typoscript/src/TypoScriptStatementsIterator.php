@@ -69,7 +69,7 @@ final readonly class TypoScriptStatementsIterator
         return array_merge(...$resultingStatements);
     }
 
-    private function traverseNode(Statement $node): int|Statement
+    private function traverseNode(Statement $node): int|Statement|null
     {
         $lastCalledVisitor = null;
         $result = $node;
