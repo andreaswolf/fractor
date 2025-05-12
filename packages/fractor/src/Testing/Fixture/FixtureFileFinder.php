@@ -18,6 +18,7 @@ final class FixtureFileFinder
         $finder = (new Finder())
             ->in($directory)
             ->files()
+            ->ignoreDotFiles(false)
             ->name($suffix)
             ->sortByName();
 

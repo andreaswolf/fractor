@@ -7,6 +7,11 @@
             "name": "Andreas Wolf",
             "email": "dev@a-w.io",
             "role": "Lead Developer"
+        },
+        {
+            "name": "Simon Schaufelberger",
+            "email": "simonschaufi@gmail.com",
+            "role": "Lead Developer"
         }
     ],
     "require": {
@@ -31,6 +36,7 @@
         "symfony/finder": "^5.4 || ^6.4 || ^7.0",
         "symfony/yaml": "^5.4 || ^6.4 || ^7.0",
         "symplify/rule-doc-generator-contracts": "^11.2",
+        "tivie/htaccess-parser": "^0.3.0",
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
@@ -49,6 +55,7 @@
         "a9f/fractor-doc-generator": "self.version",
         "a9f/fractor-extension-installer": "self.version",
         "a9f/fractor-fluid": "self.version",
+        "a9f/fractor-htaccess": "self.version",
         "a9f/fractor-phpstan-rules": "self.version",
         "a9f/fractor-rule-generator": "self.version",
         "a9f/fractor-typoscript": "self.version",
@@ -66,6 +73,7 @@
             "a9f\\FractorExtensionInstaller\\": "packages/extension-installer/src/",
             "a9f\\FractorExtensionInstaller\\Generated\\": "packages/extension-installer/generated/",
             "a9f\\FractorFluid\\": "packages/fractor-fluid/src/",
+            "a9f\\FractorHtaccess\\": "packages/fractor-htaccess/src/",
             "a9f\\FractorMonorepo\\": "src/",
             "a9f\\FractorPhpStanRules\\": "packages/fractor-phpstan-rules/src/",
             "a9f\\FractorRuleGenerator\\": "packages/fractor-rule-generator/src/",
@@ -87,6 +95,7 @@
             ],
             "a9f\\FractorDocGenerator\\Tests\\": "packages/fractor-doc-generator/tests/",
             "a9f\\FractorFluid\\Tests\\": "packages/fractor-fluid/tests/",
+            "a9f\\FractorHtaccess\\Tests\\": "packages/fractor-htaccess/tests/",
             "a9f\\FractorPhpStanRules\\Tests\\": "packages/fractor-phpstan-rules/tests/",
             "a9f\\FractorRuleGenerator\\Tests\\": "packages/fractor-rule-generator/tests/",
             "a9f\\FractorTypoScript\\Tests\\": "packages/fractor-typoscript/tests/",
@@ -146,6 +155,7 @@
             "@composer normalize --dry-run packages/fractor-composer-json/composer.json",
             "@composer normalize --dry-run packages/fractor-doc-generator/composer.json",
             "@composer normalize --dry-run packages/fractor-fluid/composer.json",
+            "@composer normalize --dry-run packages/fractor-htaccess/composer.json",
             "@composer normalize --dry-run packages/fractor-typoscript/composer.json",
             "@composer normalize --dry-run packages/fractor-xml/composer.json",
             "@composer normalize --dry-run packages/fractor-yaml/composer.json",
@@ -159,6 +169,7 @@
             "@composer normalize --no-check-lock packages/fractor-composer-json/composer.json",
             "@composer normalize --no-check-lock packages/fractor-doc-generator/composer.json",
             "@composer normalize --no-check-lock packages/fractor-fluid/composer.json",
+            "@composer normalize --no-check-lock packages/fractor-htaccess/composer.json",
             "@composer normalize --no-check-lock packages/fractor-typoscript/composer.json",
             "@composer normalize --no-check-lock packages/fractor-xml/composer.json",
             "@composer normalize --no-check-lock packages/fractor-yaml/composer.json",
