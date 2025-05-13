@@ -7,4 +7,4 @@ use a9f\Typo3Fractor\Set\Typo3LevelSetList;
 
 return FractorConfiguration::configure()
     ->withPaths([__DIR__ . '/result/'])
-    ->withSets([Typo3LevelSetList::UP_TO_TYPO3_13]);
+    ->withSets([Typo3LevelSetList::UP_TO_TYPO3_14]);
