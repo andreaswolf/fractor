@@ -1,4 +1,4 @@
-# 28 Rules Overview
+# 29 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -435,6 +435,19 @@ Remove config.spamProtectEmailAddresses with option ascii
 
 ```diff
 -config.spamProtectEmailAddresses = ascii
++-
+```
+
+<br>
+
+## RemoveExposeNonexistentUserInForgotPasswordDialogSettingInFeLoginFractor
+
+Remove plugin.tx_felogin_login.settings.exposeNonexistentUserInForgotPasswordDialog
+
+- class: [`a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveExposeNonexistentUserInForgotPasswordDialogSettingInFeLoginFractor`](../rules/TYPO3v14/TypoScript/RemoveExposeNonexistentUserInForgotPasswordDialogSettingInFeLoginFractor.php)
+
+```diff
+-plugin.tx_felogin_login.settings.exposeNonexistentUserInForgotPasswordDialog = 1
 +-
 ```
 

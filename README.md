@@ -67,7 +67,7 @@ use a9f\Typo3Fractor\Set\Typo3LevelSetList;
 return FractorConfiguration::configure()
     ->withPaths([__DIR__ . '/packages/'])
     ->withSets([
-        Typo3LevelSetList::UP_TO_TYPO3_13
+        Typo3LevelSetList::UP_TO_TYPO3_14
     ]);
 ```
 
@@ -107,7 +107,7 @@ return FractorConfiguration::configure()
         ]
     ])
     ->withSets([
-        Typo3LevelSetList::UP_TO_TYPO3_13
+        Typo3LevelSetList::UP_TO_TYPO3_14
     ]);
 ```
 

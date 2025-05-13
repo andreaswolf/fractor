@@ -1,0 +1,12 @@
+plugin.tx_felogin_login {
+    settings {
+        exposeNonexistentUserInForgotPasswordDialog = 1
+        foo = 1
+    }
+}
+-----
+plugin.tx_felogin_login {
+    settings {
+        foo = 1
+    }
+}
