@@ -1,4 +1,4 @@
-# 29 Rules Overview
+# 30 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -461,6 +461,19 @@ Remove mod.web_list.newPageWiz.overrideWithExtension
 
 ```diff
 -mod.web_list.newPageWiz.overrideWithExtension = 1
++-
+```
+
+<br>
+
+## RemoveModWebLayoutDefLangBindingFractor
+
+Remove mod.web_layout.defLangBinding
+
+- class: [`a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveModWebLayoutDefLangBindingFractor`](../rules/TYPO3v14/TypoScript/RemoveModWebLayoutDefLangBindingFractor.php)
+
+```diff
+-mod.web_layout.defLangBinding = 1
 +-
 ```
 
