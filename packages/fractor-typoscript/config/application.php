@@ -5,6 +5,7 @@ declare(strict_types=1);
 use a9f\FractorTypoScript\Contract\TypoScriptFractor;
 use a9f\FractorTypoScript\TypoScriptFileProcessor;
 use a9f\FractorTypoScript\ValueObject\TypoScriptPrettyPrinterFormatConfiguration;
+use Helmich\TypoScriptParser\Parser\AST\Builder;
 use Helmich\TypoScriptParser\Parser\Parser;
 use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinter;
 use Helmich\TypoScriptParser\Tokenizer\Tokenizer;
@@ -24,6 +25,8 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     $services->set(Tokenizer::class);
     $services->set(Parser::class)
         ->arg('$tokenizer', service(Tokenizer::class))
+        ->public();
+    $services->set(Builder::class)
         ->public();
     $services->set(PrettyPrinter::class);
 
