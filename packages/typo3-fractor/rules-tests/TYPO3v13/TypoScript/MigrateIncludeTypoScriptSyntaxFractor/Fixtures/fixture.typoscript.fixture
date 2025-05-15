@@ -1,0 +1,3 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:my_extension/Configuration/TypoScript/myMenu.typoscript">
+-----
+@import 'EXT:my_extension/Configuration/TypoScript/myMenu.typoscript'
