@@ -12,8 +12,12 @@ use a9f\Fractor\Configuration\SkipConfigurationFactory;
 use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use a9f\Fractor\Console\Application\FractorApplication;
 use a9f\Fractor\Console\Output\OutputFormatterCollector;
+use a9f\Fractor\Contract\FilesystemInterface;
 use a9f\Fractor\Differ\ConsoleDiffer;
 use a9f\Fractor\Differ\Contract\Differ;
+use a9f\Fractor\FileSystem\FilesystemFactory;
+use a9f\Fractor\FileSystem\FlysystemFilesystem;
+use League\Flysystem\FilesystemAdapter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -81,6 +85,15 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             }
         }
     );
+
+    $services->set(\League\Flysystem\Filesystem::class)->public();
+    $services->set(FilesystemAdapter::class)->public();
+
+    $services->set(FilesystemFactory::class)
+        ->arg('$projectDir', '/');
+    $services->set(FilesystemInterface::class)->factory([service(FilesystemFactory::class), 'create']);
+    $services->set(FlysystemFilesystem::class)
+        ->arg('$filesystemOperator', service(\League\Flysystem\Filesystem::class));
 
     $services->set('parameter_bag', ContainerBag::class)
         ->args([service('service_container')])

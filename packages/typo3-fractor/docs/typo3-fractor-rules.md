@@ -1,4 +1,4 @@
-# 31 Rules Overview
+# 32 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -117,6 +117,42 @@ Migrate eval int and double2 to type number
          </sDEF>
      </sheets>
  </T3DataStructure>
+```
+
+<br>
+
+## MigrateIncludeTypoScriptSyntaxFractor
+
+Migrate INCLUDE_TYPOSCRIPT TypoScript syntax to `@import`
+
+- class: [`a9f\Typo3Fractor\TYPO3v13\TypoScript\MigrateIncludeTypoScriptSyntaxFractor`](../rules/TYPO3v13/TypoScript/MigrateIncludeTypoScriptSyntaxFractor.php)
+
+```diff
+-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:my_extension/Configuration/TypoScript/myMenu.typoscript">
++@import 'EXT:my_extension/Configuration/TypoScript/myMenu.typoscript'
+```
+
+<br>
+
+```diff
+-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="typoscript">
++@import 'EXT:my_extension/Configuration/TypoScript/*.typoscript'
+```
+
+<br>
+
+```diff
+-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="typoscript,ts">
++@import 'EXT:my_extension/Configuration/TypoScript/*.typoscript'
+```
+
+<br>
+
+```diff
+-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:my_extension/Configuration/TypoScript/user.typoscript" condition="[frontend.user.isLoggedIn]">
++[frontend.user.isLoggedIn]
++    @import 'EXT:my_extension/Configuration/TypoScript/user.typoscript'
++[end]
 ```
 
 <br>
