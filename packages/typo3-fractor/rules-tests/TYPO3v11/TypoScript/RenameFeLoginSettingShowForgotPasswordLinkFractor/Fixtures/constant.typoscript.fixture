@@ -1,0 +1,11 @@
+styles.content.loginform {
+    showForgotPasswordLink = 0
+}
+
+temp.showForgotPassword = {$styles.content.loginform.showForgotPasswordLink}
+-----
+styles.content.loginform {
+    showForgotPassword = 0
+}
+
+temp.showForgotPassword = {$styles.content.loginform.showForgotPassword}

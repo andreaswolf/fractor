@@ -1,4 +1,4 @@
-# 30 Rules Overview
+# 31 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -593,6 +593,22 @@ Migrate typoscript xhtmlDoctype to doctype
 ```diff
 -config.xhtmlDoctype = 1
 +config.doctype = 1
+```
+
+<br>
+
+## RenameFeLoginSettingShowForgotPasswordLinkFractor
+
+Rename plugin.tx_felogin_login.settings.showForgotPasswordLink to plugin.tx_felogin_login.settings.showForgotPassword
+
+- class: [`a9f\Typo3Fractor\TYPO3v11\TypoScript\RenameFeLoginSettingShowForgotPasswordLinkFractor`](../rules/TYPO3v11/TypoScript/RenameFeLoginSettingShowForgotPasswordLinkFractor.php)
+
+```diff
+-plugin.tx_felogin_login.settings.showForgotPasswordLink = 1
++plugin.tx_felogin_login.settings.showForgotPassword = 1
+
+-styles.content.loginform.showForgotPasswordLink = 0
++styles.content.loginform.showForgotPassword = 0
 ```
 
 <br>
