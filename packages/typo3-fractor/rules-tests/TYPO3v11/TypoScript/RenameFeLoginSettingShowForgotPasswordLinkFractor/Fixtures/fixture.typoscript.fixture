@@ -1,0 +1,3 @@
+plugin.tx_felogin_login.settings.showForgotPasswordLink = 1
+-----
+plugin.tx_felogin_login.settings.showForgotPassword = 1
