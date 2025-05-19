@@ -64,12 +64,17 @@ final readonly class TypoScriptStatementsIterator
 
             if ($result instanceof Statement) {
                 $resultingStatements[] = [$result];
+            } elseif (is_array($result)) {
+                $resultingStatements[] = $result;
             }
         }
         return array_merge(...$resultingStatements);
     }
 
-    private function traverseNode(Statement $node): int|Statement
+    /**
+     * @return int|Statement|list<Statement>
+     */
+    private function traverseNode(Statement $node): int|Statement|array
     {
         $lastCalledVisitor = null;
         $result = $node;

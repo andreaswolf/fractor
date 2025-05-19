@@ -17,7 +17,10 @@ interface TypoScriptNodeVisitor
      */
     public function beforeTraversal(File $file, array $statements): void;
 
-    public function enterNode(Statement $node): Statement|int;
+    /**
+     * @return Statement|int|list<Statement>
+     */
+    public function enterNode(Statement $node): Statement|array|int;
 
     public function leaveNode(Statement $node): void;
 
