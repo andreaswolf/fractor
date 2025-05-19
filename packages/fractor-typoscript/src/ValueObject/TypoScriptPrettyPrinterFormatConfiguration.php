@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace a9f\FractorTypoScript\ValueObject;
 
 use a9f\FractorTypoScript\Configuration\TypoScriptProcessorOption;
+use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinterConditionTermination;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 final readonly class TypoScriptPrettyPrinterFormatConfiguration
@@ -14,7 +15,8 @@ final readonly class TypoScriptPrettyPrinterFormatConfiguration
         public string $style,
         public bool $addClosingGlobal,
         public bool $includeEmptyLineBreaks,
-        public bool $indentConditions
+        public bool $indentConditions,
+        public PrettyPrinterConditionTermination $conditionTermination
     ) {
     }
 
@@ -41,6 +43,18 @@ final readonly class TypoScriptPrettyPrinterFormatConfiguration
         $indentConditions = $parameterBag->has(TypoScriptProcessorOption::INDENT_CONDITIONS)
             && (bool) $parameterBag->get(TypoScriptProcessorOption::INDENT_CONDITIONS);
 
-        return new self($size, $style, $addClosingGlobal, $includeEmptyLineBreaks, $indentConditions);
+        /** @var PrettyPrinterConditionTermination $conditionTermination */
+        $conditionTermination = $parameterBag->has(TypoScriptProcessorOption::CONDITION_TERMINATION)
+            ? $parameterBag->get(TypoScriptProcessorOption::CONDITION_TERMINATION)
+            : PrettyPrinterConditionTermination::Keep;
+
+        return new self(
+            $size,
+            $style,
+            $addClosingGlobal,
+            $includeEmptyLineBreaks,
+            $indentConditions,
+            $conditionTermination
+        );
     }
 }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 use a9f\Fractor\Configuration\FractorConfiguration;
 use a9f\FractorTypoScript\Configuration\TypoScriptProcessorOption;
 use a9f\FractorTypoScript\Tests\Fixtures\DummyTypoScriptFractorRule;
-use a9f\FractorTypoScript\Tests\Fixtures\ReturnMultipleStatementsRule;
 use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinterConditionTermination;
 use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinterConfiguration;
 
@@ -18,4 +17,4 @@ return FractorConfiguration::configure()
         TypoScriptProcessorOption::INDENT_CONDITIONS => true,
         TypoScriptProcessorOption::CONDITION_TERMINATION => PrettyPrinterConditionTermination::Keep,
     ])
-    ->withRules([DummyTypoScriptFractorRule::class, ReturnMultipleStatementsRule::class]);
+    ->withRules([DummyTypoScriptFractorRule::class]);
