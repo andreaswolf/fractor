@@ -1,0 +1,5 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:my_extension/Configuration/TypoScript/user.typoscript" condition="[frontend.user.isLoggedIn]">
+-----
+[frontend.user.isLoggedIn]
+@import 'EXT:my_extension/Configuration/TypoScript/user.typoscript'
+[global]
