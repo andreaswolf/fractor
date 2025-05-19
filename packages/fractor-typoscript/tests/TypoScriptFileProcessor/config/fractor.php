@@ -5,6 +5,7 @@ declare(strict_types=1);
 use a9f\Fractor\Configuration\FractorConfiguration;
 use a9f\FractorTypoScript\Configuration\TypoScriptProcessorOption;
 use a9f\FractorTypoScript\Tests\Fixtures\DummyTypoScriptFractorRule;
+use a9f\FractorTypoScript\Tests\Fixtures\ReturnMultipleStatementsRule;
 use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinterConfiguration;
 
 return FractorConfiguration::configure()
@@ -15,4 +16,4 @@ return FractorConfiguration::configure()
         TypoScriptProcessorOption::INCLUDE_EMPTY_LINE_BREAKS => true,
         TypoScriptProcessorOption::INDENT_CONDITIONS => true,
     ])
-    ->withRules([DummyTypoScriptFractorRule::class]);
+    ->withRules([DummyTypoScriptFractorRule::class, ReturnMultipleStatementsRule::class]);
