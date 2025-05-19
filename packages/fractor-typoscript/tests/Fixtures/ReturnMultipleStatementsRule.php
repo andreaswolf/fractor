@@ -28,7 +28,6 @@ final class ReturnMultipleStatementsRule extends AbstractTypoScriptFractor
             return null;
         }
 
-        var_dump($statement->object);
         return [
             new Assignment($statement->object, new Scalar('CONTENT'), $statement->sourceLine),
             new Assignment(
