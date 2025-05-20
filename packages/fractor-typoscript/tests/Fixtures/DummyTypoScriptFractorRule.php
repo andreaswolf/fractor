@@ -13,7 +13,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 final class DummyTypoScriptFractorRule extends AbstractTypoScriptFractor
 {
-    public function refactor(Statement $statement): null|Statement|int
+    public function refactor(Statement $statement): null|int
     {
         if (! $statement instanceof Assignment) {
             return null;

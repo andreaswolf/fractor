@@ -23,7 +23,7 @@ final class UseConfigArrayForTSFEPropertiesFractor extends AbstractTypoScriptFra
         'baseUrl',
     ];
 
-    public function refactor(Statement $statement): null|Statement|int
+    public function refactor(Statement $statement): null|Statement
     {
         if (! $statement instanceof Assignment) {
             return null;

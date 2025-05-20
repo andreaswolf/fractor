@@ -24,7 +24,7 @@ final class RemoveTceFormsDomElementFlexFormFractor extends AbstractFlexformFrac
         return parent::canHandle($node) && $node->nodeName === 'TCEforms';
     }
 
-    public function refactor(\DOMNode $node): \DOMNode|int|null
+    public function refactor(\DOMNode $node): int|null
     {
         $parent = $node->parentNode;
         if (! $parent instanceof \DOMNode) {
