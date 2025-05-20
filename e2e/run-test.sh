@@ -10,7 +10,12 @@ cd $TESTS_BASE_DIR
 rm -r composer.lock vendor || true
 composer install
 
-for TEST_DIR in typo3-typoscript typo3-xml typo3-yaml
+ALL_TESTS="no-config-file typo3-typoscript typo3-xml typo3-yaml"
+TESTS_TO_RUN=${1:-$ALL_TESTS}
+
+echo "Running tests: " $TESTS_TO_RUN
+
+for TEST_DIR in $TESTS_TO_RUN
 do
     set +x
     echo
@@ -28,7 +33,13 @@ do
     # copy over our fixture to the path that Fractor will run in
     cp -r $TEST_DIR/fixtures/ $TEST_DIR/result/
 
-    ./vendor/bin/fractor process -c $TESTS_BASE_DIR/$TEST_DIR/fractor.php > $TEST_DIR/output.txt
+    CONFIG_FILE=""
+    if [ -f $TESTS_BASE_DIR/$TEST_DIR/fractor.php ]
+    then
+        CONFIG_FILE="-c $TESTS_BASE_DIR/$TEST_DIR/fractor.php"
+    fi
+
+    ./vendor/bin/fractor process $CONFIG_FILE > $TEST_DIR/output.txt
 
     set +x
     echo

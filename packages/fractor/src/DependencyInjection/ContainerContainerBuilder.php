@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\DependencyInjection;
 
+use a9f\Fractor\Configuration\FractorConfiguration;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\FractorExtensionInstaller\Generated\InstalledPackages;
 use Symfony\Component\Config\FileLocator;
@@ -78,12 +79,17 @@ class ContainerContainerBuilder
 
     private function loadFractorConfigFile(string $fractorConfigFile, ContainerBuilder $containerBuilder): void
     {
-        Assert::fileExists($fractorConfigFile);
+        if (! file_exists($fractorConfigFile)) {
+            $callable = (FractorConfiguration::configure());
+            $containerBuilder->setParameter('fractor_config_file', null);
+        } else {
+            $containerBuilder->setParameter('fractor_config_file', $fractorConfigFile);
 
-        $self = $this;
-        $callable = (require $fractorConfigFile);
+            $self = $this;
+            $callable = (require $fractorConfigFile);
 
-        Assert::isCallable($callable);
+            Assert::isCallable($callable);
+        }
         $instanceOf = [];
         /** @var callable(ContainerConfigurator $container): void $callable */
         $callable(new ContainerConfigurator($containerBuilder, new PhpFileLoader($containerBuilder, new FileLocator(

@@ -17,6 +17,7 @@ final readonly class Configuration
      * @param string[] $skip
      */
     public function __construct(
+        private ?string $configurationFile,
         private array $fileExtensions,
         private array $paths,
         private array $skip,
@@ -24,6 +25,11 @@ final readonly class Configuration
         private bool $quiet
     ) {
         Assert::allStringNotEmpty($this->paths, 'No directories given');
+    }
+
+    public function getConfigurationFile(): ?string
+    {
+        return $this->configurationFile;
     }
 
     /**
