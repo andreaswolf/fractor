@@ -9,5 +9,5 @@ return static function (ContainerBuilder $containerBuilder): void {
     /** @var FractorConfigurationBuilder $fractorConfiguration */
     $fractorConfiguration = $containerBuilder->get(FractorConfigurationBuilder::class);
 
-    $fractorConfiguration->withPaths([__DIR__ . '/../']);
+    $fractorConfiguration->withPaths([dirname(__DIR__, 2)]);
 };

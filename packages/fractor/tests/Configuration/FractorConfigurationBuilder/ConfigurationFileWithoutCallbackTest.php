@@ -8,7 +8,7 @@ use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-final class FractorConfigurationBuilderTest extends AbstractFractorTestCase
+final class ConfigurationFileWithoutCallbackTest extends AbstractFractorTestCase
 {
     public function test(): void
     {
@@ -19,6 +19,6 @@ final class FractorConfigurationBuilderTest extends AbstractFractorTestCase
 
     public function provideConfigFilePath(): string
     {
-        return __DIR__ . '/config/fractor.php';
+        return __DIR__ . '/config/fractor_config_without_callback.php';
     }
 }
