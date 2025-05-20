@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\DependencyInjection;
 
+use a9f\Fractor\Configuration\FractorConfiguration;
+use a9f\Fractor\Configuration\FractorConfigurationBuilder;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\FractorExtensionInstaller\Generated\InstalledPackages;
 use Symfony\Component\Config\FileLocator;
@@ -24,30 +26,37 @@ class ContainerContainerBuilder
         array $additionalConfigFiles = []
     ): ContainerInterface {
         $containerBuilder = new ContainerBuilder();
+        $configurationBuilder = FractorConfiguration::configure();
+        try {
+            $containerBuilder->set(FractorConfigurationBuilder::class, $configurationBuilder);
 
-        $containerBuilder->addCompilerPass(new AddConsoleCommandPass());
+            $containerBuilder->addCompilerPass(new AddConsoleCommandPass());
 
-        $configFiles = [__DIR__ . '/../../config/application.php'];
+            $configFiles = [__DIR__ . '/../../config/application.php'];
 
-        $fractorConfigFile ??= __DIR__ . '/../../config/fractor.php';
+            $fractorConfigFile ??= __DIR__ . '/../../config/fractor.php';
 
-        $this->loadFractorConfigFile($fractorConfigFile, $containerBuilder);
+            $this->loadFractorConfigFile($fractorConfigFile, $containerBuilder, $configurationBuilder);
 
-        $configFiles = array_merge($configFiles, $additionalConfigFiles);
-        $configFiles = array_merge($configFiles, $this->collectConfigFilesFromExtensions());
+            $configFiles = array_merge($configFiles, $additionalConfigFiles);
+            $configFiles = array_merge($configFiles, $this->collectConfigFilesFromExtensions());
 
-        foreach ($configFiles as $configFile) {
-            if (! file_exists($configFile)) {
-                continue;
+            foreach ($configFiles as $configFile) {
+                if (! file_exists($configFile)) {
+                    continue;
+                }
+
+                $fileLoader = new PhpFileLoader($containerBuilder, new FileLocator(dirname($configFile)));
+                $fileLoader->load($configFile);
             }
 
-            $fileLoader = new PhpFileLoader($containerBuilder, new FileLocator(dirname($configFile)));
-            $fileLoader->load($configFile);
+            $containerBuilder->compile();
+
+            return $containerBuilder;
+        } finally {
+            // reset after we're done building the config
+            FractorConfiguration::reset();
         }
-
-        $containerBuilder->compile();
-
-        return $containerBuilder;
     }
 
     /**
@@ -76,18 +85,27 @@ class ContainerContainerBuilder
         return $collectedConfigFiles;
     }
 
-    private function loadFractorConfigFile(string $fractorConfigFile, ContainerBuilder $containerBuilder): void
-    {
+    /**
+     * The main fractor config file should return a callback that accepts any of the parameters that {@see PhpFileLoader}
+     * can inject. This especially means that it can *NOT* accept the {@see FractorConfigurationBuilder} instance directly
+     */
+    private function loadFractorConfigFile(
+        string $fractorConfigFile,
+        ContainerBuilder $containerBuilder,
+        FractorConfigurationBuilder $builder
+    ): void {
         Assert::fileExists($fractorConfigFile);
 
-        $self = $this;
-        $callable = (require $fractorConfigFile);
+        $loader = new PhpFileLoader($containerBuilder, new FileLocator(dirname($fractorConfigFile)));
+        $loader->load($fractorConfigFile);
 
-        Assert::isCallable($callable);
         $instanceOf = [];
-        /** @var callable(ContainerConfigurator $container): void $callable */
-        $callable(new ContainerConfigurator($containerBuilder, new PhpFileLoader($containerBuilder, new FileLocator(
-            dirname($fractorConfigFile)
-        )), $instanceOf, dirname($fractorConfigFile), basename($fractorConfigFile)));
+        $builder(new ContainerConfigurator(
+            $containerBuilder,
+            $loader,
+            $instanceOf,
+            dirname($fractorConfigFile),
+            basename($fractorConfigFile)
+        ));
     }
 }

@@ -1,0 +1,24 @@
+<?php
+
+declare(strict_types=1);
+
+namespace a9f\Fractor\Tests\Configuration\FractorConfigurationBuilder;
+
+use a9f\Fractor\Configuration\Option;
+use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
+final class ConfigurationFileWithoutCallbackTest extends AbstractFractorTestCase
+{
+    public function test(): void
+    {
+        $parameterBag = $this->getService(ParameterBagInterface::class);
+
+        self::assertSame([dirname(__DIR__)], $parameterBag->get(Option::PATHS));
+    }
+
+    public function provideConfigFilePath(): string
+    {
+        return __DIR__ . '/config/fractor_config_without_callback.php';
+    }
+}
