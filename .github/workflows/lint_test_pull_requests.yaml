@@ -32,8 +32,12 @@ jobs:
             parameter: 'highest'
           - name: Oldest
             parameter: 'lowest'
+        php-version:
+          - 8.2
+          - 8.3
+          - 8.4
 
-    name: ${{ matrix.composer-command.name }}/${{ matrix.dependency-versions.name }} deps
+    name: ${{ matrix.composer-command.name }}/${{ matrix.dependency-versions.name }} deps/PHP ${{ matrix.php-version }}
 
     steps:
       - name: "Checkout"
@@ -43,7 +47,7 @@ jobs:
       - name: "Setup PHP"
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.2
+          php-version: ${{ matrix.php-version }}
           coverage: none
 
       # see https://github.com/ramsey/composer-install
@@ -58,7 +62,14 @@ jobs:
 
   e2e-tests:
     runs-on: ubuntu-latest
-    name: End to end tests
+    name: End to end tests/PHP ${{ matrix.php-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version:
+          - 8.2
+          - 8.3
+          - 8.4
     steps:
       - uses: actions/checkout@v4
         with:
@@ -67,7 +78,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '${{ matrix.php-version }}'
 
       - name: Run tests
         working-directory: e2e
