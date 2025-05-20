@@ -12,9 +12,16 @@ use a9f\Fractor\Configuration\Parameter\SimpleParameterProvider;
 use a9f\Fractor\Testing\PHPUnit\StaticPHPUnitEnvironment;
 use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinterConditionTermination;
 use OndraM\CiDetector\CiDetector;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Webmozart\Assert\Assert;
 
+/**
+ * The configuration builder collects configuration from the configuration file and its possible imports.
+ *
+ * An instance of the builder can be obtained via {@see FractorConfiguration::configure()} or from an instance
+ * of {@see ContainerBuilder} passed to the callable returned by fractor.php.
+ */
 final class FractorConfigurationBuilder
 {
     /**
