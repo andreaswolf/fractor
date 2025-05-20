@@ -14,7 +14,6 @@ use Helmich\TypoScriptParser\Parser\AST\DirectoryIncludeStatement;
 use Helmich\TypoScriptParser\Parser\AST\FileIncludeStatement;
 use Helmich\TypoScriptParser\Parser\AST\Statement;
 use League\Flysystem\FileAttributes;
-use League\Flysystem\StorageAttributes;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -78,7 +77,7 @@ CODE_SAMPLE
         );
     }
 
-    public function refactor(Statement $statement): null|Statement|int
+    public function refactor(Statement $statement): null|Statement
     {
         if ($this->shouldSkip($statement)) {
             return null;
@@ -112,7 +111,6 @@ CODE_SAMPLE
                 $extensionKey = basename($extensionRootPath);
                 $typoScriptIncludePath = $extensionRootPath . str_replace('EXT:' . $extensionKey, '', $directory);
 
-                /** @var StorageAttributes[] $listing */
                 $listing = $this->filesystem->listContents($typoScriptIncludePath, false);
                 foreach ($listing as $item) {
                     if (! $item instanceof FileAttributes) {

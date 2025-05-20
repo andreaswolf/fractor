@@ -16,7 +16,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  */
 final class RemoveNewContentElementWizardOptionsFractor extends AbstractTypoScriptFractor
 {
-    public function refactor(Statement $statement): null|Statement|int
+    public function refactor(Statement $statement): null|int
     {
         if (! $statement instanceof Assignment) {
             return null;

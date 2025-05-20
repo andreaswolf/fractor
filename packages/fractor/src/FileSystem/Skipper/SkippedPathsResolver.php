@@ -35,8 +35,11 @@ final class SkippedPathsResolver
             if (! is_int($key)) {
                 continue;
             }
+            if (! is_string($value)) {
+                continue;
+            }
 
-            if (\str_contains((string) $value, '*')) {
+            if (\str_contains($value, '*')) {
                 $this->skippedPaths[] = $this->filePathNormalizer->normalizePathAndSchema($value);
                 continue;
             }

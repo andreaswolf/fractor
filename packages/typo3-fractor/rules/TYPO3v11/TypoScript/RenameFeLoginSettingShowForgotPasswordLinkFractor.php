@@ -38,7 +38,7 @@ CODE_SAMPLE
         );
     }
 
-    public function refactor(Statement $statement): null|Statement|int
+    public function refactor(Statement $statement): null|Statement
     {
         if ($this->shouldSkip($statement)) {
             return null;

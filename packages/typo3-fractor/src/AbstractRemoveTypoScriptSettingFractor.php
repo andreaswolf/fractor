@@ -20,7 +20,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  */
 abstract class AbstractRemoveTypoScriptSettingFractor extends AbstractTypoScriptFractor
 {
-    final public function refactor(Statement $statement): null|Statement|int
+    final public function refactor(Statement $statement): null|int
     {
         if (! $statement instanceof Assignment) {
             return null;

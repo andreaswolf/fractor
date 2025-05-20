@@ -20,7 +20,7 @@ final class __Name__Test extends AbstractFractorTestCase
         return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.__FixtureFileExtension__.fixture');
     }
 
-    public function provideConfigFilePath(): ?string
+    public function provideConfigFilePath(): string
     {
         return __DIR__ . '/config/fractor.php';
     }

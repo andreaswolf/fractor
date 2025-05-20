@@ -20,7 +20,7 @@ final class MigrateEmailFlagToEmailTypeFlexFormFractorTest extends AbstractFract
         return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.xml.fixture');
     }
 
-    public function provideConfigFilePath(): ?string
+    public function provideConfigFilePath(): string
     {
         return __DIR__ . '/config/fractor.php';
     }

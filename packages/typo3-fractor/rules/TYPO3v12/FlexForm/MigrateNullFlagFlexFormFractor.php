@@ -39,7 +39,7 @@ final class MigrateNullFlagFlexFormFractor extends AbstractFlexformFractor
         $this->domDocument = $rootNode;
     }
 
-    public function refactor(\DOMNode $node): \DOMNode|int|null
+    public function refactor(\DOMNode $node): \DOMNode|null
     {
         if (! $node instanceof \DOMElement) {
             return null;

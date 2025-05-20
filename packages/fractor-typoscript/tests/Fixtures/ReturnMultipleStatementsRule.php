@@ -16,9 +16,9 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 final class ReturnMultipleStatementsRule extends AbstractTypoScriptFractor
 {
     /**
-     * @return null|Statement|int|list<Statement>
+     * @return null|list<Statement>
      */
-    public function refactor(Statement $statement): null|Statement|int|array
+    public function refactor(Statement $statement): null|array
     {
         if (! $statement instanceof Copy) {
             return null;

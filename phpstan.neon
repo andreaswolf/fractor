@@ -16,3 +16,4 @@ parameters:
         - packages/**/tests/**/Fixture/*
         - packages/**/tests/Fixtures/*
         - packages/fractor-rule-generator/templates
+    treatPhpDocTypesAsCertain: false

@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\ArgvInput;
 
 final class ConfigResolver
 {
-    public static function resolveConfigsFromInput(ArgvInput $input): ?string
+    public static function resolveConfigsFromInput(ArgvInput $input): string
     {
         return self::getOptionValue($input) ?? getcwd() . '/fractor.php';
     }

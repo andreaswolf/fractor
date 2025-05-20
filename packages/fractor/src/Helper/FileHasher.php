@@ -37,11 +37,6 @@ final class FileHasher
 
     private function getAlgo(): string
     {
-        //see https://php.watch/articles/php-hash-benchmark
-        if (\PHP_VERSION_ID >= 80100) {
-            // if xxh128 is available use it, as it is way faster
-            return 'xxh128';
-        }
-        return 'md4';
+        return 'xxh128';
     }
 }

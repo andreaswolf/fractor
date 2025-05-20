@@ -23,7 +23,7 @@ final class RemoveConfigSpamProtectEmailAddressesAsciiOptionFractorTest extends 
         return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.typoscript.fixture');
     }
 
-    public function provideConfigFilePath(): ?string
+    public function provideConfigFilePath(): string
     {
         return __DIR__ . '/config/fractor.php';
     }

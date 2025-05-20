@@ -125,7 +125,7 @@ final class MigrateIncludeTypoScriptSyntaxFractorTest extends AbstractFractorTes
         yield 'Test that *.ts files are renamed to *.typoscript with mixed include' => ['extension2'];
     }
 
-    public function provideConfigFilePath(): ?string
+    public function provideConfigFilePath(): string
     {
         return __DIR__ . '/config/fractor.php';
     }
