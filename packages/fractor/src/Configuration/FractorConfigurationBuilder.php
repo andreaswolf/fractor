@@ -63,6 +63,10 @@ final class FractorConfigurationBuilder
 
     public function __invoke(ContainerConfigurator $containerConfigurator): void
     {
+        foreach ($this->imports as $import) {
+            $containerConfigurator->import($import);
+        }
+
         Assert::allString($this->paths);
 
         $parameters = $containerConfigurator->parameters();
@@ -134,10 +138,6 @@ final class FractorConfigurationBuilder
 
             // for cache invalidation in case of change
             SimpleParameterProvider::addParameter(Option::REGISTERED_FRACTOR_RULES, $configuredRule);
-        }
-
-        foreach ($this->imports as $import) {
-            $containerConfigurator->import($import);
         }
     }
 
