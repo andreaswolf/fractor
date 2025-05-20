@@ -19,4 +19,3 @@ parameters:
     treatPhpDocTypesAsCertain: false
     ignoreErrors:
         - identifier: return.unusedType
-        - identifier: varTag.nativeType

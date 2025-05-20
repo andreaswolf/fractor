@@ -28,7 +28,6 @@ final readonly class RuleSkipper
         }
 
         if (array_key_exists($rule, $configuredSkip)) {
-            /** @var string|list<string> $skippedPaths */
             $skippedPaths = $configuredSkip[$rule];
 
             if (is_string($skippedPaths)) {
