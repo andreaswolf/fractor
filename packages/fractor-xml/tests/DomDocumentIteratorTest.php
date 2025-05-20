@@ -178,7 +178,7 @@ XML);
     public function nodeIsReplacedIfVisitorReturnsNewDomNode(): void
     {
         $nodeRemovingVisitor = new class() extends CollectingDomNodeVisitor {
-            public function enterNode(\DOMNode $node): \DOMNode|int
+            public function enterNode(\DOMNode $node): \DOMNode
             {
                 parent::enterNode($node);
                 if ($node->nodeName === 'Child') {
@@ -236,7 +236,7 @@ XML);
                 $this->calls[] = sprintf('%s:beforeTraversal:%s', $this->visitorName, $rootNode->nodeName);
             }
 
-            public function enterNode(\DOMNode $node): \DOMNode|int
+            public function enterNode(\DOMNode $node): \DOMNode
             {
                 $this->calls[] = sprintf('%s:enterNode:%s', $this->visitorName, $node->nodeName);
                 return $node;

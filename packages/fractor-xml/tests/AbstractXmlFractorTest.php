@@ -23,7 +23,7 @@ final class AbstractXmlFractorTest extends TestCase
                 return $node->nodeName === 'Child';
             }
 
-            public function refactor(\DOMNode $node): \DOMNode|int|null
+            public function refactor(\DOMNode $node): \DOMNode
             {
                 if ($node->ownerDocument === null) {
                     throw new \RuntimeException('Node does not have an ownerDocument, cannot create element');

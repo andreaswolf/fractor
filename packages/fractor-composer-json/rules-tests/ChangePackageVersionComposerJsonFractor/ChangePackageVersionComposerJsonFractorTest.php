@@ -23,7 +23,7 @@ final class ChangePackageVersionComposerJsonFractorTest extends AbstractFractorT
         return self::yieldFilesFromDirectory(__DIR__ . '/Fixtures', '*.json.fixture');
     }
 
-    public function provideConfigFilePath(): ?string
+    public function provideConfigFilePath(): string
     {
         return __DIR__ . '/config/fractor.php';
     }
