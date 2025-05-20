@@ -39,6 +39,9 @@ jobs:
           - path: fractor-yaml
             repository: git@github.com:andreaswolf/fractor-yaml.git
             deploy-key: DEPLOY_KEY_YAML
+          - path: fractor-htaccess
+            repository: git@github.com:andreaswolf/fractor-htaccess.git
+            deploy-key: DEPLOY_KEY_HTACCESS
 
     name: Split subtree packages/${{ matrix.package.path }}
 

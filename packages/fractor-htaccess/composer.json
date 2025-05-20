@@ -1,0 +1,45 @@
+{
+    "name": "a9f/fractor-htaccess",
+    "description": "htaccess extension for the File Read-Analyse-Change Tool. Allows modifying htaccess files",
+    "license": "MIT",
+    "type": "fractor-extension",
+    "authors": [
+        {
+            "name": "Simon Schaufelberger",
+            "email": "simonschaufi@gmail.com",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "a9f/fractor": "^0.5",
+        "a9f/fractor-extension-installer": "^0.5",
+        "nette/utils": "^4.0",
+        "symplify/rule-doc-generator-contracts": "^11.2",
+        "tivie/htaccess-parser": "^0.3.0",
+        "webmozart/assert": "^1.11"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "a9f\\FractorHtaccess\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "a9f\\FractorHtaccess\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "a9f/fractor-extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.5-dev"
+        }
+    }
+}

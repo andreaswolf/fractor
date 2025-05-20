@@ -485,6 +485,88 @@ final class GenerateRuleCommandTest extends TestCase
         $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
     }
 
+    public function testCreateRuleForHtaccessWithoutChangelog(): void
+    {
+        $this->commandTester->setInputs(['9999', 'x', 'MigrateHtaccess', 'Migrate Htaccess field', '5']);
+
+        $this->commandTester->execute([
+            'command' => 'generate-rule',
+        ]);
+
+        self::assertSame(0, $this->commandTester->getStatusCode());
+
+        $basePathConfig = __DIR__ . '/../../../../../typo3-fractor/config';
+        $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
+        $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
+
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/Htaccess/MigrateHtaccessFractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Htaccess/MigrateHtaccessFractor/config/fractor.php');
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/Htaccess/MigrateHtaccessFractor/Fixtures/fixture.htaccess.fixture'
+        );
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/Htaccess/MigrateHtaccessFractor/MigrateHtaccessFractorTest.php.inc'
+        );
+
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/Htaccess/MigrateHtaccessFractor.php');
+        if ($fractorFileContent !== false) {
+            self::assertStringContainsString('use a9f\Fractor\Contract\NoChangelogRequired;', $fractorFileContent);
+            self::assertStringContainsString(
+                'implements HtaccessFractorRule, NoChangelogRequired',
+                $fractorFileContent
+            );
+        }
+
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
+    }
+
+    public function testCreateRuleForHtaccessWithChangelog(): void
+    {
+        $this->commandTester->setInputs(
+            [
+                '9999',
+                'https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
+                'MigrateHtaccess',
+                'Migrate Htaccess field',
+                '5',
+            ]
+        );
+        $this->commandTester->execute([
+            'command' => 'generate-rule',
+        ]);
+
+        self::assertSame(0, $this->commandTester->getStatusCode());
+
+        $basePathConfig = __DIR__ . '/../../../../../typo3-fractor/config';
+        $basePathRules = __DIR__ . '/../../../../../typo3-fractor/rules';
+        $basePathRuleTests = __DIR__ . '/../../../../../typo3-fractor/rules-tests';
+
+        $this->testFilesToDelete[] = $basePathConfig . '/typo3-9999.php';
+        self::assertFileExists($basePathConfig . '/typo3-9999.php');
+        self::assertFileExists($basePathRules . '/TYPO3v9999/Htaccess/MigrateHtaccessFractor.php');
+        self::assertFileExists($basePathRuleTests . '/TYPO3v9999/Htaccess/MigrateHtaccessFractor/config/fractor.php');
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/Htaccess/MigrateHtaccessFractor/Fixtures/fixture.htaccess.fixture'
+        );
+        self::assertFileExists(
+            $basePathRuleTests . '/TYPO3v9999/Htaccess/MigrateHtaccessFractor/MigrateHtaccessFractorTest.php.inc'
+        );
+
+        $fractorFileContent = file_get_contents($basePathRules . '/TYPO3v9999/Htaccess/MigrateHtaccessFractor.php');
+        if ($fractorFileContent !== false) {
+            self::assertStringContainsString(
+                '@changelog https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/9999.6/Feature-123-Bla.html',
+                $fractorFileContent
+            );
+        }
+
+        $this->testDirsToDelete[] = $basePathRules . '/TYPO3v9999';
+        $this->testDirsToDelete[] = $basePathRuleTests . '/TYPO3v9999';
+    }
+
     /**
      * Wrapper function for rmdir, allowing recursive deletion of folders and files
      *
