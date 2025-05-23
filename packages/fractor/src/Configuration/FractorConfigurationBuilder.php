@@ -9,6 +9,7 @@ use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Caching\Contract\ValueObject\Storage\CacheStorageInterface;
 use a9f\Fractor\Caching\ValueObject\Storage\MemoryCacheStorage;
 use a9f\Fractor\Configuration\Parameter\SimpleParameterProvider;
+use a9f\Fractor\Testing\PHPUnit\StaticPHPUnitEnvironment;
 use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinterConditionTermination;
 use OndraM\CiDetector\CiDetector;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -81,7 +82,7 @@ final class FractorConfigurationBuilder
             $parameters->set(Option::CACHE_CLASS, $this->cacheClass);
             SimpleParameterProvider::setParameter(Option::CACHE_CLASS, $this->cacheClass);
         }
-        if ((new CiDetector())->isCiDetected()) {
+        if (StaticPHPUnitEnvironment::isPHPUnitRun() || (new CiDetector())->isCiDetected()) {
             $parameters->set(Option::CACHE_CLASS, MemoryCacheStorage::class);
             SimpleParameterProvider::setParameter(Option::CACHE_CLASS, MemoryCacheStorage::class);
         }
