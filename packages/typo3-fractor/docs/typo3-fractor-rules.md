@@ -1,4 +1,4 @@
-# 32 Rules Overview
+# 33 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -553,6 +553,21 @@ Remove mod.web_list.alternateBgColors
 ```diff
 -mod.web_list.alternateBgColors = 1
 +-
+```
+
+<br>
+
+## RemovePageDoktypeRecyclerFromUserTsConfigFractor
+
+Remove Page Doktype Recycler (255) from User Tsconfig
+
+- class: [`a9f\Typo3Fractor\TYPO3v13\TypoScript\RemovePageDoktypeRecyclerFromUserTsConfigFractor`](../rules/TYPO3v13/TypoScript/RemovePageDoktypeRecyclerFromUserTsConfigFractor.php)
+
+```diff
+ options.pageTree {
+-    doktypesToShowInNewPageDragArea = 1,6,4,7,3,254,255,199
++    doktypesToShowInNewPageDragArea = 1,6,4,7,3,254,199
+ }
 ```
 
 <br>
