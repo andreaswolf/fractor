@@ -8,7 +8,9 @@ use Rector\DeadCode\Rector\ConstFetch\RemovePhpVersionIdCheckRector;
 return RectorConfig::configure()
     ->withPhpSets(php82: true)
     ->withPreparedSets(deadCode: true, typeDeclarations: true, earlyReturn: true, strictBooleans: true)
-    ->withImportNames(true, true, false, true)
+    // removeUnusedImports is false since we had cases where imports only used in Docblocks were removed;
+    // additionally, our code style fixer will remove unused imports as well
+    ->withImportNames(true, true, false, false)
     ->withSkip([
         __DIR__ . '/packages/extension-installer/generated',
         __DIR__ . '/packages/fractor-rule-generator/templates',
