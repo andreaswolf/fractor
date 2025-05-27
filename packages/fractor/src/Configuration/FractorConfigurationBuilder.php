@@ -9,6 +9,7 @@ use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Caching\Contract\ValueObject\Storage\CacheStorageInterface;
 use a9f\Fractor\Caching\ValueObject\Storage\MemoryCacheStorage;
 use a9f\Fractor\Configuration\Parameter\SimpleParameterProvider;
+use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use a9f\Fractor\Testing\PHPUnit\StaticPHPUnitEnvironment;
 use Helmich\TypoScriptParser\Parser\Printer\PrettyPrinterConditionTermination;
 use OndraM\CiDetector\CiDetector;
@@ -21,6 +22,9 @@ use Webmozart\Assert\Assert;
  *
  * An instance of the builder can be obtained via {@see FractorConfiguration::configure()} or from an instance
  * of {@see ContainerBuilder} passed to the callable returned by fractor.php.
+ *
+ * @phpstan-import-type TSkipForRules from SkipConfiguration
+ * @phpstan-import-type TGlobalSkip from SkipConfiguration
  */
 final class FractorConfigurationBuilder
 {
@@ -35,7 +39,7 @@ final class FractorConfigurationBuilder
     private array $paths = [];
 
     /**
-     * @var array<mixed>
+     * @var TSkipForRules|TGlobalSkip
      */
     private array $skip = [];
 
@@ -159,7 +163,7 @@ final class FractorConfigurationBuilder
     }
 
     /**
-     * @param array<mixed> $skip
+     * @param TSkipForRules|TGlobalSkip $skip
      */
     public function withSkip(array $skip): self
     {
