@@ -191,6 +191,7 @@ final class GenerateRuleCommand extends Command
             'typoscript',
             'yaml',
             'composer',
+            'htaccess',
         ]);
         $question->setMaxAttempts(3);
         $question->setErrorMessage('Type %s is invalid.');
