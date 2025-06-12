@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteRule ^(?:fileadmin/|typo3conf/|typo3temp/|uploads/) - [L]
+</IfModule>
+<IfModule mod_rewrite.c>
+    RewriteRule ^(?:fileadmin/|typo3temp/|uploads/) - [L]
+</IfModule>
+-----
+<IfModule mod_rewrite.c>
+    RewriteRule ^(?:fileadmin/|typo3conf/|typo3temp/|_assets/) - [L]
+</IfModule>
+<IfModule mod_rewrite.c>
+    RewriteRule ^(?:fileadmin/|typo3temp/|_assets/) - [L]
+</IfModule>
