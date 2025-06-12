@@ -1,4 +1,4 @@
-# 33 Rules Overview
+# 34 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -10,6 +10,30 @@ Migrate to severity property 'value'
 -<div class="{severityClassMapping.{status.severity}}">
 +<div class="{severityClassMapping.{status.severity.value}}">
      <!-- stuff happens here -->
+ </div>
+```
+
+<br>
+
+## ChangeLogoutHandlingInFeLoginFractor
+
+Change logout handling in ext:felogin
+
+- class: [`a9f\Typo3Fractor\TYPO3v14\Fluid\ChangeLogoutHandlingInFeLoginFractor`](../rules/TYPO3v14/Fluid/ChangeLogoutHandlingInFeLoginFractor.php)
+
+```diff
+-<f:form action="login" actionUri="{actionUri}" target="_top" fieldNamePrefix="">
++<f:form action="login" target="_top" fieldNamePrefix="">
+```
+
+<br>
+
+```diff
+ <div class="felogin-hidden">
+     <f:form.hidden name="logintype" value="logout"/>
++    <f:if condition="{noRedirect} != ''">
++        <f:form.hidden name="noredirect" value="1" />
++    </f:if>
  </div>
 ```
 
