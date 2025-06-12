@@ -134,6 +134,9 @@ CODE_SAMPLE
             }
 
             if (isset($finisher[self::OPTIONS][self::RECIPIENTS])) {
+                if (! is_array($yamlToModify[self::FINISHERS][$finisherKey][self::OPTIONS][self::RECIPIENTS])) {
+                    continue;
+                }
                 $yamlToModify[self::FINISHERS][$finisherKey][self::OPTIONS][self::RECIPIENTS] = array_merge(
                     $recipients,
                     $yamlToModify[self::FINISHERS][$finisherKey][self::OPTIONS][self::RECIPIENTS]
