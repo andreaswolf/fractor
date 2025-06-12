@@ -1,0 +1,17 @@
+finishers:
+  -
+    options:
+      recipients:
+        '':''
+      senderAddress: ''
+      senderName: SENDERNAME
+    identifier: EmailToReceiver
+-----
+finishers:
+  -
+    options:
+      recipients:
+        '':''
+      senderAddress: ''
+      senderName: SENDERNAME
+    identifier: EmailToReceiver
