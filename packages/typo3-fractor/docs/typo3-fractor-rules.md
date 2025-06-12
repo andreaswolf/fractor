@@ -1,4 +1,4 @@
-# 34 Rules Overview
+# 35 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -626,6 +626,19 @@ Remove TCEForms key from all elements in data structure
          </el>
      </ROOT>
  </T3DataStructure>
+```
+
+<br>
+
+## RemoveUploadsFromDefaultHtaccessFractor
+
+Remove uploads/ from default .htaccess and add _assets/
+
+- class: [`a9f\Typo3Fractor\TYPO3v14\Htaccess\RemoveUploadsFromDefaultHtaccessFractor`](../rules/TYPO3v14/Htaccess/RemoveUploadsFromDefaultHtaccessFractor.php)
+
+```diff
+-RewriteRule ^(?:fileadmin/|typo3conf/|typo3temp/|uploads/) - [L]
++RewriteRule ^(?:fileadmin/|typo3conf/|typo3temp/|_assets/) - [L]
 ```
 
 <br>

@@ -16,6 +16,7 @@
         "a9f/fractor": "^0.5",
         "a9f/fractor-extension-installer": "^0.5",
         "a9f/fractor-fluid": "^0.5",
+        "a9f/fractor-htaccess": "^0.5",
         "a9f/fractor-typoscript": "^0.5",
         "a9f/fractor-xml": "^0.5",
         "a9f/fractor-yaml": "^0.5",
