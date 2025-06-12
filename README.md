@@ -43,11 +43,11 @@ Fractor core will be installed automatically and doesn't need to be required dir
 Install Fractor with the file types you need via composer by running the following command in your terminal:
 
 ```bash
-composer require a9f/fractor-composer-json a9f/fractor-xml a9f/fractor-yaml --dev
+composer require a9f/fractor-composer-json a9f/fractor-htaccess a9f/fractor-xml a9f/fractor-yaml --dev
 ```
 
 As **TYPO3** users, you probably want to use `a9f/typo3-fractor` only which will install all necessary file types for
-you like fluid, typoscript, xml and yaml:
+you like fluid, htaccess, typoscript, xml and yaml:
 
 ```bash
 composer require a9f/typo3-fractor --dev
