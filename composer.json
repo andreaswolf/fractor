@@ -128,8 +128,8 @@
         ],
         "local:contribute": [
             "@rectify",
-            "@analyze:php",
             "@style:php:fix",
+            "@analyze:php",
             "@merge-composer-json",
             "@style:composer:normalize:fix",
             "@test:php"
