@@ -55,6 +55,7 @@ final readonly class XmlFileProcessor implements FileProcessor
         $iterator->traverseDocument($file, $document);
 
         $newXml = $this->saveXml($document);
+        $newXml = str_replace('-&gt;', '->', $newXml);
         $newXml = $this->formatter->format($this->indent, $newXml) . "\n";
 
         if ($newXml === $originalXml) {
