@@ -21,7 +21,7 @@
         "composer-plugin-api": "^2.0",
         "ergebnis/json-printer": "^3.5",
         "eta-orionis/composer-json-manipulator": "^1.0.1",
-        "helmich/typo3-typoscript-parser": "^2.7.0",
+        "helmich/typo3-typoscript-parser": "^2.8.0",
         "league/flysystem": "^2.0 || ^3.0",
         "league/flysystem-memory": "^2.0 || ^3.0",
         "nette/utils": "^4.0",
