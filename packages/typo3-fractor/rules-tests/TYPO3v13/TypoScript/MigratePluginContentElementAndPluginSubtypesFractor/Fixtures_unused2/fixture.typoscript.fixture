@@ -1,0 +1,21 @@
+tt_content {
+    list {
+        20 {
+            examples_pi2 = USER
+            examples_pi2 {
+                userFunc = MyVendor\Examples\Controller\ExampleController->example
+            }
+        }
+    }
+}
+-----
+tt_content {
+    examples_pi2 =< lib.contentElement
+    examples_pi2 {
+        20 = USER
+        20 {
+            userFunc = MyVendor\Examples\Controller\ExampleController->example
+        }
+        templateName = Generic
+    }
+}
