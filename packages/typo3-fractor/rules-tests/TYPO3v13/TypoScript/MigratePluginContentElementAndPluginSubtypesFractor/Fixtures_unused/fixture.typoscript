@@ -1,0 +1,4 @@
+tt_content.list.20.examples_pi1 = USER
+tt_content.list.20.examples_pi1 {
+    userFunc = MyVendor\Examples\Controller\ExampleController->example
+}
