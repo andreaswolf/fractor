@@ -94,6 +94,8 @@ class ContainerContainerBuilder
         ContainerBuilder $containerBuilder,
         FractorConfigurationBuilder $builder
     ): void {
+        // ensure e.g. relative paths like "build/fractor.php" are correctly resolved by PhpFileLoader
+        $fractorConfigFile = realpath($fractorConfigFile);
         Assert::fileExists($fractorConfigFile);
 
         $loader = new PhpFileLoader($containerBuilder, new FileLocator(dirname($fractorConfigFile)));
