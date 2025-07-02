@@ -95,19 +95,22 @@ class ContainerContainerBuilder
         FractorConfigurationBuilder $builder
     ): void {
         // ensure e.g. relative paths like "build/fractor.php" are correctly resolved by PhpFileLoader
-        $fractorConfigFile = realpath($fractorConfigFile);
-        Assert::fileExists($fractorConfigFile);
+        $absoluteFractorConfigFile = realpath($fractorConfigFile);
+        if ($absoluteFractorConfigFile === false) {
+            throw new \InvalidArgumentException(sprintf('File %s does not exist', $fractorConfigFile));
+        }
+        Assert::fileExists($absoluteFractorConfigFile);
 
-        $loader = new PhpFileLoader($containerBuilder, new FileLocator(dirname($fractorConfigFile)));
-        $loader->load($fractorConfigFile);
+        $loader = new PhpFileLoader($containerBuilder, new FileLocator(dirname($absoluteFractorConfigFile)));
+        $loader->load($absoluteFractorConfigFile);
 
         $instanceOf = [];
         $builder(new ContainerConfigurator(
             $containerBuilder,
             $loader,
             $instanceOf,
-            dirname($fractorConfigFile),
-            basename($fractorConfigFile)
+            dirname($absoluteFractorConfigFile),
+            basename($absoluteFractorConfigFile)
         ));
     }
 }
