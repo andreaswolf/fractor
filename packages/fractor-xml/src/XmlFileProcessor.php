@@ -49,7 +49,7 @@ final readonly class XmlFileProcessor implements FileProcessor
         // This is a hacky trick to keep format and create a nice diff later
         $oldXml = $this->saveXml($document);
         $oldXml = str_replace('-&gt;', '->', $oldXml);
-        $oldXml = $this->formatter->format($this->indent, $oldXml) . "\n";
+        $oldXml = rtrim($this->formatter->format($this->indent, $oldXml)) . "\n";
         $file->changeOriginalContent($oldXml);
 
         $iterator = new DomDocumentIterator($appliedRules);
@@ -57,7 +57,7 @@ final readonly class XmlFileProcessor implements FileProcessor
 
         $newXml = $this->saveXml($document);
         $newXml = str_replace('-&gt;', '->', $newXml);
-        $newXml = $this->formatter->format($this->indent, $newXml) . "\n";
+        $newXml = rtrim($this->formatter->format($this->indent, $newXml)) . "\n";
 
         if ($newXml === $originalXml) {
             return;
