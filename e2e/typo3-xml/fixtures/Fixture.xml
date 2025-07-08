@@ -7,7 +7,7 @@
 				<type>array</type>
 				<el>
 					<settings.nullable_field_trimmed>
-						<label>Nullable field trimmed</label>
+						<label>Nullable field -> trimmed</label>
 						<config>
 							<eval>null,trim</eval>
 						</config>

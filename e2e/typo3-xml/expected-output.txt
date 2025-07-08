@@ -7,7 +7,7 @@
     ---------- begin diff ----------
 @@ @@
  					<settings.nullable_field_trimmed>
- 						<label>Nullable field trimmed</label>
+ 						<label>Nullable field -> trimmed</label>
  						<config>
 -							<eval>null,trim</eval>
 +							<eval>trim</eval>
