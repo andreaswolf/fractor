@@ -48,6 +48,7 @@ final readonly class XmlFileProcessor implements FileProcessor
 
         // This is a hacky trick to keep format and create a nice diff later
         $oldXml = $this->saveXml($document);
+        $oldXml = str_replace('-&gt;', '->', $oldXml);
         $oldXml = $this->formatter->format($this->indent, $oldXml) . "\n";
         $file->changeOriginalContent($oldXml);
 
