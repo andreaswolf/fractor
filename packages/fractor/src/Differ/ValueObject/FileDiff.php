@@ -23,7 +23,9 @@ final readonly class FileDiff
         private string $relativeFilePath,
         private string $diff,
         private string $diffConsoleFormatted,
-        /** @var string[] $appliedRules */
+        /**
+         * @var string[]
+         */
         private array $appliedRules = []
     ) {
     }
