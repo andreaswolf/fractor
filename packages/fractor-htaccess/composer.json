@@ -12,8 +12,8 @@
     ],
     "require": {
         "php": "^8.2",
-        "a9f/fractor": "^0.5.3",
-        "a9f/fractor-extension-installer": "^0.5.3",
+        "a9f/fractor": "^0.5.4",
+        "a9f/fractor-extension-installer": "^0.5.4",
         "nette/utils": "^4.0",
         "symplify/rule-doc-generator-contracts": "^11.2",
         "tivie/htaccess-parser": "^0.3.0",
