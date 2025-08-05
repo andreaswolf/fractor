@@ -64,6 +64,7 @@ final readonly class FilesFinder
 
         $finder = Finder::create()
             ->files()
+            ->ignoreDotFiles(false)
             // skip empty files
             ->size('> 0')
             ->in($directories);
