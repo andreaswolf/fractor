@@ -10,5 +10,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->defaults()
         ->autoconfigure()
         ->autowire();
+
     $services->set(RenameFeLoginSettingShowForgotPasswordLinkFractor::class);
 };
