@@ -48,7 +48,7 @@ final readonly class TypoScriptFileProcessor implements FileProcessor
         try {
             $statements = $this->parser->parseString($file->getContent());
 
-            $statementsIterator = new TypoScriptStatementsIterator($this->rules);
+            $statementsIterator = new TypoScriptStatementsIterator($appliedRules);
             $statements = $statementsIterator->traverseDocument($file, $statements);
 
             $this->printer->setPrettyPrinterConfiguration(
