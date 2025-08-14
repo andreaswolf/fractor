@@ -16,7 +16,7 @@
         "a9f/fractor-extension-installer": "^0.5.5",
         "nette/utils": "^4.0",
         "symplify/rule-doc-generator-contracts": "^11.2",
-        "tivie/htaccess-parser": "^0.3.0",
+        "tivie/htaccess-parser": "^0.4.0",
         "webmozart/assert": "^1.11"
     },
     "minimum-stability": "dev",
