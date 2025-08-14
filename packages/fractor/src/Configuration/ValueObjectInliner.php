@@ -41,7 +41,6 @@ final class ValueObjectInliner
         foreach ($constructorReflectionMethod->getParameters() as $reflectionParameter) {
             $parameterName = $reflectionParameter->getName();
             $propertyReflection = $reflectionClass->getProperty($parameterName);
-            $propertyReflection->setAccessible(true);
 
             $resolvedValue = $propertyReflection->getValue($object);
             $resolvedValue = self::inlineNestedArrayObjects($resolvedValue);

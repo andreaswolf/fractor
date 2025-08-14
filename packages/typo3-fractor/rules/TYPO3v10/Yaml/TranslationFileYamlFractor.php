@@ -96,7 +96,7 @@ CODE_SAMPLE
     {
         return array_filter(
             $oldTranslations,
-            static fn ($oldTranslationFile): bool => ! \str_starts_with($oldTranslationFile, 'EXT:form')
+            static fn (string $oldTranslationFile): bool => ! \str_starts_with($oldTranslationFile, 'EXT:form')
         );
     }
 }
