@@ -12,8 +12,8 @@
     ],
     "require": {
         "php": "^8.2",
-        "a9f/fractor": "^0.5.5",
-        "a9f/fractor-extension-installer": "^0.5.5",
+        "a9f/fractor": "^0.5.6",
+        "a9f/fractor-extension-installer": "^0.5.6",
         "helmich/typo3-typoscript-parser": "^2.8.0",
         "symplify/rule-doc-generator-contracts": "^11.2",
         "webmozart/assert": "^1.11"
