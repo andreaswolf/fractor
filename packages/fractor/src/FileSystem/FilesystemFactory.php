@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace a9f\Fractor\FileSystem;
 
 use a9f\Fractor\Contract\FilesystemInterface;
+use a9f\Fractor\Testing\PHPUnit\StaticPHPUnitEnvironment;
 use League\Flysystem\Filesystem;
 use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
 use League\Flysystem\Local\LocalFilesystemAdapter;
-use Rector\Testing\PHPUnit\StaticPHPUnitEnvironment;
 
 final readonly class FilesystemFactory
 {
