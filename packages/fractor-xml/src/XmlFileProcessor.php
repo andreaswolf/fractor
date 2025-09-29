@@ -12,6 +12,7 @@ use a9f\Fractor\ValueObject\Indent;
 use a9f\FractorXml\Contract\DomNodeVisitor;
 use a9f\FractorXml\Contract\Formatter;
 use a9f\FractorXml\Contract\XmlFractor;
+use a9f\FractorXml\ValueObject\XmlFormatConfiguration;
 use a9f\FractorXml\ValueObjectFactory\DomDocumentFactory;
 
 /**
@@ -27,13 +28,14 @@ final readonly class XmlFileProcessor implements FileProcessor
         private Formatter $formatter,
         private iterable $rules,
         private Indent $indent,
-        private ChangedFilesDetector $changedFilesDetector
+        private ChangedFilesDetector $changedFilesDetector,
+        private XmlFormatConfiguration $xmlFormatConfiguration
     ) {
     }
 
     public function canHandle(File $file): bool
     {
-        return $file->getFileExtension() === 'xml';
+        return in_array($file->getFileExtension(), $this->allowedFileExtensions(), true);
     }
 
     /**
@@ -72,9 +74,12 @@ final readonly class XmlFileProcessor implements FileProcessor
         }
     }
 
+    /**
+     * @return list<non-empty-string>
+     */
     public function allowedFileExtensions(): array
     {
-        return ['xml'];
+        return $this->xmlFormatConfiguration->allowedFileExtensions;
     }
 
     public function getAllRules(): iterable
