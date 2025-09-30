@@ -23,8 +23,7 @@ use Webmozart\Assert\Assert;
  * An instance of the builder can be obtained via {@see FractorConfiguration::configure()} or from an instance
  * of {@see ContainerBuilder} passed to the callable returned by fractor.php.
  *
- * @phpstan-import-type TSkipForRules from SkipConfiguration
- * @phpstan-import-type TGlobalSkip from SkipConfiguration
+ * @phpstan-import-type TSkipConfiguration from SkipConfiguration
  */
 final class FractorConfigurationBuilder
 {
@@ -39,7 +38,7 @@ final class FractorConfigurationBuilder
     private array $paths = [];
 
     /**
-     * @var TSkipForRules|TGlobalSkip
+     * @var TSkipConfiguration
      */
     private array $skip = [];
 
@@ -163,7 +162,7 @@ final class FractorConfigurationBuilder
     }
 
     /**
-     * @param TSkipForRules|TGlobalSkip $skip
+     * @param TSkipConfiguration $skip
      */
     public function withSkip(array $skip): self
     {
