@@ -6,6 +6,7 @@ namespace a9f\Fractor\Configuration;
 
 use a9f\Fractor\Application\Contract\FileProcessor;
 use a9f\Fractor\Application\Contract\FractorRule;
+use a9f\Fractor\Application\ProcessorSkipper;
 use Webmozart\Assert\Assert;
 
 final readonly class AllowedFileExtensionsResolver
@@ -14,7 +15,8 @@ final readonly class AllowedFileExtensionsResolver
      * @param iterable<FileProcessor<FractorRule>> $processors
      */
     public function __construct(
-        private iterable $processors
+        private iterable $processors,
+        private ProcessorSkipper $processorSkipper
     ) {
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
@@ -26,6 +28,10 @@ final readonly class AllowedFileExtensionsResolver
     {
         $fileExtensions = [];
         foreach ($this->processors as $processor) {
+            if ($this->processorSkipper->shouldSkip($processor::class)) {
+                continue;
+            }
+
             $fileExtensions = array_merge($processor->allowedFileExtensions(), $fileExtensions);
         }
 
