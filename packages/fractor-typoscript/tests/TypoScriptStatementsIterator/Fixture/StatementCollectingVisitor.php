@@ -27,7 +27,7 @@ final class StatementCollectingVisitor implements TypoScriptNodeVisitor
         $this->calls[] = sprintf('%s:beforeTraversal:%s', $this->visitorName, count($statements));
     }
 
-    public function enterNode(Statement $node): Statement|int
+    public function enterNode(Statement $node): Statement
     {
         $this->calls[] = sprintf('%s:enterNode:%s:l-%d', $this->visitorName, $node::class, $node->sourceLine);
         return $node;
