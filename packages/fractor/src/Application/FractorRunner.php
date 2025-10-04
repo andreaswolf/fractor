@@ -35,6 +35,7 @@ final readonly class FractorRunner
         private FileWriter $fileWriter,
         private FileDiffFactory $fileDiffFactory,
         private RuleSkipper $ruleSkipper,
+        private ProcessorSkipper $processorSkipper,
         private ChangedFilesDetector $changedFilesDetector
     ) {
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
@@ -59,6 +60,10 @@ final readonly class FractorRunner
                 $output->progressAdvance();
             }
             foreach ($this->processors as $processor) {
+                if ($this->processorSkipper->shouldSkip($processor::class)) {
+                    continue;
+                }
+
                 if (! $processor->canHandle($file)) {
                     continue;
                 }
