@@ -55,7 +55,13 @@ composer require a9f/typo3-fractor --dev
 
 ## Configuration
 
-Create a PHP configuration file (e.g., `fractor.php`) where you define the paths to your files.
+You can create the Fractor config file with:
+
+```bash
+vendor/bin/typo3-fractor-init
+```
+
+Alternatively create a PHP configuration file (e.g., `fractor.php`) where you define the paths to your files.
 At minimum, a configuration file must specify the paths to process:
 
 ```php
