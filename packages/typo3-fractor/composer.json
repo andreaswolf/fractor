@@ -40,6 +40,9 @@
             ]
         }
     },
+    "bin": [
+        "bin/typo3-fractor-init"
+    ],
     "config": {
         "allow-plugins": {
             "a9f/fractor-extension-installer": true
