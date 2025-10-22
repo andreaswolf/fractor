@@ -3,7 +3,11 @@
 declare(strict_types=1);
 
 use a9f\FractorMonorepo\Release\FractorApplicationReleaseWriter;
+use a9f\FractorMonorepo\Release\FractorInitReleaseWriter;
+use a9f\FractorMonorepo\Release\FractorInitTestReleaseWriter;
 use a9f\FractorMonorepo\Release\ReleaseWorker\DefineFractorApplicationReleaseVersionWorker;
+use a9f\FractorMonorepo\Release\ReleaseWorker\DefineFractorInitReleaseVersionWorker;
+use a9f\FractorMonorepo\Release\ReleaseWorker\DefineFractorInitTestReleaseVersionWorker;
 use Symplify\MonorepoBuilder\ComposerJsonManipulator\ValueObject\ComposerJsonSection;
 use Symplify\MonorepoBuilder\Config\MBConfig;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushTagReleaseWorker;
@@ -15,7 +19,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 return static function (MBConfig $mbConfig): void {
     $mbConfig->services()
-        ->set(FractorApplicationReleaseWriter::class);
+        ->set(FractorApplicationReleaseWriter::class)
+        ->set(FractorInitReleaseWriter::class)
+        ->set(FractorInitTestReleaseWriter::class);
 
     $mbConfig->packageDirectories([__DIR__ . '/packages']);
     $mbConfig->defaultBranch('main');
@@ -30,6 +36,8 @@ return static function (MBConfig $mbConfig): void {
     // release workers - in order of execution
     $mbConfig->workers([
         DefineFractorApplicationReleaseVersionWorker::class,
+        DefineFractorInitReleaseVersionWorker::class,
+        DefineFractorInitTestReleaseVersionWorker::class,
         SetCurrentMutualDependenciesReleaseWorker::class,
         TagVersionReleaseWorker::class,
         PushTagReleaseWorker::class,
