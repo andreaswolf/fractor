@@ -6,6 +6,7 @@ namespace a9f\Fractor\Console\Command;
 
 use a9f\Fractor\Application\FractorRunner;
 use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
+use a9f\Fractor\Configuration\ConfigInitializer;
 use a9f\Fractor\Configuration\ConfigurationFactory;
 use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
@@ -29,7 +30,8 @@ final class ProcessCommand extends Command
         private readonly FractorRunner $runner,
         private readonly ConfigurationFactory $configurationFactory,
         private readonly OutputFormatterCollector $outputFormatterCollector,
-        private readonly ChangedFilesDetector $changedFilesDetector
+        private readonly ChangedFilesDetector $changedFilesDetector,
+        private readonly ConfigInitializer $configInitializer,
     ) {
         parent::__construct();
     }
@@ -60,6 +62,12 @@ final class ProcessCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        // missing config? add it :)
+        if (! $this->configInitializer->areSomeFractorsLoaded()) {
+            $this->configInitializer->createConfig((string) getcwd());
+            return self::SUCCESS;
+        }
+
         $configuration = $this->configurationFactory->createFromInput($input);
         $processResult = $this->runner->run(new SymfonyConsoleOutput($output), $configuration);
 

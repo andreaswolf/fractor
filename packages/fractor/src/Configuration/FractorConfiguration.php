@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Configuration;
 
-use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
+use a9f\Fractor\DependencyInjection\FractorContainerFactory;
 
 /**
  * Factory for {@see FractorConfigurationBuilder} instances.
  *
- * An instance is created by {@see ContainerContainerBuilder} when starting the DI container build process
+ * An instance is created by {@see FractorContainerFactory} when starting the DI container build process
  * and destroyed after the process was finished.
  */
 final class FractorConfiguration

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use a9f\Fractor\Configuration\ConfigResolver;
+use a9f\Fractor\Bootstrap\FractorConfigsResolver;
 use a9f\Fractor\Console\Application\FractorApplication;
-use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
-use Symfony\Component\Console\Input\ArgvInput;
+use a9f\Fractor\DependencyInjection\FractorContainerFactory;
+use Symfony\Component\Console\Command\Command;
 
 $autoloadFile = (static function (): ?string {
     $candidates = [
@@ -28,9 +28,16 @@ if ($autoloadFile === null) {
 }
 include $autoloadFile;
 
-$configFile = ConfigResolver::resolveConfigsFromInput(new ArgvInput());
+$fractorConfigsResolver = new FractorConfigsResolver();
 
-$container = (new ContainerContainerBuilder())->createDependencyInjectionContainer($configFile);
+try {
+    $configFile = $fractorConfigsResolver->provide();
+
+    $containerContainerBuilder = new FractorContainerFactory();
+    $container = $containerContainerBuilder->createDependencyInjectionContainer($configFile);
+} catch (\Throwable) {
+    exit(Command::FAILURE);
+}
 
 /** @var FractorApplication $application */
 $application = $container->get(FractorApplication::class);

@@ -3,15 +3,18 @@
 declare(strict_types=1);
 
 use a9f\Fractor\Application\Contract\FileProcessor;
+use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Application\FractorRunner;
 use a9f\Fractor\Caching\Cache;
 use a9f\Fractor\Caching\CacheFactory;
 use a9f\Fractor\ChangesReporting\Contract\Output\OutputFormatterInterface;
 use a9f\Fractor\Configuration\AllowedFileExtensionsResolver;
+use a9f\Fractor\Configuration\ConfigInitializer;
 use a9f\Fractor\Configuration\SkipConfigurationFactory;
 use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use a9f\Fractor\Console\Application\FractorApplication;
 use a9f\Fractor\Console\Output\OutputFormatterCollector;
+use a9f\Fractor\Console\Style\SymfonyStyleFactory;
 use a9f\Fractor\Contract\FilesystemInterface;
 use a9f\Fractor\Differ\ConsoleDiffer;
 use a9f\Fractor\Differ\Contract\Differ;
@@ -19,6 +22,7 @@ use a9f\Fractor\FileSystem\FilesystemFactory;
 use a9f\Fractor\FileSystem\FlysystemFilesystem;
 use League\Flysystem\FilesystemAdapter;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -110,7 +114,20 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         tagged_iterator('fractor.output_formatter')
     );
     $services->set(Filesystem::class);
+
+    // console
+    $services->set(SymfonyStyleFactory::class);
+
+    $services->set(SymfonyStyle::class)
+        ->factory([service(SymfonyStyleFactory::class), 'create']);
+
+    // cache
     $services->set(Cache::class)->factory([service(CacheFactory::class), 'create']);
+
+    // tagged services
+    $services->set(ConfigInitializer::class)
+        ->arg('$fractors', tagged_iterator(FractorRule::class));
+
     $containerBuilder->registerForAutoconfiguration(FileProcessor::class)->addTag('fractor.file_processor');
     $containerBuilder->registerForAutoconfiguration(OutputFormatterInterface::class)->addTag(
         'fractor.output_formatter'
