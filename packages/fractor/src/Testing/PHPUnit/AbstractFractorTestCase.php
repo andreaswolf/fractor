@@ -11,12 +11,13 @@ use a9f\Fractor\Application\ValueObject\AppliedRule;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Configuration\ConfigurationFactory;
 use a9f\Fractor\Console\Output\NullOutput;
-use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
+use a9f\Fractor\DependencyInjection\FractorContainerFactory;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\Fractor\Testing\Contract\FractorTestInterface;
 use a9f\Fractor\Testing\Fixture\FixtureFileFinder;
 use a9f\Fractor\Testing\Fixture\FixtureSplitter;
 use a9f\Fractor\Testing\PHPUnit\ValueObject\FractorTestResult;
+use a9f\Fractor\ValueObject\Bootstrap\BootstrapConfigs;
 use Nette\Utils\FileSystem;
 use Nette\Utils\Strings;
 use PHPUnit\Framework\TestCase;
@@ -133,10 +134,8 @@ abstract class AbstractFractorTestCase extends TestCase implements FractorTestIn
 
     private function bootContainer(): void
     {
-        $this->currentContainer = (new ContainerContainerBuilder())->createDependencyInjectionContainer(
-            $this->provideConfigFilePath(),
-            $this->additionalConfigurationFiles()
-        );
+        $configs = new BootstrapConfigs($this->provideConfigFilePath(), $this->additionalConfigurationFiles());
+        $this->currentContainer = (new FractorContainerFactory())->createDependencyInjectionContainer($configs);
     }
 
     /**

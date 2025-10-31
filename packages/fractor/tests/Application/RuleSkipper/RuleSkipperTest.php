@@ -6,11 +6,12 @@ namespace a9f\Fractor\Tests\Application\RuleSkipper;
 
 use a9f\Fractor\Application\RuleSkipper;
 use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
-use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
+use a9f\Fractor\DependencyInjection\FractorContainerFactory;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\Fractor\FileSystem\Skipper\FileInfoMatcher;
 use a9f\Fractor\Tests\Application\RuleSkipper\Fixture\RuleA;
 use a9f\Fractor\Tests\Application\RuleSkipper\Fixture\RuleB;
+use a9f\Fractor\ValueObject\Bootstrap\BootstrapConfigs;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -23,8 +24,8 @@ final class RuleSkipperTest extends TestCase
     {
         parent::setUp();
 
-        $this->currentContainer = (new ContainerContainerBuilder())
-            ->createDependencyInjectionContainer(null);
+        $this->currentContainer = (new FractorContainerFactory())
+            ->createDependencyInjectionContainer(new BootstrapConfigs());
     }
 
     #[Test]
