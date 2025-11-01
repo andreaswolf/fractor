@@ -35,7 +35,7 @@ jobs:
             branch_name="dynamic-branch-$(date +'%Y%m%d%H%M%S')"
             echo "::set-output name=branch_name::$branch_name"
       - name: "Commit documentation"
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           file_pattern: '*.md'
           disable_globbing: true
