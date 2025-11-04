@@ -42,7 +42,7 @@ class InitCommandTest extends TestCase
 
         $application = (new SingleCommandApplication())
             ->setName('Initialize TYPO3-Fractor configuration')
-            ->setVersion('0.5.6')
+            ->setVersion('0.5.7')
             ->setDescription('Initializes a bare configuration to start with your TYPO3 upgrade')
             ->setCode(static function (InputInterface $input, OutputInterface $output): int {
                 // --- This is an exact copy of your command's code ---

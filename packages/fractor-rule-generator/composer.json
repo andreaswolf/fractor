@@ -5,8 +5,8 @@
     "type": "fractor-extension",
     "require": {
         "php": "^8.2",
-        "a9f/fractor": "^0.5.6",
-        "a9f/fractor-extension-installer": "^0.5.6",
+        "a9f/fractor": "^0.5.7",
+        "a9f/fractor-extension-installer": "^0.5.7",
         "nette/utils": "^4.0",
         "symfony/config": "^5.4 || ^6.4 || ^7.0",
         "symfony/console": "^5.4 || ^6.4 || ^7.0",
