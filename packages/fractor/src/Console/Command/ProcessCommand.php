@@ -8,6 +8,7 @@ use a9f\Fractor\Application\FractorRunner;
 use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
 use a9f\Fractor\Configuration\ConfigInitializer;
 use a9f\Fractor\Configuration\ConfigurationFactory;
+use a9f\Fractor\Configuration\ConfigurationRuleFilter;
 use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Console\Application\FractorApplication;
@@ -32,6 +33,7 @@ final class ProcessCommand extends Command
         private readonly OutputFormatterCollector $outputFormatterCollector,
         private readonly ChangedFilesDetector $changedFilesDetector,
         private readonly ConfigInitializer $configInitializer,
+        private readonly ConfigurationRuleFilter $configurationRuleFilter
     ) {
         parent::__construct();
     }
@@ -58,6 +60,9 @@ final class ProcessCommand extends Command
             'Do not output diff of changes.'
         );
         $this->addOption(Option::CLEAR_CACHE, null, InputOption::VALUE_NONE, 'Clear unchanged files cache');
+
+        // filter by rule and path
+        $this->addOption(Option::ONLY, null, InputOption::VALUE_REQUIRED, 'Fully qualified rule class name');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -69,6 +74,9 @@ final class ProcessCommand extends Command
         }
 
         $configuration = $this->configurationFactory->createFromInput($input);
+
+        $this->configurationRuleFilter->setConfiguration($configuration);
+
         $processResult = $this->runner->run(new SymfonyConsoleOutput($output), $configuration);
 
         $outputFormat = 'console';

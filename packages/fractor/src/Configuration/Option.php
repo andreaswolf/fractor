@@ -50,6 +50,11 @@ final class Option
 
     public const CACHE_DIR = 'cache_dir';
 
+    /**
+     * @var string
+     */
+    public const ONLY = 'only';
+
     public const CACHE_CLASS = FileCacheStorage::class;
 
     public const CONTAINER_CACHE_DIRECTORY = 'container-cache-directory';
