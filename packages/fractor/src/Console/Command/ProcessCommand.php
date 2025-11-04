@@ -6,6 +6,7 @@ namespace a9f\Fractor\Console\Command;
 
 use a9f\Fractor\Application\FractorRunner;
 use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
+use a9f\Fractor\ChangesReporting\Output\ConsoleOutputFormatter;
 use a9f\Fractor\Configuration\ConfigInitializer;
 use a9f\Fractor\Configuration\ConfigurationFactory;
 use a9f\Fractor\Configuration\ConfigurationRuleFilter;
@@ -22,7 +23,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'process', description: 'Runs Fractor with the given configuration file')]
 final class ProcessCommand extends Command
@@ -61,6 +61,14 @@ final class ProcessCommand extends Command
         );
         $this->addOption(Option::CLEAR_CACHE, null, InputOption::VALUE_NONE, 'Clear unchanged files cache');
 
+        $this->addOption(
+            Option::OUTPUT_FORMAT,
+            null,
+            InputOption::VALUE_REQUIRED,
+            'Select output format',
+            ConsoleOutputFormatter::NAME
+        );
+
         // filter by rule and path
         $this->addOption(Option::ONLY, null, InputOption::VALUE_REQUIRED, 'Fully qualified rule class name');
     }
@@ -79,9 +87,9 @@ final class ProcessCommand extends Command
 
         $processResult = $this->runner->run(new SymfonyConsoleOutput($output), $configuration);
 
-        $outputFormat = 'console';
+        $outputFormat = $configuration->getOutputFormat();
         $outputFormatter = $this->outputFormatterCollector->getByName($outputFormat);
-        $outputFormatter->setSymfonyStyle(new SymfonyStyle($input, $output));
+
         $outputFormatter->report($processResult, $configuration);
 
         return $this->resolveReturnCode($processResult, $configuration);

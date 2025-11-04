@@ -7,13 +7,13 @@ namespace a9f\Fractor\ValueObject;
 use a9f\Fractor\Differ\ValueObject\FileDiff;
 use Webmozart\Assert\Assert;
 
-class ProcessResult
+final readonly class ProcessResult
 {
     /**
      * @param FileDiff[] $fileDiffs
      */
     public function __construct(
-        private readonly array $fileDiffs
+        private array $fileDiffs
     ) {
         Assert::allIsInstanceOf($this->fileDiffs, FileDiff::class);
     }

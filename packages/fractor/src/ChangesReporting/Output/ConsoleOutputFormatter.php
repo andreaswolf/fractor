@@ -10,18 +10,16 @@ use a9f\Fractor\Differ\ValueObject\FileDiff;
 use a9f\Fractor\ValueObject\ProcessResult;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class ConsoleOutputFormatter implements OutputFormatterInterface
+final readonly class ConsoleOutputFormatter implements OutputFormatterInterface
 {
     /**
      * @var string
      */
     public const NAME = 'console';
 
-    private SymfonyStyle $symfonyStyle;
-
-    public function setSymfonyStyle(SymfonyStyle $symfonyStyle): void
-    {
-        $this->symfonyStyle = $symfonyStyle;
+    public function __construct(
+        private SymfonyStyle $symfonyStyle
+    ) {
     }
 
     public function getName(): string

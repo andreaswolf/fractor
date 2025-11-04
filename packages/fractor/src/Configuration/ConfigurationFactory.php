@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Configuration;
 
+use a9f\Fractor\ChangesReporting\Output\ConsoleOutputFormatter;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
@@ -20,8 +21,14 @@ final readonly class ConfigurationFactory
 
     public function createFromInput(InputInterface $input): Configuration
     {
+        $dryRun = (bool) $input->getOption(Option::DRY_RUN);
+
+        $outputFormat = (string) $input->getOption(Option::OUTPUT_FORMAT);
+
         /** @var list<non-empty-string> $paths */
         $paths = (array) $this->parameterBag->get(Option::PATHS);
+
+        $fileExtensions = $this->allowedFileExtensionsResolver->resolve();
 
         // filter rule and path
         $onlyRule = $input->getOption(Option::ONLY);
@@ -30,11 +37,12 @@ final readonly class ConfigurationFactory
         }
 
         return new Configuration(
-            $this->allowedFileExtensionsResolver->resolve(),
+            $dryRun,
+            (bool) $input->getOption(Option::QUIET),
+            $outputFormat,
+            $fileExtensions,
             $paths,
             (array) $this->parameterBag->get(Option::SKIP),
-            (bool) $input->getOption(Option::DRY_RUN),
-            (bool) $input->getOption(Option::QUIET),
             $onlyRule
         );
     }
@@ -47,12 +55,8 @@ final readonly class ConfigurationFactory
     {
         Assert::allStringNotEmpty($paths, 'No directories given');
 
-        return new Configuration(
-            $this->allowedFileExtensionsResolver->resolve(),
-            $paths,
-            (array) $this->parameterBag->get(Option::SKIP),
-            false,
-            false
-        );
+        $fileExtensions = $this->allowedFileExtensionsResolver->resolve();
+
+        return new Configuration(false, false, ConsoleOutputFormatter::NAME, $fileExtensions, $paths);
     }
 }
