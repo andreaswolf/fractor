@@ -12,9 +12,9 @@
     ],
     "require": {
         "php": "^8.2",
-        "a9f/fractor": "^0.5.6",
-        "a9f/fractor-doc-generator": "^0.5.6",
-        "a9f/fractor-extension-installer": "^0.5.6",
+        "a9f/fractor": "^0.5.7",
+        "a9f/fractor-doc-generator": "^0.5.7",
+        "a9f/fractor-extension-installer": "^0.5.7",
         "ergebnis/json-printer": "^3.5",
         "eta-orionis/composer-json-manipulator": "^1.0.1",
         "nette/utils": "^4.0",
