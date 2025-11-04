@@ -55,6 +55,11 @@ final class Option
      */
     public const ONLY = 'only';
 
+    /**
+     * @var string
+     */
+    public const OUTPUT_FORMAT = 'output-format';
+
     public const CACHE_CLASS = FileCacheStorage::class;
 
     public const CONTAINER_CACHE_DIRECTORY = 'container-cache-directory';
