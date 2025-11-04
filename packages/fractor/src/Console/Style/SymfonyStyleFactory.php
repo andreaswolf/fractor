@@ -41,7 +41,7 @@ final readonly class SymfonyStyleFactory
             $consoleOutput->setVerbosity(OutputInterface::VERBOSITY_QUIET);
         }
 
-        return new SymfonyStyle($argvInput, $consoleOutput);
+        return new FractorStyle($argvInput, $consoleOutput);
     }
 
     /**

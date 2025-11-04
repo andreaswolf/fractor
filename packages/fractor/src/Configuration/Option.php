@@ -60,6 +60,11 @@ final class Option
      */
     public const OUTPUT_FORMAT = 'output-format';
 
+    /**
+     * @var string
+     */
+    public const NO_PROGRESS_BAR = 'no-progress-bar';
+
     public const CACHE_CLASS = FileCacheStorage::class;
 
     public const CONTAINER_CACHE_DIRECTORY = 'container-cache-directory';

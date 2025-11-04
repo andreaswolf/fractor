@@ -15,7 +15,6 @@ use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Console\Application\FractorApplication;
 use a9f\Fractor\Console\ExitCode;
 use a9f\Fractor\Console\Output\OutputFormatterCollector;
-use a9f\Fractor\Console\Output\SymfonyConsoleOutput;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\Fractor\ValueObject\ProcessResult;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -54,6 +53,12 @@ final class ProcessCommand extends Command
             'Only see the diff of changes, do not save them to files.'
         );
         $this->addOption(
+            Option::NO_PROGRESS_BAR,
+            null,
+            InputOption::VALUE_NONE,
+            'Hide progress bar. Useful e.g. for nicer CI output.'
+        );
+        $this->addOption(
             Option::QUIET,
             Option::QUIET_SHORT,
             InputOption::VALUE_NONE,
@@ -85,7 +90,7 @@ final class ProcessCommand extends Command
 
         $this->configurationRuleFilter->setConfiguration($configuration);
 
-        $processResult = $this->runner->run(new SymfonyConsoleOutput($output), $configuration);
+        $processResult = $this->runner->run($configuration);
 
         $outputFormat = $configuration->getOutputFormat();
         $outputFormatter = $this->outputFormatterCollector->getByName($outputFormat);

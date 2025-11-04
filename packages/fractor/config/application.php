@@ -16,6 +16,7 @@ use a9f\Fractor\Configuration\SkipConfigurationFactory;
 use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use a9f\Fractor\Console\Application\FractorApplication;
 use a9f\Fractor\Console\Output\OutputFormatterCollector;
+use a9f\Fractor\Console\Style\FractorStyle;
 use a9f\Fractor\Console\Style\SymfonyStyleFactory;
 use a9f\Fractor\Contract\FilesystemInterface;
 use a9f\Fractor\Differ\ConsoleDiffer;
@@ -121,6 +122,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     // console
     $services->set(SymfonyStyleFactory::class);
 
+    $services->alias(FractorStyle::class, SymfonyStyle::class);
     $services->set(SymfonyStyle::class)
         ->factory([service(SymfonyStyleFactory::class), 'create']);
 
