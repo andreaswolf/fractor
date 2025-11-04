@@ -11,6 +11,11 @@ final class Option
     /**
      * @var string
      */
+    public const SOURCE = 'source';
+
+    /**
+     * @var string
+     */
     public const PATHS = 'paths';
 
     /**
@@ -74,4 +79,9 @@ final class Option
     public const REGISTERED_FRACTOR_RULES = 'registered_fractor_rules';
 
     public const OPTIONS = 'options';
+
+    /**
+     * @internal to allow process file without extension if explicitly registered
+     */
+    public const FILES_WITHOUT_EXTENSION = 'files_without_extension';
 }

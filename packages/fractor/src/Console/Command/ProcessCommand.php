@@ -19,6 +19,7 @@ use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\Fractor\ValueObject\ProcessResult;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -39,6 +40,12 @@ final class ProcessCommand extends Command
 
     protected function configure(): void
     {
+        $this->addArgument(
+            Option::SOURCE,
+            InputArgument::OPTIONAL | InputArgument::IS_ARRAY,
+            'Files or directories to be upgraded.'
+        );
+
         $this->addOption(
             Option::CONFIG,
             Option::CONFIG_SHORT,

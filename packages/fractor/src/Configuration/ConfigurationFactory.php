@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace a9f\Fractor\Configuration;
 
 use a9f\Fractor\ChangesReporting\Output\ConsoleOutputFormatter;
+use a9f\Fractor\Configuration\Parameter\SimpleParameterProvider;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -29,7 +30,7 @@ final readonly class ConfigurationFactory
         $showProgressBar = $this->shouldShowProgressBar($input, $outputFormat);
 
         /** @var list<non-empty-string> $paths */
-        $paths = (array) $this->parameterBag->get(Option::PATHS);
+        $paths = $this->resolvePaths($input);
 
         $fileExtensions = $this->allowedFileExtensionsResolver->resolve();
 
@@ -76,5 +77,43 @@ final readonly class ConfigurationFactory
         }
 
         return $outputFormat === ConsoleOutputFormatter::NAME;
+    }
+
+    /**
+     * @return string[]|mixed[]
+     */
+    private function resolvePaths(InputInterface $input): array
+    {
+        $commandLinePaths = (array) $input->getArgument(Option::SOURCE);
+
+        // give priority to command line
+        if ($commandLinePaths !== []) {
+            $this->setFilesWithoutExtensionParameter($commandLinePaths);
+            return $commandLinePaths;
+        }
+
+        // fallback to parameter
+        $configPaths = SimpleParameterProvider::provideArrayParameter(Option::PATHS);
+        $this->setFilesWithoutExtensionParameter($configPaths);
+
+        return $configPaths;
+    }
+
+    /**
+     * @param string[] $paths
+     */
+    private function setFilesWithoutExtensionParameter(array $paths): void
+    {
+        foreach ($paths as $path) {
+            if (is_file($path) && pathinfo($path, PATHINFO_EXTENSION) === '') {
+                $path = realpath($path);
+
+                if ($path === false) {
+                    continue;
+                }
+
+                SimpleParameterProvider::addParameter(Option::FILES_WITHOUT_EXTENSION, $path);
+            }
+        }
     }
 }
