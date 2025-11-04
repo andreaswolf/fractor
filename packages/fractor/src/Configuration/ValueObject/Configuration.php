@@ -19,6 +19,7 @@ final readonly class Configuration
      */
     public function __construct(
         private bool $dryRun = false,
+        private bool $showProgressBar = true,
         private bool $quiet = false,
         private string $outputFormat = ConsoleOutputFormatter::NAME,
         private array $fileExtensions = [],
@@ -56,6 +57,11 @@ final readonly class Configuration
     public function isDryRun(): bool
     {
         return $this->dryRun;
+    }
+
+    public function shouldShowProgressBar(): bool
+    {
+        return $this->showProgressBar;
     }
 
     public function isQuiet(): bool
