@@ -10,6 +10,8 @@ use a9f\Fractor\Caching\CacheFactory;
 use a9f\Fractor\ChangesReporting\Contract\Output\OutputFormatterInterface;
 use a9f\Fractor\Configuration\AllowedFileExtensionsResolver;
 use a9f\Fractor\Configuration\ConfigInitializer;
+use a9f\Fractor\Configuration\ConfigurationRuleFilter;
+use a9f\Fractor\Configuration\OnlyRuleResolver;
 use a9f\Fractor\Configuration\SkipConfigurationFactory;
 use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use a9f\Fractor\Console\Application\FractorApplication;
@@ -114,6 +116,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         tagged_iterator('fractor.output_formatter')
     );
     $services->set(Filesystem::class);
+    $services->set(ConfigurationRuleFilter::class);
 
     // console
     $services->set(SymfonyStyleFactory::class);
@@ -126,6 +129,9 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
     // tagged services
     $services->set(ConfigInitializer::class)
+        ->arg('$fractors', tagged_iterator(FractorRule::class));
+
+    $services->set(OnlyRuleResolver::class)
         ->arg('$fractors', tagged_iterator(FractorRule::class));
 
     $containerBuilder->registerForAutoconfiguration(FileProcessor::class)->addTag('fractor.file_processor');

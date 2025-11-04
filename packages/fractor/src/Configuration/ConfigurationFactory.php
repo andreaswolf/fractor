@@ -13,7 +13,8 @@ final readonly class ConfigurationFactory
 {
     public function __construct(
         private ContainerBagInterface $parameterBag,
-        private AllowedFileExtensionsResolver $allowedFileExtensionsResolver
+        private AllowedFileExtensionsResolver $allowedFileExtensionsResolver,
+        private OnlyRuleResolver $onlyRuleResolver
     ) {
     }
 
@@ -22,12 +23,19 @@ final readonly class ConfigurationFactory
         /** @var list<non-empty-string> $paths */
         $paths = (array) $this->parameterBag->get(Option::PATHS);
 
+        // filter rule and path
+        $onlyRule = $input->getOption(Option::ONLY);
+        if ($onlyRule !== null) {
+            $onlyRule = $this->onlyRuleResolver->resolve($onlyRule);
+        }
+
         return new Configuration(
             $this->allowedFileExtensionsResolver->resolve(),
             $paths,
             (array) $this->parameterBag->get(Option::SKIP),
             (bool) $input->getOption(Option::DRY_RUN),
-            (bool) $input->getOption(Option::QUIET)
+            (bool) $input->getOption(Option::QUIET),
+            $onlyRule
         );
     }
 

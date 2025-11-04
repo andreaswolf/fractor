@@ -9,6 +9,7 @@ use a9f\Fractor\Application\Contract\FileWriter;
 use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
+use a9f\Fractor\Configuration\ConfigurationRuleFilter;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Console\Contract\Output;
 use a9f\Fractor\Differ\ValueObject\FileDiff;
@@ -35,7 +36,8 @@ final readonly class FractorRunner
         private FileWriter $fileWriter,
         private FileDiffFactory $fileDiffFactory,
         private RuleSkipper $ruleSkipper,
-        private ChangedFilesDetector $changedFilesDetector
+        private ChangedFilesDetector $changedFilesDetector,
+        private ConfigurationRuleFilter $configurationRuleFilter
     ) {
         Assert::allIsInstanceOf($this->processors, FileProcessor::class);
     }
@@ -107,6 +109,8 @@ final readonly class FractorRunner
      */
     private function filterApplicableRules(iterable $rules, File $file): \Generator
     {
+        $rules = $this->configurationRuleFilter->filter($rules);
+
         foreach ($rules as $rule) {
             if ($this->ruleSkipper->shouldSkip($rule::class, $file->getFilePath())) {
                 continue;

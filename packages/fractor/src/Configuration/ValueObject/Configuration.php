@@ -21,7 +21,8 @@ final readonly class Configuration
         private array $paths,
         private array $skip,
         private bool $dryRun,
-        private bool $quiet
+        private bool $quiet,
+        private ?string $onlyRule = null,
     ) {
         Assert::allStringNotEmpty($this->paths, 'No directories given');
     }
@@ -58,5 +59,10 @@ final readonly class Configuration
     public function isQuiet(): bool
     {
         return $this->quiet;
+    }
+
+    public function getOnlyRule(): ?string
+    {
+        return $this->onlyRule;
     }
 }
