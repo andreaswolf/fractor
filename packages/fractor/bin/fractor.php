@@ -2,9 +2,13 @@
 
 declare(strict_types=1);
 
-use a9f\Fractor\Configuration\ConfigResolver;
+use a9f\Fractor\Bootstrap\FractorConfigsResolver;
+use a9f\Fractor\ChangesReporting\Output\JsonOutputFormatter;
+use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\Console\Application\FractorApplication;
-use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
+use a9f\Fractor\DependencyInjection\FractorContainerFactory;
+use Nette\Utils\Json;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArgvInput;
 
 $autoloadFile = (static function (): ?string {
@@ -28,9 +32,27 @@ if ($autoloadFile === null) {
 }
 include $autoloadFile;
 
-$configFile = ConfigResolver::resolveConfigsFromInput(new ArgvInput());
+$fractorConfigsResolver = new FractorConfigsResolver();
 
-$container = (new ContainerContainerBuilder())->createDependencyInjectionContainer($configFile);
+try {
+    $configFile = $fractorConfigsResolver->provide();
+
+    $containerContainerBuilder = new FractorContainerFactory();
+    $container = $containerContainerBuilder->createDependencyInjectionContainer($configFile);
+} catch (\Throwable $throwable) {
+    // for json output
+    $argvInput = new ArgvInput();
+    $outputFormat = $argvInput->getParameterOption('--' . Option::OUTPUT_FORMAT);
+
+    // report fatal error in json format
+    if ($outputFormat === JsonOutputFormatter::NAME) {
+        echo Json::encode([
+            'fatal_errors' => [$throwable->getMessage()],
+        ]);
+    }
+
+    exit(Command::FAILURE);
+}
 
 /** @var FractorApplication $application */
 $application = $container->get(FractorApplication::class);

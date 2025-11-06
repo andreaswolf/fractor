@@ -188,6 +188,12 @@ When you feel confident, execute the code migrations with the following command:
 vendor/bin/fractor process
 ```
 
+If you want to run only a single rule from a configured set (in `fractor.php`), you can do so with:
+
+```bash
+vendor/bin/fractor process --only="a9f\Namespaced\Fractor\Rule"
+```
+
 Fractor will now apply the rules specified in the configuration file to the targeted files.
 
 ## Customization

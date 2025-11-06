@@ -2,44 +2,35 @@
 
 declare(strict_types=1);
 
-namespace a9f\Fractor\DependencyInjection;
+namespace a9f\Fractor\Kernel;
 
+use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Configuration\FractorConfiguration;
 use a9f\Fractor\Configuration\FractorConfigurationBuilder;
-use a9f\Fractor\Exception\ShouldNotHappenException;
-use a9f\FractorExtensionInstaller\Generated\InstalledPackages;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\DependencyInjection\AddConsoleCommandPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Webmozart\Assert\Assert;
 
-class ContainerContainerBuilder
+final class ContainerBuilderBuilder
 {
     /**
-     * @param string[] $additionalConfigFiles
+     * @param string[] $configFiles
      */
-    public function createDependencyInjectionContainer(
-        ?string $fractorConfigFile,
-        array $additionalConfigFiles = []
-    ): ContainerInterface {
+    public function build(?string $fractorConfigFile, array $configFiles): ContainerBuilder
+    {
         $containerBuilder = new ContainerBuilder();
         $configurationBuilder = FractorConfiguration::configure();
         try {
             $containerBuilder->set(FractorConfigurationBuilder::class, $configurationBuilder);
-
             $containerBuilder->addCompilerPass(new AddConsoleCommandPass());
-
-            $configFiles = [__DIR__ . '/../../config/application.php'];
+            $containerBuilder->registerForAutoconfiguration(FractorRule::class)->addTag(FractorRule::class);
 
             $fractorConfigFile ??= __DIR__ . '/../../config/fractor.php';
 
             $this->loadFractorConfigFile($fractorConfigFile, $containerBuilder, $configurationBuilder);
-
-            $configFiles = array_merge($configFiles, $additionalConfigFiles);
-            $configFiles = array_merge($configFiles, $this->collectConfigFilesFromExtensions());
 
             foreach ($configFiles as $configFile) {
                 if (! file_exists($configFile)) {
@@ -57,32 +48,6 @@ class ContainerContainerBuilder
             // reset after we're done building the config
             FractorConfiguration::reset();
         }
-    }
-
-    /**
-     * @return string[]
-     */
-    private function collectConfigFilesFromExtensions(): array
-    {
-        $collectedConfigFiles = [];
-        if (! class_exists('a9f\\FractorExtensionInstaller\\Generated\\InstalledPackages')) {
-            return $collectedConfigFiles;
-        }
-
-        foreach (InstalledPackages::PACKAGES as $package) {
-            $configPath = $package['path'] . '/config/application.php';
-
-            if (! is_readable($configPath)) {
-                throw new ShouldNotHappenException(sprintf(
-                    'Config file "%s" is not readable or does not exist.',
-                    $configPath
-                ));
-            }
-
-            $collectedConfigFiles[] = $configPath;
-        }
-
-        return $collectedConfigFiles;
     }
 
     /**

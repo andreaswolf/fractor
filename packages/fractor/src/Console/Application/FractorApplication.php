@@ -11,7 +11,7 @@ final class FractorApplication extends Application
 {
     public const NAME = 'Fractor';
 
-    public const FRACTOR_CONSOLE_VERSION = '0.5.6';
+    public const FRACTOR_CONSOLE_VERSION = '0.5.7';
 
     public function __construct()
     {

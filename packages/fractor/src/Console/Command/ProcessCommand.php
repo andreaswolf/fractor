@@ -6,21 +6,23 @@ namespace a9f\Fractor\Console\Command;
 
 use a9f\Fractor\Application\FractorRunner;
 use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
+use a9f\Fractor\ChangesReporting\Output\ConsoleOutputFormatter;
+use a9f\Fractor\Configuration\ConfigInitializer;
 use a9f\Fractor\Configuration\ConfigurationFactory;
+use a9f\Fractor\Configuration\ConfigurationRuleFilter;
 use a9f\Fractor\Configuration\Option;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Console\Application\FractorApplication;
 use a9f\Fractor\Console\ExitCode;
 use a9f\Fractor\Console\Output\OutputFormatterCollector;
-use a9f\Fractor\Console\Output\SymfonyConsoleOutput;
 use a9f\Fractor\Exception\ShouldNotHappenException;
 use a9f\Fractor\ValueObject\ProcessResult;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'process', description: 'Runs Fractor with the given configuration file')]
 final class ProcessCommand extends Command
@@ -29,13 +31,21 @@ final class ProcessCommand extends Command
         private readonly FractorRunner $runner,
         private readonly ConfigurationFactory $configurationFactory,
         private readonly OutputFormatterCollector $outputFormatterCollector,
-        private readonly ChangedFilesDetector $changedFilesDetector
+        private readonly ChangedFilesDetector $changedFilesDetector,
+        private readonly ConfigInitializer $configInitializer,
+        private readonly ConfigurationRuleFilter $configurationRuleFilter
     ) {
         parent::__construct();
     }
 
     protected function configure(): void
     {
+        $this->addArgument(
+            Option::SOURCE,
+            InputArgument::OPTIONAL | InputArgument::IS_ARRAY,
+            'Files or directories to be upgraded.'
+        );
+
         $this->addOption(
             Option::CONFIG,
             Option::CONFIG_SHORT,
@@ -50,22 +60,48 @@ final class ProcessCommand extends Command
             'Only see the diff of changes, do not save them to files.'
         );
         $this->addOption(
+            Option::NO_PROGRESS_BAR,
+            null,
+            InputOption::VALUE_NONE,
+            'Hide progress bar. Useful e.g. for nicer CI output.'
+        );
+        $this->addOption(
             Option::QUIET,
             Option::QUIET_SHORT,
             InputOption::VALUE_NONE,
             'Do not output diff of changes.'
         );
         $this->addOption(Option::CLEAR_CACHE, null, InputOption::VALUE_NONE, 'Clear unchanged files cache');
+
+        $this->addOption(
+            Option::OUTPUT_FORMAT,
+            null,
+            InputOption::VALUE_REQUIRED,
+            'Select output format',
+            ConsoleOutputFormatter::NAME
+        );
+
+        // filter by rule and path
+        $this->addOption(Option::ONLY, null, InputOption::VALUE_REQUIRED, 'Fully qualified rule class name');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $configuration = $this->configurationFactory->createFromInput($input);
-        $processResult = $this->runner->run(new SymfonyConsoleOutput($output), $configuration);
+        // missing config? add it :)
+        if (! $this->configInitializer->areSomeFractorsLoaded()) {
+            $this->configInitializer->createConfig((string) getcwd());
+            return self::SUCCESS;
+        }
 
-        $outputFormat = 'console';
+        $configuration = $this->configurationFactory->createFromInput($input);
+
+        $this->configurationRuleFilter->setConfiguration($configuration);
+
+        $processResult = $this->runner->run($configuration);
+
+        $outputFormat = $configuration->getOutputFormat();
         $outputFormatter = $this->outputFormatterCollector->getByName($outputFormat);
-        $outputFormatter->setSymfonyStyle(new SymfonyStyle($input, $output));
+
         $outputFormatter->report($processResult, $configuration);
 
         return $this->resolveReturnCode($processResult, $configuration);

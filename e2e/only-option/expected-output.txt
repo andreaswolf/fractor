@@ -1,0 +1,19 @@
+
+1 file with changes
+===================
+
+1) only-option/result/fixture.typoscript:1
+
+    ---------- begin diff ----------
+@@ @@
+-config.xhtmlDoctype = 1
++config.doctype = 1
+ config.metaCharset = utf-8
+    ----------- end diff -----------
+
+Applied rules:
+ * RenameConfigXhtmlDoctypeToDoctypeFractor (https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.4/Deprecation-100461-TypoScriptOptionConfigxhtmlDoctype.html)
+
+
+ [OK] 1 file has been changed by Fractor
+

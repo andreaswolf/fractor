@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace a9f\FractorTypoScript\Tests\TypoScriptStatementsIterator;
 
 use a9f\Fractor\Application\ValueObject\File;
-use a9f\Fractor\DependencyInjection\ContainerContainerBuilder;
+use a9f\Fractor\DependencyInjection\FractorContainerFactory;
 use a9f\Fractor\Exception\ShouldNotHappenException;
+use a9f\Fractor\ValueObject\Bootstrap\BootstrapConfigs;
 use a9f\FractorTypoScript\Tests\TypoScriptStatementsIterator\Fixture\StatementCollectingVisitor;
 use a9f\FractorTypoScript\TypoScriptStatementsIterator;
 use Helmich\TypoScriptParser\Parser\Parser;
@@ -22,10 +23,8 @@ final class TypoScriptStatementsIteratorTest extends TestCase
     {
         parent::setUp();
 
-        $this->currentContainer = (new ContainerContainerBuilder())
-            ->createDependencyInjectionContainer(__DIR__ . '/config/fractor.php', [
-                __DIR__ . '/config/config.php',
-            ]);
+        $configs = new BootstrapConfigs(__DIR__ . '/config/fractor.php', [__DIR__ . '/config/config.php']);
+        $this->currentContainer = (new FractorContainerFactory())->createDependencyInjectionContainer($configs);
     }
 
     #[Test]
