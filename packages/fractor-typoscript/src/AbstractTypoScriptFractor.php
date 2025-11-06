@@ -38,8 +38,9 @@ abstract class AbstractTypoScriptFractor implements TypoScriptFractor
         return $result;
     }
 
-    final public function leaveNode(Statement $node): void
+    final public function leaveNode(Statement $node): ?Statement
     {
+        return null;
     }
 
     /**

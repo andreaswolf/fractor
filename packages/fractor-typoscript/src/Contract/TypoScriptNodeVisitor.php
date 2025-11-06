@@ -22,7 +22,7 @@ interface TypoScriptNodeVisitor
      */
     public function enterNode(Statement $node): Statement|array|int;
 
-    public function leaveNode(Statement $node): void;
+    public function leaveNode(Statement $node): ?Statement;
 
     /**
      * @param Statement[] $statements

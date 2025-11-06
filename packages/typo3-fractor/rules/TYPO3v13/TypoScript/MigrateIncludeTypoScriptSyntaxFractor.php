@@ -133,6 +133,14 @@ CODE_SAMPLE
 
     private function shouldSkip(Statement $statement): bool
     {
-        return ! $statement instanceof FileIncludeStatement && ! $statement instanceof DirectoryIncludeStatement;
+        if (! $statement instanceof FileIncludeStatement && ! $statement instanceof DirectoryIncludeStatement) {
+            return true;
+        }
+
+        if ($statement instanceof FileIncludeStatement && $statement->newSyntax === true) {
+            return true;
+        }
+
+        return false;
     }
 }

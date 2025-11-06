@@ -77,29 +77,53 @@ final readonly class TypoScriptStatementsIterator
     private function traverseNode(Statement $node): int|Statement|array
     {
         $lastCalledVisitor = null;
-        $result = $node;
-        foreach ($this->visitors as $visitor) {
-            $result = $visitor->enterNode($node);
+        $command = null;
 
-            if (is_int($result)) {
+        foreach ($this->visitors as $visitor) {
+            $return = $visitor->enterNode($node);
+
+            if ($return instanceof Statement) {
+                $node = $return;
+                continue;
+            }
+
+            if (is_array($return)) {
+                return $return;
+            }
+
+            if ($return === self::REMOVE_NODE) {
+                $command = self::REMOVE_NODE;
                 $lastCalledVisitor = $visitor;
                 break;
             }
         }
 
-        if ($node instanceof ConditionalStatement) {
-            $node->ifStatements = $this->processStatementList($node->ifStatements);
-            $node->elseStatements = $this->processStatementList($node->elseStatements);
-        } elseif ($node instanceof NestedAssignment) {
-            $node->statements = $this->processStatementList($node->statements);
+        if ($command !== self::REMOVE_NODE) {
+            if ($node instanceof ConditionalStatement) {
+                $node->ifStatements = $this->processStatementList($node->ifStatements);
+                $node->elseStatements = $this->processStatementList($node->elseStatements);
+            } elseif ($node instanceof NestedAssignment) {
+                $node->statements = $this->processStatementList($node->statements);
+            }
         }
 
         foreach ($this->visitors as $visitor) {
             if ($lastCalledVisitor === $visitor) {
                 break;
             }
-            $visitor->leaveNode($node);
+
+            $return = $visitor->leaveNode($node);
+            if ($return === null) {
+                continue;
+            }
+
+            $node = $return;
         }
-        return $result;
+
+        if ($command === self::REMOVE_NODE) {
+            return self::REMOVE_NODE;
+        }
+
+        return $node;
     }
 }
