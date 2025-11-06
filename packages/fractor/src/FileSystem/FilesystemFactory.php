@@ -30,4 +30,15 @@ final readonly class FilesystemFactory
 
         return new FlysystemFilesystem(new Filesystem($adapter));
     }
+
+    public function createLocalFilesystem(): FilesystemInterface
+    {
+        if (StaticPHPUnitEnvironment::isPHPUnitRun()) {
+            $adapter = new InMemoryFilesystemAdapter();
+        } else {
+            $adapter = new LocalFilesystemAdapter($this->projectDir);
+        }
+
+        return new FlysystemFilesystem(new Filesystem($adapter));
+    }
 }

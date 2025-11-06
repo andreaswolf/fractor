@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace a9f\Typo3Fractor\Utility;
 
-use a9f\Fractor\Contract\FilesystemInterface;
+use a9f\Fractor\Contract\LocalFilesystemInterface;
 
 final readonly class ExtensionManagementUtility
 {
     public function __construct(
-        private FilesystemInterface $filesystem
+        private LocalFilesystemInterface $filesystem
     ) {
     }
 

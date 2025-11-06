@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace a9f\Typo3Fractor\TYPO3v13\TypoScript;
 
 use a9f\Fractor\Contract\FilesystemInterface;
+use a9f\Fractor\Contract\LocalFilesystemInterface;
 use a9f\FractorTypoScript\AbstractTypoScriptFractor;
 use a9f\Typo3Fractor\Utility\ExtensionManagementUtility;
 use Helmich\TypoScriptParser\Parser\AST\Builder;
@@ -26,6 +27,7 @@ final class MigrateIncludeTypoScriptSyntaxFractor extends AbstractTypoScriptFrac
     public function __construct(
         private readonly Builder $builder,
         private readonly FilesystemInterface $filesystem,
+        private readonly LocalFilesystemInterface $localFilesystem,
         private readonly ExtensionManagementUtility $extensionManagementUtility
     ) {
     }
@@ -111,7 +113,7 @@ CODE_SAMPLE
                 $extensionKey = basename($extensionRootPath);
                 $typoScriptIncludePath = $extensionRootPath . str_replace('EXT:' . $extensionKey, '', $directory);
 
-                $listing = $this->filesystem->listContents($typoScriptIncludePath, false);
+                $listing = $this->localFilesystem->listContents($typoScriptIncludePath, false);
                 foreach ($listing as $item) {
                     if (! $item instanceof FileAttributes) {
                         continue;
@@ -122,7 +124,10 @@ CODE_SAMPLE
                     // Rename all *.ts files to *.typoscript
                     $destination = str_replace('.ts', '.typoscript', $source);
                     $this->filesystem->move($source, $destination);
+
+                    $statement->extensions = 'typoscript';
                 }
+                $extensions = $statement->extensions;
             }
             $importStatement = $directory . '*.' . $extensions;
         } else {

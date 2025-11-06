@@ -1,0 +1,1 @@
+@import 'EXT:my_theme/Configuration/PageTsConfig/Includes/*.tsconfig.typoscript'

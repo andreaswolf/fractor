@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\FileSystem;
 
-use a9f\Fractor\Contract\FilesystemInterface;
+use a9f\Fractor\Contract\LocalFilesystemInterface;
 use League\Flysystem\DirectoryListing;
 use League\Flysystem\FilesystemOperator;
 use League\Flysystem\FilesystemReader;
@@ -12,7 +12,7 @@ use League\Flysystem\UnableToDeleteFile;
 use League\Flysystem\UnableToReadFile;
 use League\Flysystem\UnableToWriteFile;
 
-final readonly class FlysystemFilesystem implements FilesystemInterface
+final readonly class FlysystemFilesystem implements LocalFilesystemInterface
 {
     public function __construct(
         private FilesystemOperator $filesystemOperator
