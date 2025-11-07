@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace a9f\Typo3Fractor\Tests\TYPO3v13\TypoScript\MigrateIncludeTypoScriptSyntaxFractor;
 
 use a9f\Fractor\Contract\FilesystemInterface;
+use a9f\Fractor\Contract\LocalFilesystemInterface;
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class MigrateIncludeTypoScriptSyntaxFractorTest extends AbstractFractorTestCase
 {
     private FilesystemInterface $filesystem;
+
+    private LocalFilesystemInterface $localFilesystem;
 
     /**
      * @var string[]
@@ -20,13 +23,13 @@ final class MigrateIncludeTypoScriptSyntaxFractorTest extends AbstractFractorTes
     protected function setUp(): void
     {
         parent::setUp();
-        $this->initializeFilesystem();
+        $this->initializeFilesystems();
     }
 
     protected function tearDown(): void
     {
         foreach ($this->testFilesToDelete as $filename) {
-            $this->filesystem->delete($filename);
+            $this->localFilesystem->delete($filename);
         }
 
         parent::tearDown();
@@ -46,16 +49,19 @@ final class MigrateIncludeTypoScriptSyntaxFractorTest extends AbstractFractorTes
     /**
      * @dataProvider provideExtensionData
      */
-    public function testWithExistingExtEmConf(string $extensionKey): void
+    public function testWithExistingExtEmConf(string $extensionKey, ?string $newFile, ?string $fileToRewrite): void
     {
         // Arrange
         $extEmConf = __DIR__ . '/Extensions/' . $extensionKey . '/ext_emconf.php';
         $this->testFilesToDelete[] = $extEmConf;
-        $this->filesystem->write($extEmConf, '');
+        $this->localFilesystem->write($extEmConf, '');
 
-        $tsFile = __DIR__ . '/Extensions/' . $extensionKey . '/Configuration/TypoScript/Includes/file.ts';
-        $this->testFilesToDelete[] = $tsFile;
-        $this->filesystem->write($tsFile, '');
+        if ($fileToRewrite !== null) {
+            $absoluteFileToRewrite = __DIR__ . '/Extensions/' . $extensionKey . '/' . $fileToRewrite;
+            $this->testFilesToDelete[] = $absoluteFileToRewrite;
+            $this->filesystem->write($absoluteFileToRewrite, '');
+            $this->localFilesystem->write($absoluteFileToRewrite, '');
+        }
 
         // Act
         $this->doTestFile(
@@ -64,27 +70,27 @@ final class MigrateIncludeTypoScriptSyntaxFractorTest extends AbstractFractorTes
         $this->testFilesToDelete[] = __DIR__ . '/Extensions/' . $extensionKey . '/Configuration/TypoScript/Includes/file.typoscript';
 
         // Assert
-        self::assertTrue(
-            $this->filesystem->fileExists(
-                __DIR__ . '/Extensions/' . $extensionKey . '/Configuration/TypoScript/Includes/file.typoscript'
-            )
-        );
-        self::assertFalse(
-            $this->filesystem->fileExists(
-                __DIR__ . '/Extensions/' . $extensionKey . '/Configuration/TypoScript/Includes/file.ts'
-            )
-        );
+        if ($newFile !== null) {
+            self::assertTrue(
+                $this->filesystem->fileExists(__DIR__ . '/Extensions/' . $extensionKey . '/' . $newFile)
+            );
+        }
+        if ($fileToRewrite !== null) {
+            self::assertFalse(
+                $this->filesystem->fileExists(__DIR__ . '/Extensions/' . $extensionKey . '/' . $fileToRewrite)
+            );
+        }
     }
 
     /**
      * @dataProvider provideExtensionData
      */
-    public function testWithExistingComposerJson(string $extensionKey): void
+    public function testWithExistingComposerJson(string $extensionKey, ?string $newFile, ?string $fileToRewrite): void
     {
         // Arrange
         $composerJson = __DIR__ . '/Extensions/' . $extensionKey . '/composer.json';
         $this->testFilesToDelete[] = $composerJson;
-        $this->filesystem->write($composerJson, '{
+        $this->localFilesystem->write($composerJson, '{
     "extra": {
         "typo3/cms": {
             "extension-key": "' . $extensionKey . '"
@@ -93,9 +99,12 @@ final class MigrateIncludeTypoScriptSyntaxFractorTest extends AbstractFractorTes
 }
 ');
 
-        $tsFile = __DIR__ . '/Extensions/' . $extensionKey . '/Configuration/TypoScript/Includes/file.ts';
-        $this->testFilesToDelete[] = $tsFile;
-        $this->filesystem->write($tsFile, '');
+        if ($fileToRewrite !== null) {
+            $absoluteFileToRewrite = __DIR__ . '/Extensions/' . $extensionKey . '/' . $fileToRewrite;
+            $this->testFilesToDelete[] = $absoluteFileToRewrite;
+            $this->filesystem->write($absoluteFileToRewrite, '');
+            $this->localFilesystem->write($absoluteFileToRewrite, '');
+        }
 
         // Act
         $this->doTestFile(
@@ -104,25 +113,38 @@ final class MigrateIncludeTypoScriptSyntaxFractorTest extends AbstractFractorTes
         $this->testFilesToDelete[] = __DIR__ . '/Extensions/' . $extensionKey . '/Configuration/TypoScript/Includes/file.typoscript';
 
         // Assert
-        self::assertTrue(
-            $this->filesystem->fileExists(
-                __DIR__ . '/Extensions/' . $extensionKey . '/Configuration/TypoScript/Includes/file.typoscript'
-            )
-        );
-        self::assertFalse(
-            $this->filesystem->fileExists(
-                __DIR__ . '/Extensions/' . $extensionKey . '/Configuration/TypoScript/Includes/file.ts'
-            )
-        );
+        if ($newFile !== null) {
+            self::assertTrue(
+                $this->filesystem->fileExists(__DIR__ . '/Extensions/' . $extensionKey . '/' . $newFile)
+            );
+        }
+        if ($fileToRewrite !== null) {
+            self::assertFalse(
+                $this->filesystem->fileExists(__DIR__ . '/Extensions/' . $extensionKey . '/' . $fileToRewrite)
+            );
+        }
     }
 
     /**
-     * @return \Iterator<array<string>>
+     * @return \Iterator<array<int, string|null>>
      */
     public static function provideExtensionData(): \Iterator
     {
-        yield 'Test that *.ts files are renamed to *.typoscript with ts include only' => ['extension1'];
-        yield 'Test that *.ts files are renamed to *.typoscript with mixed include' => ['extension2'];
+        yield 'Test that *.ts files are renamed to *.typoscript with ts include only' => [
+            'extension1',
+            'Configuration/TypoScript/Includes/file.typoscript',
+            'Configuration/TypoScript/Includes/file.ts',
+        ];
+        yield 'Test that *.ts files are renamed to *.typoscript with mixed include' => [
+            'extension2',
+            'Configuration/TypoScript/Includes/file.typoscript',
+            'Configuration/TypoScript/Includes/file.ts',
+        ];
+        yield 'Test that *.tsconfig.typoscript files are imported with tsconfig.typoscript extension' => [
+            'extension3',
+            null,
+            null,
+        ];
     }
 
     public function provideConfigFilePath(): string
@@ -130,8 +152,9 @@ final class MigrateIncludeTypoScriptSyntaxFractorTest extends AbstractFractorTes
         return __DIR__ . '/config/fractor.php';
     }
 
-    private function initializeFilesystem(): void
+    private function initializeFilesystems(): void
     {
         $this->filesystem = $this->getService(FilesystemInterface::class);
+        $this->localFilesystem = $this->getService(LocalFilesystemInterface::class);
     }
 }

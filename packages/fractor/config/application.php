@@ -19,6 +19,7 @@ use a9f\Fractor\Console\Output\OutputFormatterCollector;
 use a9f\Fractor\Console\Style\FractorStyle;
 use a9f\Fractor\Console\Style\SymfonyStyleFactory;
 use a9f\Fractor\Contract\FilesystemInterface;
+use a9f\Fractor\Contract\LocalFilesystemInterface;
 use a9f\Fractor\Differ\ConsoleDiffer;
 use a9f\Fractor\Differ\Contract\Differ;
 use a9f\Fractor\FileSystem\FilesystemFactory;
@@ -98,7 +99,10 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
     $services->set(FilesystemFactory::class)
         ->arg('$projectDir', '/');
-    $services->set(FilesystemInterface::class)->factory([service(FilesystemFactory::class), 'create']);
+    $services->set(LocalFilesystemInterface::class)
+        ->factory([service(FilesystemFactory::class), 'createLocalFilesystem']);
+    $services->set(FilesystemInterface::class)
+        ->factory([service(FilesystemFactory::class), 'create']);
     $services->set(FlysystemFilesystem::class)
         ->arg('$filesystemOperator', service(\League\Flysystem\Filesystem::class));
 

@@ -1,0 +1,7 @@
+{
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "my_theme"
+        }
+    }
+}
