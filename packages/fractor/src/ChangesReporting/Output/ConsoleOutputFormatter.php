@@ -32,7 +32,7 @@ final readonly class ConsoleOutputFormatter implements OutputFormatterInterface
         $this->reportFileDiffs($processResult->getFileDiffs(), false);
 
         // to keep space between progress bar and success message
-        if ($processResult->getFileDiffs() === []) {
+        if ($configuration->shouldShowProgressBar() && $processResult->getFileDiffs() === []) {
             $this->symfonyStyle->newLine();
         }
 
