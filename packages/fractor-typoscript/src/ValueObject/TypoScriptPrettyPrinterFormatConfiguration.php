@@ -10,13 +10,17 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 final readonly class TypoScriptPrettyPrinterFormatConfiguration
 {
+    /**
+     * @param array<non-empty-string> $allowedFileExtensions
+     */
     public function __construct(
         public int $size,
         public string $style,
         public bool $addClosingGlobal,
         public bool $includeEmptyLineBreaks,
         public bool $indentConditions,
-        public PrettyPrinterConditionTermination $conditionTermination
+        public PrettyPrinterConditionTermination $conditionTermination,
+        public array $allowedFileExtensions
     ) {
     }
 
@@ -48,13 +52,23 @@ final readonly class TypoScriptPrettyPrinterFormatConfiguration
             ? $parameterBag->get(TypoScriptProcessorOption::CONDITION_TERMINATION)
             : PrettyPrinterConditionTermination::Keep;
 
+        $allowedFileExtensions = $parameterBag->has(TypoScriptProcessorOption::ALLOWED_FILE_EXTENSIONS)
+            ? $parameterBag->get(TypoScriptProcessorOption::ALLOWED_FILE_EXTENSIONS)
+            : ['typoscript', 'tsconfig', 'ts'];
+        $allowedFileExtensions = is_array($allowedFileExtensions) ? $allowedFileExtensions : [
+            'typoscript',
+            'tsconfig',
+            'ts',
+        ];
+
         return new self(
             $size,
             $style,
             $addClosingGlobal,
             $includeEmptyLineBreaks,
             $indentConditions,
-            $conditionTermination
+            $conditionTermination,
+            $allowedFileExtensions
         );
     }
 }

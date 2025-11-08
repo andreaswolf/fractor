@@ -17,4 +17,6 @@ final class TypoScriptProcessorOption
     public const INDENT_CONDITIONS = 'typoscript-processor-indent-conditions';
 
     public const CONDITION_TERMINATION = 'typoscript-processor-condition-termination';
+
+    public const ALLOWED_FILE_EXTENSIONS = 'typoscript-processor-allowed-file-extensions';
 }
