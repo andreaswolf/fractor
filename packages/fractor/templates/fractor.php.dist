@@ -17,6 +17,8 @@ __PATHS__
     ->withRules([
     ])
     ->withSkip([
+        // You might want to skip node_modules or any other folder or fractor rule here
+        //__DIR__ . '/node_modules',
     ])
     ->withOptions([
         XmlProcessorOption::INDENT_CHARACTER => Indent::STYLE_SPACE,

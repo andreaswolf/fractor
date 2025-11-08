@@ -18,6 +18,8 @@ __PATHS__
         Typo3LevelSetList::UP_TO_TYPO3_14
     ])
     ->withSkip([
+        // You might want to skip node_modules or any other folder or fractor rule here
+        //__DIR__ . '/node_modules',
     ])
     ->withOptions([
         XmlProcessorOption::INDENT_CHARACTER => Indent::STYLE_SPACE,
