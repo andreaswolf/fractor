@@ -183,7 +183,7 @@ final class GenerateRuleCommand extends Command
         return $description;
     }
 
-    private function askForType(): Question
+    private function askForType(): ChoiceQuestion
     {
         $question = new ChoiceQuestion('Please select the Fractor type', [
             'flexform',
