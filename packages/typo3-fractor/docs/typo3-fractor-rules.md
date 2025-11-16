@@ -1,4 +1,4 @@
-# 34 Rules Overview
+# 35 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -414,6 +414,21 @@ Migrates option cols to size for TCA type none
          </sDEF>
      </sheets>
  </T3DataStructure>
+```
+
+<br>
+
+## MigrateTypoScriptConditionGetTSFEFractor
+
+Migrate TypoScript condition function `getTSFE()`
+
+- class: [`a9f\Typo3Fractor\TYPO3v14\TypoScript\MigrateTypoScriptConditionGetTSFEFractor`](../rules/TYPO3v14/TypoScript/MigrateTypoScriptConditionGetTSFEFractor.php)
+
+```diff
+-[getTSFE() && getTSFE().id == 42]
++[request?.getPageArguments()?.getPageId() == 42]
+     temp.foo = 42
+ [end]
 ```
 
 <br>

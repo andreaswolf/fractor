@@ -1,0 +1,23 @@
+[getTSFE() && getTSFE().id == 42]
+    temp.foo = 42
+[end]
+
+[getTSFE().id == 43]
+    temp.foo = 43
+[end]
+
+[getTSFE()?.id == 44]
+    temp.foo = 44
+[end]
+-----
+[request?.getPageArguments()?.getPageId() == 42]
+    temp.foo = 42
+[end]
+
+[request?.getPageArguments()?.getPageId() == 43]
+    temp.foo = 43
+[end]
+
+[request?.getPageArguments()?.getPageId() == 44]
+    temp.foo = 44
+[end]
