@@ -7,7 +7,7 @@ use Rector\DeadCode\Rector\ConstFetch\RemovePhpVersionIdCheckRector;
 
 return RectorConfig::configure()
     ->withPhpSets(php82: true)
-    ->withPreparedSets(deadCode: true, typeDeclarations: true, earlyReturn: true, strictBooleans: true)
+    ->withPreparedSets(deadCode: true, typeDeclarations: true, earlyReturn: true)
     // removeUnusedImports is false since we had cases where imports only used in Docblocks were removed;
     // additionally, our code style fixer will remove unused imports as well
     ->withImportNames(true, true, false, false)
