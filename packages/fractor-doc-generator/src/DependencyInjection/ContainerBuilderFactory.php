@@ -7,12 +7,11 @@ namespace a9f\FractorDocGenerator\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\DependencyInjection\AddConsoleCommandPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 final class ContainerBuilderFactory
 {
-    public function createDependencyInjectionContainer(): ContainerInterface
+    public function createDependencyInjectionContainer(): ContainerBuilder
     {
         $containerBuilder = new ContainerBuilder();
 
