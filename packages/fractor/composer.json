@@ -3,6 +3,14 @@
     "description": "File Read-Analyse-Change Tool",
     "license": "MIT",
     "type": "library",
+    "keywords": [
+        "dev",
+        "fractor",
+        "upgrade",
+        "refactoring",
+        "automation",
+        "migration"
+    ],
     "authors": [
         {
             "name": "Andreas Wolf",

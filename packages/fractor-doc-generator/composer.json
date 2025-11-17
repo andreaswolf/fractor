@@ -3,6 +3,10 @@
     "description": "Generate docs for Fractor",
     "license": "MIT",
     "type": "library",
+    "keywords": [
+        "dev",
+        "fractor"
+    ],
     "authors": [
         {
             "name": "Andreas Wolf",

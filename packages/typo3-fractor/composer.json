@@ -3,6 +3,15 @@
     "description": "TYPO3 extension for the File Read-Analyse-Change Tool. Allows modifying XML files",
     "license": "MIT",
     "type": "fractor-extension",
+    "keywords": [
+        "dev",
+        "fractor",
+        "upgrade",
+        "refactoring",
+        "automation",
+        "migration",
+        "typo3"
+    ],
     "authors": [
         {
             "name": "Andreas Wolf",

@@ -3,6 +3,14 @@
     "description": "YAML extension for the File Read-Analyse-Change Tool. Allows modifying YAML files",
     "license": "MIT",
     "type": "fractor-extension",
+    "keywords": [
+        "dev",
+        "fractor",
+        "upgrade",
+        "refactoring",
+        "automation",
+        "migration"
+    ],
     "authors": [
         {
             "name": "Andreas Wolf",

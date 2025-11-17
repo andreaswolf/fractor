@@ -3,6 +3,14 @@
     "description": "TypoScript extension for the File Read-Analyse-Change Tool. Allows modifying TYPO3 TypoScript configuration files",
     "license": "MIT",
     "type": "fractor-extension",
+    "keywords": [
+        "dev",
+        "fractor",
+        "upgrade",
+        "refactoring",
+        "automation",
+        "migration"
+    ],
     "authors": [
         {
             "name": "Andreas Wolf",
