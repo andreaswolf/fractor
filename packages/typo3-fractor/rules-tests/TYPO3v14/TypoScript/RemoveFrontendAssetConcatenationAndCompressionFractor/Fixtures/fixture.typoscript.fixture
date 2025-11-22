@@ -1,0 +1,41 @@
+config {
+    a = 1
+    compressCss = 1
+    compressJs = 1
+    concatenateCss = 1
+    concatenateJs = 1
+}
+
+page = PAGE
+page.includeCSS {
+    main = EXT:site_package/Resources/Public/Css/main.css
+    main.disableCompression = 1
+    main.excludeFromConcatenation = 1
+}
+
+seite = PAGE
+seite.includeCSS {
+    styles = EXT:site_package/Resources/Public/Css/styles.css
+    styles {
+        disableCompression = 1
+        excludeFromConcatenation = 1
+    }
+}
+-----
+config {
+    a = 1
+}
+
+page = PAGE
+page.includeCSS {
+    main = EXT:site_package/Resources/Public/Css/main.css
+}
+
+seite = PAGE
+seite.includeCSS {
+    styles = EXT:site_package/Resources/Public/Css/styles.css
+    styles {
+        disableCompression = 1
+        excludeFromConcatenation = 1
+    }
+}

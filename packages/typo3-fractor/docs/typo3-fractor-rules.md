@@ -1,4 +1,4 @@
-# 35 Rules Overview
+# 36 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -507,6 +507,36 @@ Remove plugin.tx_felogin_login.settings.exposeNonexistentUserInForgotPasswordDia
 ```diff
 -plugin.tx_felogin_login.settings.exposeNonexistentUserInForgotPasswordDialog = 1
 +-
+```
+
+<br>
+
+## RemoveFrontendAssetConcatenationAndCompressionFractor
+
+Remove Frontend Asset Concatenation and Compression
+
+- class: [`a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveFrontendAssetConcatenationAndCompressionFractor`](../rules/TYPO3v14/TypoScript/RemoveFrontendAssetConcatenationAndCompressionFractor.php)
+
+```diff
+-config.compressCss
+-config.compressJs
+-config.concatenateCss
+-config.concatenateJs
++-
++-
++-
++-
+```
+
+<br>
+
+```diff
+ page = PAGE
+ page.includeCSS {
+     main = EXT:site_package/Resources/Public/Css/main.css
+-    main.disableCompression = 1
+-    main.excludeFromConcatenation = 1
+ }
 ```
 
 <br>
