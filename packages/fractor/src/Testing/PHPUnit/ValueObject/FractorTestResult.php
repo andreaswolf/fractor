@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Testing\PHPUnit\ValueObject;
 
+use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\ValueObject\ProcessResult;
 
 final readonly class FractorTestResult
@@ -20,13 +21,13 @@ final readonly class FractorTestResult
     }
 
     /**
-     * @return array<string>
+     * @return array<class-string<FractorRule>>
      */
     public function getAppliedFractorRules(): array
     {
         $appliedRules = [];
         foreach ($this->processResult->getFileDiffs() as $fileDiff) {
-            $appliedRules = \array_merge($appliedRules, $fileDiff->getAppliedRules());
+            $appliedRules = \array_merge($appliedRules, $fileDiff->getFractorClasses());
         }
         \sort($appliedRules);
         return \array_unique($appliedRules);

@@ -66,6 +66,12 @@ final class ProcessCommand extends Command
             'Hide progress bar. Useful e.g. for nicer CI output.'
         );
         $this->addOption(
+            Option::SHOW_CHANGELOG,
+            null,
+            InputOption::VALUE_NONE,
+            'Show changelog URI. Useful e.g. for more verbose output.'
+        );
+        $this->addOption(
             Option::QUIET,
             Option::QUIET_SHORT,
             InputOption::VALUE_NONE,

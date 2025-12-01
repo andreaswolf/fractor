@@ -26,6 +26,7 @@ final readonly class Configuration
         private array $paths = [],
         private array $skip = [],
         private ?string $onlyRule = null,
+        private bool $showChangelog = false,
     ) {
         Assert::allStringNotEmpty($this->paths, 'No directories given');
     }
@@ -77,5 +78,10 @@ final readonly class Configuration
     public function getOutputFormat(): string
     {
         return $this->outputFormat;
+    }
+
+    public function shouldShowChangelog(): bool
+    {
+        return $this->showChangelog;
     }
 }

@@ -12,7 +12,7 @@
     ----------- end diff -----------
 
 Applied rules:
- * RenameConfigXhtmlDoctypeToDoctypeFractor (https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.4/Deprecation-100461-TypoScriptOptionConfigxhtmlDoctype.html)
+ * RenameConfigXhtmlDoctypeToDoctypeFractor
 
 
  [OK] 1 file has been changed by Fractor

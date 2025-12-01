@@ -29,7 +29,7 @@ final readonly class ConsoleOutputFormatter implements OutputFormatterInterface
 
     public function report(ProcessResult $processResult, Configuration $configuration): void
     {
-        $this->reportFileDiffs($processResult->getFileDiffs(), false);
+        $this->reportFileDiffs($processResult->getFileDiffs(), false, $configuration->shouldShowChangelog());
 
         // to keep space between progress bar and success message
         if ($configuration->shouldShowProgressBar() && $processResult->getFileDiffs() === []) {
@@ -43,7 +43,7 @@ final readonly class ConsoleOutputFormatter implements OutputFormatterInterface
     /**
      * @param FileDiff[] $fileDiffs
      */
-    private function reportFileDiffs(array $fileDiffs, bool $absoluteFilePath): void
+    private function reportFileDiffs(array $fileDiffs, bool $absoluteFilePath, bool $showChangelog): void
     {
         if (\count($fileDiffs) <= 0) {
             return;
@@ -68,7 +68,9 @@ final readonly class ConsoleOutputFormatter implements OutputFormatterInterface
 
             if ($fileDiff->getAppliedRules() !== []) {
                 $this->symfonyStyle->writeln('<options=underscore>Applied rules:</>');
-                $this->symfonyStyle->listing($fileDiff->getAppliedRules());
+                $this->symfonyStyle->listing(
+                    $showChangelog ? $fileDiff->getChangelogsLines() : $fileDiff->getFractorShortClasses()
+                );
                 $this->symfonyStyle->newLine();
             }
         }

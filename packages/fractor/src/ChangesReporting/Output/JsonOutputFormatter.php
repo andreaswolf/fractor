@@ -37,7 +37,7 @@ final class JsonOutputFormatter implements OutputFormatterInterface
             $errorsJson['file_diffs'][] = [
                 'file' => $filePath,
                 'diff' => $fileDiff->getDiff(),
-                'applied_rules' => $fileDiff->getAppliedRules(),
+                'applied_rules' => $configuration->shouldShowChangelog() ? $fileDiff->getChangelogsLines() : $fileDiff->getFractorClasses(),
             ];
 
             // for CI
