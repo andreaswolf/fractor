@@ -70,6 +70,11 @@ final class Option
      */
     public const NO_PROGRESS_BAR = 'no-progress-bar';
 
+    /**
+     * @var string
+     */
+    public const SHOW_CHANGELOG = 'show-changelog';
+
     public const CACHE_CLASS = FileCacheStorage::class;
 
     public const CONTAINER_CACHE_DIRECTORY = 'container-cache-directory';

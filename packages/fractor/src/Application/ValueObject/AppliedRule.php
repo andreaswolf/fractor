@@ -9,10 +9,10 @@ use a9f\Fractor\Application\Contract\FractorRule;
 final readonly class AppliedRule
 {
     /**
-     * @param class-string<FractorRule> $fractorRule
+     * @param class-string<FractorRule> $fractorClass
      */
     private function __construct(
-        private string $fractorRule,
+        private string $fractorClass,
     ) {
     }
 
@@ -32,8 +32,8 @@ final readonly class AppliedRule
     /**
      * @return class-string<FractorRule>
      */
-    public function getFractorRule(): string
+    public function getFractorClass(): string
     {
-        return $this->fractorRule;
+        return $this->fractorClass;
     }
 }

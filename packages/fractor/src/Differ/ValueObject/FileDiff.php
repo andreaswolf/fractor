@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Differ\ValueObject;
 
+use a9f\Fractor\Application\Contract\FractorRule;
+use a9f\Fractor\Application\ValueObject\AppliedRule;
 use Nette\Utils\Strings;
+use Webmozart\Assert\Assert;
 
 final readonly class FileDiff
 {
@@ -19,15 +22,18 @@ final readonly class FileDiff
      */
     private const FIRST_LINE_REGEX = '#@@(.*?)(?<' . self::FIRST_LINE_KEY . '>\\d+)(.*?)@@#';
 
+    /**
+     * @param AppliedRule[] $appliedRules
+     * @param string[] $changelogsLines
+     */
     public function __construct(
         private string $relativeFilePath,
         private string $diff,
         private string $diffConsoleFormatted,
-        /**
-         * @var string[]
-         */
-        private array $appliedRules = []
+        private array $appliedRules = [],
+        private array $changelogsLines = [],
     ) {
+        Assert::allIsInstanceOf($appliedRules, AppliedRule::class);
     }
 
     public function getRelativeFilePath(): string
@@ -51,11 +57,43 @@ final readonly class FileDiff
     }
 
     /**
-     * @return string[]
+     * @return AppliedRule[]
      */
     public function getAppliedRules(): array
     {
         return $this->appliedRules;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getChangelogsLines(): array
+    {
+        return $this->changelogsLines;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getFractorShortClasses(): array
+    {
+        $fractorShortClasses = [];
+        foreach ($this->getFractorClasses() as $fractorClass) {
+            $fractorShortClasses[] = (string) Strings::after($fractorClass, '\\', -1);
+        }
+        return $fractorShortClasses;
+    }
+
+    /**
+     * @return array<class-string<FractorRule>>
+     */
+    public function getFractorClasses(): array
+    {
+        $fractorClasses = [];
+        foreach ($this->appliedRules as $appliedRule) {
+            $fractorClasses[] = $appliedRule->getFractorClass();
+        }
+        return $fractorClasses;
     }
 
     public function getFirstLineNumber(): ?int

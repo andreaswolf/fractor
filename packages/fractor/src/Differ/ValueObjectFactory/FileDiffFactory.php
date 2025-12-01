@@ -31,6 +31,7 @@ final readonly class FileDiffFactory
             $relativeFilePath,
             $this->defaultDiffer->diff($file->getDiff()),
             $this->consoleDiffer->diff($file->getDiff()),
+            $file->getAppliedRules(),
             $fractorsChangelogsLines
         );
     }

@@ -28,6 +28,7 @@ final readonly class ConfigurationFactory
 
         $outputFormat = (string) $input->getOption(Option::OUTPUT_FORMAT);
         $showProgressBar = $this->shouldShowProgressBar($input, $outputFormat);
+        $showChangelog = $this->shouldShowChangelog($input);
 
         /** @var list<non-empty-string> $paths */
         $paths = $this->resolvePaths($input);
@@ -48,7 +49,8 @@ final readonly class ConfigurationFactory
             $fileExtensions,
             $paths,
             (array) $this->parameterBag->get(Option::SKIP),
-            $onlyRule
+            $onlyRule,
+            $showChangelog
         );
     }
 
@@ -77,6 +79,11 @@ final readonly class ConfigurationFactory
         }
 
         return $outputFormat === ConsoleOutputFormatter::NAME;
+    }
+
+    private function shouldShowChangelog(InputInterface $input): bool
+    {
+        return (bool) $input->getOption(Option::SHOW_CHANGELOG);
     }
 
     /**

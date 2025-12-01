@@ -21,7 +21,7 @@ final readonly class FractorsChangelogResolver
     {
         $fractorClassesToChangelogUrls = [];
         foreach ($appliedRules as $appliedRule) {
-            $fractorClass = $appliedRule->getFractorRule();
+            $fractorClass = $appliedRule->getFractorClass();
             $changelogUrl = $this->changelogExtractor->extractChangelogFromRule($fractorClass);
             $fractorClassesToChangelogUrls[$fractorClass] = $changelogUrl;
         }

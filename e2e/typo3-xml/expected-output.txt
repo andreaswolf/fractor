@@ -18,7 +18,7 @@
     ----------- end diff -----------
 
 Applied rules:
- * MigrateNullFlagFlexFormFractor (https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.0/Deprecation-97384-TCAOptionNullable.html)
+ * MigrateNullFlagFlexFormFractor
 
 
  [OK] 1 file has been changed by Fractor
