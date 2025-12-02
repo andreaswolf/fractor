@@ -1,0 +1,63 @@
+page = PAGE
+page.includeCSS {
+    main = https://example.com/styles/main.css
+    main.external = 1
+    other = /styles/main.css
+    other.external = 1
+}
+page.includeCSSLibs {
+    main = https://example.com/styles/main.css
+    main.external = 1
+    other = /styles/main.css
+    other.external = 1
+}
+page.includeJS {
+    main = https://example.com/styles/main.css
+    main.external = 1
+    other = /styles/main.css
+    other.external = 1
+}
+page.includeJSFooter {
+    main = https://example.com/styles/main.css
+    main.external = 1
+    other = /styles/main.css
+    other.external = 1
+}
+page.includeJSFooterlibs {
+    main = https://example.com/styles/main.css
+    main.external = 1
+    other = /styles/main.css
+    other.external = 1
+}
+page.includeJSLibs {
+    main = https://example.com/styles/main.css
+    main.external = 1
+    other = /styles/main.css
+    other.external = 1
+}
+-----
+page = PAGE
+page.includeCSS {
+    main = https://example.com/styles/main.css
+    other = URI:/styles/main.css
+}
+page.includeCSSLibs {
+    main = https://example.com/styles/main.css
+    other = URI:/styles/main.css
+}
+page.includeJS {
+    main = https://example.com/styles/main.css
+    other = URI:/styles/main.css
+}
+page.includeJSFooter {
+    main = https://example.com/styles/main.css
+    other = URI:/styles/main.css
+}
+page.includeJSFooterlibs {
+    main = https://example.com/styles/main.css
+    other = URI:/styles/main.css
+}
+page.includeJSLibs {
+    main = https://example.com/styles/main.css
+    other = URI:/styles/main.css
+}

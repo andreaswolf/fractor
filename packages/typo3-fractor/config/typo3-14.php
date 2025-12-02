@@ -7,6 +7,7 @@ use a9f\Typo3Fractor\TYPO3v14\Htaccess\RemoveUploadsFromDefaultHtaccessFractor;
 use a9f\Typo3Fractor\TYPO3v14\TypoScript\MigrateTypoScriptConditionGetTSFEFractor;
 use a9f\Typo3Fractor\TYPO3v14\TypoScript\MigrateTypoScriptGetDataPathFractor;
 use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveExposeNonexistentUserInForgotPasswordDialogSettingInFeLoginFractor;
+use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveExternalOptionFromTypoScriptFractor;
 use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveFrontendAssetConcatenationAndCompressionFractor;
 use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveModWebLayoutDefLangBindingFractor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -24,4 +25,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(MigrateTypoScriptConditionGetTSFEFractor::class);
     $services->set(RemoveFrontendAssetConcatenationAndCompressionFractor::class);
     $services->set(MigrateTypoScriptGetDataPathFractor::class);
+    $services->set(RemoveExternalOptionFromTypoScriptFractor::class);
 };
