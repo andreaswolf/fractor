@@ -1,0 +1,5 @@
+page.20 = TEXT
+page.20.data = path:EXT:core/Resources/Public/Icons/Extension.svg
+-----
+page.20 = TEXT
+page.20.data = asset:EXT:core/Resources/Public/Icons/Extension.svg
