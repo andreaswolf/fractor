@@ -1,4 +1,4 @@
-# 37 Rules Overview
+# 38 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -523,6 +523,25 @@ Remove plugin.tx_felogin_login.settings.exposeNonexistentUserInForgotPasswordDia
 ```diff
 -plugin.tx_felogin_login.settings.exposeNonexistentUserInForgotPasswordDialog = 1
 +-
+```
+
+<br>
+
+## RemoveExternalOptionFromTypoScriptFractor
+
+Remove "external" option from TypoScript
+
+- class: [`a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveExternalOptionFromTypoScriptFractor`](../rules/TYPO3v14/TypoScript/RemoveExternalOptionFromTypoScriptFractor.php)
+
+```diff
+ page = PAGE
+ page.includeCSS {
+     main = https://example.com/styles/main.css
+-    main.external = 1
+-    other = /styles/main.css
+-    other.external = 1
++    other = URI:/styles/main.css
+ }
 ```
 
 <br>
