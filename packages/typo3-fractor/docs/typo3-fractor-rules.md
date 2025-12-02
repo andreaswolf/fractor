@@ -1,4 +1,4 @@
-# 36 Rules Overview
+# 37 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -429,6 +429,22 @@ Migrate TypoScript condition function `getTSFE()`
 +[request?.getPageArguments()?.getPageId() == 42]
      temp.foo = 42
  [end]
+```
+
+<br>
+
+## MigrateTypoScriptGetDataPathFractor
+
+Migrate TypoScript getData \"path\"
+
+- class: [`a9f\Typo3Fractor\TYPO3v14\TypoScript\MigrateTypoScriptGetDataPathFractor`](../rules/TYPO3v14/TypoScript/MigrateTypoScriptGetDataPathFractor.php)
+
+```diff
+ page.20 = TEXT
+ page.20 {
+-    data = path : EXT:core/Resources/Public/Icons/Extension.svg
++    data = asset : EXT:core/Resources/Public/Icons/Extension.svg
+ }
 ```
 
 <br>
