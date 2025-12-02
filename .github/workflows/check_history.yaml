@@ -9,7 +9,7 @@ jobs:
     name: 'Check if PR is based on latest main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.head.sha }} # ensure we get the actual PR HEAD and not the merged result
           fetch-depth: 0 # ensure the complete Git history is available
@@ -36,7 +36,7 @@ jobs:
     name: 'Check if PR has a linear history without merges'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.head.sha }} # ensure we get the actual PR HEAD and not the merged result
           fetch-depth: 0 # ensure the complete Git history is available
@@ -60,7 +60,7 @@ jobs:
     name: 'Check if PR has any fixup! or WIP commits'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.head.sha }} # ensure we get the actual PR HEAD and not the merged result
           fetch-depth: 0 # ensure the complete Git history is available

@@ -46,7 +46,7 @@ jobs:
     name: Split subtree packages/${{ matrix.package.path }}
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0 # ensure the complete Git history is available
 
