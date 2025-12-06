@@ -1,4 +1,4 @@
-# 39 Rules Overview
+# 40 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -509,6 +509,19 @@ Remove config.spamProtectEmailAddresses with option ascii
 
 ```diff
 -config.spamProtectEmailAddresses = ascii
++-
+```
+
+<br>
+
+## RemoveDuplicateDoktypeRestrictionConfigurationFractor
+
+Remove mod.web_list.noViewWithDokTypes
+
+- class: [`a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveDuplicateDoktypeRestrictionConfigurationFractor`](../rules/TYPO3v14/TypoScript/RemoveDuplicateDoktypeRestrictionConfigurationFractor.php)
+
+```diff
+-mod.web_list.noViewWithDokTypes = 1
 +-
 ```
 
