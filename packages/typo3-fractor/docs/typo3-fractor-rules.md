@@ -1,4 +1,4 @@
-# 38 Rules Overview
+# 39 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -717,6 +717,19 @@ Remove useCacheHash TypoScript setting
      parameter = 3
 -    useCacheHash = 1
  }
+```
+
+<br>
+
+## RemoveUserTSConfigAuthBeRedirectToURLFractor
+
+Remove auth.BE.redirectToURL
+
+- class: [`a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveUserTSConfigAuthBeRedirectToURLFractor`](../rules/TYPO3v14/TypoScript/RemoveUserTSConfigAuthBeRedirectToURLFractor.php)
+
+```diff
+-auth.BE.redirectToURL = 1
++-
 ```
 
 <br>
