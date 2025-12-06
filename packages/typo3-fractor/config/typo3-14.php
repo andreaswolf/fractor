@@ -12,6 +12,7 @@ use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveExternalOptionFromTypoScriptFract
 use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveFrontendAssetConcatenationAndCompressionFractor;
 use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveModWebLayoutDefLangBindingFractor;
 use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveUserTSConfigAuthBeRedirectToURLFractor;
+use a9f\Typo3Fractor\TYPO3v14\Yaml\MigrateLegacyFormTemplatesFractor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -30,4 +31,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(RemoveExternalOptionFromTypoScriptFractor::class);
     $services->set(RemoveUserTSConfigAuthBeRedirectToURLFractor::class);
     $services->set(RemoveDuplicateDoktypeRestrictionConfigurationFractor::class);
+    $services->set(MigrateLegacyFormTemplatesFractor::class);
 };

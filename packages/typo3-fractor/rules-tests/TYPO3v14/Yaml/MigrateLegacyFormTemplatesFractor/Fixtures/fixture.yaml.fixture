@@ -1,0 +1,23 @@
+prototypes:
+  standard:
+    formElementsDefinition:
+      Text:
+        variants:
+          -
+            identifier: template-variant
+            condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
+            properties:
+              containerClassAttribute: 'form-element form-element-text mb-3'
+              elementClassAttribute: form-control
+              elementErrorClassAttribute: ~
+              labelClassAttribute: form-label
+-----
+prototypes:
+  standard:
+    formElementsDefinition:
+      Text:
+        properties:
+          containerClassAttribute: 'form-element form-element-text mb-3'
+          elementClassAttribute: form-control
+          elementErrorClassAttribute: null
+          labelClassAttribute: form-label
