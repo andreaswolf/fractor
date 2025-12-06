@@ -1,0 +1,8 @@
+auth {
+    BE.redirectToURL = https://example.com
+    foo = 1
+}
+-----
+auth {
+    foo = 1
+}

@@ -10,6 +10,7 @@ use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveExposeNonexistentUserInForgotPass
 use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveExternalOptionFromTypoScriptFractor;
 use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveFrontendAssetConcatenationAndCompressionFractor;
 use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveModWebLayoutDefLangBindingFractor;
+use a9f\Typo3Fractor\TYPO3v14\TypoScript\RemoveUserTSConfigAuthBeRedirectToURLFractor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -26,4 +27,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(RemoveFrontendAssetConcatenationAndCompressionFractor::class);
     $services->set(MigrateTypoScriptGetDataPathFractor::class);
     $services->set(RemoveExternalOptionFromTypoScriptFractor::class);
+    $services->set(RemoveUserTSConfigAuthBeRedirectToURLFractor::class);
 };
