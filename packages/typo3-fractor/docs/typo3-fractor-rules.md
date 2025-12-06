@@ -1,4 +1,4 @@
-# 40 Rules Overview
+# 41 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -245,6 +245,35 @@ Migrates indexed item array keys to associative for type select, radio and check
          </sDEF>
      </sheets>
  </T3DataStructure>
+```
+
+<br>
+
+## MigrateLegacyFormTemplatesFractor
+
+Migrate legacy form templates
+
+- class: [`a9f\Typo3Fractor\TYPO3v14\Yaml\MigrateLegacyFormTemplatesFractor`](../rules/TYPO3v14/Yaml/MigrateLegacyFormTemplatesFractor.php)
+
+```diff
+ prototypes:
+   standard:
+     formElementsDefinition:
+       Text:
+-        variants:
+-          -
+-            identifier: template-variant
+-            condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
+-            properties:
+-              containerClassAttribute: 'form-element form-element-text mb-3'
+-              elementClassAttribute: form-control
+-              elementErrorClassAttribute: ~
+-              labelClassAttribute: form-label
++        properties:
++          containerClassAttribute: 'form-element form-element-text mb-3'
++          elementClassAttribute: form-control
++          elementErrorClassAttribute: ~
++          labelClassAttribute: form-label
 ```
 
 <br>
