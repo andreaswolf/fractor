@@ -1,0 +1,11 @@
+[loginUser('*')]
+    page = PAGE
+    page.20 = TEXT
+    page.20.value = User is logged in
+[end]
+-----
+[frontend.user.isLoggedIn]
+    page = PAGE
+    page.20 = TEXT
+    page.20.value = User is logged in
+[end]
