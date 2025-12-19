@@ -13,6 +13,7 @@ use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateRequiredFlagFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\MigrateTypeNoneColsToSizeFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\FlexForm\RemoveTceFormsDomElementFlexFormFractor;
 use a9f\Typo3Fractor\TYPO3v12\Fluid\AbstractMessageGetSeverityFluidFractor;
+use a9f\Typo3Fractor\TYPO3v12\TypoScript\MigrateTypoScriptLoginUserAndUsergroupConditionsFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigDisablePageExternalUrlFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigDoctypeSwitchFractor;
 use a9f\Typo3Fractor\TYPO3v12\TypoScript\RemoveConfigMetaCharsetFractor;
@@ -52,4 +53,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(RenameTcemainLinkHandlerMailKeyFractor::class);
     $services->set(UseConfigArrayForTSFEPropertiesFractor::class);
     $services->set(MigrateItemsIndexedKeysToAssociativeFractor::class);
+    $services->set(MigrateTypoScriptLoginUserAndUsergroupConditionsFractor::class);
 };

@@ -1,0 +1,11 @@
+[usergroup('1,11')]
+    page = PAGE
+    page.80 = TEXT
+    page.80.value = Frontend user is member of group 1 or 11
+[end]
+-----
+[1 in frontend.user.userGroupIds || 11 in frontend.user.userGroupIds]
+    page = PAGE
+    page.80 = TEXT
+    page.80.value = Frontend user is member of group 1 or 11
+[end]

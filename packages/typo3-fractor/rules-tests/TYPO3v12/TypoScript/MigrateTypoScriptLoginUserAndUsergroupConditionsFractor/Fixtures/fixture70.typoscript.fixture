@@ -1,0 +1,11 @@
+[usergroup(11)]
+    page = PAGE
+    page.70 = TEXT
+    page.70.value = Frontend user is member of group with uid 11
+[end]
+-----
+[11 in frontend.user.userGroupIds]
+    page = PAGE
+    page.70 = TEXT
+    page.70.value = Frontend user is member of group with uid 11
+[end]

@@ -1,4 +1,4 @@
-# 41 Rules Overview
+# 42 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -474,6 +474,34 @@ Migrate TypoScript getData \"path\"
 -    data = path : EXT:core/Resources/Public/Icons/Extension.svg
 +    data = asset : EXT:core/Resources/Public/Icons/Extension.svg
  }
+```
+
+<br>
+
+## MigrateTypoScriptLoginUserAndUsergroupConditionsFractor
+
+Migrate TypoScript `loginUser()` and `usergroup()` conditions
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\MigrateTypoScriptLoginUserAndUsergroupConditionsFractor`](../rules/TYPO3v12/TypoScript/MigrateTypoScriptLoginUserAndUsergroupConditionsFractor.php)
+
+```diff
+-[loginUser('*')]
++[frontend.user.isLoggedIn]
+     page = PAGE
+     page.20 = TEXT
+     page.20.value = User is logged in
+ [end]
+```
+
+<br>
+
+```diff
+-[usergroup(11)]
++[11 in frontend.user.userGroupIds]
+     page = PAGE
+     page.70 = TEXT
+     page.70.value = Frontend user is member of group with uid 11
+ [end]
 ```
 
 <br>

@@ -1,0 +1,11 @@
+[usergroup('*')]
+    page = PAGE
+    page.60 = TEXT
+    page.60.value = A Frontend user is logged in and belongs to some usergroup.
+[end]
+-----
+[frontend.user.isLoggedIn]
+    page = PAGE
+    page.60 = TEXT
+    page.60.value = A Frontend user is logged in and belongs to some usergroup.
+[end]

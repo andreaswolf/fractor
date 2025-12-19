@@ -1,0 +1,11 @@
+[loginUser('1,13')]
+    page = PAGE
+    page.50 = TEXT
+    page.50.value = Frontend user uid is 1 or 13
+[end]
+-----
+[frontend.user.userId in [1,13]]
+    page = PAGE
+    page.50 = TEXT
+    page.50.value = Frontend user uid is 1 or 13
+[end]

@@ -1,0 +1,11 @@
+[loginUser('*') === false]
+    page = PAGE
+    page.30 = TEXT
+    page.30.value = User is not logged in
+[end]
+-----
+[!frontend.user.isLoggedIn]
+    page = PAGE
+    page.30 = TEXT
+    page.30.value = User is not logged in
+[end]
