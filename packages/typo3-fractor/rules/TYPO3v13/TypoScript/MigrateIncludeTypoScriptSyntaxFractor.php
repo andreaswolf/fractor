@@ -122,8 +122,12 @@ CODE_SAMPLE
                     $source = $item->path();
 
                     // Rename all *.ts files to *.typoscript
-                    $destination = str_replace('.ts', '.typoscript', $source);
-                    $this->filesystem->move($source, $destination);
+                    if (str_ends_with($source, '.ts')) {
+                        $destination = str_replace('.ts', '.typoscript', $source);
+                        if ($this->filesystem->fileExists($source)) {
+                            $this->filesystem->move($source, $destination);
+                        }
+                    }
 
                     $statement->extensions = 'typoscript';
                 }
