@@ -168,6 +168,42 @@ Possible values for `TypoScriptProcessorOption::CONDITION_TERMINATION`:
 - `PrettyPrinterConditionTermination::EnforceGlobal` will always end with `[global]`
 - `PrettyPrinterConditionTermination::EnforceEnd` will always end with `[end]`
 
+### Configure the allowed file extensions
+
+By default, Fractor processes files based on their extensions. You can customize which file extensions each processor should handle by configuring the `ALLOWED_FILE_EXTENSIONS` option.
+
+The following are the default extensions processed for each file type:
+
+- **Fluid**: `html`, `xml`, `txt`
+- **TypoScript**: `typoscript`, `tsconfig`, `ts`
+- **XML**: `xml`
+- **YAML**: `yaml`, `yml`
+
+To override these defaults, use the configuration that looks similiar to the following:
+
+```php
+<?php
+
+use a9f\Fractor\Configuration\FractorConfiguration;
+use a9f\FractorFluid\Configuration\FluidProcessorOption;
+use a9f\FractorTypoScript\Configuration\TypoScriptProcessorOption;
+use a9f\FractorXml\Configuration\XmlProcessorOption;
+use a9f\FractorYaml\Configuration\YamlProcessorOption;
+
+return FractorConfiguration::configure()
+    ->withOptions([
+        // Only process html files
+        FluidProcessorOption::ALLOWED_FILE_EXTENSIONS => ['html'],
+        // Remove ts files and only process typoscript and tsconfig
+        TypoScriptProcessorOption::ALLOWED_FILE_EXTENSIONS => ['typoscript', 'tsconfig'],
+        // Also process xlf files
+        XmlProcessorOption::ALLOWED_FILE_EXTENSIONS => ['xml', 'xlf'],
+        // Keep defaults - can be omitted in that case
+        YamlProcessorOption::ALLOWED_FILE_EXTENSIONS => ['yaml', 'yml'],
+    ]);
+
+```
+
 ## Processing
 
 Before executing the code migrations, run the following command to see a preview of what Fractor will do:
