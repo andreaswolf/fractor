@@ -39,7 +39,7 @@ final readonly class TypoScriptFileProcessor implements FileProcessor
 
     public function canHandle(File $file): bool
     {
-        return in_array($file->getFileExtension(), $this->allowedFileExtensions());
+        return in_array($file->getFileExtension(), $this->allowedFileExtensions(), true);
     }
 
     public function handle(File $file, iterable $appliedRules): void
@@ -75,10 +75,12 @@ final readonly class TypoScriptFileProcessor implements FileProcessor
         }
     }
 
+    /**
+     * @return list<non-empty-string>
+     */
     public function allowedFileExtensions(): array
     {
-        // TODO this should be configurable
-        return ['typoscript', 'tsconfig', 'ts'];
+        return $this->typoScriptPrettyPrinterFormatConfiguration->allowedFileExtensions;
     }
 
     public function getAllRules(): iterable

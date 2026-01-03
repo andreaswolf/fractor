@@ -12,6 +12,7 @@ use a9f\Fractor\ValueObject\Indent;
 use a9f\FractorYaml\Contract\YamlDumper;
 use a9f\FractorYaml\Contract\YamlFractorRule;
 use a9f\FractorYaml\Contract\YamlParser;
+use a9f\FractorYaml\ValueObject\YamlFormatConfiguration;
 
 /**
  * @implements FileProcessor<YamlFractorRule>
@@ -25,7 +26,8 @@ final readonly class YamlFileProcessor implements FileProcessor
         private iterable $rules,
         private YamlParser $yamlParser,
         private YamlDumper $yamlDumper,
-        private ChangedFilesDetector $changedFilesDetector
+        private ChangedFilesDetector $changedFilesDetector,
+        private YamlFormatConfiguration $yamlFormatConfiguration
     ) {
     }
 
@@ -59,9 +61,12 @@ final readonly class YamlFileProcessor implements FileProcessor
         $file->changeFileContent($this->yamlDumper->dump($newYaml, $indent));
     }
 
+    /**
+     * @return list<non-empty-string>
+     */
     public function allowedFileExtensions(): array
     {
-        return ['yaml', 'yml'];
+        return $this->yamlFormatConfiguration->allowedFileExtensions;
     }
 
     public function getAllRules(): iterable

@@ -9,6 +9,7 @@ use a9f\Fractor\Application\ValueObject\AppliedRule;
 use a9f\Fractor\Application\ValueObject\File;
 use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
 use a9f\FractorFluid\Contract\FluidFractorRule;
+use a9f\FractorFluid\ValueObject\FluidFormatConfiguration;
 
 /**
  * @implements FileProcessor<FluidFractorRule>
@@ -20,7 +21,8 @@ final readonly class FluidFileProcessor implements FileProcessor
      */
     public function __construct(
         private iterable $rules,
-        private ChangedFilesDetector $changedFilesDetector
+        private ChangedFilesDetector $changedFilesDetector,
+        private FluidFormatConfiguration $fluidFormatConfiguration
     ) {
     }
 
@@ -43,9 +45,12 @@ final readonly class FluidFileProcessor implements FileProcessor
         }
     }
 
+    /**
+     * @return list<non-empty-string>
+     */
     public function allowedFileExtensions(): array
     {
-        return ['html', 'xml', 'txt'];
+        return $this->fluidFormatConfiguration->allowedFileExtensions;
     }
 
     public function getAllRules(): iterable
