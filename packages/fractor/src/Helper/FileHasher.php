@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Helper;
 
-use Rector\Exception\ShouldNotHappenException;
+use a9f\Fractor\Exception\ShouldNotHappenException;
 
 final class FileHasher
 {

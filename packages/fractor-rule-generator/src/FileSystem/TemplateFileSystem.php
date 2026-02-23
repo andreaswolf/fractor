@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace a9f\FractorRuleGenerator\FileSystem;
 
 use a9f\Fractor\Exception\ShouldNotHappenException;
+use a9f\Fractor\Testing\PHPUnit\StaticPHPUnitEnvironment;
 use a9f\FractorRuleGenerator\Finder\TemplateFinder;
 use Nette\Utils\Strings;
-use Rector\Testing\PHPUnit\StaticPHPUnitEnvironment;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\SplFileInfo;
 
