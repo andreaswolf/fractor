@@ -43,18 +43,18 @@ final class ConfigurationRuleFilter
     }
 
     /**
-     * @param list<FractorRule> $rectors
+     * @param list<FractorRule> $fractorRules
      * @return list<FractorRule>
      */
-    public function filterOnlyRule(array $rectors, string $onlyRule): array
+    public function filterOnlyRule(array $fractorRules, string $onlyRule): array
     {
-        $activeRectors = [];
-        foreach ($rectors as $rector) {
-            if ($rector instanceof $onlyRule) {
-                $activeRectors[] = $rector;
+        $rules = [];
+        foreach ($fractorRules as $fractorRule) {
+            if ($fractorRule instanceof $onlyRule) {
+                $rules[] = $fractorRule;
             }
         }
 
-        return $activeRectors;
+        return $rules;
     }
 }

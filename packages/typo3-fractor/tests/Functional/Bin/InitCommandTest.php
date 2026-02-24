@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace a9f\Typo3Fractor\Tests\Functional\Bin;
 
+use a9f\Fractor\FileSystem\InitFilePathsResolver;
 use Nette\Utils\FileSystem;
 use PHPUnit\Framework\TestCase;
-use Rector\FileSystem\InitFilePathsResolver;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -52,8 +52,8 @@ class InitCommandTest extends TestCase
                     return Command::FAILURE;
                 }
 
-                $commonRectorConfigPath = $projectDirectory . '/fractor.php';
-                if (file_exists($commonRectorConfigPath)) {
+                $commonFractorConfigPath = $projectDirectory . '/fractor.php';
+                if (file_exists($commonFractorConfigPath)) {
                     $output->writeln('Configuration already exists.');
                     return Command::FAILURE;
                 }
@@ -90,7 +90,7 @@ class InitCommandTest extends TestCase
                 $output->writeln(
                     '<info>The config is added now. Run "fractor process" command to make Fractor do the work!</info>'
                 );
-                FileSystem::write($commonRectorConfigPath, $configContents, null);
+                FileSystem::write($commonFractorConfigPath, $configContents, null);
                 return Command::SUCCESS;
             });
 
