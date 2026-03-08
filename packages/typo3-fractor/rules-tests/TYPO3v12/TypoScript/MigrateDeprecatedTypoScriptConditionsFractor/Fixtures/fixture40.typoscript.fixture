@@ -1,0 +1,11 @@
+[globalVar = TSFE:type = 9818]
+    page = PAGE
+    page.40 = TEXT
+    page.40.value = Page type 9818
+[end]
+-----
+[request.getPageArguments()?.getPageType() == '9818']
+    page = PAGE
+    page.40 = TEXT
+    page.40.value = Page type 9818
+[end]

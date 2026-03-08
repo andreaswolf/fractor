@@ -1,0 +1,11 @@
+[applicationContext = Development*]
+    page = PAGE
+    page.55 = TEXT
+    page.55.value = Development context
+[end]
+-----
+[like(applicationContext, "Development*")]
+    page = PAGE
+    page.55 = TEXT
+    page.55.value = Development context
+[end]

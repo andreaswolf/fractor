@@ -1,0 +1,11 @@
+[globalVar = TSFE:type = 1449874941]
+    page = PAGE
+    page.83 = TEXT
+    page.83.value = special type
+[end]
+-----
+[getTSFE().type == 1449874941]
+    page = PAGE
+    page.83 = TEXT
+    page.83.value = special type
+[end]

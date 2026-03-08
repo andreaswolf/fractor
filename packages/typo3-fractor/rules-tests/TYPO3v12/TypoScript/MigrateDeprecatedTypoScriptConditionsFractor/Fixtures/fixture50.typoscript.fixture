@@ -1,0 +1,11 @@
+[globalVar = TSFE:beUserLogin > 0]
+    page = PAGE
+    page.50 = TEXT
+    page.50.value = Backend user is logged in
+[end]
+-----
+[getTSFE()?.isBackendUserLoggedIn()]
+    page = PAGE
+    page.50 = TEXT
+    page.50.value = Backend user is logged in
+[end]

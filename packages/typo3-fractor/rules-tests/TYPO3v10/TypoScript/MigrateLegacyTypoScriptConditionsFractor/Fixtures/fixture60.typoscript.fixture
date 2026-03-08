@@ -1,0 +1,11 @@
+[treeLevel = 1]
+    page = PAGE
+    page.60 = TEXT
+    page.60.value = First level
+[end]
+-----
+[tree.level == 1]
+    page = PAGE
+    page.60 = TEXT
+    page.60.value = First level
+[end]

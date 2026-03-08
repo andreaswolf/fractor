@@ -1,0 +1,11 @@
+[globalVar = GP:tx_ext|field !=]
+    page = PAGE
+    page.15 = TEXT
+    page.15.value = tx_ext[field] has value
+[end]
+-----
+[request && traverse(request.getQueryParams(), 'tx_ext/field') != ""]
+    page = PAGE
+    page.15 = TEXT
+    page.15.value = tx_ext[field] has value
+[end]

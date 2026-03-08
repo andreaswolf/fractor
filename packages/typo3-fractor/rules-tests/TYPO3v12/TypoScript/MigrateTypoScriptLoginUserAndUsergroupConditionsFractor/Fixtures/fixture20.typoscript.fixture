@@ -1,11 +1,11 @@
-[loginUser('*')]
+[usergroup = *]
     page = PAGE
     page.20 = TEXT
-    page.20.value = User is logged in
+    page.20.value = User belongs to any group
 [end]
 -----
-[frontend.user.isLoggedIn]
+[frontend.user.userGroupIds !== [0, -1]]
     page = PAGE
     page.20 = TEXT
-    page.20.value = User is logged in
+    page.20.value = User belongs to any group
 [end]

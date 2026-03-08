@@ -1,0 +1,11 @@
+[applicationContext = Development]
+    page = PAGE
+    page.50 = TEXT
+    page.50.value = Development context
+[end]
+-----
+[applicationContext == "Development"]
+    page = PAGE
+    page.50 = TEXT
+    page.50.value = Development context
+[end]

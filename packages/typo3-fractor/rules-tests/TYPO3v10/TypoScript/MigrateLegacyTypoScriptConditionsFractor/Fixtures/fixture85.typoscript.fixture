@@ -1,0 +1,11 @@
+[globalVar = LIT:1 != {$plugin.tx_ext_pi.settings.enableFeature}]
+    page = PAGE
+    page.85 = TEXT
+    page.85.value = feature disabled
+[end]
+-----
+[{$plugin.tx_ext_pi.settings.enableFeature} != 1]
+    page = PAGE
+    page.85 = TEXT
+    page.85.value = feature disabled
+[end]

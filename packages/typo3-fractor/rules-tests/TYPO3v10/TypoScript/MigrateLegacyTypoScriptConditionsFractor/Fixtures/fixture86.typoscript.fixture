@@ -1,0 +1,11 @@
+[globalVar = LIT:1 = {$assets.useCriticalPathCss}]
+    page = PAGE
+    page.86 = TEXT
+    page.86.value = critical CSS
+[end]
+-----
+[{$assets.useCriticalPathCss} == 1]
+    page = PAGE
+    page.86 = TEXT
+    page.86.value = critical CSS
+[end]

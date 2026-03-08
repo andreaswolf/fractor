@@ -1,0 +1,11 @@
+[PIDupinRootline = 10,20,30]
+    page = PAGE
+    page.35 = TEXT
+    page.35.value = Under page 10, 20 or 30
+[end]
+-----
+[10 in tree.rootLineParentIds || 20 in tree.rootLineParentIds || 30 in tree.rootLineParentIds]
+    page = PAGE
+    page.35 = TEXT
+    page.35.value = Under page 10, 20 or 30
+[end]

@@ -1,0 +1,11 @@
+[PIDinRootline = 5,10,15]
+    page = PAGE
+    page.45 = TEXT
+    page.45.value = Page 5, 10 or 15 in rootline
+[end]
+-----
+[5 in tree.rootLineIds || 10 in tree.rootLineIds || 15 in tree.rootLineIds]
+    page = PAGE
+    page.45 = TEXT
+    page.45.value = Page 5, 10 or 15 in rootline
+[end]
