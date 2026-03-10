@@ -1,0 +1,11 @@
+[loginUser(13)]
+    page = PAGE
+    page.11 = TEXT
+    page.11.value = Frontend user has the uid 13
+[end]
+-----
+[frontend.user.userId == 13]
+    page = PAGE
+    page.11 = TEXT
+    page.11.value = Frontend user has the uid 13
+[end]

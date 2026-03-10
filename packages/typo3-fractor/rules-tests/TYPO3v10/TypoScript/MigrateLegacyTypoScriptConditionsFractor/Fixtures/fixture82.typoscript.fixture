@@ -1,0 +1,11 @@
+[globalVar = TSFE:page|doktype = 3]
+    page = PAGE
+    page.82 = TEXT
+    page.82.value = external URL
+[end]
+-----
+[page["doktype"] == 3]
+    page = PAGE
+    page.82 = TEXT
+    page.82.value = external URL
+[end]

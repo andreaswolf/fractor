@@ -1,0 +1,11 @@
+[globalString = TSFE:id=2111]
+    page = PAGE
+    page.84 = TEXT
+    page.84.value = specific page
+[end]
+-----
+[page["uid"] == 2111]
+    page = PAGE
+    page.84 = TEXT
+    page.84.value = specific page
+[end]

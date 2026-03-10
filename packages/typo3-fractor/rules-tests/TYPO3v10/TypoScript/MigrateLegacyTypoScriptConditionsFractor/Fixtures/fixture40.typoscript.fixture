@@ -1,0 +1,11 @@
+[PIDinRootline = 89,130]
+    page = PAGE
+    page.40 = TEXT
+    page.40.value = Page 89 or 130 in rootline
+[end]
+-----
+[89 in tree.rootLineIds || 130 in tree.rootLineIds]
+    page = PAGE
+    page.40 = TEXT
+    page.40.value = Page 89 or 130 in rootline
+[end]

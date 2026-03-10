@@ -18,39 +18,80 @@ final class MigrateTypoScriptLoginUserAndUsergroupConditionsFractor extends Abst
 {
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition('Migrate TypoScript loginUser() and usergroup() conditions', [new CodeSample(
-            <<<'CODE_SAMPLE'
+        return new RuleDefinition(
+            'Migrate TypoScript loginUser and usergroup conditions (both function-call and equals syntax)',
+            [
+                new CodeSample(
+                    <<<'CODE_SAMPLE'
 [loginUser('*')]
     page = PAGE
     page.20 = TEXT
     page.20.value = User is logged in
 [end]
 CODE_SAMPLE
-            ,
-            <<<'CODE_SAMPLE'
+                    ,
+                    <<<'CODE_SAMPLE'
 [frontend.user.isLoggedIn]
     page = PAGE
     page.20 = TEXT
     page.20.value = User is logged in
 [end]
 CODE_SAMPLE
-        ), new CodeSample(
-            <<<'CODE_SAMPLE'
+                ),
+                new CodeSample(
+                    <<<'CODE_SAMPLE'
 [usergroup(11)]
     page = PAGE
     page.70 = TEXT
     page.70.value = Frontend user is member of group with uid 11
 [end]
 CODE_SAMPLE
-            ,
-            <<<'CODE_SAMPLE'
+                    ,
+                    <<<'CODE_SAMPLE'
 [11 in frontend.user.userGroupIds]
     page = PAGE
     page.70 = TEXT
     page.70.value = Frontend user is member of group with uid 11
 [end]
 CODE_SAMPLE
-        )]);
+                ),
+                new CodeSample(
+                    <<<'CODE_SAMPLE'
+[loginUser = *]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = User is logged in
+[end]
+CODE_SAMPLE
+                    ,
+                    <<<'CODE_SAMPLE'
+[frontend.user.isLoggedIn]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = User is logged in
+[end]
+CODE_SAMPLE
+                ),
+                new CodeSample(
+                    <<<'CODE_SAMPLE'
+[usergroup = 1,2]
+    page = PAGE
+    page.30 = TEXT
+    page.30.value = User is in group 1 or 2
+[end]
+CODE_SAMPLE
+                    ,
+                    <<<'CODE_SAMPLE'
+[1 in frontend.user.userGroupIds || 2 in frontend.user.userGroupIds]
+    page = PAGE
+    page.30 = TEXT
+    page.30.value = User is in group 1 or 2
+[end]
+CODE_SAMPLE
+                ),
+
+            ]
+        );
     }
 
     public function refactor(Statement $statement): ?Statement
@@ -101,6 +142,33 @@ CODE_SAMPLE
                 );
 
                 return implode(' || ', $mappedConditions);
+            },
+            $condition
+        );
+
+        // handle legacy equals syntax: loginUser = *
+        $condition = (string) preg_replace('/loginUser\s*=\s*\*/', 'frontend.user.isLoggedIn', $condition);
+
+        // handle legacy equals syntax: usergroup = * (wildcard)
+        $condition = (string) preg_replace(
+            '/usergroup\s*=\s*\*/',
+            'frontend.user.userGroupIds !== [0, -1]',
+            $condition
+        );
+
+        // handle legacy equals syntax: usergroup = 1,2 (specific IDs)
+        $condition = (string) preg_replace_callback(
+            '/usergroup\s*=\s*([\d,\s]+)/',
+            static function (array $matches): string {
+                $ids = array_map(trim(...), explode(',', $matches[1]));
+
+                return implode(
+                    ' || ',
+                    array_map(
+                        static fn (string $id): string => sprintf('%s in frontend.user.userGroupIds', $id),
+                        $ids
+                    )
+                );
             },
             $condition
         );

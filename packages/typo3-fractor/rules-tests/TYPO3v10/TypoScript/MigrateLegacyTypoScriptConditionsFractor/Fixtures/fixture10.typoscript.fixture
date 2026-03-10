@@ -1,0 +1,11 @@
+[globalVar = GP:debug > 0]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Debug mode
+[end]
+-----
+[request && traverse(request.getQueryParams(), 'debug') > 0]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Debug mode
+[end]

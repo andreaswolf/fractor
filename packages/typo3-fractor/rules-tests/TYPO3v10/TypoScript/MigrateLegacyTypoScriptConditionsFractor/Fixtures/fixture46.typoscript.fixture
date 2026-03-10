@@ -1,0 +1,11 @@
+[PIDinRootline = {$page.digitalPodcast}]
+    page = PAGE
+    page.46 = TEXT
+    page.46.value = Podcast
+[end]
+-----
+[{$page.digitalPodcast} in tree.rootLineIds]
+    page = PAGE
+    page.46 = TEXT
+    page.46.value = Podcast
+[end]

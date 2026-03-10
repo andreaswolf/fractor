@@ -1,0 +1,11 @@
+[globalString = IENV:HTTP_HOST = example.org]
+    page = PAGE
+    page.88 = TEXT
+    page.88.value = example host
+[end]
+-----
+[request.getNormalizedParams().getHttpHost() == "example.org"]
+    page = PAGE
+    page.88 = TEXT
+    page.88.value = example host
+[end]

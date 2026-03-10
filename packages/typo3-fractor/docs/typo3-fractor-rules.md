@@ -1,4 +1,4 @@
-# 42 Rules Overview
+# 44 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -53,6 +53,30 @@ Convert single recipient values to array for EmailFinisher
 -      recipientName: 'Bar'
 +      recipients:
 +        bar@domain.com: 'Bar'
+```
+
+<br>
+
+## MigrateDeprecatedTypoScriptConditionsFractor
+
+Migrate deprecated globalVar TSFE conditions to v12 syntax
+
+- class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\MigrateDeprecatedTypoScriptConditionsFractor`](../rules/TYPO3v12/TypoScript/MigrateDeprecatedTypoScriptConditionsFractor.php)
+
+```diff
+-[globalVar = TSFE:type = 9818]
++[request.getPageArguments()?.getPageType() == '9818']
+     page = PAGE
+ [end]
+```
+
+<br>
+
+```diff
+-[globalVar = TSFE:beUserLogin > 0]
++[getTSFE()?.isBackendUserLoggedIn()]
+     page = PAGE
+ [end]
 ```
 
 <br>
@@ -151,6 +175,27 @@ Migrate INCLUDE_TYPOSCRIPT TypoScript syntax to `@import`
 ```diff
 -<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="typoscript,ts">
 +@import 'EXT:my_extension/Configuration/TypoScript/*.typoscript'
+```
+
+<br>
+
+```diff
+-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="setup.typoscript">
++@import 'EXT:my_extension/Configuration/TypoScript/*.setup.typoscript'
+```
+
+<br>
+
+```diff
+-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="constants.typoscript">
++@import 'EXT:my_extension/Configuration/TypoScript/*.constants.typoscript'
+```
+
+<br>
+
+```diff
+-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="tsconfig">
++@import 'EXT:my_extension/Configuration/TypoScript/*.tsconfig'
 ```
 
 <br>
@@ -274,6 +319,144 @@ Migrate legacy form templates
 +          elementClassAttribute: form-control
 +          elementErrorClassAttribute: ~
 +          labelClassAttribute: form-label
+```
+
+<br>
+
+## MigrateLegacyTypoScriptConditionsFractor
+
+Migrate legacy TypoScript conditions to Symfony expression language syntax
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\MigrateLegacyTypoScriptConditionsFractor`](../rules/TYPO3v10/TypoScript/MigrateLegacyTypoScriptConditionsFractor.php)
+
+```diff
+-[globalVar = GP:debug > 0]
++[request && traverse(request.getQueryParams(), 'debug') > 0]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = GET/POST parameter "debug" is greater than 0
+ [end]
+```
+
+<br>
+
+```diff
+-[globalVar = GP:tx_news_pi1|news > 0]
++[request && traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Nested GET/POST parameter "tx_news_pi1[news]" is set
+ [end]
+```
+
+<br>
+
+```diff
+-[PIDupinRootline = 89,130]
++[89 in tree.rootLineParentIds || 130 in tree.rootLineParentIds]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = A parent page in the rootline has uid 89 or 130
+ [end]
+```
+
+<br>
+
+```diff
+-[PIDinRootline = 89,130]
++[89 in tree.rootLineIds || 130 in tree.rootLineIds]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Page with uid 89 or 130 is in the rootline
+ [end]
+```
+
+<br>
+
+```diff
+-[applicationContext = Development]
++[applicationContext == "Development"]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Application context is exactly "Development"
+ [end]
+```
+
+<br>
+
+```diff
+-[applicationContext = Development*]
++[like(applicationContext, "Development*")]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Application context starts with "Development"
+ [end]
+```
+
+<br>
+
+```diff
+-[treeLevel = 1,3]
++[tree.level in [1,3]]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Current page is on tree level 1 or 3
+ [end]
+```
+
+<br>
+
+```diff
+-[globalVar = TSFE:beUserLogin = 1]
++[getTSFE().beUserLogin == 1]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = A backend user is logged in on the frontend
+ [end]
+```
+
+<br>
+
+```diff
+-[globalVar = TSFE:id = {$page.home}]
++[page["uid"] == {$page.home}]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Current page uid matches the configured home page
+ [end]
+```
+
+<br>
+
+```diff
+-[globalVar = LIT:1 = {$config.enableFeature}]
++[{$config.enableFeature} == 1]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = TypoScript constant equals the literal value
+ [end]
+```
+
+<br>
+
+```diff
+-[globalVar = BE_USER|user|admin = 1]
++[backend.user.isAdmin]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Current backend user is an admin
+ [end]
+```
+
+<br>
+
+```diff
+-[globalString = IENV:HTTP_HOST = example.org]
++[request.getNormalizedParams().getHttpHost() == "example.org"]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Current hostname is example.org
+ [end]
 ```
 
 <br>
@@ -480,7 +663,7 @@ Migrate TypoScript getData \"path\"
 
 ## MigrateTypoScriptLoginUserAndUsergroupConditionsFractor
 
-Migrate TypoScript `loginUser()` and `usergroup()` conditions
+Migrate TypoScript loginUser and usergroup conditions (both function-call and equals syntax)
 
 - class: [`a9f\Typo3Fractor\TYPO3v12\TypoScript\MigrateTypoScriptLoginUserAndUsergroupConditionsFractor`](../rules/TYPO3v12/TypoScript/MigrateTypoScriptLoginUserAndUsergroupConditionsFractor.php)
 
@@ -501,6 +684,28 @@ Migrate TypoScript `loginUser()` and `usergroup()` conditions
      page = PAGE
      page.70 = TEXT
      page.70.value = Frontend user is member of group with uid 11
+ [end]
+```
+
+<br>
+
+```diff
+-[loginUser = *]
++[frontend.user.isLoggedIn]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = User is logged in
+ [end]
+```
+
+<br>
+
+```diff
+-[usergroup = 1,2]
++[1 in frontend.user.userGroupIds || 2 in frontend.user.userGroupIds]
+     page = PAGE
+     page.30 = TEXT
+     page.30.value = User is in group 1 or 2
  [end]
 ```
 

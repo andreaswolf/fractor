@@ -1,0 +1,11 @@
+[treeLevel = 1,2,3]
+    page = PAGE
+    page.75 = TEXT
+    page.75.value = Level 1, 2 or 3
+[end]
+-----
+[tree.level in [1,2,3]]
+    page = PAGE
+    page.75 = TEXT
+    page.75.value = Level 1, 2 or 3
+[end]

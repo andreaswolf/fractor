@@ -1,0 +1,11 @@
+[globalVar = TSFE:beUserLogin = 1]
+    page = PAGE
+    page.80 = TEXT
+    page.80.value = logged in
+[end]
+-----
+[getTSFE().beUserLogin == 1]
+    page = PAGE
+    page.80 = TEXT
+    page.80.value = logged in
+[end]

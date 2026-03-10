@@ -1,0 +1,11 @@
+[globalVar = BE_USER|user|admin = 1]
+    page = PAGE
+    page.87 = TEXT
+    page.87.value = admin user
+[end]
+-----
+[backend.user.isAdmin]
+    page = PAGE
+    page.87 = TEXT
+    page.87.value = admin user
+[end]

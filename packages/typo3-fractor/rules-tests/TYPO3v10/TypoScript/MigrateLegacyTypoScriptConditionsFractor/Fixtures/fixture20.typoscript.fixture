@@ -1,0 +1,11 @@
+[globalVar = GP:tx_news_pi1|news > 0]
+    page = PAGE
+    page.20 = TEXT
+    page.20.value = News detail page
+[end]
+-----
+[request && traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
+    page = PAGE
+    page.20 = TEXT
+    page.20.value = News detail page
+[end]
