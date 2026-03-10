@@ -1,0 +1,3 @@
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="tsconfig">
+-----
+@import 'EXT:my_extension/Configuration/TypoScript/*.tsconfig'

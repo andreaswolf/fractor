@@ -66,6 +66,33 @@ CODE_SAMPLE
                 ),
                 new CodeSample(
                     <<<'CODE_SAMPLE'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="setup.typoscript">
+CODE_SAMPLE
+                    ,
+                    <<<'CODE_SAMPLE'
+@import 'EXT:my_extension/Configuration/TypoScript/*.setup.typoscript'
+CODE_SAMPLE
+                ),
+                new CodeSample(
+                    <<<'CODE_SAMPLE'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="constants.typoscript">
+CODE_SAMPLE
+                    ,
+                    <<<'CODE_SAMPLE'
+@import 'EXT:my_extension/Configuration/TypoScript/*.constants.typoscript'
+CODE_SAMPLE
+                ),
+                new CodeSample(
+                    <<<'CODE_SAMPLE'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="tsconfig">
+CODE_SAMPLE
+                    ,
+                    <<<'CODE_SAMPLE'
+@import 'EXT:my_extension/Configuration/TypoScript/*.tsconfig'
+CODE_SAMPLE
+                ),
+                new CodeSample(
+                    <<<'CODE_SAMPLE'
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:my_extension/Configuration/TypoScript/user.typoscript" condition="[frontend.user.isLoggedIn]">
 CODE_SAMPLE
                     ,
@@ -106,7 +133,9 @@ CODE_SAMPLE
 
         $directory = rtrim($statement->directory, '/') . '/';
         if ($statement->extensions !== null) {
-            if ($statement->extensions !== 'typoscript' || ! str_contains($statement->extensions, 'typoscript')) {
+            $extensionParts = array_map(trim(...), explode(',', $statement->extensions));
+
+            if (in_array('ts', $extensionParts, true)) {
                 $extensionRootPath = $this->extensionManagementUtility->resolveExtensionPath(
                     $this->file->getFilePath()
                 );
@@ -128,11 +157,13 @@ CODE_SAMPLE
                             $this->filesystem->move($source, $destination);
                         }
                     }
-
-                    $statement->extensions = 'typoscript';
                 }
+
+                $extensions = 'typoscript';
+            } else {
                 $extensions = $statement->extensions;
             }
+
             $importStatement = $directory . '*.' . $extensions;
         } else {
             $importStatement = $directory . '*';
