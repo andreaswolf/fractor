@@ -282,7 +282,8 @@ we welcome contributions from the community. Here's how you can contribute:
 1. Fork the repository.
 2. Make your changes.
 3. Run `composer run-script local:contribute`
-4. Submit a pull request with a clear description of your changes and why they are needed.
+4. Run `composer run-script docs`
+5. Submit a pull request with a clear description of your changes and why they are needed.
 
 ## Support
 
