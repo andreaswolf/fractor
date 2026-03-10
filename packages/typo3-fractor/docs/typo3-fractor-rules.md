@@ -156,6 +156,27 @@ Migrate INCLUDE_TYPOSCRIPT TypoScript syntax to `@import`
 <br>
 
 ```diff
+-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="setup.typoscript">
++@import 'EXT:my_extension/Configuration/TypoScript/*.setup.typoscript'
+```
+
+<br>
+
+```diff
+-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="constants.typoscript">
++@import 'EXT:my_extension/Configuration/TypoScript/*.constants.typoscript'
+```
+
+<br>
+
+```diff
+-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_extension/Configuration/TypoScript/" extensions="tsconfig">
++@import 'EXT:my_extension/Configuration/TypoScript/*.tsconfig'
+```
+
+<br>
+
+```diff
 -<INCLUDE_TYPOSCRIPT: source="FILE:EXT:my_extension/Configuration/TypoScript/user.typoscript" condition="[frontend.user.isLoggedIn]">
 +[frontend.user.isLoggedIn]
 +    @import 'EXT:my_extension/Configuration/TypoScript/user.typoscript'
