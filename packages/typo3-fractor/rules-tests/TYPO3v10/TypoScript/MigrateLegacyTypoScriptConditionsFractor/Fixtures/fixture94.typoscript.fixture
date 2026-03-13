@@ -1,0 +1,11 @@
+[hostname = *.example.org]
+    page = PAGE
+    page.94 = TEXT
+    page.94.value = wildcard hostname
+[end]
+-----
+[like(request.getNormalizedParams().getHttpHost(), "*.example.org")]
+    page = PAGE
+    page.94 = TEXT
+    page.94.value = wildcard hostname
+[end]

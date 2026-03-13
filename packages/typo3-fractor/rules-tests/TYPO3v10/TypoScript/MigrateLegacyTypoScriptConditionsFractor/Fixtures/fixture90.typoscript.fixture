@@ -1,0 +1,11 @@
+[IP = 123.456.*.*]
+    page = PAGE
+    page.90 = TEXT
+    page.90.value = IP match
+[end]
+-----
+[ip("123.456.*.*")]
+    page = PAGE
+    page.90 = TEXT
+    page.90.value = IP match
+[end]

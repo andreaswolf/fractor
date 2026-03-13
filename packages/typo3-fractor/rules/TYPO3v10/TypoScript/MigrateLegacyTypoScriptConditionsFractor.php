@@ -223,6 +223,57 @@ CODE_SAMPLE
 [end]
 CODE_SAMPLE
             ),
+            new CodeSample(
+                <<<'CODE_SAMPLE'
+[IP = 123.456.*.*]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Visitor IP starts with 123.456
+[end]
+CODE_SAMPLE
+                ,
+                <<<'CODE_SAMPLE'
+[ip("123.456.*.*")]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Visitor IP starts with 123.456
+[end]
+CODE_SAMPLE
+            ),
+            new CodeSample(
+                <<<'CODE_SAMPLE'
+[hostname = example.org]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Visitor hostname is example.org
+[end]
+CODE_SAMPLE
+                ,
+                <<<'CODE_SAMPLE'
+[request.getNormalizedParams().getHttpHost() == "example.org"]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Visitor hostname is example.org
+[end]
+CODE_SAMPLE
+            ),
+            new CodeSample(
+                <<<'CODE_SAMPLE'
+[compatVersion = 9.5.0]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = TYPO3 version is at least 9.5.0
+[end]
+CODE_SAMPLE
+                ,
+                <<<'CODE_SAMPLE'
+[compatVersion("9.5.0")]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = TYPO3 version is at least 9.5.0
+[end]
+CODE_SAMPLE
+            ),
         ]);
     }
 
@@ -244,6 +295,9 @@ CODE_SAMPLE
         $condition = $this->migratePIDinRootline($condition);
         $condition = $this->migrateApplicationContext($condition);
         $condition = $this->migrateTreeLevel($condition);
+        $condition = $this->migrateIP($condition);
+        $condition = $this->migrateHostname($condition);
+        $condition = $this->migrateCompatVersion($condition);
 
         if ($condition === $originalCondition) {
             return null;
@@ -442,6 +496,52 @@ CODE_SAMPLE
 
                 return sprintf('tree.level in [%s]', implode(',', $levels));
             },
+            $condition
+        );
+    }
+
+    private function migrateIP(string $condition): string
+    {
+        return (string) preg_replace_callback(
+            '/IP\s*=\s*([^\]]+)/',
+            static function (array $matches): string {
+                $values = array_map(trim(...), explode(',', $matches[1]));
+
+                return implode(
+                    ' || ',
+                    array_map(static fn (string $ip): string => sprintf('ip("%s")', $ip), $values)
+                );
+            },
+            $condition
+        );
+    }
+
+    private function migrateHostname(string $condition): string
+    {
+        return (string) preg_replace_callback(
+            '/hostname\s*=\s*([^\]]+)/',
+            static function (array $matches): string {
+                $values = array_map(trim(...), explode(',', $matches[1]));
+
+                $parts = array_map(static function (string $host): string {
+                    if (str_contains($host, '*')) {
+                        return sprintf('like(request.getNormalizedParams().getHttpHost(), "%s")', $host);
+                    }
+
+                    return sprintf('request.getNormalizedParams().getHttpHost() == "%s"', $host);
+                }, $values);
+
+                return implode(' || ', $parts);
+            },
+            $condition
+        );
+    }
+
+    private function migrateCompatVersion(string $condition): string
+    {
+        return (string) preg_replace_callback(
+            '/compatVersion\s*=\s*([^\]\s]+)/',
+            static fn (array $matches): string => sprintf('compatVersion("%s")', trim($matches[1])),
             $condition
         );
     }
