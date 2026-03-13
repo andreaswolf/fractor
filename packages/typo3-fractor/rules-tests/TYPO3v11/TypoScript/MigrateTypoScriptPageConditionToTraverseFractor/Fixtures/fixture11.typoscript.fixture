@@ -1,0 +1,11 @@
+[page["backend_layout"] == "pagets__home"]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Home layout
+[end]
+-----
+[traverse(page, "backend_layout") == "pagets__home"]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Home layout
+[end]
