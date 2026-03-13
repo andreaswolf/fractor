@@ -1,4 +1,4 @@
-# 45 Rules Overview
+# 46 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -767,6 +767,34 @@ Migrate page pipe access in TypoScript conditions to bracket array access syntax
      page = PAGE
      page.10 = TEXT
      page.10.value = Layout 1
+ [end]
+```
+
+<br>
+
+## MigrateTypoScriptPageConditionToTraverseFractor
+
+Migrate page["field"] to traverse(page, "field") in TypoScript conditions for safe access
+
+- class: [`a9f\Typo3Fractor\TYPO3v11\TypoScript\MigrateTypoScriptPageConditionToTraverseFractor`](../rules/TYPO3v11/TypoScript/MigrateTypoScriptPageConditionToTraverseFractor.php)
+
+```diff
+-[page["uid"] == 1]
++[traverse(page, "uid") == 1]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Hello
+ [end]
+```
+
+<br>
+
+```diff
+-[page["backend_layout"] == "pagets__home"]
++[traverse(page, "backend_layout") == "pagets__home"]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Home layout
  [end]
 ```
 
