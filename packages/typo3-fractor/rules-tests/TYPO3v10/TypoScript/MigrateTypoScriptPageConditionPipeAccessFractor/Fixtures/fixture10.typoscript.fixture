@@ -1,0 +1,11 @@
+[page|uid = 2]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Page uid 2
+[end]
+-----
+[page["uid"] == 2]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Page uid 2
+[end]

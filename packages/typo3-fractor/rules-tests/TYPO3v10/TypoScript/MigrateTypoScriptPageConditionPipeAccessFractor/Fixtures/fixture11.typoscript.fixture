@@ -1,0 +1,11 @@
+[page|layout == 1]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Layout 1
+[end]
+-----
+[page["layout"] == 1]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Layout 1
+[end]

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use a9f\Typo3Fractor\TYPO3v10\Fluid\RemoveNoCacheHashAndUseCacheHashAttributeFluidFractor;
 use a9f\Typo3Fractor\TYPO3v10\TypoScript\MigrateLegacyTypoScriptConditionsFractor;
+use a9f\Typo3Fractor\TYPO3v10\TypoScript\MigrateTypoScriptPageConditionPipeAccessFractor;
 use a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigConcatenateJsAndCssFractor;
 use a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigDefaultGetVarsFractor;
 use a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigHtmlTagDirFractor;
@@ -38,6 +39,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(RemoveNoCacheHashAndUseCacheHashAttributeFluidFractor::class);
     $services->set(RemoveUseCacheHashFromTypolinkTypoScriptFractor::class);
     $services->set(MigrateLegacyTypoScriptConditionsFractor::class);
+    $services->set(MigrateTypoScriptPageConditionPipeAccessFractor::class);
     $services->set(RemoveConfigConcatenateJsAndCssFractor::class);
     $services->set(RemoveConfigDefaultGetVarsFractor::class);
     $services->set(RemoveConfigHtmlTagDirFractor::class);
