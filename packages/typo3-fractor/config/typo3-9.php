@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-use a9f\Typo3Fractor\TYPO3v7\TypoScript\RemoveConfigUniqueLinkVarsFractor;
-use a9f\Typo3Fractor\TYPO3v7\TypoScript\RemoveOptionAlternateBgColorsFractor;
+use a9f\Typo3Fractor\TYPO3v9\TypoScript\RemoveConfigTxRealurlEnableFractor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -12,6 +11,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autoconfigure()
         ->autowire();
 
-    $services->set(RemoveConfigUniqueLinkVarsFractor::class);
-    $services->set(RemoveOptionAlternateBgColorsFractor::class);
+    $services->set(RemoveConfigTxRealurlEnableFractor::class);
 };
