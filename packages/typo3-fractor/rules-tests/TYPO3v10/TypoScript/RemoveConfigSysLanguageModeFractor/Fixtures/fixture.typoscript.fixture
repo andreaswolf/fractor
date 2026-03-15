@@ -1,0 +1,15 @@
+config.sys_language_mode = 1
+
+config {
+    sys_language_mode = 1
+    dummy = 1
+}
+
+config.foo = true
+-----
+
+config {
+    dummy = 1
+}
+
+config.foo = true

@@ -1,0 +1,15 @@
+config.tx_realurl_enable = 1
+
+config {
+    tx_realurl_enable = 1
+    dummy = 1
+}
+
+config.foo = true
+-----
+
+config {
+    dummy = 1
+}
+
+config.foo = true
