@@ -37,6 +37,7 @@ final readonly class FractorRunner
         private FileWriter $fileWriter,
         private FileDiffFactory $fileDiffFactory,
         private RuleSkipper $ruleSkipper,
+        private ProcessorSkipper $processorSkipper,
         private ChangedFilesDetector $changedFilesDetector,
         private ConfigurationRuleFilter $configurationRuleFilter
     ) {
@@ -70,6 +71,10 @@ final readonly class FractorRunner
                 $this->symfonyStyle->progressAdvance();
             }
             foreach ($this->processors as $processor) {
+                if ($this->processorSkipper->shouldSkip($processor::class)) {
+                    continue;
+                }
+
                 if (! $processor->canHandle($file)) {
                     continue;
                 }
