@@ -1,4 +1,4 @@
-# 46 Rules Overview
+# 68 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -800,6 +800,32 @@ Migrate page["field"] to traverse(page, "field") in TypoScript conditions for sa
 
 <br>
 
+## RemoveConfigConcatenateJsAndCssFractor
+
+Remove config.concatenateJsAndCss
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigConcatenateJsAndCssFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigConcatenateJsAndCssFractor.php)
+
+```diff
+-config.concatenateJsAndCss = 1
++-
+```
+
+<br>
+
+## RemoveConfigDefaultGetVarsFractor
+
+Remove config.defaultGetVars
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigDefaultGetVarsFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigDefaultGetVarsFractor.php)
+
+```diff
+-config.defaultGetVars = 1
++-
+```
+
+<br>
+
 ## RemoveConfigDisablePageExternalUrlFractor
 
 Remove config.disablePageExternalUrl
@@ -826,6 +852,71 @@ Remove config.doctypeSwitch
 
 <br>
 
+## RemoveConfigHtmlTagDirFractor
+
+Remove config.htmlTag_dir
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigHtmlTagDirFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigHtmlTagDirFractor.php)
+
+```diff
+-config.htmlTag_dir = 1
++-
+```
+
+<br>
+
+## RemoveConfigHtmlTagLangKeyFractor
+
+Remove config.htmlTag_langKey
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigHtmlTagLangKeyFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigHtmlTagLangKeyFractor.php)
+
+```diff
+-config.htmlTag_langKey = 1
++-
+```
+
+<br>
+
+## RemoveConfigLanguageAltFractor
+
+Remove config.language_alt
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigLanguageAltFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigLanguageAltFractor.php)
+
+```diff
+-config.language_alt = 1
++-
+```
+
+<br>
+
+## RemoveConfigLanguageFractor
+
+Remove config.language
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigLanguageFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigLanguageFractor.php)
+
+```diff
+-config.language = 1
++-
+```
+
+<br>
+
+## RemoveConfigLocaleAllFractor
+
+Remove config.locale_all
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigLocaleAllFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigLocaleAllFractor.php)
+
+```diff
+-config.locale_all = 1
++-
+```
+
+<br>
+
 ## RemoveConfigMetaCharsetFractor
 
 Remove config.metaCharset
@@ -834,6 +925,32 @@ Remove config.metaCharset
 
 ```diff
 -config.metaCharset = 1
++-
+```
+
+<br>
+
+## RemoveConfigPrefixLocalAnchorsFractor
+
+Remove config.prefixLocalAnchors
+
+- class: [`a9f\Typo3Fractor\TYPO3v8\TypoScript\RemoveConfigPrefixLocalAnchorsFractor`](../rules/TYPO3v8/TypoScript/RemoveConfigPrefixLocalAnchorsFractor.php)
+
+```diff
+-config.prefixLocalAnchors = 1
++-
+```
+
+<br>
+
+## RemoveConfigRenderCharsetFractor
+
+Remove config.renderCharset
+
+- class: [`a9f\Typo3Fractor\TYPO3v8\TypoScript\RemoveConfigRenderCharsetFractor`](../rules/TYPO3v8/TypoScript/RemoveConfigRenderCharsetFractor.php)
+
+```diff
+-config.renderCharset = 1
 +-
 ```
 
@@ -852,6 +969,19 @@ Remove config.sendCacheHeaders_onlyWhenLoginDeniedInBranch
 
 <br>
 
+## RemoveConfigSimulateStaticDocumentsFractor
+
+Remove config.simulateStaticDocuments
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigSimulateStaticDocumentsFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigSimulateStaticDocumentsFractor.php)
+
+```diff
+-config.simulateStaticDocuments = 1
++-
+```
+
+<br>
+
 ## RemoveConfigSpamProtectEmailAddressesAsciiOptionFractor
 
 Remove config.spamProtectEmailAddresses with option ascii
@@ -860,6 +990,162 @@ Remove config.spamProtectEmailAddresses with option ascii
 
 ```diff
 -config.spamProtectEmailAddresses = ascii
++-
+```
+
+<br>
+
+## RemoveConfigSysLanguageIsocodeDefaultFractor
+
+Remove config.sys_language_isocode_default
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigSysLanguageIsocodeDefaultFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigSysLanguageIsocodeDefaultFractor.php)
+
+```diff
+-config.sys_language_isocode_default = 1
++-
+```
+
+<br>
+
+## RemoveConfigSysLanguageIsocodeFractor
+
+Remove config.sys_language_isocode
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigSysLanguageIsocodeFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigSysLanguageIsocodeFractor.php)
+
+```diff
+-config.sys_language_isocode = 1
++-
+```
+
+<br>
+
+## RemoveConfigSysLanguageModeFractor
+
+Remove config.sys_language_mode
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigSysLanguageModeFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigSysLanguageModeFractor.php)
+
+```diff
+-config.sys_language_mode = 1
++-
+```
+
+<br>
+
+## RemoveConfigSysLanguageOverlayFractor
+
+Remove config.sys_language_overlay
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigSysLanguageOverlayFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigSysLanguageOverlayFractor.php)
+
+```diff
+-config.sys_language_overlay = 1
++-
+```
+
+<br>
+
+## RemoveConfigSysLanguageUidFractor
+
+Remove config.sys_language_uid
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigSysLanguageUidFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigSysLanguageUidFractor.php)
+
+```diff
+-config.sys_language_uid = 1
++-
+```
+
+<br>
+
+## RemoveConfigTitleTagFunctionFractor
+
+Remove config.titleTagFunction
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigTitleTagFunctionFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigTitleTagFunctionFractor.php)
+
+```diff
+-config.titleTagFunction = 1
++-
+```
+
+<br>
+
+## RemoveConfigTxRealurlEnableFractor
+
+Remove config.tx_realurl_enable
+
+- class: [`a9f\Typo3Fractor\TYPO3v9\TypoScript\RemoveConfigTxRealurlEnableFractor`](../rules/TYPO3v9/TypoScript/RemoveConfigTxRealurlEnableFractor.php)
+
+```diff
+-config.tx_realurl_enable = 1
++-
+```
+
+<br>
+
+## RemoveConfigTypolinkCheckRootlineFractor
+
+Remove config.typolinkCheckRootline
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigTypolinkCheckRootlineFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigTypolinkCheckRootlineFractor.php)
+
+```diff
+-config.typolinkCheckRootline = 1
++-
+```
+
+<br>
+
+## RemoveConfigTypolinkEnableLinksAcrossDomainsFractor
+
+Remove config.typolinkEnableLinksAcrossDomains
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigTypolinkEnableLinksAcrossDomainsFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigTypolinkEnableLinksAcrossDomainsFractor.php)
+
+```diff
+-config.typolinkEnableLinksAcrossDomains = 1
++-
+```
+
+<br>
+
+## RemoveConfigUniqueLinkVarsFractor
+
+Remove config.uniqueLinkVars
+
+- class: [`a9f\Typo3Fractor\TYPO3v7\TypoScript\RemoveConfigUniqueLinkVarsFractor`](../rules/TYPO3v7/TypoScript/RemoveConfigUniqueLinkVarsFractor.php)
+
+```diff
+-config.uniqueLinkVars = 1
++-
+```
+
+<br>
+
+## RemoveConfigUsernameSubstTokenFractor
+
+Remove config.USERNAME_substToken
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigUsernameSubstTokenFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigUsernameSubstTokenFractor.php)
+
+```diff
+-config.USERNAME_substToken = 1
++-
+```
+
+<br>
+
+## RemoveConfigUseruidSubstTokenFractor
+
+Remove config.USERUID_substToken
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\RemoveConfigUseruidSubstTokenFractor`](../rules/TYPO3v10/TypoScript/RemoveConfigUseruidSubstTokenFractor.php)
+
+```diff
+-config.USERUID_substToken = 1
 +-
 ```
 
