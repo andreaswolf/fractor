@@ -1,0 +1,11 @@
+[compatVersion = 9.5.0]
+    page = PAGE
+    page.96 = TEXT
+    page.96.value = TYPO3 9.5+
+[end]
+-----
+[compatVersion("9.5.0")]
+    page = PAGE
+    page.96 = TEXT
+    page.96.value = TYPO3 9.5+
+[end]

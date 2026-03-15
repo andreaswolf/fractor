@@ -1,0 +1,11 @@
+[page|uid > 10]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Page uid greater than 10
+[end]
+-----
+[page["uid"] > 10]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Page uid greater than 10
+[end]

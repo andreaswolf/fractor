@@ -1,0 +1,11 @@
+[hostname = www.example.org]
+    page = PAGE
+    page.93 = TEXT
+    page.93.value = hostname match
+[end]
+-----
+[request.getNormalizedParams().getHttpHost() == "www.example.org"]
+    page = PAGE
+    page.93 = TEXT
+    page.93.value = hostname match
+[end]

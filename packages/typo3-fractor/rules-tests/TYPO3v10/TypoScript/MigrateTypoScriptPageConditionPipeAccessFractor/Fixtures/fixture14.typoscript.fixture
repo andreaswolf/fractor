@@ -1,0 +1,11 @@
+[page|uid = {$page.home}]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Home page
+[end]
+-----
+[page["uid"] == {$page.home}]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Home page
+[end]

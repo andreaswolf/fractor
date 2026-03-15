@@ -1,0 +1,11 @@
+[page|backend_layout = 1]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Backend layout 1
+[end]
+-----
+[page["backend_layout"] == 1]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Backend layout 1
+[end]

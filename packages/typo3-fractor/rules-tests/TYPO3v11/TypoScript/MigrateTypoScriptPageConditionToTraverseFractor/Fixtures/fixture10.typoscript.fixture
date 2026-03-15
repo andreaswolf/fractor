@@ -1,0 +1,11 @@
+[page["uid"] == 1]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Page 1
+[end]
+-----
+[traverse(page, "uid") == 1]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Page 1
+[end]

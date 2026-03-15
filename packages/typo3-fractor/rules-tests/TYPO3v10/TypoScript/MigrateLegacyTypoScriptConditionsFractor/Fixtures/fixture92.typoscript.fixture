@@ -1,0 +1,11 @@
+[IP = devIP]
+    page = PAGE
+    page.92 = TEXT
+    page.92.value = developer IP
+[end]
+-----
+[ip("devIP")]
+    page = PAGE
+    page.92 = TEXT
+    page.92.value = developer IP
+[end]

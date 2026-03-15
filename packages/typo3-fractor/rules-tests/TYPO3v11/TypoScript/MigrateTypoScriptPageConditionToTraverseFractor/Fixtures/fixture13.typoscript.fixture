@@ -1,0 +1,11 @@
+[page["uid"] == 1 && page["layout"] == 2]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Combined
+[end]
+-----
+[traverse(page, "uid") == 1 && traverse(page, "layout") == 2]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Combined
+[end]

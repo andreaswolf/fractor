@@ -1,0 +1,11 @@
+[hostname = www.example.org, login.*.org]
+    page = PAGE
+    page.95 = TEXT
+    page.95.value = multiple hostnames
+[end]
+-----
+[request.getNormalizedParams().getHttpHost() == "www.example.org" || like(request.getNormalizedParams().getHttpHost(), "login.*.org")]
+    page = PAGE
+    page.95 = TEXT
+    page.95.value = multiple hostnames
+[end]

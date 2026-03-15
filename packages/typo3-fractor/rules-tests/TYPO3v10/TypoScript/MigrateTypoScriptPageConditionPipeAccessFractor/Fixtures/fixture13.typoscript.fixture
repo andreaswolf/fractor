@@ -1,0 +1,11 @@
+[page|doktype != 3]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Not external URL
+[end]
+-----
+[page["doktype"] != 3]
+    page = PAGE
+    page.10 = TEXT
+    page.10.value = Not external URL
+[end]

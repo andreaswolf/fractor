@@ -1,4 +1,4 @@
-# 44 Rules Overview
+# 46 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -461,6 +461,39 @@ Migrate legacy TypoScript conditions to Symfony expression language syntax
 
 <br>
 
+```diff
+-[IP = 123.456.*.*]
++[ip("123.456.*.*")]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Visitor IP starts with 123.456
+ [end]
+```
+
+<br>
+
+```diff
+-[hostname = example.org]
++[request.getNormalizedParams().getHttpHost() == "example.org"]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Visitor hostname is example.org
+ [end]
+```
+
+<br>
+
+```diff
+-[compatVersion = 9.5.0]
++[compatVersion("9.5.0")]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = TYPO3 version is at least 9.5.0
+ [end]
+```
+
+<br>
+
 ## MigrateNullFlagFlexFormFractor
 
 Migrate null flag
@@ -706,6 +739,62 @@ Migrate TypoScript loginUser and usergroup conditions (both function-call and eq
      page = PAGE
      page.30 = TEXT
      page.30.value = User is in group 1 or 2
+ [end]
+```
+
+<br>
+
+## MigrateTypoScriptPageConditionPipeAccessFractor
+
+Migrate page pipe access in TypoScript conditions to bracket array access syntax
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\MigrateTypoScriptPageConditionPipeAccessFractor`](../rules/TYPO3v10/TypoScript/MigrateTypoScriptPageConditionPipeAccessFractor.php)
+
+```diff
+-[page|uid = 2]
++[page["uid"] == 2]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Hello
+ [end]
+```
+
+<br>
+
+```diff
+-[page|layout == 1]
++[page["layout"] == 1]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Layout 1
+ [end]
+```
+
+<br>
+
+## MigrateTypoScriptPageConditionToTraverseFractor
+
+Migrate page["field"] to traverse(page, "field") in TypoScript conditions for safe access
+
+- class: [`a9f\Typo3Fractor\TYPO3v11\TypoScript\MigrateTypoScriptPageConditionToTraverseFractor`](../rules/TYPO3v11/TypoScript/MigrateTypoScriptPageConditionToTraverseFractor.php)
+
+```diff
+-[page["uid"] == 1]
++[traverse(page, "uid") == 1]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Hello
+ [end]
+```
+
+<br>
+
+```diff
+-[page["backend_layout"] == "pagets__home"]
++[traverse(page, "backend_layout") == "pagets__home"]
+     page = PAGE
+     page.10 = TEXT
+     page.10.value = Home layout
  [end]
 ```
 
