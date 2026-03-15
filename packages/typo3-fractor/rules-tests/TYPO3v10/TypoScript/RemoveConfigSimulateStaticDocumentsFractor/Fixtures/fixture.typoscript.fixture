@@ -1,0 +1,15 @@
+config.simulateStaticDocuments = 1
+
+config {
+    simulateStaticDocuments = 1
+    dummy = 1
+}
+
+config.foo = true
+-----
+
+config {
+    dummy = 1
+}
+
+config.foo = true
