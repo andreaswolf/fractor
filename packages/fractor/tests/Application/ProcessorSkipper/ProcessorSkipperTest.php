@@ -23,23 +23,20 @@ final class ProcessorSkipperTest extends TestCase
         $configuration = new SkipConfiguration([]);
         $subject = new ProcessorSkipper($configuration);
 
-        self::assertFalse($subject->shouldSkip(FluidFileProcessor::class));
-        self::assertFalse($subject->shouldSkip(HtaccessFileProcessor::class));
-        self::assertFalse($subject->shouldSkip(TypoScriptFileProcessor::class));
-        self::assertFalse($subject->shouldSkip(XmlFileProcessor::class));
-        self::assertFalse($subject->shouldSkip(YamlFileProcessor::class));
+        foreach (self::allProcessorClasses() as $processorClass) {
+            self::assertFalse($subject->shouldSkip($processorClass));
+        }
     }
 
     /**
-     * @return \Generator<string, array{class-string}>
+     * @return \Generator<string, array{string}>
      */
     public static function skippableProcessorProvider(): \Generator
     {
-        yield 'FluidFileProcessor' => [FluidFileProcessor::class];
-        yield 'HtaccessFileProcessor' => [HtaccessFileProcessor::class];
-        yield 'TypoScriptFileProcessor' => [TypoScriptFileProcessor::class];
-        yield 'XmlFileProcessor' => [XmlFileProcessor::class];
-        yield 'YamlFileProcessor' => [YamlFileProcessor::class];
+        foreach (self::allProcessorClasses() as $processorClass) {
+            $shortName = (new \ReflectionClass($processorClass))->getShortName();
+            yield $shortName => [$processorClass];
+        }
     }
 
     #[Test]
@@ -56,18 +53,10 @@ final class ProcessorSkipperTest extends TestCase
     #[DataProvider('skippableProcessorProvider')]
     public function otherProcessorsAreNotAffectedWhenOneIsSkipped(string $skippedProcessor): void
     {
-        $allProcessors = [
-            FluidFileProcessor::class,
-            HtaccessFileProcessor::class,
-            TypoScriptFileProcessor::class,
-            XmlFileProcessor::class,
-            YamlFileProcessor::class,
-        ];
-
         $configuration = new SkipConfiguration([$skippedProcessor]);
         $subject = new ProcessorSkipper($configuration);
 
-        foreach ($allProcessors as $processor) {
+        foreach (self::allProcessorClasses() as $processor) {
             if ($processor === $skippedProcessor) {
                 self::assertTrue($subject->shouldSkip($processor), $processor . ' should be skipped');
             } else {
@@ -96,19 +85,25 @@ final class ProcessorSkipperTest extends TestCase
     #[Test]
     public function allProcessorsCanBeSkipped(): void
     {
-        $configuration = new SkipConfiguration([
+        $configuration = new SkipConfiguration(self::allProcessorClasses());
+        $subject = new ProcessorSkipper($configuration);
+
+        foreach (self::allProcessorClasses() as $processorClass) {
+            self::assertTrue($subject->shouldSkip($processorClass));
+        }
+    }
+
+    /**
+     * @return list<class-string>
+     */
+    private static function allProcessorClasses(): array
+    {
+        return [
             FluidFileProcessor::class,
             HtaccessFileProcessor::class,
             TypoScriptFileProcessor::class,
             XmlFileProcessor::class,
             YamlFileProcessor::class,
-        ]);
-        $subject = new ProcessorSkipper($configuration);
-
-        self::assertTrue($subject->shouldSkip(FluidFileProcessor::class));
-        self::assertTrue($subject->shouldSkip(HtaccessFileProcessor::class));
-        self::assertTrue($subject->shouldSkip(TypoScriptFileProcessor::class));
-        self::assertTrue($subject->shouldSkip(XmlFileProcessor::class));
-        self::assertTrue($subject->shouldSkip(YamlFileProcessor::class));
+        ];
     }
 }

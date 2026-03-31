@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Application;
 
-use a9f\Fractor\Application\Contract\FileProcessor;
-use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 
 final readonly class ProcessorSkipper
@@ -15,9 +13,6 @@ final readonly class ProcessorSkipper
     ) {
     }
 
-    /**
-     * @param class-string<FileProcessor<FractorRule>> $processor
-     */
     public function shouldSkip(string $processor): bool
     {
         $configuredSkip = $this->configuration->getSkip();
