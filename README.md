@@ -117,6 +117,31 @@ return FractorConfiguration::configure()
     ]);
 ```
 
+### Skipping FileProcessors
+
+If skipping rules, files, or folders is not sufficient, you can also skip entire processors.
+
+#### Example
+
+```php
+use a9f\FractorFluid\FluidFileProcessor;
+use a9f\FractorHtaccess\HtaccessFileProcessor;
+use a9f\FractorTypoScript\TypoScriptFileProcessor;
+use a9f\FractorXml\XmlFileProcessor;
+use a9f\FractorYaml\YamlFileProcessor;
+
+return FractorConfiguration::configure()
+    ->withSkip([
+        '*/node_modules',
+        '*/vendor/*',
+        FluidFileProcessor::class,
+        HtaccessFileProcessor::class,
+        TypoScriptFileProcessor::class,
+        XmlFileProcessor::class,
+        YamlFileProcessor::class,
+    ]);
+```
+
 ### Configure code style
 
 Fractor tries to format the code as good as possible.
