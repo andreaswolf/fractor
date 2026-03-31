@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff
+	xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages">
+		<header/>
+		<body>
+			<trans-unit id="label.hello" approved="yes">
+				<source>Hello</source>
+				<target>Hallo</target>
+			</trans-unit>
+			<trans-unit id="label.world" approved="no">
+				<source>World</source>
+				<target>Welt</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
+-----
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff
+	xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
+	<file id="messages">
+		<unit id="label.hello">
+			<segment state="final">
+				<source>Hello</source>
+				<target>Hallo</target>
+			</segment>
+		</unit>
+		<unit id="label.world">
+			<segment state="translated">
+				<source>World</source>
+				<target>Welt</target>
+			</segment>
+		</unit>
+	</file>
+</xliff>

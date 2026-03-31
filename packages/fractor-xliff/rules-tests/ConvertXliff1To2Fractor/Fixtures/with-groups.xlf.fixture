@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff
+	xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file source-language="en" datatype="plaintext" original="messages">
+		<body>
+			<group id="menu">
+				<trans-unit id="menu.home">
+					<source>Home</source>
+				</trans-unit>
+				<trans-unit id="menu.about">
+					<source>About</source>
+				</trans-unit>
+			</group>
+		</body>
+	</file>
+</xliff>
+-----
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff
+	xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+	<file id="messages">
+		<group id="menu">
+			<unit id="menu.home">
+				<segment>
+					<source>Home</source>
+				</segment>
+			</unit>
+			<unit id="menu.about">
+				<segment>
+					<source>About</source>
+				</segment>
+			</unit>
+		</group>
+	</file>
+</xliff>
