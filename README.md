@@ -127,6 +127,7 @@ If skipping rules, files, or folders is not sufficient, you can also skip entire
 use a9f\FractorFluid\FluidFileProcessor;
 use a9f\FractorHtaccess\HtaccessFileProcessor;
 use a9f\FractorTypoScript\TypoScriptFileProcessor;
+use a9f\FractorYaml\XliffFileProcessor;
 use a9f\FractorXml\XmlFileProcessor;
 use a9f\FractorYaml\YamlFileProcessor;
 
@@ -137,6 +138,7 @@ return FractorConfiguration::configure()
         FluidFileProcessor::class,
         HtaccessFileProcessor::class,
         TypoScriptFileProcessor::class,
+        XliffFileProcessor::class,
         XmlFileProcessor::class,
         YamlFileProcessor::class,
     ]);
