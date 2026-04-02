@@ -50,7 +50,7 @@ jobs:
         with:
           fetch-depth: 0 # ensure the complete Git history is available
 
-      - uses: webfactory/ssh-agent@v0.9.1
+      - uses: webfactory/ssh-agent@v0.10.0
         with:
           ssh-private-key: ${{ secrets[matrix.package.deploy-key] }}
 
