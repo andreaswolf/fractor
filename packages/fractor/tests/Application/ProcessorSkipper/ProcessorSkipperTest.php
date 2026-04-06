@@ -9,6 +9,7 @@ use a9f\Fractor\Configuration\ValueObject\SkipConfiguration;
 use a9f\FractorFluid\FluidFileProcessor;
 use a9f\FractorHtaccess\HtaccessFileProcessor;
 use a9f\FractorTypoScript\TypoScriptFileProcessor;
+use a9f\FractorXliff\XliffFileProcessor;
 use a9f\FractorXml\XmlFileProcessor;
 use a9f\FractorYaml\YamlFileProcessor;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -78,6 +79,7 @@ final class ProcessorSkipperTest extends TestCase
         self::assertTrue($subject->shouldSkip(FluidFileProcessor::class));
         self::assertFalse($subject->shouldSkip(HtaccessFileProcessor::class));
         self::assertFalse($subject->shouldSkip(TypoScriptFileProcessor::class));
+        self::assertFalse($subject->shouldSkip(XliffFileProcessor::class));
         self::assertTrue($subject->shouldSkip(XmlFileProcessor::class));
         self::assertTrue($subject->shouldSkip(YamlFileProcessor::class));
     }
@@ -102,6 +104,7 @@ final class ProcessorSkipperTest extends TestCase
             FluidFileProcessor::class,
             HtaccessFileProcessor::class,
             TypoScriptFileProcessor::class,
+            XliffFileProcessor::class,
             XmlFileProcessor::class,
             YamlFileProcessor::class,
         ];

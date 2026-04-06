@@ -1,6 +1,6 @@
 {
-    "name": "a9f/typo3-fractor",
-    "description": "TYPO3 extension for the File Read-Analyse-Change Tool. Allows modifying XML files",
+    "name": "a9f/fractor-xliff",
+    "description": "XLIFF extension for the File Read-Analyse-Change Tool. Allows modifying XLIFF translation files",
     "license": "MIT",
     "type": "fractor-extension",
     "keywords": [
@@ -10,33 +10,24 @@
         "refactoring",
         "automation",
         "migration",
-        "typo3"
-    ],
-    "authors": [
-        {
-            "name": "Andreas Wolf",
-            "email": "dev@a-w.io",
-            "role": "Lead Developer"
-        }
+        "xliff",
+        "translation"
     ],
     "require": {
         "php": "^8.2",
         "ext-dom": "*",
+        "ext-xml": "*",
         "a9f/fractor": "^0.5.10",
         "a9f/fractor-extension-installer": "^0.5.10",
-        "a9f/fractor-fluid": "^0.5.10",
-        "a9f/fractor-htaccess": "^0.5.10",
-        "a9f/fractor-typoscript": "^0.5.10",
-        "a9f/fractor-xliff": "^0.5.10",
-        "a9f/fractor-xml": "^0.5.10",
-        "a9f/fractor-yaml": "^0.5.10",
-        "symplify/rule-doc-generator-contracts": "^11.2"
+        "simonschaufi/pretty-xml": "^3.0.0",
+        "symplify/rule-doc-generator-contracts": "^11.2",
+        "webmozart/assert": "^1.11"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "a9f\\Typo3Fractor\\": [
+            "a9f\\FractorXliff\\": [
                 "src/",
                 "rules/"
             ]
@@ -44,15 +35,12 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "a9f\\Typo3Fractor\\Tests\\": [
+            "a9f\\FractorXliff\\Tests\\": [
                 "tests/",
                 "rules-tests/"
             ]
         }
     },
-    "bin": [
-        "bin/typo3-fractor-init"
-    ],
     "config": {
         "allow-plugins": {
             "a9f/fractor-extension-installer": true
