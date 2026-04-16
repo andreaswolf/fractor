@@ -1,4 +1,4 @@
-# 68 Rules Overview
+# 69 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -739,6 +739,30 @@ Migrate TypoScript loginUser and usergroup conditions (both function-call and eq
      page = PAGE
      page.30 = TEXT
      page.30.value = User is in group 1 or 2
+ [end]
+```
+
+<br>
+
+## MigrateTypoScriptMultipleConditionBracketsFractor
+
+Merge multiple TypoScript condition bracket pairs into a single bracket with logical operators inside
+
+- class: [`a9f\Typo3Fractor\TYPO3v10\TypoScript\MigrateTypoScriptMultipleConditionBracketsFractor`](../rules/TYPO3v10/TypoScript/MigrateTypoScriptMultipleConditionBracketsFractor.php)
+
+```diff
+-[conditionA] || [conditionB]
++[conditionA || conditionB]
+     page = PAGE
+ [end]
+```
+
+<br>
+
+```diff
+-[conditionA] && [conditionB]
++[conditionA && conditionB]
+     page = PAGE
  [end]
 ```
 

@@ -1,0 +1,7 @@
+[conditionA] || [conditionB] || [conditionC]
+    page = PAGE
+[end]
+-----
+[conditionA || conditionB || conditionC]
+    page = PAGE
+[end]

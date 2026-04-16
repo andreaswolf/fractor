@@ -1,0 +1,7 @@
+[conditionA] && [conditionB]
+    page = PAGE
+[end]
+-----
+[conditionA && conditionB]
+    page = PAGE
+[end]
