@@ -1,0 +1,9 @@
+<f:switch expression="{someVariable}">
+    <f:case value="foo">foo</f:case>
+    <f:case default="true">bar</f:case>
+</f:switch>
+-----
+<f:switch expression="{someVariable}">
+    <f:case value="foo">foo</f:case>
+    <f:defaultCase>bar</f:defaultCase>
+</f:switch>
