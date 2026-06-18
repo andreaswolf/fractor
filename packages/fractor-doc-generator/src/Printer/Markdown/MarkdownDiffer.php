@@ -33,14 +33,13 @@ final readonly class MarkdownDiffer
         }
 
         $diff = $this->differ->diff($old, $new);
-        $diff = $this->clearUnifiedDiffOutputFirstLine($diff);
         $diff = $this->removeTrailingWhitespaces($diff);
 
         return $this->warpToDiffCode($diff);
     }
 
     /**
-     * Removes UnifiedDiffOutputBuilder generated pre-spaces " \n" => "\n"
+     * Removes StrictUnifiedDiffOutputBuilder generated pre-spaces " \n" => "\n"
      */
     private function removeTrailingWhitespaces(string $diff): string
     {
