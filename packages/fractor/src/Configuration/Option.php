@@ -89,4 +89,9 @@ final class Option
      * @internal to allow process file without extension if explicitly registered
      */
     public const FILES_WITHOUT_EXTENSION = 'files_without_extension';
+
+    /**
+     * @var string
+     */
+    public const NO_DIFFS = 'no-diffs';
 }

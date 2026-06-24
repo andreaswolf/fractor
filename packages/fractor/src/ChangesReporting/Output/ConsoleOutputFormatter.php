@@ -29,7 +29,9 @@ final readonly class ConsoleOutputFormatter implements OutputFormatterInterface
 
     public function report(ProcessResult $processResult, Configuration $configuration): void
     {
-        $this->reportFileDiffs($processResult->getFileDiffs(), false, $configuration->shouldShowChangelog());
+        if ($configuration->shouldShowDiffs()) {
+            $this->reportFileDiffs($processResult->getFileDiffs(), false, $configuration->shouldShowChangelog());
+        }
 
         // to keep space between progress bar and success message
         if ($configuration->shouldShowProgressBar() && $processResult->getFileDiffs() === []) {
@@ -78,7 +80,7 @@ final readonly class ConsoleOutputFormatter implements OutputFormatterInterface
 
     private function createSuccessMessage(ProcessResult $processResult, Configuration $configuration): string
     {
-        $changeCount = \count($processResult->getFileDiffs());
+        $changeCount = $processResult->getTotalChanged();
         if ($changeCount === 0) {
             return 'Fractor is done!';
         }

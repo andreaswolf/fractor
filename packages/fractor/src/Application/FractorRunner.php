@@ -50,7 +50,7 @@ final readonly class FractorRunner
 
         // no files found
         if ($filePaths === []) {
-            return new ProcessResult([]);
+            return new ProcessResult([], 0);
         }
 
         $shouldShowProgressBar = $configuration->shouldShowProgressBar();
@@ -63,6 +63,7 @@ final readonly class FractorRunner
         /** @var FileDiff[] $fileDiffs */
         $fileDiffs = [];
 
+        $totalChanged = 0;
         foreach ($filePaths as $filePath) {
             $file = new File($filePath, FileSystem::read($filePath));
             $this->fileCollector->addFile($file);
@@ -89,7 +90,9 @@ final readonly class FractorRunner
                 continue;
             }
 
-            $file->setFileDiff($this->fileDiffFactory->createFileDiff($file));
+            ++$totalChanged;
+
+            $file->setFileDiff($this->fileDiffFactory->createFileDiff($configuration->shouldShowDiffs(), $file));
 
             $fileProcessResult = new FileProcessResult($file->getFileDiff());
             $currentFileDiff = $fileProcessResult->getFileDiff();
@@ -110,7 +113,7 @@ final readonly class FractorRunner
             $this->fileWriter->write($file);
         }
 
-        return new ProcessResult($fileDiffs);
+        return new ProcessResult($fileDiffs, $totalChanged);
     }
 
     /**

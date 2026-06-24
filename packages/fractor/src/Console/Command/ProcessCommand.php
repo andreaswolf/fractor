@@ -66,6 +66,12 @@ final class ProcessCommand extends Command
             'Hide progress bar. Useful e.g. for nicer CI output.'
         );
         $this->addOption(
+            Option::NO_DIFFS,
+            null,
+            InputOption::VALUE_NONE,
+            'Hide diffs of changed files. Useful e.g. for nicer CI output.'
+        );
+        $this->addOption(
             Option::SHOW_CHANGELOG,
             null,
             InputOption::VALUE_NONE,
