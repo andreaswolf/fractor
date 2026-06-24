@@ -71,6 +71,8 @@ final class FractorConfigurationBuilder
 
     private ?string $containerCacheDirectory = null;
 
+    private bool $noDiffs = false;
+
     public function __invoke(ContainerConfigurator $containerConfigurator): void
     {
         foreach ($this->imports as $import) {
@@ -103,6 +105,9 @@ final class FractorConfigurationBuilder
 
         $parameters->set(Option::CONTAINER_CACHE_DIRECTORY, $this->containerCacheDirectory);
         SimpleParameterProvider::setParameter(Option::CONTAINER_CACHE_DIRECTORY, $this->containerCacheDirectory);
+
+        $parameters->set(Option::NO_DIFFS, $this->noDiffs);
+        SimpleParameterProvider::setParameter(Option::NO_DIFFS, $this->noDiffs);
 
         foreach ($this->options as $optionName => $optionValue) {
             $parameters->set($optionName, $optionValue);
@@ -205,6 +210,13 @@ final class FractorConfigurationBuilder
     public function import(string $import): self
     {
         $this->imports[] = $import;
+
+        return $this;
+    }
+
+    public function withNoDiffs(): self
+    {
+        $this->noDiffs = true;
 
         return $this;
     }

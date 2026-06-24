@@ -28,6 +28,7 @@ final readonly class ConfigurationFactory
 
         $outputFormat = (string) $input->getOption(Option::OUTPUT_FORMAT);
         $showProgressBar = $this->shouldShowProgressBar($input, $outputFormat);
+        $showDiffs = $this->shouldShowDiffs($input);
         $showChangelog = $this->shouldShowChangelog($input);
 
         /** @var list<non-empty-string> $paths */
@@ -48,6 +49,7 @@ final readonly class ConfigurationFactory
             $outputFormat,
             $fileExtensions,
             $paths,
+            $showDiffs,
             (array) $this->parameterBag->get(Option::SKIP),
             $onlyRule,
             $showChangelog
@@ -79,6 +81,17 @@ final readonly class ConfigurationFactory
         }
 
         return $outputFormat === ConsoleOutputFormatter::NAME;
+    }
+
+    private function shouldShowDiffs(InputInterface $input): bool
+    {
+        $noDiffs = (bool) $input->getOption(Option::NO_DIFFS);
+        if ($noDiffs) {
+            return false;
+        }
+
+        // fallback to parameter
+        return ! SimpleParameterProvider::provideBoolParameter(Option::NO_DIFFS, false);
     }
 
     private function shouldShowChangelog(InputInterface $input): bool

@@ -34,11 +34,13 @@ final class JsonOutputFormatter implements OutputFormatterInterface
         foreach ($fileDiffs as $fileDiff) {
             $filePath = $fileDiff->getRelativeFilePath();
 
-            $errorsJson['file_diffs'][] = [
-                'file' => $filePath,
-                'diff' => $fileDiff->getDiff(),
-                'applied_rules' => $configuration->shouldShowChangelog() ? $fileDiff->getChangelogsLines() : $fileDiff->getFractorClasses(),
-            ];
+            if ($configuration->shouldShowDiffs() && $fileDiff->getDiff() !== '') {
+                $errorsJson['file_diffs'][] = [
+                    'file' => $filePath,
+                    'diff' => $fileDiff->getDiff(),
+                    'applied_rules' => $configuration->shouldShowChangelog() ? $fileDiff->getChangelogsLines() : $fileDiff->getFractorClasses(),
+                ];
+            }
 
             // for CI
             $errorsJson['changed_files'][] = $filePath;

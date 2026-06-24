@@ -21,16 +21,20 @@ final readonly class FileDiffFactory
     ) {
     }
 
-    public function createFileDiff(File $file): FileDiff
+    public function createFileDiff(bool $shouldShowDiffs, File $file): FileDiff
     {
         $relativeFilePath = $this->filePathHelper->relativePath($file->getFilePath());
+
+        $diff = $shouldShowDiffs ? $this->defaultDiffer->diff($file->getDiff()) : '';
+        $consoleDiff = $shouldShowDiffs ? $this->consoleDiffer->diff($file->getDiff()) : '';
+
         $fractorsChangelogsLines = $this->fractorsChangelogLinesResolver->createFractorChangelogLines(
             $file->getAppliedRules()
         );
         return new FileDiff(
             $relativeFilePath,
-            $this->defaultDiffer->diff($file->getDiff()),
-            $this->consoleDiffer->diff($file->getDiff()),
+            $diff,
+            $consoleDiff,
             $file->getAppliedRules(),
             $fractorsChangelogsLines
         );

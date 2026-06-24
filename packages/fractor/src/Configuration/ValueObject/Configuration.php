@@ -24,35 +24,12 @@ final readonly class Configuration
         private string $outputFormat = ConsoleOutputFormatter::NAME,
         private array $fileExtensions = [],
         private array $paths = [],
+        private bool $showDiffs = true,
         private array $skip = [],
         private ?string $onlyRule = null,
         private bool $showChangelog = false,
     ) {
         Assert::allStringNotEmpty($this->paths, 'No directories given');
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getFileExtensions(): array
-    {
-        return $this->fileExtensions;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getSkip(): array
-    {
-        return $this->skip;
-    }
-
-    /**
-     * @return list<non-empty-string>
-     */
-    public function getPaths(): array
-    {
-        return $this->paths;
     }
 
     public function isDryRun(): bool
@@ -70,14 +47,43 @@ final readonly class Configuration
         return $this->quiet;
     }
 
-    public function getOnlyRule(): ?string
-    {
-        return $this->onlyRule;
-    }
-
     public function getOutputFormat(): string
     {
         return $this->outputFormat;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getFileExtensions(): array
+    {
+        return $this->fileExtensions;
+    }
+
+    /**
+     * @return list<non-empty-string>
+     */
+    public function getPaths(): array
+    {
+        return $this->paths;
+    }
+
+    public function shouldShowDiffs(): bool
+    {
+        return $this->showDiffs;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getSkip(): array
+    {
+        return $this->skip;
+    }
+
+    public function getOnlyRule(): ?string
+    {
+        return $this->onlyRule;
     }
 
     public function shouldShowChangelog(): bool
