@@ -79,12 +79,6 @@ final class ProcessCommand extends Command
             InputOption::VALUE_NONE,
             'Show changelog URI. Useful e.g. for more verbose output.'
         );
-        $this->addOption(
-            Option::QUIET,
-            Option::QUIET_SHORT,
-            InputOption::VALUE_NONE,
-            'Do not output diff of changes.'
-        );
         $this->addOption(Option::MEMORY_LIMIT, null, InputOption::VALUE_REQUIRED, 'Memory limit for process');
         $this->addOption(Option::CLEAR_CACHE, null, InputOption::VALUE_NONE, 'Clear unchanged files cache');
 

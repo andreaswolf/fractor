@@ -36,16 +36,6 @@ final class Option
     /**
      * @var string
      */
-    public const QUIET = 'quiet';
-
-    /**
-     * @var string
-     */
-    public const QUIET_SHORT = 'q';
-
-    /**
-     * @var string
-     */
     public const CONFIG = 'config';
 
     /**

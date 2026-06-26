@@ -45,7 +45,6 @@ final readonly class ConfigurationFactory
         return new Configuration(
             $dryRun,
             $showProgressBar,
-            (bool) $input->getOption(Option::QUIET),
             $outputFormat,
             $fileExtensions,
             $paths,
@@ -66,7 +65,7 @@ final readonly class ConfigurationFactory
 
         $fileExtensions = $this->allowedFileExtensionsResolver->resolve();
 
-        return new Configuration(false, true, false, ConsoleOutputFormatter::NAME, $fileExtensions, $paths);
+        return new Configuration(false, true, ConsoleOutputFormatter::NAME, $fileExtensions, $paths);
     }
 
     private function shouldShowProgressBar(InputInterface $input, string $outputFormat): bool
