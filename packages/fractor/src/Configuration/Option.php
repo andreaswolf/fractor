@@ -94,4 +94,9 @@ final class Option
      * @var string
      */
     public const NO_DIFFS = 'no-diffs';
+
+    /**
+     * @var string
+     */
+    public const MEMORY_LIMIT = 'memory-limit';
 }

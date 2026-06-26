@@ -9,13 +9,11 @@ use a9f\Fractor\Configuration\Parameter\SimpleParameterProvider;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Webmozart\Assert\Assert;
 
 final readonly class ConfigurationFactory
 {
     public function __construct(
-        private ContainerBagInterface $parameterBag,
         private AllowedFileExtensionsResolver $allowedFileExtensionsResolver,
         private OnlyRuleResolver $onlyRuleResolver,
         private SymfonyStyle $symfonyStyle
@@ -42,6 +40,8 @@ final readonly class ConfigurationFactory
             $onlyRule = $this->onlyRuleResolver->resolve($onlyRule);
         }
 
+        $memoryLimit = $this->resolveMemoryLimit($input);
+
         return new Configuration(
             $dryRun,
             $showProgressBar,
@@ -50,7 +50,7 @@ final readonly class ConfigurationFactory
             $fileExtensions,
             $paths,
             $showDiffs,
-            (array) $this->parameterBag->get(Option::SKIP),
+            $memoryLimit,
             $onlyRule,
             $showChangelog
         );
@@ -135,5 +135,19 @@ final readonly class ConfigurationFactory
                 SimpleParameterProvider::addParameter(Option::FILES_WITHOUT_EXTENSION, $path);
             }
         }
+    }
+
+    private function resolveMemoryLimit(InputInterface $input): string | null
+    {
+        $memoryLimit = $input->getOption(Option::MEMORY_LIMIT);
+        if ($memoryLimit !== null) {
+            return (string) $memoryLimit;
+        }
+
+        if (! SimpleParameterProvider::hasParameter(Option::MEMORY_LIMIT)) {
+            return null;
+        }
+
+        return SimpleParameterProvider::provideStringParameter(Option::MEMORY_LIMIT);
     }
 }

@@ -16,6 +16,7 @@ use a9f\Fractor\Console\Application\FractorApplication;
 use a9f\Fractor\Console\ExitCode;
 use a9f\Fractor\Console\Output\OutputFormatterCollector;
 use a9f\Fractor\Exception\ShouldNotHappenException;
+use a9f\Fractor\Util\MemoryLimiter;
 use a9f\Fractor\ValueObject\ProcessResult;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -33,6 +34,7 @@ final class ProcessCommand extends Command
         private readonly OutputFormatterCollector $outputFormatterCollector,
         private readonly ChangedFilesDetector $changedFilesDetector,
         private readonly ConfigInitializer $configInitializer,
+        private readonly MemoryLimiter $memoryLimiter,
         private readonly ConfigurationRuleFilter $configurationRuleFilter
     ) {
         parent::__construct();
@@ -83,6 +85,7 @@ final class ProcessCommand extends Command
             InputOption::VALUE_NONE,
             'Do not output diff of changes.'
         );
+        $this->addOption(Option::MEMORY_LIMIT, null, InputOption::VALUE_REQUIRED, 'Memory limit for process');
         $this->addOption(Option::CLEAR_CACHE, null, InputOption::VALUE_NONE, 'Clear unchanged files cache');
 
         $this->addOption(
@@ -107,6 +110,7 @@ final class ProcessCommand extends Command
 
         $configuration = $this->configurationFactory->createFromInput($input);
 
+        $this->memoryLimiter->adjust($configuration);
         $this->configurationRuleFilter->setConfiguration($configuration);
 
         $processResult = $this->runner->run($configuration);
