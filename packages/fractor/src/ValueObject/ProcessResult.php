@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\ValueObject;
 
+use a9f\Fractor\Application\Contract\FractorRule;
 use a9f\Fractor\Differ\ValueObject\FileDiff;
 use Webmozart\Assert\Assert;
 
@@ -33,5 +34,26 @@ final readonly class ProcessResult
     public function getTotalChanged(): int
     {
         return $this->totalChanged;
+    }
+
+    /**
+     * @return array<class-string<FractorRule>, int>
+     */
+    public function getRuleApplicationCounts(): array
+    {
+        $ruleCounts = [];
+
+        foreach ($this->fileDiffs as $fileDiff) {
+            foreach ($fileDiff->getFractorClasses() as $fractorClass) {
+                if (! isset($ruleCounts[$fractorClass])) {
+                    $ruleCounts[$fractorClass] = 0;
+                }
+
+                ++$ruleCounts[$fractorClass];
+            }
+        }
+
+        arsort($ruleCounts);
+        return $ruleCounts;
     }
 }

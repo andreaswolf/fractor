@@ -1,0 +1,26 @@
+
+1 file with changes
+===================
+
+1) rules-summary/result/fixture.typoscript:1
+
+    ---------- begin diff ----------
+@@ @@
+-config.xhtmlDoctype = 1
+-config.metaCharset = utf-8
++config.doctype = 1
+    ----------- end diff -----------
+
+Applied rules:
+ * RenameConfigXhtmlDoctypeToDoctypeFractor
+ * RemoveConfigMetaCharsetFractor
+
+
+Rules Summary
+-------------
+
+ * RenameConfigXhtmlDoctypeToDoctypeFractor was applied 1 time
+ * RemoveConfigMetaCharsetFractor was applied 1 time
+
+ [OK] 1 file has been changed by Fractor
+

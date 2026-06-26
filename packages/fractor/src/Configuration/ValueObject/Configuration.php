@@ -25,6 +25,7 @@ final readonly class Configuration
         private bool $showDiffs = true,
         private string|null $memoryLimit = null,
         private ?string $onlyRule = null,
+        private bool $showRulesSummary = false,
         private bool $showChangelog = false,
     ) {
         Assert::allStringNotEmpty($this->paths, 'No directories given');
@@ -74,6 +75,11 @@ final readonly class Configuration
     public function getOnlyRule(): ?string
     {
         return $this->onlyRule;
+    }
+
+    public function shouldShowRulesSummary(): bool
+    {
+        return $this->showRulesSummary;
     }
 
     public function shouldShowChangelog(): bool
