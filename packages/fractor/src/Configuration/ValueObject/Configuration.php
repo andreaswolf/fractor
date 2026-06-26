@@ -15,7 +15,6 @@ final readonly class Configuration
     /**
      * @param string[] $fileExtensions
      * @param list<non-empty-string> $paths
-     * @param string[] $skip
      */
     public function __construct(
         private bool $dryRun = false,
@@ -25,7 +24,7 @@ final readonly class Configuration
         private array $fileExtensions = [],
         private array $paths = [],
         private bool $showDiffs = true,
-        private array $skip = [],
+        private string|null $memoryLimit = null,
         private ?string $onlyRule = null,
         private bool $showChangelog = false,
     ) {
@@ -73,12 +72,9 @@ final readonly class Configuration
         return $this->showDiffs;
     }
 
-    /**
-     * @return string[]
-     */
-    public function getSkip(): array
+    public function getMemoryLimit(): ?string
     {
-        return $this->skip;
+        return $this->memoryLimit;
     }
 
     public function getOnlyRule(): ?string
