@@ -55,7 +55,7 @@ final readonly class FractorRunner
 
         $shouldShowProgressBar = $configuration->shouldShowProgressBar();
 
-        if ($shouldShowProgressBar && ! $configuration->isQuiet()) {
+        if ($shouldShowProgressBar) {
             $this->symfonyStyle->progressStart(count($filePaths));
             $this->symfonyStyle->progressAdvance(0);
         }
@@ -68,7 +68,7 @@ final readonly class FractorRunner
             $file = new File($filePath, FileSystem::read($filePath));
             $this->fileCollector->addFile($file);
 
-            if ($shouldShowProgressBar && ! $configuration->isQuiet()) {
+            if ($shouldShowProgressBar) {
                 $this->symfonyStyle->progressAdvance();
             }
             foreach ($this->processors as $processor) {
