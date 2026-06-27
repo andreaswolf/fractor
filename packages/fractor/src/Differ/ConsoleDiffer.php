@@ -8,7 +8,7 @@ use a9f\Fractor\Differ\Contract\Differ;
 use a9f\Fractor\Differ\Formatter\ColorConsoleDiffFormatter;
 use a9f\Fractor\Differ\ValueObject\Diff;
 use SebastianBergmann\Diff\Differ as CoreDiffer;
-use SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder;
+use SebastianBergmann\Diff\Output\StrictUnifiedDiffOutputBuilder;
 
 final readonly class ConsoleDiffer implements Differ
 {
@@ -17,7 +17,10 @@ final readonly class ConsoleDiffer implements Differ
     public function __construct(
         private ColorConsoleDiffFormatter $colorConsoleDiffFormatter
     ) {
-        $unifiedDiffOutputBuilder = new UnifiedDiffOutputBuilder();
+        $unifiedDiffOutputBuilder = new StrictUnifiedDiffOutputBuilder([
+            'fromFile' => '',
+            'toFile' => '',
+        ]);
         $this->differ = new CoreDiffer($unifiedDiffOutputBuilder);
     }
 
