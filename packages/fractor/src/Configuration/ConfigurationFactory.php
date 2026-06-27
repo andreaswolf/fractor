@@ -42,6 +42,8 @@ final readonly class ConfigurationFactory
 
         $memoryLimit = $this->resolveMemoryLimit($input);
 
+        $showRulesSummary = (bool) $input->getOption(Option::RULES_SUMMARY);
+
         return new Configuration(
             $dryRun,
             $showProgressBar,
@@ -51,6 +53,7 @@ final readonly class ConfigurationFactory
             $showDiffs,
             $memoryLimit,
             $onlyRule,
+            $showRulesSummary,
             $showChangelog
         );
     }

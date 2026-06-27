@@ -92,6 +92,13 @@ final class ProcessCommand extends Command
 
         // filter by rule and path
         $this->addOption(Option::ONLY, null, InputOption::VALUE_REQUIRED, 'Fully qualified rule class name');
+
+        $this->addOption(
+            Option::RULES_SUMMARY,
+            null,
+            InputOption::VALUE_NONE,
+            'Show summary of rules applied during the run.'
+        );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

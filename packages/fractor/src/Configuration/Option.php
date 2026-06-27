@@ -89,4 +89,9 @@ final class Option
      * @var string
      */
     public const MEMORY_LIMIT = 'memory-limit';
+
+    /**
+     * @var string
+     */
+    public const RULES_SUMMARY = 'rules-summary';
 }

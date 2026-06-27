@@ -8,6 +8,7 @@ use a9f\Fractor\ChangesReporting\Contract\Output\OutputFormatterInterface;
 use a9f\Fractor\Configuration\ValueObject\Configuration;
 use a9f\Fractor\Differ\ValueObject\FileDiff;
 use a9f\Fractor\ValueObject\ProcessResult;
+use Nette\Utils\Strings;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 final readonly class ConsoleOutputFormatter implements OutputFormatterInterface
@@ -36,6 +37,10 @@ final readonly class ConsoleOutputFormatter implements OutputFormatterInterface
         // to keep space between progress bar and success message
         if ($configuration->shouldShowProgressBar() && $processResult->getFileDiffs() === []) {
             $this->symfonyStyle->newLine();
+        }
+
+        if ($configuration->shouldShowRulesSummary()) {
+            $this->reportRulesSummary($processResult, $configuration);
         }
 
         $message = $this->createSuccessMessage($processResult, $configuration);
@@ -92,5 +97,30 @@ final readonly class ConsoleOutputFormatter implements OutputFormatterInterface
                 ? 'would have been changed (dry-run)'
                 : ($changeCount === 1 ? 'has' : 'have') . ' been changed'
         );
+    }
+
+    private function reportRulesSummary(ProcessResult $processResult, Configuration $configuration): void
+    {
+        $ruleApplicationCounts = $processResult->getRuleApplicationCounts();
+        if ($ruleApplicationCounts === []) {
+            return;
+        }
+
+        $verb = $configuration->isDryRun() ? 'would have been applied' : 'was applied';
+
+        $this->symfonyStyle->section('Rules Summary');
+
+        foreach ($ruleApplicationCounts as $ruleClass => $count) {
+            $ruleShortClass = (string) Strings::after($ruleClass, '\\', -1);
+            $this->symfonyStyle->writeln(sprintf(
+                ' * <info>%s</info> %s <comment>%d</comment> time%s',
+                $ruleShortClass,
+                $verb,
+                $count,
+                $count > 1 ? 's' : ''
+            ));
+        }
+
+        $this->symfonyStyle->newLine();
     }
 }
