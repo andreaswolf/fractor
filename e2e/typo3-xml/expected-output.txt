@@ -5,7 +5,7 @@
 1) typo3-xml/result/Fixture.xml:9
 
     ---------- begin diff ----------
-@@ @@
+@@ Line 9 @@
  					<settings.nullable_field_trimmed>
  						<label>Nullable field -> trimmed</label>
  						<config>

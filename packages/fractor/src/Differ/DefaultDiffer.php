@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\Differ;
 
-use a9f\Fractor\Differ\Contract\Differ;
-use a9f\Fractor\Differ\ValueObject\Diff;
-use SebastianBergmann\Diff\Differ as CoreDiffer;
+use SebastianBergmann\Diff\Differ;
 use SebastianBergmann\Diff\Output\StrictUnifiedDiffOutputBuilder;
 
-final readonly class DefaultDiffer implements Differ
+final readonly class DefaultDiffer
 {
-    private CoreDiffer $differ;
+    private Differ $differ;
 
     public function __construct()
     {
@@ -19,14 +17,14 @@ final readonly class DefaultDiffer implements Differ
             'fromFile' => 'Original',
             'toFile' => 'New',
         ]);
-        $this->differ = new CoreDiffer($strictUnifiedDiffOutputBuilder);
+        $this->differ = new Differ($strictUnifiedDiffOutputBuilder);
     }
 
-    public function diff(Diff $diff): string
+    public function diff(string $old, string $new): string
     {
-        if (! $diff->isDifferent()) {
+        if ($old === $new) {
             return '';
         }
-        return $this->differ->diff($diff->getOldContent(), $diff->getNewContent());
+        return $this->differ->diff($old, $new);
     }
 }

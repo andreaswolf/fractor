@@ -5,7 +5,7 @@
 1) typo3-extension/result/my_theme/Configuration/Sets/BaseSet/setup.typoscript:1
 
     ---------- begin diff ----------
-@@ @@
+@@ Line 1 @@
 -<INCLUDE_TYPOSCRIPT: source="DIR:EXT:my_theme/Configuration/PageTsConfig/Includes/" extensions="tsconfig.typoscript">
 +@import 'EXT:my_theme/Configuration/PageTsConfig/Includes/*.tsconfig.typoscript'
     ----------- end diff -----------
