@@ -20,8 +20,6 @@ use a9f\Fractor\Console\Style\FractorStyle;
 use a9f\Fractor\Console\Style\SymfonyStyleFactory;
 use a9f\Fractor\Contract\FilesystemInterface;
 use a9f\Fractor\Contract\LocalFilesystemInterface;
-use a9f\Fractor\Differ\ConsoleDiffer;
-use a9f\Fractor\Differ\Contract\Differ;
 use a9f\Fractor\FileSystem\FilesystemFactory;
 use a9f\Fractor\FileSystem\FlysystemFilesystem;
 use League\Flysystem\FilesystemAdapter;
@@ -111,7 +109,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         ->alias(ContainerBagInterface::class, 'parameter_bag')
         ->alias(ParameterBagInterface::class, 'parameter_bag');
 
-    $services->alias(Differ::class, ConsoleDiffer::class);
     $services->set(FractorApplication::class)->call('setCommandLoader', [service('console.command_loader')]);
     $services->set(SkipConfiguration::class)->factory([service(SkipConfigurationFactory::class), 'create']);
     $services->set(FractorRunner::class)->arg('$processors', tagged_iterator('fractor.file_processor'));

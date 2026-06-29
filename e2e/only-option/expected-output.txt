@@ -5,7 +5,7 @@
 1) only-option/result/fixture.typoscript:1
 
     ---------- begin diff ----------
-@@ @@
+@@ Line 1 @@
 -config.xhtmlDoctype = 1
 +config.doctype = 1
  config.metaCharset = utf-8

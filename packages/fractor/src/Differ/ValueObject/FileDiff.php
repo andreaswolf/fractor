@@ -93,6 +93,8 @@ final readonly class FileDiff
         foreach ($this->appliedRules as $appliedRule) {
             $fractorClasses[] = $appliedRule->getFractorClass();
         }
+        $fractorClasses = array_unique($fractorClasses);
+        sort($fractorClasses);
         return $fractorClasses;
     }
 

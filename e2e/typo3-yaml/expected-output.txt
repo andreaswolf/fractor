@@ -5,7 +5,7 @@
 1) typo3-yaml/result/my_form.form.yaml:2
 
     ---------- begin diff ----------
-@@ @@
+@@ Line 2 @@
    -
      options:
        recipients:
@@ -54,7 +54,7 @@
      identifier: EmailToSender
  variants:
    -
-@@ @@
+@@ Line 38 @@
          identifier: EmailToReceiver
          options:
            subject: 'Example Subject'

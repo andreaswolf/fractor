@@ -5,7 +5,7 @@
 1) typo3-typoscript/result/cache-hash.typoscript:3
 
     ---------- begin diff ----------
-@@ @@
+@@ Line 3 @@
  page.10.value = Link to page 23
  page.10.typolink {
      parameter = 23
