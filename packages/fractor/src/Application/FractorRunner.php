@@ -46,7 +46,7 @@ final readonly class FractorRunner
 
     public function run(Configuration $configuration): ProcessResult
     {
-        $filePaths = $this->fileFinder->findFiles($configuration->getPaths(), $configuration->getFileExtensions());
+        $filePaths = $this->fileFinder->findFilesInPaths($configuration->getPaths(), $configuration);
 
         // no files found
         if ($filePaths === []) {
