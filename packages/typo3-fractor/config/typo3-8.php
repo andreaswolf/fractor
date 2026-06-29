@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use a9f\Typo3Fractor\TYPO3v8\Fluid\ReplaceCaseDefaultWithDefaultCaseFluidFractor;
 use a9f\Typo3Fractor\TYPO3v8\TypoScript\RemoveConfigPrefixLocalAnchorsFractor;
 use a9f\Typo3Fractor\TYPO3v8\TypoScript\RemoveConfigRenderCharsetFractor;
 use a9f\Typo3Fractor\TYPO3v8\TypoScript\RemoveModNewPageWizOverrideWithExtensionFractor;
@@ -13,6 +14,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autoconfigure()
         ->autowire();
 
+    $services->set(ReplaceCaseDefaultWithDefaultCaseFluidFractor::class);
     $services->set(RemoveConfigPrefixLocalAnchorsFractor::class);
     $services->set(RemoveConfigRenderCharsetFractor::class);
     $services->set(RemoveModNewPageWizOverrideWithExtensionFractor::class);

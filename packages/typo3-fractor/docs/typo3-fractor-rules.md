@@ -1,4 +1,4 @@
-# 69 Rules Overview
+# 70 Rules Overview
 
 ## AbstractMessageGetSeverityFluidFractor
 
@@ -1467,6 +1467,22 @@ Rename key mail to email for MailLinkHandler
          scanBefore = url
      }
  }
+```
+
+<br>
+
+## ReplaceCaseDefaultWithDefaultCaseFluidFractor
+
+Replace f:case with default attribute by f:defaultCase
+
+- class: [`a9f\Typo3Fractor\TYPO3v8\Fluid\ReplaceCaseDefaultWithDefaultCaseFluidFractor`](../rules/TYPO3v8/Fluid/ReplaceCaseDefaultWithDefaultCaseFluidFractor.php)
+
+```diff
+ <f:switch expression="{someVariable}">
+     <f:case value="foo">foo</f:case>
+-    <f:case default="true">bar</f:case>
++    <f:defaultCase>bar</f:defaultCase>
+ </f:switch>
 ```
 
 <br>
