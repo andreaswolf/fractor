@@ -4,30 +4,33 @@ declare(strict_types=1);
 
 namespace a9f\Fractor\FileSystem;
 
+use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
 use a9f\Fractor\Caching\UnchangedFilesFilter;
+use a9f\Fractor\Configuration\ValueObject\Configuration;
 use Symfony\Component\Finder\Finder;
 use Webmozart\Assert\Assert;
 
 final readonly class FilesFinder
 {
     public function __construct(
-        private WildcardResolver $wildcardResolver,
+        private FilesystemTweaker $filesystemTweaker,
         private FileAndDirectoryFilter $fileAndDirectoryFilter,
         private PathSkipper $pathSkipper,
-        private UnchangedFilesFilter $unchangedFilesFilter
+        private UnchangedFilesFilter $unchangedFilesFilter,
+        private ChangedFilesDetector $changedFilesDetector,
     ) {
     }
 
     /**
-     * @param list<non-empty-string> $source
+     * @param string[] $source
      * @param string[] $suffixes
      * @return string[]
      */
-    public function findFiles(array $source, array $suffixes, bool $sortByName = true): array
+    public function findInDirectoriesAndFiles(array $source, array $suffixes, bool $sortByName = true): array
     {
         Assert::allStringNotEmpty($source, 'Please provide some paths');
 
-        $filesAndDirectories = $this->wildcardResolver->resolveAllWildcards($source);
+        $filesAndDirectories = $this->filesystemTweaker->resolveWithFnmatch($source);
 
         $files = $this->fileAndDirectoryFilter->filterFiles($filesAndDirectories);
 
@@ -49,6 +52,19 @@ final readonly class FilesFinder
 
         $filePaths = [...$filteredFilePaths, ...$filteredFilePathsInDirectories];
         return $this->unchangedFilesFilter->filterFilePaths($filePaths);
+    }
+
+    /**
+     * @param string[] $paths
+     * @return string[]
+     */
+    public function findFilesInPaths(array $paths, Configuration $configuration): array
+    {
+        if ($configuration->shouldClearCache()) {
+            $this->changedFilesDetector->clear();
+        }
+
+        return $this->findInDirectoriesAndFiles($paths, $configuration->getFileExtensions(), true);
     }
 
     /**

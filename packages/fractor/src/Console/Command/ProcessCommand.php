@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace a9f\Fractor\Console\Command;
 
 use a9f\Fractor\Application\FractorRunner;
-use a9f\Fractor\Caching\Detector\ChangedFilesDetector;
 use a9f\Fractor\ChangesReporting\Output\ConsoleOutputFormatter;
 use a9f\Fractor\Configuration\ConfigInitializer;
 use a9f\Fractor\Configuration\ConfigurationFactory;
@@ -32,7 +31,6 @@ final class ProcessCommand extends Command
         private readonly FractorRunner $runner,
         private readonly ConfigurationFactory $configurationFactory,
         private readonly OutputFormatterCollector $outputFormatterCollector,
-        private readonly ChangedFilesDetector $changedFilesDetector,
         private readonly ConfigInitializer $configInitializer,
         private readonly MemoryLimiter $memoryLimiter,
         private readonly ConfigurationRuleFilter $configurationRuleFilter
@@ -129,11 +127,6 @@ final class ProcessCommand extends Command
         $application = $this->getApplication();
         if (! $application instanceof FractorApplication) {
             throw new ShouldNotHappenException();
-        }
-        // clear cache
-        $optionClearCache = (bool) $input->getOption(Option::CLEAR_CACHE);
-        if ($optionClearCache) {
-            $this->changedFilesDetector->clear();
         }
     }
 

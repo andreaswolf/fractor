@@ -21,33 +21,42 @@ final class FilesFinderTest extends AbstractFractorTestCase
     #[Test]
     public function findAllNonEmptyFilesInGivenDirectories(): void
     {
-        self::assertCount(4, $this->subject->findFiles([__DIR__ . '/Fixtures/Source'], []));
+        self::assertCount(4, $this->subject->findInDirectoriesAndFiles([__DIR__ . '/Fixtures/Source'], []));
     }
 
     #[Test]
     public function findAllNonEmptyFilesInGivenDirectoriesWithGivenExtensions(): void
     {
-        self::assertCount(2, $this->subject->findFiles([__DIR__ . '/Fixtures/Source'], ['txt', 'json']));
+        self::assertCount(
+            2,
+            $this->subject->findInDirectoriesAndFiles([__DIR__ . '/Fixtures/Source'], ['txt', 'json'])
+        );
     }
 
     #[Test]
     public function withFollowingBrokenSymlinks(): void
     {
-        $foundFiles = $this->subject->findFiles([__DIR__ . '/Fixtures/SourceWithBrokenSymlinks'], []);
+        $foundFiles = $this->subject->findInDirectoriesAndFiles([__DIR__ . '/Fixtures/SourceWithBrokenSymlinks'], []);
         self::assertCount(0, $foundFiles);
     }
 
     #[Test]
     public function directoriesWithGlobPattern(): void
     {
-        $foundDirectories = $this->subject->findFiles([__DIR__ . '/Fixtures/SourceWithSubFolders/folder*/*'], []);
+        $foundDirectories = $this->subject->findInDirectoriesAndFiles(
+            [__DIR__ . '/Fixtures/SourceWithSubFolders/folder*/*'],
+            []
+        );
         self::assertCount(2, $foundDirectories);
     }
 
     #[Test]
     public function filesWithGlobPattern(): void
     {
-        $foundFiles = $this->subject->findFiles([__DIR__ . '/Fixtures/SourceWithSubFolders/**/foo.txt'], ['txt']);
+        $foundFiles = $this->subject->findInDirectoriesAndFiles(
+            [__DIR__ . '/Fixtures/SourceWithSubFolders/**/foo.txt'],
+            ['txt']
+        );
         self::assertCount(2, $foundFiles);
 
         /** @var string $foundFile */
