@@ -20,3 +20,6 @@ indent_size = 2
 [{*.xml,*.xml.fixture}]
 indent_style = tab
 indent_size = 4
+
+[composer.json.fixture]
+insert_final_newline = false
