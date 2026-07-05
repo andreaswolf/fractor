@@ -2,9 +2,9 @@
 
 ## ConvertXliff1To2Fractor
 
-Convert XLIFF 1.2 files to XLIFF 2.0 format
+Convert XLIFF 1.2 files to XLIFF 2.0 format (note: within TYPO3, XLIFF 2.0 is only supported from v14 onwards)
 
-- class: [`a9f\FractorXliff\ConvertXliff1To2Fractor`](../rules/ConvertXliff1To2Fractor.php)
+- class: [`a9f\FractorXliff\Transform\ConvertXliff1To2Fractor`](../rules/Transform/ConvertXliff1To2Fractor.php)
 
 ```diff
  <?xml version="1.0" encoding="UTF-8"?>
@@ -32,7 +32,7 @@ Convert XLIFF 1.2 files to XLIFF 2.0 format
 
 Ensure XLIFF files have the required source-language (v1.x) or srcLang (v2.0) attribute
 
-- class: [`a9f\FractorXliff\EnsureXliffHasSourceLanguageFractor`](../rules/EnsureXliffHasSourceLanguageFractor.php)
+- class: [`a9f\FractorXliff\CodeQuality\EnsureXliffHasSourceLanguageFractor`](../rules/CodeQuality/EnsureXliffHasSourceLanguageFractor.php)
 
 ```diff
  <?xml version="1.0" encoding="UTF-8"?>
@@ -54,7 +54,7 @@ Ensure XLIFF files have the required source-language (v1.x) or srcLang (v2.0) at
 
 Add target-language attribute to localized XLIFF files where the filename starts with a 2-letter ISO language code
 
-- class: [`a9f\FractorXliff\EnsureXliffHasTargetLanguageFractor`](../rules/EnsureXliffHasTargetLanguageFractor.php)
+- class: [`a9f\FractorXliff\CodeQuality\EnsureXliffHasTargetLanguageFractor`](../rules/CodeQuality/EnsureXliffHasTargetLanguageFractor.php)
 
 ```diff
  <!-- de.locallang.xlf -->

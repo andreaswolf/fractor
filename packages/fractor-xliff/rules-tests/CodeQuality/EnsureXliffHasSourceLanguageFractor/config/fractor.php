@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 use a9f\Fractor\Configuration\FractorConfiguration;
 use a9f\Fractor\ValueObject\Indent;
+use a9f\FractorXliff\CodeQuality\EnsureXliffHasSourceLanguageFractor;
 use a9f\FractorXliff\Configuration\XliffProcessorOption;
-use a9f\FractorXliff\EnsureXliffHasTargetLanguageFractor;
 
 return FractorConfiguration::configure()
     ->withOptions([
         XliffProcessorOption::INDENT_CHARACTER => Indent::STYLE_TAB,
         XliffProcessorOption::INDENT_SIZE => 1,
     ])
-    ->withRules([EnsureXliffHasTargetLanguageFractor::class]);
+    ->withRules([EnsureXliffHasSourceLanguageFractor::class]);

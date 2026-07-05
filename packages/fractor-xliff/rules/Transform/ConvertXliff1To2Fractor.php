@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace a9f\FractorXliff;
+namespace a9f\FractorXliff\Transform;
 
 use a9f\Fractor\Contract\NoChangelogRequired;
 use a9f\FractorXliff\Contract\XliffFractorRule;
@@ -12,7 +12,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \a9f\FractorXliff\Tests\ConvertXliff1To2Fractor\ConvertXliff1To2FractorTest
+ * @see \a9f\FractorXliff\Tests\Transform\ConvertXliff1To2Fractor\ConvertXliff1To2FractorTest
  */
 final class ConvertXliff1To2Fractor implements XliffFractorRule, NoChangelogRequired
 {
@@ -44,8 +44,11 @@ final class ConvertXliff1To2Fractor implements XliffFractorRule, NoChangelogRequ
 
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition('Convert XLIFF 1.2 files to XLIFF 2.0 format', [new CodeSample(
-            <<<'CODE_SAMPLE'
+        return new RuleDefinition(
+            'Convert XLIFF 1.2 files to XLIFF 2.0 format (note: within TYPO3, XLIFF 2.0 is only supported from v14 onwards)',
+            [
+                new CodeSample(
+                    <<<'CODE_SAMPLE'
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="messages">
@@ -58,8 +61,8 @@ final class ConvertXliff1To2Fractor implements XliffFractorRule, NoChangelogRequ
     </file>
 </xliff>
 CODE_SAMPLE
-            ,
-            <<<'CODE_SAMPLE'
+                    ,
+                    <<<'CODE_SAMPLE'
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
     <file id="messages">
@@ -71,7 +74,10 @@ CODE_SAMPLE
     </file>
 </xliff>
 CODE_SAMPLE
-        )]);
+                ),
+
+            ]
+        );
     }
 
     private function convertFiles(\DOMElement $oldRoot, \DOMDocument $newDoc, \DOMElement $newRoot): void

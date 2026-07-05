@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace a9f\FractorXliff\Tests\EnsureXliffHasTargetLanguageFractor;
+namespace a9f\FractorXliff\Tests\CodeQuality\EnsureXliffHasSourceLanguageFractor;
 
 use a9f\Fractor\Testing\PHPUnit\AbstractFractorTestCase;
-use a9f\FractorXliff\EnsureXliffHasTargetLanguageFractor;
+use a9f\FractorXliff\CodeQuality\EnsureXliffHasSourceLanguageFractor;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-final class EnsureXliffHasTargetLanguageFractorTest extends AbstractFractorTestCase
+final class EnsureXliffHasSourceLanguageFractorTest extends AbstractFractorTestCase
 {
     #[DataProvider('provideData')]
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);
-        $this->assertThatRuleIsApplied(EnsureXliffHasTargetLanguageFractor::class);
+        $this->assertThatRuleIsApplied(EnsureXliffHasSourceLanguageFractor::class);
     }
 
     public static function provideData(): \Iterator

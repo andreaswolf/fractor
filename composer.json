@@ -145,7 +145,8 @@
         },
         "docs": [
             "packages/fractor-doc-generator/bin/fractor-doc-generator generate packages/typo3-fractor/rules --output-file packages/typo3-fractor/docs/typo3-fractor-rules.md",
-            "packages/fractor-doc-generator/bin/fractor-doc-generator generate packages/fractor-composer-json/rules --output-file packages/fractor-composer-json/docs/composer-json-fractor-rules.md"
+            "packages/fractor-doc-generator/bin/fractor-doc-generator generate packages/fractor-composer-json/rules --output-file packages/fractor-composer-json/docs/composer-json-fractor-rules.md",
+            "packages/fractor-doc-generator/bin/fractor-doc-generator generate packages/fractor-xliff/rules --output-file packages/fractor-xliff/docs/xliff-fractor-rules.md"
         ],
         "local:contribute": [
             "@rectify",
