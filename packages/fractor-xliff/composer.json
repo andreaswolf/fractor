@@ -1,0 +1,55 @@
+{
+    "name": "a9f/fractor-xliff",
+    "description": "XLIFF extension for the File Read-Analyse-Change Tool. Allows modifying XLIFF translation files",
+    "license": "MIT",
+    "type": "fractor-extension",
+    "keywords": [
+        "dev",
+        "fractor",
+        "upgrade",
+        "refactoring",
+        "automation",
+        "migration",
+        "xliff",
+        "translation"
+    ],
+    "require": {
+        "php": "^8.2",
+        "ext-dom": "*",
+        "ext-xml": "*",
+        "a9f/fractor": "^0.5.10",
+        "a9f/fractor-extension-installer": "^0.5.10",
+        "simonschaufi/pretty-xml": "^3.0.0",
+        "symplify/rule-doc-generator-contracts": "^11.2",
+        "webmozart/assert": "^1.11"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "a9f\\FractorXliff\\": [
+                "src/",
+                "rules/"
+            ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "a9f\\FractorXliff\\Tests\\": [
+                "tests/",
+                "rules-tests/"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "a9f/fractor-extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.5-dev"
+        }
+    }
+}
