@@ -147,6 +147,25 @@ return FractorConfiguration::configure()
 ### Configure code style
 
 Fractor tries to format the code as good as possible.
+
+Fractor formats your composer.json files by default with four spaces.
+If you want to adjust the indentation of your composer.json files, you can configure it this way:
+
+```php
+<?php
+
+use a9f\Fractor\Configuration\FractorConfiguration;
+use a9f\Fractor\ValueObject\Indent;
+use a9f\FractorComposerJson\Configuration\ComposerJsonProcessorOption;
+
+return FractorConfiguration::configure()
+    ->withOptions([
+        ComposerJsonProcessorOption::INDENT_CHARACTER => Indent::STYLE_TAB,
+        ComposerJsonProcessorOption::INDENT_SIZE => 1,
+    ]);
+```
+
+Fractor formats your xml files by default with four spaces.
 If you want to adjust the indentation of your xml files, you can configure it this way:
 
 ```php
@@ -163,6 +182,7 @@ return FractorConfiguration::configure()
     ]);
 ```
 
+Fractor formats your TypoScript files by default with four spaces.
 If you want to adjust the format of your TypoScript files, you can configure it this way:
 
 ```php

@@ -2,14 +2,17 @@
 
 declare(strict_types=1);
 
+use a9f\Fractor\ValueObject\Indent;
 use a9f\FractorComposerJson\ComposerJsonFileProcessor;
 use a9f\FractorComposerJson\Contract\ComposerJsonFractorRule;
 use a9f\FractorComposerJson\Contract\ComposerJsonPrinter;
 use a9f\FractorComposerJson\ErgebnisComposerJsonPrinter;
+use a9f\FractorComposerJson\IndentFactory;
 use Ergebnis\Json\Printer\Printer;
 use Ergebnis\Json\Printer\PrinterInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 
 return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
@@ -20,7 +23,11 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
     $services->load('a9f\\FractorComposerJson\\', __DIR__ . '/../src/');
 
+    $services->set('fractor.composer_json_processor.indent', Indent::class)
+        ->factory([service(IndentFactory::class), 'create']);
+
     $services->set(ComposerJsonFileProcessor::class)
+        ->arg('$indent', service('fractor.composer_json_processor.indent'))
         ->arg('$rules', tagged_iterator('fractor.composer_json_rule'));
 
     $services->set(Printer::class);
