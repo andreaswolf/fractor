@@ -36,6 +36,9 @@ jobs:
           - path: fractor-typoscript
             repository: git@github.com:andreaswolf/fractor-typoscript.git
             deploy-key: DEPLOY_KEY_TYPOSCRIPT
+          - path: fractor-xliff
+            repository: git@github.com:andreaswolf/fractor-xliff.git
+            deploy-key: DEPLOY_KEY_XLIFF
           - path: fractor-yaml
             repository: git@github.com:andreaswolf/fractor-yaml.git
             deploy-key: DEPLOY_KEY_YAML
