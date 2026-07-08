@@ -5,18 +5,19 @@ declare(strict_types=1);
 namespace a9f\FractorComposerJson\ValueObject;
 
 use a9f\Fractor\Application\ValueObject\File;
-use a9f\FractorComposerJson\Contract\ComposerJson;
+use a9f\FractorComposerJson\Contract\ComposerJson as ComposerJsonInterface;
+use SimonSchaufi\ComposerJsonManipulator\ComposerJson;
 
-final readonly class EtaOrionisComposerJson implements ComposerJson
+final readonly class ComposerJsonValueObject implements ComposerJsonInterface
 {
     public function __construct(
-        private \EtaOrionis\ComposerJsonManipulator\ComposerJson $composerJson
+        private ComposerJson $composerJson
     ) {
     }
 
     public static function fromFile(File $file): self
     {
-        return new self(\EtaOrionis\ComposerJsonManipulator\ComposerJson::fromFile($file->getFilePath()));
+        return new self(ComposerJson::fromFile($file->getFilePath()));
     }
 
     public function getJsonArray(): array
