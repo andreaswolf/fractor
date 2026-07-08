@@ -43,7 +43,7 @@ Fractor core will be installed automatically and doesn't need to be required dir
 Install Fractor with the file types you need via composer by running the following command in your terminal:
 
 ```bash
-composer require a9f/fractor-composer-json a9f/fractor-htaccess a9f/fractor-xml a9f/fractor-yaml --dev
+composer require a9f/fractor-composer-json a9f/fractor-htaccess a9f/fractor-xliff a9f/fractor-xml a9f/fractor-yaml --dev
 ```
 
 As **TYPO3** users, you probably want to use `a9f/typo3-fractor` only which will install all necessary file types for
@@ -119,7 +119,7 @@ return FractorConfiguration::configure()
 
 ### Skipping FileProcessors
 
-If skipping rules, files, or folders is not sufficient, you can also skip entire processors.
+If skipping rules, files, or folders is not enough, you can also skip entire processors.
 
 #### Example
 
@@ -197,12 +197,14 @@ Possible values for `TypoScriptProcessorOption::CONDITION_TERMINATION`:
 
 ### Configure the allowed file extensions
 
-By default, Fractor processes files based on their extensions. You can customize which file extensions each processor should handle by configuring the `ALLOWED_FILE_EXTENSIONS` option.
+By default, Fractor processes files based on their extensions.
+You can customize which file extensions each processor should handle by configuring the `ALLOWED_FILE_EXTENSIONS` option.
 
 The following are the default extensions processed for each file type:
 
 - **Fluid**: `html`, `xml`, `txt`
 - **TypoScript**: `typoscript`, `tsconfig`, `ts`
+- **XLIFF**: `xlf`, `xliff`
 - **XML**: `xml`
 - **YAML**: `yaml`, `yml`
 
@@ -214,6 +216,7 @@ To override these defaults, use the configuration that looks similiar to the fol
 use a9f\Fractor\Configuration\FractorConfiguration;
 use a9f\FractorFluid\Configuration\FluidProcessorOption;
 use a9f\FractorTypoScript\Configuration\TypoScriptProcessorOption;
+use a9f\FractorXliff\Configuration\XliffProcessorOption;
 use a9f\FractorXml\Configuration\XmlProcessorOption;
 use a9f\FractorYaml\Configuration\YamlProcessorOption;
 
@@ -223,9 +226,8 @@ return FractorConfiguration::configure()
         FluidProcessorOption::ALLOWED_FILE_EXTENSIONS => ['html'],
         // Remove ts files and only process typoscript and tsconfig
         TypoScriptProcessorOption::ALLOWED_FILE_EXTENSIONS => ['typoscript', 'tsconfig'],
-        // Also process xlf files
-        XmlProcessorOption::ALLOWED_FILE_EXTENSIONS => ['xml', 'xlf'],
-        // Keep defaults - can be omitted in that case
+        XliffProcessorOption::ALLOWED_FILE_EXTENSIONS => ['xlf', 'xliff'],
+        XmlProcessorOption::ALLOWED_FILE_EXTENSIONS => ['xml'],
         YamlProcessorOption::ALLOWED_FILE_EXTENSIONS => ['yaml', 'yml'],
     ]);
 
@@ -296,7 +298,7 @@ Here's how you can extend Fractor with a custom rule:
 
 ### Documentation
 
-- Document your custom rules and file type extensions to aid other users in understanding and utilizing your contributions.
+- Document your custom rules and file type extensions to aid other users in understanding and using your contributions.
 
 By extending Fractor in this manner, you can enhance its capabilities and adapt it to handle a wider range of file formats
 and transformation scenarios.
