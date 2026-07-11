@@ -24,8 +24,8 @@
         "a9f/fractor-doc-generator": "^1.0",
         "a9f/fractor-extension-installer": "^1.0",
         "ergebnis/json-printer": "^3.5",
-        "eta-orionis/composer-json-manipulator": "^1.0.1",
         "nette/utils": "^4.0",
+        "simonschaufi/composer-json-manipulator": "^1.0",
         "symplify/rule-doc-generator-contracts": "^11.2",
         "webmozart/assert": "^1.11 || ^2.0"
     },
