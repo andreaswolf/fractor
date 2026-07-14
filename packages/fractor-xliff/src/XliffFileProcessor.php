@@ -93,6 +93,10 @@ final readonly class XliffFileProcessor implements FileProcessor
 
     private function saveXml(\DOMDocument $document): string
     {
+        // Ensure a proper encoding so non-ASCII characters stay literal
+        if ($document->encoding === null || $document->encoding === '') {
+            $document->encoding = 'UTF-8';
+        }
         $xml = $document->saveXML();
         if ($xml === false) {
             throw new ShouldNotHappenException('Could not save XLIFF document');
